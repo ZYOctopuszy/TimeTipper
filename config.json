@@ -1,0 +1,25 @@
+{
+    "hide_tray": 2,
+    "forKillExe": [
+        "EasiCamera.exe",
+        "et.exe",
+        "EXCEL.EXE",
+        "POWERPNT.EXE",
+        "WINWORD.EXE",
+        "wps.exe",
+        "wpscloudsvr.exe"
+    ],
+    "forKillWindowTitle": [
+        ".pdf",
+        ".ppt",
+        ".pptx",
+        ".txt",
+        "\u5206\u4eab\u7684\u56fe\u7247",
+        "\u804a\u5929\u8bb0\u5f55"
+    ],
+    "random_time": [
+        3,
+        3
+    ],
+    "hold_time": 180
+}
