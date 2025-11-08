@@ -8,13 +8,17 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QMetaObject, Qt)
-from PySide6.QtGui import (QFont)
-from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QFrame,
-                               QGridLayout, QLabel, QListView, QListWidget,
-                               QPushButton, QSizePolicy, QSpacerItem,
-                               QSpinBox, QTabWidget, QTextEdit, QWidget)
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QFrame,
+    QGridLayout, QLabel, QListView, QListWidget,
+    QListWidgetItem, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QTabWidget, QTextEdit, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -164,12 +168,13 @@ class Ui_Form(object):
 
         self.gridLayout_7.addWidget(self.if_strong_hide, 1, 0, 1, 4)
 
+
         self.gridLayout_5.addWidget(self.frame, 0, 0, 3, 1)
 
-        self.test_buttom = QPushButton(self.settings)
-        self.test_buttom.setObjectName(u"test_buttom")
+        self.test_button = QPushButton(self.settings)
+        self.test_button.setObjectName(u"test_button")
 
-        self.gridLayout_5.addWidget(self.test_buttom, 2, 2, 1, 1)
+        self.gridLayout_5.addWidget(self.test_button, 2, 2, 1, 1)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -271,96 +276,104 @@ class Ui_Form(object):
 
         self.gridLayout_3.addItem(self.verticalSpacer, 2, 0, 1, 1)
 
+
         self.gridLayout_4.addLayout(self.gridLayout_3, 0, 0, 1, 1)
 
         self.tabWidget.addTab(self.about, "")
 
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 3)
 
+        QWidget.setTabOrder(self.tabWidget, self.time_list)
+        QWidget.setTabOrder(self.time_list, self.add_button)
+        QWidget.setTabOrder(self.add_button, self.delete_button)
+        QWidget.setTabOrder(self.delete_button, self.edit_button)
+        QWidget.setTabOrder(self.edit_button, self.exit_button)
+        QWidget.setTabOrder(self.exit_button, self.apply_button)
+        QWidget.setTabOrder(self.apply_button, self.if_tray_hide)
+        QWidget.setTabOrder(self.if_tray_hide, self.if_strong_hide)
+        QWidget.setTabOrder(self.if_strong_hide, self.a)
+        QWidget.setTabOrder(self.a, self.b)
+        QWidget.setTabOrder(self.b, self.hold_seconds)
+        QWidget.setTabOrder(self.hold_seconds, self.is_active)
+        QWidget.setTabOrder(self.is_active, self.test_button)
+        QWidget.setTabOrder(self.test_button, self.tabWidget_2)
+        QWidget.setTabOrder(self.tabWidget_2, self.for_kill_list)
+        QWidget.setTabOrder(self.for_kill_list, self.choose_exe)
+        QWidget.setTabOrder(self.choose_exe, self.edit_exe_button)
+        QWidget.setTabOrder(self.edit_exe_button, self.add_exe)
+        QWidget.setTabOrder(self.add_exe, self.remove_exe)
+        QWidget.setTabOrder(self.remove_exe, self.for_close_title)
+        QWidget.setTabOrder(self.for_close_title, self.edit_title_button)
+        QWidget.setTabOrder(self.edit_title_button, self.add_title)
+        QWidget.setTabOrder(self.add_title, self.remove_title)
+        QWidget.setTabOrder(self.remove_title, self.description)
+
         self.retranslateUi(Form)
 
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
 
-        QMetaObject.connectSlotsByName(Form)
 
+        QMetaObject.connectSlotsByName(Form)
     # setupUi
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"TimeTiper", None))
-        # if QT_CONFIG(tooltip)
-        self.apply_button.setToolTip(QCoreApplication.translate("Form",
-                                                                u"\u4e00\u4e9b\u8bbe\u7f6e\u66f4\u6539\u540e\u8981\u5e94\u7528\u624d\u4f1a\u4fdd\u5b58",
-                                                                None))
-        # endif // QT_CONFIG(tooltip)
+        Form.setWindowTitle(QCoreApplication.translate("Form", u"TimeTipper", None))
+#if QT_CONFIG(tooltip)
+        self.apply_button.setToolTip(QCoreApplication.translate("Form", u"\u4e00\u4e9b\u8bbe\u7f6e\u66f4\u6539\u540e\u8981\u5e94\u7528\u624d\u4f1a\u4fdd\u5b58", None))
+#endif // QT_CONFIG(tooltip)
         self.apply_button.setText(QCoreApplication.translate("Form", u"\u5e94\u7528(A)", None))
         self.exit_button.setText(QCoreApplication.translate("Form", u"\u9000\u51fa", None))
-        # if QT_CONFIG(accessibility)
+#if QT_CONFIG(accessibility)
         self.times.setAccessibleName("")
-        # endif // QT_CONFIG(accessibility)
+#endif // QT_CONFIG(accessibility)
         self.delete_button.setText(QCoreApplication.translate("Form", u"\u5220\u9664", None))
         self.add_button.setText(QCoreApplication.translate("Form", u"\u6dfb\u52a0", None))
         self.edit_button.setText(QCoreApplication.translate("Form", u"\u4fee\u6539", None))
         self.time_tip.setText(QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
         self.desription_tip.setText(QCoreApplication.translate("Form", u"\u63cf\u8ff0", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.times),
-                                  QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
-        # if QT_CONFIG(tooltip)
-        self.is_active.setToolTip(
-            QCoreApplication.translate("Form", u"\u70b9\u51fb\u5207\u6362\u6fc0\u6d3b\u72b6\u6001", None))
-        # endif // QT_CONFIG(tooltip)
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.times), QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
+#if QT_CONFIG(tooltip)
+        self.is_active.setToolTip(QCoreApplication.translate("Form", u"\u70b9\u51fb\u5207\u6362\u6fc0\u6d3b\u72b6\u6001", None))
+#endif // QT_CONFIG(tooltip)
         self.is_active.setText(QCoreApplication.translate("Form", u"\u5de5\u4f5c\u4e2d", None))
-        # if QT_CONFIG(tooltip)
-        self.if_tray_hide.setToolTip(QCoreApplication.translate("Form",
-                                                                u"\u5c06\u6258\u76d8\u56fe\u6807\u8bbe\u7f6e\u4e3a\u900f\u660e\u56fe\u7247",
-                                                                None))
-        # endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.if_tray_hide.setToolTip(QCoreApplication.translate("Form", u"\u5c06\u6258\u76d8\u56fe\u6807\u8bbe\u7f6e\u4e3a\u900f\u660e\u56fe\u7247", None))
+#endif // QT_CONFIG(tooltip)
         self.if_tray_hide.setText(QCoreApplication.translate("Form", u"\u9690\u85cf\u6258\u76d8", None))
-        # if QT_CONFIG(tooltip)
-        self.label_5.setToolTip(QCoreApplication.translate("Form",
-                                                           u"\u4e0b\u8bfe\u540e\u591a\u957f\u65f6\u95f4\u5185\u4e0d\u53ef\u4ee5\u518d\u6b21\u6253\u5f00\u6559\u5b66\u8f6f\u4ef6",
-                                                           None))
-        # endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.label_5.setToolTip(QCoreApplication.translate("Form", u"\u4e0b\u8bfe\u540e\u591a\u957f\u65f6\u95f4\u5185\u4e0d\u53ef\u4ee5\u518d\u6b21\u6253\u5f00\u6559\u5b66\u8f6f\u4ef6", None))
+#endif // QT_CONFIG(tooltip)
         self.label_5.setText(QCoreApplication.translate("Form", u"\u6301\u7eed\u65f6\u95f4(\u79d2)", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"~", None))
-        # if QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
         self.a.setToolTip(QCoreApplication.translate("Form", u"\u5ef6\u8fdf\u6700\u5c0f\u503c", None))
-        # endif // QT_CONFIG(tooltip)
-        # if QT_CONFIG(tooltip)
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
         self.b.setToolTip(QCoreApplication.translate("Form", u"\u5ef6\u8fdf\u6700\u5927\u503c", None))
-        # endif // QT_CONFIG(tooltip)
-        # if QT_CONFIG(tooltip)
-        self.label_3.setToolTip(QCoreApplication.translate("Form",
-                                                           u"\u5f53\u4e0b\u8bfe\u540e\u4f1a\u968f\u673a\u5728\u8fd9\u4e2a\u8303\u56f4\u5185\u53d6\u503c\u4f5c\u4e3a\u5ef6\u8fdf, \u7136\u540e\u7b49\u5f85\u5ef6\u8fdf\u540e\u518d\u6740\u7a0b\u5e8f",
-                                                           None))
-        # endif // QT_CONFIG(tooltip)
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.label_3.setToolTip(QCoreApplication.translate("Form", u"\u5f53\u4e0b\u8bfe\u540e\u4f1a\u968f\u673a\u5728\u8fd9\u4e2a\u8303\u56f4\u5185\u53d6\u503c\u4f5c\u4e3a\u5ef6\u8fdf, \u7136\u540e\u7b49\u5f85\u5ef6\u8fdf\u540e\u518d\u6740\u7a0b\u5e8f", None))
+#endif // QT_CONFIG(tooltip)
         self.label_3.setText(QCoreApplication.translate("Form", u"\u968f\u673a\u7b49\u5f85\u65f6\u95f4(\u79d2)", None))
-        self.if_strong_hide.setText(QCoreApplication.translate("Form",
-                                                               u"\u5f3a\u529b\u9690\u85cf\u6a21\u5f0f(\u8bf7\u4f7f\u7528ctrl+win+alt+shift+f6\u6253\u5f00\u8bbe\u7f6e, \u6258\u76d8\u56fe\u6807\u5c06\u6d88\u5931)",
-                                                               None))
-        # if QT_CONFIG(tooltip)
-        self.test_buttom.setToolTip(QCoreApplication.translate("Form", u"\u6a21\u62df\u4e00\u6b21\u4e0b\u8bfe", None))
-        # endif // QT_CONFIG(tooltip)
-        self.test_buttom.setText(QCoreApplication.translate("Form", u"\u6d4b\u8bd5", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.settings),
-                                  QCoreApplication.translate("Form", u"\u8bbe\u7f6e", None))
+        self.if_strong_hide.setText(QCoreApplication.translate("Form", u"\u5f3a\u529b\u9690\u85cf\u6a21\u5f0f(\u8bf7\u4f7f\u7528ctrl+win+alt+shift+f6\u6253\u5f00\u8bbe\u7f6e, \u6258\u76d8\u56fe\u6807\u5c06\u6d88\u5931)", None))
+#if QT_CONFIG(tooltip)
+        self.test_button.setToolTip(QCoreApplication.translate("Form", u"\u6a21\u62df\u4e00\u6b21\u4e0b\u8bfe", None))
+#endif // QT_CONFIG(tooltip)
+        self.test_button.setText(QCoreApplication.translate("Form", u"\u6d4b\u8bd5", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.settings), QCoreApplication.translate("Form", u"\u8bbe\u7f6e", None))
         self.edit_exe_button.setText(QCoreApplication.translate("Form", u"\u7f16\u8f91", None))
         self.remove_exe.setText(QCoreApplication.translate("Form", u"-", None))
         self.add_exe.setText(QCoreApplication.translate("Form", u"+", None))
         self.choose_exe.setText(QCoreApplication.translate("Form", u"\u9009\u62e9\u6587\u4ef6", None))
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.exe),
-                                    QCoreApplication.translate("Form", u"\u5e94\u7528\u7a0b\u5e8fexe", None))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.exe), QCoreApplication.translate("Form", u"\u5e94\u7528\u7a0b\u5e8fexe", None))
         self.remove_title.setText(QCoreApplication.translate("Form", u"-", None))
         self.add_title.setText(QCoreApplication.translate("Form", u"+", None))
         self.edit_title_button.setText(QCoreApplication.translate("Form", u"\u7f16\u8f91", None))
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.title),
-                                    QCoreApplication.translate("Form", u"\u7a97\u53e3\u6807\u9898", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.executables),
-                                  QCoreApplication.translate("Form", u"\u7a0b\u5e8f", None))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.title), QCoreApplication.translate("Form", u"\u7a97\u53e3\u6807\u9898", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.executables), QCoreApplication.translate("Form", u"\u7a0b\u5e8f", None))
         self.label.setText(QCoreApplication.translate("Form", u"\u90a3\u523b\u590f\uff01", None))
-        self.label_2.setText(QCoreApplication.translate("Form",
-                                                        u"\u4e00\u4f4d\u95f2\u7740\u6ca1\u4e8b\u7684\u521d\u4e09\u751f\u5199\u7684\u5c0f\u7a0b\u5e8f",
-                                                        None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.about),
-                                  QCoreApplication.translate("Form", u"\u5173\u4e8e", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"\u4e00\u4f4d\u95f2\u7740\u6ca1\u4e8b\u7684\u521d\u4e09\u751f\u5199\u7684\u5c0f\u7a0b\u5e8f", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.about), QCoreApplication.translate("Form", u"\u5173\u4e8e", None))
     # retranslateUi
+

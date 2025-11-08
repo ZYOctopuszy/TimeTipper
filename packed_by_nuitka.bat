@@ -1,0 +1,2 @@
+nuitka main.py --mode=onefile --include-data-dir=icons=icons --output-filename=TimeTiper-latest --output-dir=dist --remove-output --windows-console-mode=force --windows-icon-from-ico=icons\active.ico --windows-uac-admin --msvc=latest --enable-plugin=pyside6 --show-progress --show-memory --show-modules
+pause

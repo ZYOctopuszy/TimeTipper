@@ -1,5 +1,4 @@
-import win32con
-import win32gui
+import win32con, win32gui
 from loguru import logger
 
 
@@ -29,10 +28,10 @@ class WindowCloser:
         """
         window_title = win32gui.GetWindowText(hwnd)
         if (
-                extra.lower() in window_title.lower()
-                and win32gui.IsWindowVisible(hwnd)
-                and win32gui.IsWindow(hwnd)
-                and win32gui.IsWindowEnabled(hwnd)
+            extra.lower() in window_title.lower()
+            and win32gui.IsWindowVisible(hwnd)
+            and win32gui.IsWindow(hwnd)
+            and win32gui.IsWindowEnabled(hwnd)
         ):
             logger.debug(f"找到匹配窗口 - 句柄: {hwnd}, 标题: {window_title}")
             self.hwnd_list.append(hwnd)

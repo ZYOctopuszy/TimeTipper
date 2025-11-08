@@ -1,5 +1,5 @@
-import threading
 from datetime import datetime, timedelta
+import threading
 from json import load, dump
 from os import path
 from os.path import split
@@ -14,7 +14,7 @@ from PySide6.QtWidgets import QMenu, QSystemTrayIcon, QFileDialog
 
 from UIs import settings, add_time, get_input
 from WindowCloser import WindowCloser
-from public_fuctions import *
+from public_functions import *
 
 
 class MainWindow(QWidget):
@@ -99,6 +99,7 @@ class MainWindow(QWidget):
                 self.flash_state_changed() if self.ui.apply_button.isEnabled() else None
             )
         )
+        QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(self.quit_app)
         # region 初始化热键管理器
         self.hot_key_manager = HotKeyManager(self)
         self.hot_key_manager.show_window_signal.connect(self.show_window)
@@ -133,9 +134,7 @@ class MainWindow(QWidget):
         self.ui.if_strong_hide.setCheckState(
             Qt.CheckState.Checked if self.hide_tray == 2 else Qt.CheckState.Unchecked
         )
-        self.ui.if_tray_hide.setEnabled(
-            False if self.ui.if_strong_hide.isChecked() else True
-        )
+        self.ui.if_tray_hide.setDisabled(self.ui.if_strong_hide.isChecked())
         self.ui.a.setValue(self.random_time[0])
         self.ui.b.setValue(self.random_time[1])
         self.ui.hold_seconds.setValue(self.hold_time)
@@ -154,7 +153,7 @@ class MainWindow(QWidget):
         self.ui.edit_button.clicked.connect(self.edit_button_item)
         self.ui.apply_button.clicked.connect(self.flash_state_changed)
         self.ui.is_active.clicked.connect(self.state_changed_signal.emit)
-        self.ui.test_buttom.clicked.connect(self.testing)
+        self.ui.test_button.clicked.connect(self.testing)
         self.ui.exit_button.clicked.connect(self.quit_app)
         self.ui.if_strong_hide.checkStateChanged.connect(self.strong_hide_action)
         # endregion
@@ -162,8 +161,7 @@ class MainWindow(QWidget):
         # 检测时间列表选中项改变和描述内容改变
         self.ui.time_list.itemSelectionChanged.connect(self.flash_description)
         self.ui.description.textChanged.connect(self.edit_description)
-        self.moment_list = list(self.time_config.keys())
-        self.moment_list.sort()
+        self.moment_list = sorted(self.time_config.keys())
         for item in self.moment_list:
             QApplication.processEvents()
             self.ui.time_list.addItem(item)
@@ -202,11 +200,8 @@ class MainWindow(QWidget):
         关联强隐藏托盘图标
         :return:
         """
-        if self.ui.if_strong_hide.isChecked():
-            self.ui.if_tray_hide.setEnabled(False)
-            self.ui.if_tray_hide.setChecked(True)
-        else:
-            self.ui.if_tray_hide.setEnabled(True)
+        self.ui.if_tray_hide.setDisabled(self.ui.if_strong_hide.isChecked())
+        self.ui.if_tray_hide.setChecked(self.ui.if_strong_hide.isChecked())
 
     def testing(self):
         self.test = True
@@ -224,12 +219,13 @@ class MainWindow(QWidget):
         :param event: 事件对象
         :return: 无
         """
-        if event.type() == QEvent.Type.WindowStateChange:
-            if self.windowState() and Qt.WindowState.WindowMinimized:
-                logger.debug("设置窗口最小化, 执行隐藏窗口")
-                self.hide_window_signal.emit()
-                self.showNormal()
-                self.hide()
+        if event.type() == QEvent.Type.WindowStateChange and (
+            self.windowState() == Qt.WindowState.WindowMinimized
+        ):
+            logger.debug("设置窗口最小化, 执行隐藏窗口")
+            self.showNormal()
+            self.hide()
+            self.hide_window_signal.emit()
         super().changeEvent(event)
 
     def closeEvent(self, event):
@@ -252,11 +248,11 @@ class MainWindow(QWidget):
         self.hide_tray = configure["hide_tray"] or self.default_config["hide_tray"]
         self.forKillExe = configure["forKillExe"] or self.default_config["forKillExe"]
         self.random_time = (
-                configure["random_time"] or self.default_config["random_time"]
+            configure["random_time"] or self.default_config["random_time"]
         )
         self.hold_time = configure["hold_time"] or self.default_config["hold_time"]
         self.forKillWindowTitle = (
-                configure["forKillWindowTitle"] or self.default_config["forKillWindowTitle"]
+            configure["forKillWindowTitle"] or self.default_config["forKillWindowTitle"]
         )
 
     def show_config(self):
@@ -266,7 +262,7 @@ class MainWindow(QWidget):
         """
         QApplication.processEvents()
         logger.debug(
-            f"""当前托盘图标透明: {self.hide_tray};
+            f"""当前托盘图标透明(0显1透2隐): {self.hide_tray};
             \r当前待杀程序: {self.forKillExe};
             \r当前随机时间: {self.random_time};
             \r当前持续时间: {self.hold_time};
@@ -331,7 +327,11 @@ class MainWindow(QWidget):
         self.forKillExe = flash_list_widget(self.ui.for_kill_list)
         self.forKillWindowTitle = flash_list_widget(self.ui.for_close_title)
         # endregion
-        self.hide_tray = 2 if self.ui.if_strong_hide.isChecked() else 1 if self.ui.if_tray_hide.isChecked() else 0
+        self.hide_tray = (
+            2
+            if self.ui.if_strong_hide.isChecked()
+            else 1 if self.ui.if_tray_hide.isChecked() else 0
+        )
         self.hold_time = self.ui.hold_seconds.value()
         # 判断随机时间范围是否正确(whether a<=b or not)
         if int(self.ui.a.text()) > int(self.ui.b.text()):
@@ -390,8 +390,7 @@ class MainWindow(QWidget):
         :return: 无
         """
         QApplication.processEvents()
-        current_item = self.ui.time_list.currentItem()
-        if current_item:
+        if current_item := self.ui.time_list.currentItem():
             self.ui.time_list.takeItem(self.ui.time_list.row(current_item))
             del self.time_config[current_item.text()]
             with open("clock.json", "w", encoding="utf-8") as file:
@@ -445,8 +444,7 @@ class MainWindow(QWidget):
         :return: 无
         """
         QApplication.processEvents()
-        current_item = self.ui.time_list.currentItem()
-        if current_item:
+        if current_item := self.ui.time_list.currentItem():
             current_row = self.ui.time_list.row(current_item)
             logger.debug(f"当前选中: {current_item.text()}, 序号: {current_row}")
             self.ui.description.setText(self.time_config[current_item.text()])
@@ -472,6 +470,7 @@ class HotKeyManager(QObject):
     """
     热键管理类
     """
+
     show_window_signal = Signal()
 
     def __init__(self, parent: MainWindow):
@@ -501,6 +500,7 @@ class MyTray(QSystemTrayIcon):
             r"icons\active.png",
             r"icons\inactive.png",
             r"icons\hide_tray.png",
+            r"icons\active.ico",
         ]
         self.pixmap = QPixmap()
         self.connect_window = connect_window
@@ -566,12 +566,11 @@ class MyTray(QSystemTrayIcon):
         # 托盘双击操作-打开设置
         QApplication.processEvents()
         if reason == QSystemTrayIcon.ActivationReason.DoubleClick:
-            if (not self.connect_window.isVisible()
-                    and (
-                            keyboard.is_pressed("shift")
-                            and keyboard.is_pressed("esc")
-                            or self.connect_window.hide_tray == 0
-                    )):
+            if not self.connect_window.isVisible() and (
+                keyboard.is_pressed("shift")
+                and keyboard.is_pressed("esc")
+                or self.connect_window.hide_tray == 0
+            ):
                 # 显示设置窗口
                 logger.debug("显示设置窗口")
                 self.show_hide_action.setText("设完了")
@@ -694,9 +693,7 @@ class MessageShower:
         else:
             wait_second = 0
         logger.debug(f"将等待时间: {wait_second}秒")
-        while True:
-            if not self.window.life and not self.window.state:
-                break
+        while self.window.life and self.window.state:
             if datetime.now() - (now + timedelta(seconds=wait_second)) <= timedelta():
                 sleep(1)
                 continue
@@ -710,8 +707,8 @@ class MessageShower:
                 map(kill_exe, self.window.forKillExe)
                 break
         self.window.test = False
-        self.window.ui.test_buttom.setEnabled(True)
-        self.window.ui.test_buttom.setText("测试")
+        self.window.ui.test_button.setEnabled(True)
+        self.window.ui.test_button.setText("测试")
 
     def warn(self):
         """
@@ -735,17 +732,18 @@ class MessageShower:
                     QApplication.processEvents()
                     current_time: bool = False
                     # 如果差大于0
-                    if difference >= timedelta():
+                    if difference >= timedelta() and difference <= timedelta(
+                        seconds=self.window.hold_time
+                    ):
                         # 如果差小于持续时间
-                        if difference <= timedelta(seconds=self.window.hold_time):
-                            current_time = True
-                            logger.debug(
-                                f"hold_time: {timedelta(seconds=self.window.hold_time)};    difference: {difference};    so {current_time}"
-                            )
+                        current_time = True
+                        logger.debug(
+                            f"hold_time: {timedelta(seconds=self.window.hold_time)};    difference: {difference};    so {current_time}"
+                        )
                     QApplication.processEvents()
                     if current_time or self.window.test:
-                        self.window.ui.test_buttom.setDisabled(True)
-                        self.window.ui.test_buttom.setText("执行中, 请稍候...")
+                        self.window.ui.test_button.setDisabled(True)
+                        self.window.ui.test_button.setText("执行中, 请稍候...")
                         logger.debug("执行清剿函数")
                         self.warning_action()
 
@@ -762,7 +760,7 @@ class GetInput(QWidget):
         self.window = parent
         self.list_widget = list_widget
         self.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint)
-        self.setWindowIcon(QIcon(resource_path("icons\\active.ico")))
+        self.setWindowIcon(QIcon(self.window.tray_icon.files[3]))
         self.hide()
 
 
@@ -906,5 +904,6 @@ class EditTitle(EditItem):
         self.setWindowTitle("修改待杀窗口标题")
         self.ui.get_exe_name.setPlaceholderText("请输入待杀窗口标题")
         self.window.ui.edit_title_button.clicked.connect(self.edit_item_function)
+
 
 # endregion

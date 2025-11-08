@@ -264,7 +264,7 @@
         </widget>
        </item>
        <item row="2" column="2">
-        <widget class="QPushButton" name="test_buttom">
+        <widget class="QPushButton" name="test_button">
          <property name="toolTip">
           <string>模拟一次下课</string>
          </property>
@@ -438,6 +438,33 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>time_list</tabstop>
+  <tabstop>add_button</tabstop>
+  <tabstop>delete_button</tabstop>
+  <tabstop>edit_button</tabstop>
+  <tabstop>exit_button</tabstop>
+  <tabstop>apply_button</tabstop>
+  <tabstop>if_tray_hide</tabstop>
+  <tabstop>if_strong_hide</tabstop>
+  <tabstop>a</tabstop>
+  <tabstop>b</tabstop>
+  <tabstop>hold_seconds</tabstop>
+  <tabstop>is_active</tabstop>
+  <tabstop>test_button</tabstop>
+  <tabstop>tabWidget_2</tabstop>
+  <tabstop>for_kill_list</tabstop>
+  <tabstop>choose_exe</tabstop>
+  <tabstop>edit_exe_button</tabstop>
+  <tabstop>add_exe</tabstop>
+  <tabstop>remove_exe</tabstop>
+  <tabstop>for_close_title</tabstop>
+  <tabstop>edit_title_button</tabstop>
+  <tabstop>add_title</tabstop>
+  <tabstop>remove_title</tabstop>
+  <tabstop>description</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
