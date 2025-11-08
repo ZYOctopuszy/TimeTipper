@@ -6,5 +6,7 @@
     "Pixmap",
     "taskkill",
     "tasklist"
-  ]
+  ],
+  "markdown-pdf.displayHeaderFooter": false,
+  "markdown-preview-enhanced.enableTypography": true,
 }
