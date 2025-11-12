@@ -1,9 +1,9 @@
-import os.path, sys
+import os.path
 from os import popen
-from os.path import join, abspath
+from os.path import join
 
 from PySide6.QtCore import QRect
-from PySide6.QtWidgets import QApplication, QListWidget, QWidget, QCheckBox, QSpinBox
+from PySide6.QtWidgets import QApplication, QListWidget, QWidget, QCheckBox
 from loguru import logger
 
 

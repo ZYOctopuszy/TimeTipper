@@ -2595,3 +2595,1452 @@ AttributeError: 'PySide6.QtWidgets.QCheckBox' object has no attribute 'StateChan
 2025-11-12 12:59:00.224 | DEBUG | classes -> show_config -> 274 >>> 当前持续时间: 180
 2025-11-12 12:59:00.224 | DEBUG | classes -> show_config -> 275 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
 2025-11-12 12:59:00.877 | DEBUG | classes -> quit_app -> 326 >>> 当前软件生命状态: False
+2025-11-12 13:13:47.439 | DEBUG | classes -> __init__ -> 96 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 13:13:47.440 | DEBUG | classes -> __init__ -> 97 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 13:13:47.509 | DEBUG | classes -> __init__ -> 116 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 13:13:47.513 | DEBUG | classes -> __init__ -> 126 >>> 导入成功
+2025-11-12 13:13:47.513 | DEBUG | classes -> show_config -> 269 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 13:13:47.513 | DEBUG | classes -> show_config -> 272 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 13:13:47.513 | DEBUG | classes -> show_config -> 273 >>> 当前随机时间: [90, 120]
+2025-11-12 13:13:47.514 | DEBUG | classes -> show_config -> 274 >>> 当前持续时间: 180
+2025-11-12 13:13:47.514 | DEBUG | classes -> show_config -> 275 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 13:13:47.545 | DEBUG | classes -> __init__ -> 194 >>> 已加载待杀程序列表
+2025-11-12 13:13:52.904 | DEBUG | classes -> flash_description -> 473 >>> 当前选中: 00:00, 序号: 0
+2025-11-12 13:13:52.907 | DEBUG | classes -> flash_time_config -> 499 >>> 已刷新时间表配置, 当前配置:{'00:00': 'Default Description', '07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 13:13:56.373 | ERROR | classes -> warn -> 771 >>> An error has been caught in function 'warn', process 'MainProcess' (7640), thread 'MainThread' (12576):
+Traceback (most recent call last):
+
+  File "D:\PythonProjects\TimeTipper\main.py", line 40, in <module>
+    window = MainWindow(app)
+             │          └ <PySide6.QtWidgets.QApplication(0x236353218f0) at 0x00000236348FBE00>
+             └ <class 'classes.MainWindow'>
+
+  File "D:\PythonProjects\TimeTipper\classes.py", line 195, in __init__
+    self.warner.run()
+    │    │      └ <function MessageShower.run at 0x0000023636834540>
+    │    └ <classes.MessageShower object at 0x000002365D2DC1A0>
+    └ <classes.MainWindow(0x236354efa90, name="Form") at 0x000002363689E700>
+
+  File "D:\PythonProjects\TimeTipper\classes.py", line 725, in run
+    asyncio.run(self.warn())
+    │       │   │    └ <function MessageShower.warn at 0x0000023636834CC0>
+    │       │   └ <classes.MessageShower object at 0x000002365D2DC1A0>
+    │       └ <function run at 0x0000023634910680>
+    └ <module 'asyncio' from 'D:\\Apps\\Python313\\Lib\\asyncio\\__init__.py'>
+
+  File "D:\Apps\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object MessageShower.warn at 0x0000023636787540>
+           │      └ <function Runner.run at 0x0000023634EFF2E0>
+           └ <asyncio.runners.Runner object at 0x000002365D2DC2F0>
+  File "D:\Apps\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<MessageShower.warn() running at D:\PythonProjects\TimeTipper\.venv\Lib\site-packages\loguru...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000023634EFCD60>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000002365D2DC2F0>
+  File "D:\Apps\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x0000023634EFCCC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "D:\Apps\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000023634EFEAC0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "D:\Apps\Python313\Lib\asyncio\base_events.py", line 2050, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000023634E88860>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x00000236368FCDC0>()>
+  File "D:\Apps\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x00000236368FCDC0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x00000236368FCDC0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x00000236368FCDC0>()>
+
+> File "D:\PythonProjects\TimeTipper\classes.py", line 771, in warn
+    QApplication.processEvents()
+    │            └ <staticmethod(<built-in method processEvents of Shiboken.ObjectType object at 0x00000236352D3BF0>)>
+    └ <class 'PySide6.QtWidgets.QApplication'>
+
+TypeError: TimeManager.edit_time_function() missing 1 required positional argument: 'current_item'
+2025-11-12 13:14:01.695 | DEBUG | classes -> flash_description -> 473 >>> 当前选中: 07:50, 序号: 1
+2025-11-12 13:14:01.700 | DEBUG | classes -> flash_time_config -> 499 >>> 已刷新时间表配置, 当前配置:{'00:00': 'Default Description', '07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 13:14:01.701 | DEBUG | classes -> flash_time_config -> 499 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 13:14:01.702 | DEBUG | classes -> flash_time_config -> 499 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 13:14:02.966 | DEBUG | classes -> quit_app -> 326 >>> 当前软件生命状态: False
+2025-11-12 13:15:55.599 | DEBUG | classes -> __init__ -> 96 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 13:15:55.600 | DEBUG | classes -> __init__ -> 97 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 13:15:55.684 | DEBUG | classes -> __init__ -> 116 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 13:15:55.688 | DEBUG | classes -> __init__ -> 126 >>> 导入成功
+2025-11-12 13:15:55.688 | DEBUG | classes -> show_config -> 269 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 13:15:55.688 | DEBUG | classes -> show_config -> 272 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 13:15:55.689 | DEBUG | classes -> show_config -> 273 >>> 当前随机时间: [90, 120]
+2025-11-12 13:15:55.689 | DEBUG | classes -> show_config -> 274 >>> 当前持续时间: 180
+2025-11-12 13:15:55.689 | DEBUG | classes -> show_config -> 275 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 13:15:55.718 | DEBUG | classes -> __init__ -> 194 >>> 已加载待杀程序列表
+2025-11-12 13:16:06.400 | DEBUG | classes -> show_config -> 269 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 13:16:06.401 | DEBUG | classes -> show_config -> 272 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 13:16:06.401 | DEBUG | classes -> show_config -> 273 >>> 当前随机时间: [90, 120]
+2025-11-12 13:16:06.401 | DEBUG | classes -> show_config -> 274 >>> 当前持续时间: 180
+2025-11-12 13:16:06.402 | DEBUG | classes -> show_config -> 275 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 13:35:23.527 | DEBUG | classes -> quit_app -> 326 >>> 当前软件生命状态: False
+2025-11-12 13:39:01.602 | DEBUG | classes -> __init__ -> 96 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 13:39:01.602 | DEBUG | classes -> __init__ -> 97 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 13:39:01.672 | DEBUG | classes -> __init__ -> 116 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 13:39:01.675 | DEBUG | classes -> __init__ -> 126 >>> 导入成功
+2025-11-12 13:39:01.675 | DEBUG | classes -> show_config -> 269 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 13:39:01.676 | DEBUG | classes -> show_config -> 272 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 13:39:01.676 | DEBUG | classes -> show_config -> 273 >>> 当前随机时间: [90, 120]
+2025-11-12 13:39:01.676 | DEBUG | classes -> show_config -> 274 >>> 当前持续时间: 180
+2025-11-12 13:39:01.676 | DEBUG | classes -> show_config -> 275 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 13:39:01.707 | DEBUG | classes -> __init__ -> 194 >>> 已加载待杀程序列表
+2025-11-12 13:39:32.464 | DEBUG | classes -> quit_app -> 326 >>> 当前软件生命状态: False
+2025-11-12 13:56:37.930 | DEBUG | classes -> __init__ -> 96 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 13:56:37.931 | DEBUG | classes -> __init__ -> 97 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 13:56:38.018 | DEBUG | classes -> __init__ -> 116 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 13:56:38.021 | DEBUG | classes -> __init__ -> 126 >>> 导入成功
+2025-11-12 13:56:38.021 | DEBUG | classes -> show_config -> 269 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 13:56:38.021 | DEBUG | classes -> show_config -> 272 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 13:56:38.021 | DEBUG | classes -> show_config -> 273 >>> 当前随机时间: [90, 120]
+2025-11-12 13:56:38.022 | DEBUG | classes -> show_config -> 274 >>> 当前持续时间: 180
+2025-11-12 13:56:38.022 | DEBUG | classes -> show_config -> 275 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 13:56:38.048 | DEBUG | classes -> __init__ -> 194 >>> 已加载待杀程序列表
+2025-11-12 13:57:04.037 | DEBUG | classes -> changeEvent -> 227 >>> 设置窗口最小化, 执行隐藏窗口
+2025-11-12 13:57:04.039 | DEBUG | classes -> changeEvent -> 227 >>> 设置窗口最小化, 执行隐藏窗口
+2025-11-12 13:57:04.057 | DEBUG | classes -> changeEvent -> 227 >>> 设置窗口最小化, 执行隐藏窗口
+2025-11-12 13:57:12.713 | DEBUG | classes -> quit_app -> 326 >>> 当前软件生命状态: False
+2025-11-12 14:03:46.050 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:03:46.051 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:03:46.123 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:03:46.126 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:03:46.126 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:03:46.126 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:03:46.127 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:03:46.127 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:03:46.127 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:03:46.156 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:03:50.900 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 14:50, 序号: 5
+2025-11-12 14:03:50.904 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:03:51.986 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 14:50, 序号: 5
+2025-11-12 14:03:51.988 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:03:52.033 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 21:30, 序号: 9
+2025-11-12 14:03:52.035 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:03:53.098 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 17:35, 序号: 8
+2025-11-12 14:03:53.100 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:03:56.506 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 21:30, 序号: 9
+2025-11-12 14:03:56.508 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:04:06.522 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:06:36.318 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:06:36.319 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:06:36.402 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:06:36.407 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:06:36.407 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:06:36.408 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:06:36.408 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:06:36.408 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:06:36.408 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:06:36.442 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:06:45.840 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 17:35, 序号: 8
+2025-11-12 14:06:45.843 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:06:47.059 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 14:06:47.062 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:06:49.314 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 08:40, 序号: 1
+2025-11-12 14:06:49.316 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:06:50.474 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 21:30, 序号: 9
+2025-11-12 14:06:50.477 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:06:51.227 | DEBUG | classes -> flash_description -> 491 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 14:06:51.229 | DEBUG | classes -> flash_time_config -> 517 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:08:15.284 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:08:15.284 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:08:15.284 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:08:15.285 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:08:15.285 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:09:11.170 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:12:06.332 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:12:06.333 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:12:06.420 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:12:06.425 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:12:06.425 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:12:06.426 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:12:06.426 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:12:06.426 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:12:06.426 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:12:06.460 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:14:12.892 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:14:12.893 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:14:12.969 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:14:12.974 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:14:12.975 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:14:12.975 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:14:12.976 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:14:12.976 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:14:12.976 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:14:13.013 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:14:23.898 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:20:11.588 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:20:11.589 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:20:11.660 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:20:11.663 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:20:11.664 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:20:11.664 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:20:11.665 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:20:11.665 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:20:11.665 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:20:11.694 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:20:22.714 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:20:35.987 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:20:35.988 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:20:36.058 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:20:36.062 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:20:36.062 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:20:36.062 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:20:36.062 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:20:36.062 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:20:36.063 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:20:36.089 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:21:04.091 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:21:56.401 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:21:56.402 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:21:56.473 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:21:56.476 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:21:56.476 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:21:56.477 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:21:56.477 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:21:56.477 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:21:56.477 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:21:56.506 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:22:06.635 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:22:49.770 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:22:49.771 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:22:49.843 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:22:49.847 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:22:49.848 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:22:49.848 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:22:49.848 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:22:49.848 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:22:49.849 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:22:49.873 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:23:32.291 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:29:09.150 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:29:09.151 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:29:09.225 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:29:09.228 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:29:09.228 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:29:09.228 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:29:09.228 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:29:09.228 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:29:09.229 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:29:09.260 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:29:23.451 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:31:02.035 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:31:02.036 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:31:02.119 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:31:02.123 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:31:02.123 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:31:02.123 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:31:02.123 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:31:02.124 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:31:02.124 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:31:02.158 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:31:23.547 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 14:34:11.726 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 14:34:11.727 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 14:34:11.809 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 14:34:11.813 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 14:34:11.813 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 14:34:11.814 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 14:34:11.814 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 14:34:11.815 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 14:34:11.815 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 14:34:11.853 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 14:34:23.595 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 15:05:48.554 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:05:48.554 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:05:48.639 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:05:48.643 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:05:48.643 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:05:48.643 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:05:48.643 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 15:05:48.644 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 15:05:48.644 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:05:48.672 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:06:00.902 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 15:06:32.414 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:06:32.415 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:06:32.490 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:06:32.493 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:06:32.493 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:06:32.493 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:06:32.494 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 15:06:32.494 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 15:06:32.494 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:06:32.522 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:06:36.541 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 15:11:50.399 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:11:50.399 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:11:50.479 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:11:50.483 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:11:50.483 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:11:50.484 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:11:50.484 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 15:11:50.484 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 15:11:50.484 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:11:50.514 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:11:58.262 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 15:13:01.124 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:13:01.125 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:13:01.207 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:13:01.210 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:13:01.211 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:13:01.211 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:13:01.211 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 15:13:01.211 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 15:13:01.212 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:13:01.241 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:13:38.382 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 15:14:13.658 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:14:13.659 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:14:13.728 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:14:13.731 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:14:13.732 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:14:13.732 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:14:13.732 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 15:14:13.732 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 15:14:13.732 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:14:13.763 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:14:42.374 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 15:15:14.479 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:15:14.480 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:15:14.557 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:15:14.560 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:15:14.561 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:15:14.561 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:15:14.561 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 15:15:14.561 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 15:15:14.562 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:15:14.589 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:15:44.757 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 15:21:07.487 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:21:07.488 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:21:07.577 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:21:07.580 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:21:07.580 | DEBUG | classes -> show_config -> 271 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:21:07.580 | DEBUG | classes -> show_config -> 274 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:21:07.581 | DEBUG | classes -> show_config -> 275 >>> 当前随机时间: [90, 120]
+2025-11-12 15:21:07.581 | DEBUG | classes -> show_config -> 276 >>> 当前持续时间: 180
+2025-11-12 15:21:07.581 | DEBUG | classes -> show_config -> 277 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:21:07.614 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:21:17.849 | DEBUG | classes -> quit_app -> 328 >>> 当前软件生命状态: False
+2025-11-12 15:22:57.519 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:22:57.519 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:22:57.602 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:22:57.606 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:22:57.607 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:22:57.607 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:22:57.607 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 15:22:57.608 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 15:22:57.608 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:22:57.638 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:23:09.888 | DEBUG | classes -> quit_app -> 330 >>> 当前软件生命状态: False
+2025-11-12 15:25:41.417 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:25:41.417 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:25:41.487 | DEBUG | classes -> __init__ -> 119 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:41.490 | DEBUG | classes -> __init__ -> 129 >>> 导入成功
+2025-11-12 15:25:41.490 | DEBUG | classes -> show_config -> 274 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:25:41.491 | DEBUG | classes -> show_config -> 277 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:25:41.491 | DEBUG | classes -> show_config -> 278 >>> 当前随机时间: [90, 120]
+2025-11-12 15:25:41.491 | DEBUG | classes -> show_config -> 279 >>> 当前持续时间: 180
+2025-11-12 15:25:41.491 | DEBUG | classes -> show_config -> 280 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:25:41.521 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 15:25:49.993 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 09:35, 序号: 2
+2025-11-12 15:25:49.995 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:49.999 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 09:35, 序号: 2
+2025-11-12 15:25:50.000 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:50.007 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 10:45, 序号: 3
+2025-11-12 15:25:50.009 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:50.023 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 11:40, 序号: 4
+2025-11-12 15:25:50.024 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:50.062 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 14:50, 序号: 5
+2025-11-12 15:25:50.065 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:50.071 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 11:40, 序号: 4
+2025-11-12 15:25:50.072 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:50.079 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 10:45, 序号: 3
+2025-11-12 15:25:50.080 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:50.095 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 09:35, 序号: 2
+2025-11-12 15:25:50.096 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:50.103 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 08:40, 序号: 1
+2025-11-12 15:25:50.104 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.023 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 15:25:53.025 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.046 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 17:35, 序号: 8
+2025-11-12 15:25:53.048 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.055 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 17:35, 序号: 8
+2025-11-12 15:25:53.056 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.071 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 16:40, 序号: 7
+2025-11-12 15:25:53.073 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.095 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 15:45, 序号: 6
+2025-11-12 15:25:53.097 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.118 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 14:50, 序号: 5
+2025-11-12 15:25:53.120 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.143 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 11:40, 序号: 4
+2025-11-12 15:25:53.145 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.175 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 10:45, 序号: 3
+2025-11-12 15:25:53.177 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.272 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 09:35, 序号: 2
+2025-11-12 15:25:53.275 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:53.864 | DEBUG | classes -> flash_description -> 494 >>> 当前选中: 08:40, 序号: 1
+2025-11-12 15:25:53.866 | DEBUG | classes -> flash_time_config -> 520 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:25:54.960 | DEBUG | classes -> quit_app -> 331 >>> 当前软件生命状态: False
+2025-11-12 15:27:02.268 | DEBUG | classes -> __init__ -> 98 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:27:02.269 | DEBUG | classes -> __init__ -> 99 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:27:02.351 | DEBUG | classes -> __init__ -> 118 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:27:02.354 | DEBUG | classes -> __init__ -> 128 >>> 导入成功
+2025-11-12 15:27:02.355 | DEBUG | classes -> show_config -> 270 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:27:02.355 | DEBUG | classes -> show_config -> 273 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:27:02.356 | DEBUG | classes -> show_config -> 274 >>> 当前随机时间: [90, 120]
+2025-11-12 15:27:02.356 | DEBUG | classes -> show_config -> 275 >>> 当前持续时间: 180
+2025-11-12 15:27:02.356 | DEBUG | classes -> show_config -> 276 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:27:02.391 | DEBUG | classes -> __init__ -> 196 >>> 已加载待杀程序列表
+2025-11-12 15:27:21.976 | DEBUG | classes -> quit_app -> 327 >>> 当前软件生命状态: False
+2025-11-12 15:34:43.798 | ERROR | __main__ -> <module> -> 40 >>> An error has been caught in function '<module>', process 'MainProcess' (14012), thread 'MainThread' (8404):
+Traceback (most recent call last):
+
+> File "D:\PythonProjects\TimeTipper\main.py", line 40, in <module>
+    window = MainWindow(app)
+             │          └ <PySide6.QtWidgets.QApplication(0x1e0ffcf7ec0) at 0x000001E082C4D1C0>
+             └ <class 'classes.MainWindow'>
+
+  File "D:\PythonProjects\TimeTipper\classes.py", line 35, in __new__
+    logger.add(
+    │      └ <function Logger.add at 0x000001E082BFEDE0>
+    └ <loguru.logger handlers=[(id=1, level=10, sink=<stdout>), (id=2, level=10, sink='D:\PythonProjects\TimeTipper\TimeTipper.log')]>
+
+  File "D:\PythonProjects\TimeTipper\.venv\Lib\site-packages\loguru\_file_sink.py", line 192, in __init__
+    self._create_file(path)
+    │    │            └ 'D:\\PythonProjects\\TimeTipper'
+    │    └ <function FileSink._create_file at 0x000001E082BC34C0>
+    └ <loguru._file_sink.FileSink object at 0x000001E082CCC410>
+  File "D:\PythonProjects\TimeTipper\.venv\Lib\site-packages\loguru\_file_sink.py", line 226, in _create_file
+    self._file = open(path, **self._kwargs)
+    │    │            │       │    └ {'mode': 'a', 'buffering': 1, 'encoding': 'utf8'}
+    │    │            │       └ <loguru._file_sink.FileSink object at 0x000001E082CCC410>
+    │    │            └ 'D:\\PythonProjects\\TimeTipper'
+    │    └ None
+    └ <loguru._file_sink.FileSink object at 0x000001E082CCC410>
+
+PermissionError: [Errno 13] Permission denied: 'D:\\PythonProjects\\TimeTipper'
+2025-11-12 15:48:19.088 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:48:19.089 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:48:19.162 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:48:19.165 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 15:48:19.166 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:48:19.166 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:48:19.166 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 15:48:19.167 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 15:48:19.167 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:48:19.198 | DEBUG | classes -> __init__ -> 199 >>> 已加载待杀程序列表
+2025-11-12 15:53:33.012 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:53:33.013 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:53:33.083 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:53:33.086 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 15:53:33.087 | DEBUG | classes -> show_config -> 274 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:53:33.087 | DEBUG | classes -> show_config -> 277 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:53:33.087 | DEBUG | classes -> show_config -> 278 >>> 当前随机时间: [90, 120]
+2025-11-12 15:53:33.088 | DEBUG | classes -> show_config -> 279 >>> 当前持续时间: 180
+2025-11-12 15:53:33.088 | DEBUG | classes -> show_config -> 280 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:53:33.111 | ERROR | __main__ -> <module> -> 39 >>> An error has been caught in function '<module>', process 'MainProcess' (10624), thread 'MainThread' (8668):
+Traceback (most recent call last):
+
+> File "D:\PythonProjects\TimeTipper\main.py", line 39, in <module>
+    window = MainWindow(app, log_stream)
+             │          │    └ <_io.StringIO object at 0x0000025F4C436EC0>
+             │          └ <PySide6.QtWidgets.QApplication(0x25f4b01e190) at 0x0000025F4C61E680>
+             └ <class 'classes.MainWindow'>
+
+  File "D:\PythonProjects\TimeTipper\classes.py", line 150, in __init__
+    self.ui.logger.setPlainText(self.log_stream)
+    │    │  │      │            │    └ <_io.StringIO object at 0x0000025F4C436EC0>
+    │    │  │      │            └ <classes.MainWindow(0x25f4879e900, name="Form") at 0x0000025F4C61E640>
+    │    │  │      └ <method 'setPlainText' of 'PySide6.QtWidgets.QTextEdit' objects>
+    │    │  └ <PySide6.QtWidgets.QTextBrowser(0x25f4b1ca150, name="logger") at 0x0000025F72DF0800>
+    │    └ <UIs.settings.Ui_Form object at 0x0000025F4C507380>
+    └ <classes.MainWindow(0x25f4879e900, name="Form") at 0x0000025F4C61E640>
+
+TypeError: 'PySide6.QtWidgets.QTextEdit.setPlainText' called with wrong argument types:
+  PySide6.QtWidgets.QTextEdit.setPlainText(StringIO)
+Supported signatures:
+  PySide6.QtWidgets.QTextEdit.setPlainText(text: str, /)
+2025-11-12 15:53:43.670 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 15:53:43.671 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 15:53:43.876 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 15:53:43.883 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 15:53:43.884 | DEBUG | classes -> show_config -> 274 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 15:53:43.885 | DEBUG | classes -> show_config -> 277 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 15:53:43.885 | DEBUG | classes -> show_config -> 278 >>> 当前随机时间: [90, 120]
+2025-11-12 15:53:43.886 | DEBUG | classes -> show_config -> 279 >>> 当前持续时间: 180
+2025-11-12 15:53:43.886 | DEBUG | classes -> show_config -> 280 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 15:53:44.084 | DEBUG | classes -> __init__ -> 200 >>> 已加载待杀程序列表
+2025-11-12 15:54:09.073 | DEBUG | classes -> quit_app -> 331 >>> 当前软件生命状态: False
+2025-11-12 16:03:48.703 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:03:48.704 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:03:48.781 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:03:48.785 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:03:48.786 | DEBUG | classes -> show_config -> 275 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:03:48.786 | DEBUG | classes -> show_config -> 278 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:03:48.786 | DEBUG | classes -> show_config -> 279 >>> 当前随机时间: [90, 120]
+2025-11-12 16:03:48.786 | DEBUG | classes -> show_config -> 280 >>> 当前持续时间: 180
+2025-11-12 16:03:48.787 | DEBUG | classes -> show_config -> 281 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:03:48.817 | DEBUG | classes -> __init__ -> 201 >>> 已加载待杀程序列表
+2025-11-12 16:04:26.781 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:04:26.782 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:04:27.007 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:04:27.016 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:04:27.018 | DEBUG | classes -> show_config -> 275 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:04:27.018 | DEBUG | classes -> show_config -> 278 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:04:27.019 | DEBUG | classes -> show_config -> 279 >>> 当前随机时间: [90, 120]
+2025-11-12 16:04:27.019 | DEBUG | classes -> show_config -> 280 >>> 当前持续时间: 180
+2025-11-12 16:04:27.020 | DEBUG | classes -> show_config -> 281 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:04:27.139 | DEBUG | classes -> __init__ -> 201 >>> 已加载待杀程序列表
+2025-11-12 16:04:31.689 | DEBUG | classes -> quit_app -> 332 >>> 当前软件生命状态: False
+2025-11-12 16:13:16.565 | DEBUG | classes -> __init__ -> 103 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:13:16.566 | DEBUG | classes -> __init__ -> 104 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:13:16.637 | DEBUG | classes -> __init__ -> 123 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:13:16.641 | DEBUG | classes -> __init__ -> 133 >>> 导入成功
+2025-11-12 16:13:16.641 | DEBUG | classes -> show_config -> 275 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:13:16.642 | DEBUG | classes -> show_config -> 278 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:13:16.642 | DEBUG | classes -> show_config -> 279 >>> 当前随机时间: [90, 120]
+2025-11-12 16:13:16.642 | DEBUG | classes -> show_config -> 280 >>> 当前持续时间: 180
+2025-11-12 16:13:16.642 | DEBUG | classes -> show_config -> 281 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:13:16.672 | DEBUG | classes -> __init__ -> 200 >>> 已加载待杀程序列表
+2025-11-12 16:13:45.195 | DEBUG | classes -> quit_app -> 332 >>> 当前软件生命状态: False
+2025-11-12 16:15:15.959 | DEBUG | classes -> __init__ -> 103 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:15:15.960 | DEBUG | classes -> __init__ -> 104 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:15:16.042 | DEBUG | classes -> __init__ -> 123 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:15:16.046 | DEBUG | classes -> __init__ -> 133 >>> 导入成功
+2025-11-12 16:15:16.047 | DEBUG | classes -> show_config -> 275 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:15:16.047 | DEBUG | classes -> show_config -> 278 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:15:16.047 | DEBUG | classes -> show_config -> 279 >>> 当前随机时间: [90, 120]
+2025-11-12 16:15:16.048 | DEBUG | classes -> show_config -> 280 >>> 当前持续时间: 180
+2025-11-12 16:15:16.048 | DEBUG | classes -> show_config -> 281 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:15:16.075 | DEBUG | classes -> __init__ -> 200 >>> 已加载待杀程序列表
+2025-11-12 16:15:20.115 | DEBUG | classes -> quit_app -> 332 >>> 当前软件生命状态: False
+2025-11-12 16:17:26.180 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:17:26.181 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:17:26.252 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:17:26.256 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:17:26.256 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:17:26.256 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:17:26.257 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:17:26.257 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:17:26.257 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:17:26.287 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:17:30.546 | DEBUG | classes -> quit_app -> 330 >>> 当前软件生命状态: False
+2025-11-12 16:17:40.012 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:17:40.013 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:17:40.094 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:17:40.098 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:17:40.099 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:17:40.100 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:17:40.100 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:17:40.101 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:17:40.101 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:17:40.132 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:17:44.164 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:17:44.165 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:17:44.278 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:17:44.282 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:17:44.283 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:17:44.283 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:17:44.284 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:17:44.285 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:17:44.285 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:17:44.317 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:17:53.627 | DEBUG | classes -> quit_app -> 330 >>> 当前软件生命状态: False
+2025-11-12 16:18:14.279 | DEBUG | classes -> __init__ -> 411 >>> 已创建日志管理类
+2025-11-12 16:18:14.280 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:18:14.281 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:18:14.397 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:18:14.402 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:18:14.403 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:18:14.404 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:18:14.405 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:18:14.405 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:18:14.406 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:18:14.439 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:18:35.237 | DEBUG | classes -> __init__ -> 411 >>> 已创建日志管理类
+2025-11-12 16:18:35.238 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:18:35.238 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:18:35.355 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:18:35.360 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:18:35.362 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:18:35.362 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:18:35.363 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:18:35.363 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:18:35.364 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:18:35.396 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:19:35.167 | DEBUG | classes -> __init__ -> 411 >>> 已创建日志管理类
+2025-11-12 16:19:35.168 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:19:35.169 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:19:35.272 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:19:35.276 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:19:35.276 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:19:35.277 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:19:35.278 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:19:35.278 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:19:35.279 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:19:35.309 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:20:17.910 | DEBUG | classes -> __init__ -> 411 >>> 已创建日志管理类
+2025-11-12 16:20:33.749 | DEBUG | classes -> __init__ -> 413 >>> 2025-11-12 16:20:17.910 | DEBUG | classes -> __init__ -> 411 >>> 已创建日志管理类
+
+2025-11-12 16:20:35.853 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:20:35.856 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:20:35.978 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:20:35.985 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:20:35.986 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:20:35.989 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:20:35.990 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:20:35.992 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:20:35.994 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:20:36.034 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:21:42.492 | DEBUG | classes -> __init__ -> 411 >>> 已创建日志管理类
+2025-11-12 16:21:42.493 | DEBUG | classes -> __init__ -> 413 >>> 
+2025-11-12 16:21:42.493 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:21:42.494 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:21:42.580 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:21:42.584 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:21:42.584 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:21:42.585 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:21:42.585 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:21:42.586 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:21:42.586 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:21:42.613 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:22:02.075 | DEBUG | classes -> quit_app -> 330 >>> 当前软件生命状态: False
+2025-11-12 16:23:26.268 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:23:26.269 | DEBUG | classes -> __init__ -> 102 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:23:26.356 | DEBUG | classes -> __init__ -> 121 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:23:26.360 | DEBUG | classes -> __init__ -> 131 >>> 导入成功
+2025-11-12 16:23:26.360 | DEBUG | classes -> show_config -> 273 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:23:26.361 | DEBUG | classes -> show_config -> 276 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:23:26.361 | DEBUG | classes -> show_config -> 277 >>> 当前随机时间: [90, 120]
+2025-11-12 16:23:26.361 | DEBUG | classes -> show_config -> 278 >>> 当前持续时间: 180
+2025-11-12 16:23:26.362 | DEBUG | classes -> show_config -> 279 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:23:26.408 | DEBUG | classes -> __init__ -> 198 >>> 已加载待杀程序列表
+2025-11-12 16:23:31.611 | DEBUG | classes -> quit_app -> 330 >>> 当前软件生命状态: False
+2025-11-12 16:25:33.547 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:25:33.548 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:25:33.630 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:25:33.633 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:25:33.634 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:25:33.634 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:25:33.635 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:25:33.635 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 180
+2025-11-12 16:25:33.636 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:25:33.664 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:25:40.227 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:25:45.232 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:25:45.232 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:25:45.303 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:25:45.307 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:25:45.307 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:25:45.307 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:25:45.308 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:25:45.308 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 180
+2025-11-12 16:25:45.308 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:25:45.337 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:25:56.885 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:25:56.886 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:25:56.886 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:25:56.886 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:25:56.887 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:26:02.739 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:27:04.744 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:27:04.745 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:27:04.820 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:27:04.824 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:27:04.825 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:27:04.825 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:27:04.826 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:27:04.826 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:27:04.827 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:27:04.853 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:27:11.635 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:27:25.777 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:27:25.777 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:27:25.862 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:27:25.866 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:27:25.866 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:27:25.866 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:27:25.867 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:27:25.867 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:27:25.867 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:27:25.895 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:27:42.952 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:27:42.953 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:27:43.026 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:27:43.030 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:27:43.031 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:27:43.031 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:27:43.032 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:27:43.032 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:27:43.032 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:27:43.060 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:28:06.687 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:28:06.688 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:28:06.772 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:28:06.776 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:28:06.777 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:28:06.777 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:28:06.777 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:28:06.778 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:28:06.778 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:28:06.806 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:28:14.515 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:29:17.136 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:29:17.136 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:29:17.209 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:29:17.213 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:29:17.213 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:29:17.214 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:29:17.214 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:29:17.214 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:29:17.214 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:29:17.242 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:29:50.987 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:29:50.988 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:29:51.059 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:29:51.063 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:29:51.063 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:29:51.063 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:29:51.064 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:29:51.064 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:29:51.064 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:29:51.094 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:31:04.293 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:31:04.294 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:31:04.365 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:31:04.369 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:31:04.370 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:31:04.370 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:31:04.370 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:31:04.371 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:31:04.371 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:31:04.401 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:32:17.540 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:32:17.541 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:32:17.623 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:32:17.627 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:32:17.628 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:32:17.628 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:32:17.629 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:32:17.629 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:32:17.629 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:32:17.658 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:33:09.616 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:33:09.617 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:33:09.697 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:33:09.701 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:33:09.701 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:33:09.701 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:33:09.702 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:33:09.702 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:33:09.702 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:33:09.734 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:33:36.820 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:39:07.241 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:39:07.241 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:39:07.319 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:39:07.322 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:39:07.323 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:39:07.323 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:39:07.324 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:39:07.324 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:39:07.324 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:39:07.354 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:39:12.747 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:45:55.161 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:45:55.162 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:45:55.250 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:45:55.254 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:45:55.255 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:45:55.255 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:45:55.255 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:45:55.255 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:45:55.256 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:45:55.285 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:46:13.541 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:47:42.854 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:47:42.855 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:47:42.946 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:47:42.951 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:47:42.952 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:47:42.952 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:47:42.953 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:47:42.953 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:47:42.954 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:47:42.991 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:47:57.348 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:50:10.617 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:50:10.617 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:50:10.687 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:50:10.691 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:50:10.692 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:50:10.692 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:50:10.692 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:50:10.693 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:50:10.693 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:50:10.722 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:50:16.140 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:51:01.622 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:51:01.622 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:51:01.698 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:51:01.702 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:51:01.703 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:51:01.703 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:51:01.703 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:51:01.704 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:51:01.704 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:51:01.734 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:51:10.165 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:53:54.620 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:53:54.621 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:53:54.695 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:53:54.700 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:53:54.700 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:53:54.701 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:53:54.701 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:53:54.702 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:53:54.702 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:53:54.731 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:53:59.549 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:54:23.541 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:54:23.542 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:54:23.611 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:54:23.615 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:54:23.616 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:54:23.616 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:54:23.616 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:54:23.616 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:54:23.617 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:54:23.645 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:54:28.125 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:54:38.706 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:54:38.707 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:54:38.792 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:54:38.796 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:54:38.796 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:54:38.797 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:54:38.797 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:54:38.797 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:54:38.798 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:54:38.826 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:54:42.781 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:57:25.463 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:57:25.464 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:57:25.535 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:57:25.538 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:57:25.539 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:57:25.539 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:57:25.539 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:57:25.539 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:57:25.540 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:57:25.570 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:57:35.133 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:57:49.048 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:57:49.049 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:57:49.124 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:57:49.128 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:57:49.128 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:57:49.128 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:57:49.129 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:57:49.129 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:57:49.129 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:57:49.159 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:57:52.813 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:58:02.625 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:58:02.626 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:58:02.699 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:58:02.703 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:58:02.703 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:58:02.704 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:58:02.704 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:58:02.704 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:58:02.705 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:58:02.732 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:58:12.077 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:58:34.916 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:58:34.917 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:58:34.989 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:58:34.993 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:58:34.994 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:58:34.994 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:58:34.994 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:58:34.995 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:58:34.995 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:58:35.025 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:58:39.357 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:58:59.529 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:58:59.529 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:58:59.603 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:58:59.607 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:58:59.608 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:58:59.609 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:58:59.609 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:58:59.610 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:58:59.610 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:58:59.639 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:59:04.933 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 16:59:16.986 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 16:59:16.987 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 16:59:17.273 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 16:59:17.281 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 16:59:17.282 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 16:59:17.282 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 16:59:17.283 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 16:59:17.283 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 16:59:17.284 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 16:59:17.338 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 16:59:26.021 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:00:14.950 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:00:14.950 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:00:15.029 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:00:15.033 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:00:15.033 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:00:15.034 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:00:15.034 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:00:15.034 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:00:15.034 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:00:15.064 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:00:36.390 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:01:42.258 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:01:42.259 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:01:42.338 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:01:42.343 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:01:42.343 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:01:42.344 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:01:42.344 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:01:42.344 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:01:42.345 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:01:42.372 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:01:52.102 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:05:43.219 | ERROR | classes -> __init__ -> 48 >>> An error has been caught in function '__init__', process 'MainProcess' (16768), thread 'MainThread' (12316):
+Traceback (most recent call last):
+
+  File "D:\PythonProjects\TimeTipper\main.py", line 32, in <module>
+    window = MainWindow(app)
+             │          └ <PySide6.QtWidgets.QApplication(0x2bf36f53cb0) at 0x000002BF384FB600>
+             └ <class 'classes.MainWindow'>
+
+> File "D:\PythonProjects\TimeTipper\classes.py", line 48, in __init__
+    self.logger_manager = LogManager(self)
+    │                     │          └ <classes.MainWindow(0x2bf368f4df0, name="Form") at 0x000002BF384FB5C0>
+    │                     └ <class 'classes.LogManager'>
+    └ <classes.MainWindow(0x2bf368f4df0, name="Form") at 0x000002BF384FB5C0>
+
+  File "D:\PythonProjects\TimeTipper\classes.py", line 401, in __init__
+    self.window.ui.logger.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
+    │    │      │  │      │               │              │            └ <LineWrapMode.NoWrap: 0>
+    │    │      │  │      │               │              └ <enum 'LineWrapMode'>
+    │    │      │  │      │               └ <class 'PySide6.QtWidgets.QPlainTextEdit'>
+    │    │      │  │      └ <method 'setLineWrapMode' of 'PySide6.QtWidgets.QTextEdit' objects>
+    │    │      │  └ <PySide6.QtWidgets.QTextBrowser(0x2bf369b4570, name="logger") at 0x000002BF38979300>
+    │    │      └ <UIs.settings.Ui_Form object at 0x000002BF384034D0>
+    │    └ <classes.MainWindow(0x2bf368f4df0, name="Form") at 0x000002BF384FB5C0>
+    └ <classes.LogManager(0x2bf367000e0) at 0x000002BF38537EC0>
+
+TypeError: 'PySide6.QtWidgets.QTextEdit.setLineWrapMode' called with wrong argument types:
+  PySide6.QtWidgets.QTextEdit.setLineWrapMode(LineWrapMode)
+Supported signatures:
+  PySide6.QtWidgets.QTextEdit.setLineWrapMode(mode: PySide6.QtWidgets.QTextEdit.LineWrapMode, /)
+2025-11-12 17:05:43.222 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:05:43.222 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:05:43.314 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:05:43.318 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:05:43.318 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:05:43.318 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:05:43.319 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:05:43.319 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:05:43.319 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:05:43.346 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:06:30.967 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:06:30.968 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:06:31.207 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:06:31.221 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:06:31.225 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:06:31.226 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:06:31.228 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:06:31.228 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:06:31.229 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:06:31.415 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:06:43.798 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:07:38.744 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:07:38.744 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:07:38.822 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:07:38.828 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:07:38.829 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:07:38.829 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:07:38.829 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:07:38.830 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:07:38.830 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:07:38.861 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:07:57.814 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:09:21.007 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:09:21.008 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:09:21.084 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:09:21.096 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:09:21.101 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:09:21.101 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:09:21.101 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:09:21.101 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:09:21.102 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:09:21.136 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:09:42.942 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:09:59.806 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:09:59.807 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:09:59.878 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:09:59.883 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:09:59.884 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:09:59.884 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:09:59.885 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:09:59.885 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:09:59.886 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:09:59.917 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:10:18.150 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:10:29.964 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:10:29.965 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:10:30.047 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:10:30.051 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:10:30.053 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:10:30.053 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:10:30.053 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:10:30.054 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:10:30.054 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:10:30.086 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:10:42.054 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:11:10.053 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:11:10.054 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:11:10.123 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:11:10.128 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:11:10.128 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:11:10.129 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:11:10.129 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:11:10.129 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:11:10.129 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:11:10.160 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:11:20.318 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:11:32.649 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:11:32.649 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:11:32.719 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:11:32.724 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:11:32.725 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:11:32.725 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:11:32.725 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:11:32.725 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:11:32.726 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:11:32.754 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:11:36.934 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:12:25.305 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:12:25.306 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:12:25.378 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:12:25.383 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:12:25.384 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:12:25.384 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:12:25.385 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:12:25.385 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:12:25.385 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:12:25.412 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:12:33.006 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:12:43.262 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:12:43.263 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:12:43.332 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:12:43.337 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:12:43.338 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:12:43.338 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:12:43.338 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:12:43.339 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:12:43.339 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:12:43.371 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:12:47.360 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:12:55.920 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:12:55.921 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:12:56.001 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:12:56.006 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:12:56.007 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:12:56.007 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:12:56.008 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:12:56.008 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:12:56.008 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:12:56.046 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:13:01.398 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:13:05.024 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:13:05.025 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:13:05.099 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:13:05.104 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:13:05.105 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:13:05.105 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:13:05.106 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:13:05.106 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:13:05.107 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:13:05.137 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:13:55.368 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:13:55.372 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:13:56.044 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:13:56.052 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:13:56.054 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:13:56.056 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:13:56.058 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:13:56.060 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:13:56.062 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:13:56.101 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:15:08.152 | DEBUG | classes -> __init__ -> 403 >>> 可用字体: ['Arial', 'Bahnschrift', 'Book Antiqua', 'Bookman Old Style', 'Bookshelf Symbol 7', 'Bradley Hand ITC', 'Calibri', 'Cambria', 'Cambria Math', 'Candara', 'Cascadia Code', 'Cascadia Mono', 'Century', 'Century Gothic', 'Comic Sans MS', 'Consolas', 'Constantia', 'Corbel', 'Courier', 'Courier New', 'DengXian', 'Dubai', 'Ebrima', 'FangSong', 'Fixedsys', 'Franklin Gothic', 'Freestyle Script', 'French Script MT', 'FZShuTi', 'FZYaoTi', 'Gabriola', 'Gadugi', 'Garamond', 'Georgia', 'HYZhuZiMuTouRenW', 'Impact', 'Ink Free', 'Javanese Text', 'Juice ITC', 'KaiTi', 'Kristen ITC', 'Leelawadee', 'Leelawadee UI', 'LiSu', 'Lucida Console', 'Lucida Handwriting', 'Lucida Sans Unicode', 'Malgun Gothic', 'Marlett', 'Microsoft Himalaya', 'Microsoft JhengHei', 'Microsoft JhengHei UI', 'Microsoft New Tai Lue', 'Microsoft PhagsPa', 'Microsoft Sans Serif', 'Microsoft Tai Le', 'Microsoft Uighur', 'Microsoft YaHei', 'Microsoft YaHei UI', 'Microsoft Yi Baiti', 'MingLiU-ExtB', 'MingLiU_HKSCS-ExtB', 'MingLiU_MSCS-ExtB', 'Mistral', 'Modern', 'Mongolian Baiti', 'Monotype Corsiva', 'MS Gothic', 'MS Outlook', 'MS PGothic', 'MS Reference Sans Serif', 'MS Reference Specialty', 'MS Sans Serif', 'MS Serif', 'MS UI Gothic', 'MT Extra', 'MV Boli', 'Myanmar Text', 'Nirmala Text', 'Nirmala UI', 'NSimSun', 'Palatino Linotype', 'Papyrus', 'PMingLiU-ExtB', 'Pristina', 'Roman', 'Sans Serif Collection', 'Script', 'Segoe Fluent Icons', 'Segoe MDL2 Assets', 'Segoe Print', 'Segoe Script', 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Historic', 'Segoe UI Symbol', 'Segoe UI Variable', 'SimHei', 'SimSun', 'SimSun-ExtB', 'Sitka', 'Small Fonts', 'STCaiyun', 'STFangsong', 'STHupo', 'STKaiti', 'STLiti', 'STSong', 'STXihei', 'STXingkai', 'STXinwei', 'STZhongsong', 'Sylfaen', 'Symbol', 'System', 'Tahoma', 'Tempus Sans ITC', 'Terminal', 'Times New Roman', 'Trebuchet MS', 'Unispace', 'Verdana', 'Webdings', 'Wingdings', 'Wingdings 2', 'Wingdings 3', 'YouYuan', 'Yu Gothic', 'Yu Gothic UI', '仿宋', '华文中宋', '华文仿宋', '华文宋体', '华文彩云', '华文新魏', '华文楷体', '华文琥珀', '华文细黑', '华文行楷', '华文隶书', '宋体', '幼圆', '微软雅黑', '新宋体', '方正姚体', '方正舒体', '楷体', '汉仪铸字木头人W', '等线', '隶书', '黑体']
+2025-11-12 17:15:08.154 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:15:08.155 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:15:08.242 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:15:08.246 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:15:08.248 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:15:08.248 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:15:08.248 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:15:08.249 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:15:08.249 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:15:08.278 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:15:41.480 | DEBUG | classes -> __init__ -> 403 >>> 可用字体: ['Arial', 'Bahnschrift', 'Book Antiqua', 'Bookman Old Style', 'Bookshelf Symbol 7', 'Bradley Hand ITC', 'Calibri', 'Cambria', 'Cambria Math', 'Candara', 'Cascadia Code', 'Cascadia Mono', 'Century', 'Century Gothic', 'Comic Sans MS', 'Consolas', 'Constantia', 'Corbel', 'Courier', 'Courier New', 'DengXian', 'Dubai', 'Ebrima', 'FangSong', 'Fixedsys', 'Franklin Gothic', 'Freestyle Script', 'French Script MT', 'FZShuTi', 'FZYaoTi', 'Gabriola', 'Gadugi', 'Garamond', 'Georgia', 'HYZhuZiMuTouRenW', 'Impact', 'Ink Free', 'Javanese Text', 'Juice ITC', 'KaiTi', 'Kristen ITC', 'Leelawadee', 'Leelawadee UI', 'LiSu', 'Lucida Console', 'Lucida Handwriting', 'Lucida Sans Unicode', 'Malgun Gothic', 'Marlett', 'Microsoft Himalaya', 'Microsoft JhengHei', 'Microsoft JhengHei UI', 'Microsoft New Tai Lue', 'Microsoft PhagsPa', 'Microsoft Sans Serif', 'Microsoft Tai Le', 'Microsoft Uighur', 'Microsoft YaHei', 'Microsoft YaHei UI', 'Microsoft Yi Baiti', 'MingLiU-ExtB', 'MingLiU_HKSCS-ExtB', 'MingLiU_MSCS-ExtB', 'Mistral', 'Modern', 'Mongolian Baiti', 'Monotype Corsiva', 'MS Gothic', 'MS Outlook', 'MS PGothic', 'MS Reference Sans Serif', 'MS Reference Specialty', 'MS Sans Serif', 'MS Serif', 'MS UI Gothic', 'MT Extra', 'MV Boli', 'Myanmar Text', 'Nirmala Text', 'Nirmala UI', 'NSimSun', 'Palatino Linotype', 'Papyrus', 'PMingLiU-ExtB', 'Pristina', 'Roman', 'Sans Serif Collection', 'Script', 'Segoe Fluent Icons', 'Segoe MDL2 Assets', 'Segoe Print', 'Segoe Script', 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Historic', 'Segoe UI Symbol', 'Segoe UI Variable', 'SimHei', 'SimSun', 'SimSun-ExtB', 'Sitka', 'Small Fonts', 'STCaiyun', 'STFangsong', 'STHupo', 'STKaiti', 'STLiti', 'STSong', 'STXihei', 'STXingkai', 'STXinwei', 'STZhongsong', 'Sylfaen', 'Symbol', 'System', 'Tahoma', 'Tempus Sans ITC', 'Terminal', 'Times New Roman', 'Trebuchet MS', 'Unispace', 'Verdana', 'Webdings', 'Wingdings', 'Wingdings 2', 'Wingdings 3', 'YouYuan', 'Yu Gothic', 'Yu Gothic UI', '仿宋', '华文中宋', '华文仿宋', '华文宋体', '华文彩云', '华文新魏', '华文楷体', '华文琥珀', '华文细黑', '华文行楷', '华文隶书', '宋体', '幼圆', '微软雅黑', '新宋体', '方正姚体', '方正舒体', '楷体', '汉仪铸字木头人W', '等线', '隶书', '黑体']
+2025-11-12 17:15:41.482 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:15:41.483 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:15:41.554 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:15:41.558 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:15:41.559 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:15:41.560 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:15:41.560 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:15:41.560 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:15:41.561 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:15:41.591 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:15:47.294 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:16:19.143 | DEBUG | classes -> __init__ -> 403 >>> 可用字体: ['Arial', 'Bahnschrift', 'Book Antiqua', 'Bookman Old Style', 'Bookshelf Symbol 7', 'Bradley Hand ITC', 'Calibri', 'Cambria', 'Cambria Math', 'Candara', 'Cascadia Code', 'Cascadia Mono', 'Century', 'Century Gothic', 'Comic Sans MS', 'Consolas', 'Constantia', 'Corbel', 'Courier', 'Courier New', 'DengXian', 'Dubai', 'Ebrima', 'FangSong', 'Fixedsys', 'Franklin Gothic', 'Freestyle Script', 'French Script MT', 'FZShuTi', 'FZYaoTi', 'Gabriola', 'Gadugi', 'Garamond', 'Georgia', 'HYZhuZiMuTouRenW', 'Impact', 'Ink Free', 'Javanese Text', 'Juice ITC', 'KaiTi', 'Kristen ITC', 'Leelawadee', 'Leelawadee UI', 'LiSu', 'Lucida Console', 'Lucida Handwriting', 'Lucida Sans Unicode', 'Malgun Gothic', 'Marlett', 'Microsoft Himalaya', 'Microsoft JhengHei', 'Microsoft JhengHei UI', 'Microsoft New Tai Lue', 'Microsoft PhagsPa', 'Microsoft Sans Serif', 'Microsoft Tai Le', 'Microsoft Uighur', 'Microsoft YaHei', 'Microsoft YaHei UI', 'Microsoft Yi Baiti', 'MingLiU-ExtB', 'MingLiU_HKSCS-ExtB', 'MingLiU_MSCS-ExtB', 'Mistral', 'Modern', 'Mongolian Baiti', 'Monotype Corsiva', 'MS Gothic', 'MS Outlook', 'MS PGothic', 'MS Reference Sans Serif', 'MS Reference Specialty', 'MS Sans Serif', 'MS Serif', 'MS UI Gothic', 'MT Extra', 'MV Boli', 'Myanmar Text', 'Nirmala Text', 'Nirmala UI', 'NSimSun', 'Palatino Linotype', 'Papyrus', 'PMingLiU-ExtB', 'Pristina', 'Roman', 'Sans Serif Collection', 'Script', 'Segoe Fluent Icons', 'Segoe MDL2 Assets', 'Segoe Print', 'Segoe Script', 'Segoe UI', 'Segoe UI Emoji', 'Segoe UI Historic', 'Segoe UI Symbol', 'Segoe UI Variable', 'SimHei', 'SimSun', 'SimSun-ExtB', 'Sitka', 'Small Fonts', 'STCaiyun', 'STFangsong', 'STHupo', 'STKaiti', 'STLiti', 'STSong', 'STXihei', 'STXingkai', 'STXinwei', 'STZhongsong', 'Sylfaen', 'Symbol', 'System', 'Tahoma', 'Tempus Sans ITC', 'Terminal', 'Times New Roman', 'Trebuchet MS', 'Unispace', 'Verdana', 'Webdings', 'Wingdings', 'Wingdings 2', 'Wingdings 3', 'YouYuan', 'Yu Gothic', 'Yu Gothic UI', '仿宋', '华文中宋', '华文仿宋', '华文宋体', '华文彩云', '华文新魏', '华文楷体', '华文琥珀', '华文细黑', '华文行楷', '华文隶书', '宋体', '幼圆', '微软雅黑', '新宋体', '方正姚体', '方正舒体', '楷体', '汉仪铸字木头人W', '等线', '隶书', '黑体']
+2025-11-12 17:16:19.145 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:16:19.146 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:16:19.231 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:16:19.236 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:16:19.237 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:16:19.237 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:16:19.237 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:16:19.238 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:16:19.238 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:16:19.269 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:16:26.158 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:20:50.875 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:20:50.876 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:20:50.946 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:20:50.951 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:20:50.951 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:20:50.952 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:20:50.952 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:20:50.952 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:20:50.953 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:20:50.983 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:21:04.295 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:22:16.128 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:22:16.129 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:22:16.214 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:22:16.220 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:22:16.222 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:22:16.222 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:22:16.222 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:22:16.223 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:22:16.223 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:22:16.254 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:22:32.975 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:22:45.016 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:22:45.017 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:22:45.096 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:22:45.104 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:22:45.104 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:22:45.104 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:22:45.105 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:22:45.105 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:22:45.105 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:22:45.134 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:23:00.207 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:23:09.170 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:23:09.170 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:23:09.240 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:23:09.246 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:23:09.246 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:23:09.247 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:23:09.247 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:23:09.247 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:23:09.248 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:23:09.280 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:23:59.815 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:25:25.216 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:25:25.217 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:25:25.287 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:25:25.294 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:25:25.294 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:25:25.295 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:25:25.295 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:25:25.295 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:25:25.296 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:25:25.328 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:25:45.903 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:26:19.157 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:26:19.158 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:26:19.229 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:26:19.235 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:26:19.236 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:26:19.237 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:26:19.237 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:26:19.237 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:26:19.237 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:26:19.268 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:26:25.295 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:27:06.441 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:27:06.442 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:27:06.512 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:27:06.520 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:27:06.520 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:27:06.521 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:27:06.521 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:27:06.521 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:27:06.521 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:27:06.552 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:27:19.551 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:27:54.428 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:27:54.428 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:27:54.497 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:27:54.503 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:27:54.504 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:27:54.504 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:27:54.504 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:27:54.505 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:27:54.505 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:27:54.572 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:28:28.938 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:28:28.939 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:28:29.139 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:28:29.153 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:28:29.155 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:28:29.156 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:28:29.157 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:28:29.157 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:28:29.158 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:28:29.249 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:28:39.839 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:29:12.624 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:29:12.624 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:29:12.702 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:29:12.715 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:29:12.716 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:29:12.717 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:29:12.717 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:29:12.717 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:29:12.717 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:29:12.756 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:29:21.367 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:29:38.095 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:29:38.095 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:29:38.168 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:29:38.174 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:29:38.175 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:29:38.175 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:29:38.175 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:29:38.176 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:29:38.176 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:29:38.207 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:29:43.255 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:31:10.301 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:31:10.303 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:31:10.394 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:31:10.407 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:31:10.409 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:31:10.409 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:31:10.409 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:31:10.410 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:31:10.410 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:31:10.444 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:31:17.440 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:32:08.607 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:32:08.608 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:32:08.694 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:32:08.705 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:32:08.705 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:32:08.706 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:32:08.706 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:32:08.707 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:32:08.707 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:32:08.738 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:32:28.399 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:33:23.744 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: D:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:33:23.745 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: D:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:33:23.815 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:33:23.825 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:33:23.827 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:33:23.827 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:33:23.828 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:33:23.828 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:33:23.828 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:33:23.860 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:34:03.848 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:50:07.874 | DEBUG | classes -> __init__ -> 100 >>> 配置文件路径: d:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:50:07.875 | DEBUG | classes -> __init__ -> 101 >>> 配置文件路径: d:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:50:07.966 | DEBUG | classes -> __init__ -> 120 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:50:07.979 | DEBUG | classes -> __init__ -> 130 >>> 导入成功
+2025-11-12 17:50:07.982 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:50:07.983 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:50:07.983 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:50:07.984 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:50:07.985 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:50:08.030 | DEBUG | classes -> __init__ -> 197 >>> 已加载待杀程序列表
+2025-11-12 17:51:05.633 | DEBUG | classes -> show_config -> 272 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:51:05.634 | DEBUG | classes -> show_config -> 275 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:51:05.634 | DEBUG | classes -> show_config -> 276 >>> 当前随机时间: [90, 120]
+2025-11-12 17:51:05.635 | DEBUG | classes -> show_config -> 277 >>> 当前持续时间: 0
+2025-11-12 17:51:05.635 | DEBUG | classes -> show_config -> 278 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:51:29.458 | DEBUG | classes -> flash_description -> 556 >>> 当前选中: 07:50, 序号: 1
+2025-11-12 17:51:29.460 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'00:00': 'Default Description', '07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:30.177 | DEBUG | classes -> flash_description -> 556 >>> 当前选中: 00:00, 序号: 0
+2025-11-12 17:51:30.179 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'00:00': 'Default Description', '07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:34.385 | DEBUG | classes -> flash_description -> 556 >>> 当前选中: 07:50, 序号: 1
+2025-11-12 17:51:34.387 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'00:00': 'Default Description', '07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:34.389 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:34.394 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:38.754 | DEBUG | classes -> flash_description -> 556 >>> 当前选中: 00:00, 序号: 0
+2025-11-12 17:51:38.755 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'00:00': 'Default Description', '07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:41.445 | ERROR | __main__ -> <module> -> 33 >>> An error has been caught in function '<module>', process 'MainProcess' (8208), thread 'MainThread' (8008):
+Traceback (most recent call last):
+
+> File "d:\PythonProjects\TimeTipper\main.py", line 33, in <module>
+    sys.exit(app.exec())
+    │   │    │   └ <staticmethod(<built-in method exec of Shiboken.ObjectType object at 0x0000021A9BA7EFC0>)>
+    │   │    └ <PySide6.QtWidgets.QApplication(0x21a9ba17970) at 0x0000021A9D6A2080>
+    │   └ <built-in function exit>
+    └ <module 'sys' (built-in)>
+
+  File "d:\PythonProjects\TimeTipper\classes.py", line 538, in edit_time_function
+    self.window.ui.time_list.currentItem().setText(edited_time)
+    │    │      │  │         │                     └ True
+    │    │      │  │         └ <method 'currentItem' of 'PySide6.QtWidgets.QListWidget' objects>
+    │    │      │  └ <PySide6.QtWidgets.QListWidget(0x21a9c231a20, name="time_list") at 0x0000021A9D6D6A80>
+    │    │      └ <UIs.settings.Ui_Form object at 0x0000021A9D582A50>
+    │    └ <classes.MainWindow(0x21a9b7cb830, name="Form") at 0x0000021A9D6A2040>
+    └ <classes.TimeManager object at 0x0000021A9D583380>
+
+TypeError: 'PySide6.QtWidgets.QListWidgetItem.setText' called with wrong argument types:
+  PySide6.QtWidgets.QListWidgetItem.setText(bool)
+Supported signatures:
+  PySide6.QtWidgets.QListWidgetItem.setText(text: str, /)
+2025-11-12 17:51:46.249 | DEBUG | classes -> flash_description -> 556 >>> 当前选中: 07:50, 序号: 1
+2025-11-12 17:51:46.251 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'00:00': 'Default Description', '07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:46.252 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:46.256 | DEBUG | classes -> flash_time_config -> 582 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:51:47.921 | DEBUG | classes -> quit_app -> 329 >>> 当前软件生命状态: False
+2025-11-12 17:53:21.709 | DEBUG | classes -> __init__ -> 106 >>> 配置文件路径: d:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:53:21.711 | DEBUG | classes -> __init__ -> 107 >>> 配置文件路径: d:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:53:21.795 | DEBUG | classes -> __init__ -> 126 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:21.806 | DEBUG | classes -> __init__ -> 136 >>> 导入成功
+2025-11-12 17:53:21.807 | DEBUG | classes -> show_config -> 278 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:53:21.808 | DEBUG | classes -> show_config -> 281 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:53:21.808 | DEBUG | classes -> show_config -> 282 >>> 当前随机时间: [90, 120]
+2025-11-12 17:53:21.809 | DEBUG | classes -> show_config -> 283 >>> 当前持续时间: 0
+2025-11-12 17:53:21.810 | DEBUG | classes -> show_config -> 284 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:53:21.847 | DEBUG | classes -> __init__ -> 203 >>> 已加载待杀程序列表
+2025-11-12 17:53:28.002 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 17:53:28.005 | DEBUG | classes -> flash_time_config -> 589 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:33.907 | DEBUG | classes -> flash_time_config -> 589 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '08:50': '早读下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:36.218 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:40, 序号: 1
+2025-11-12 17:53:36.220 | DEBUG | classes -> flash_time_config -> 589 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '08:50': '早读下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:37.825 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:50, 序号: 0
+2025-11-12 17:53:37.827 | DEBUG | classes -> flash_time_config -> 589 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '08:50': '早读下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:41.523 | DEBUG | classes -> flash_time_config -> 589 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '10:50': '早读下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:42.922 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 10:45, 序号: 3
+2025-11-12 17:53:42.924 | DEBUG | classes -> flash_time_config -> 589 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '10:50': '早读下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:44.201 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 10:50, 序号: 0
+2025-11-12 17:53:44.203 | DEBUG | classes -> flash_time_config -> 589 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '10:50': '早读下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:50.307 | DEBUG | classes -> flash_time_config -> 589 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:53:51.345 | DEBUG | classes -> quit_app -> 335 >>> 当前软件生命状态: False
+2025-11-12 17:55:37.614 | DEBUG | classes -> __init__ -> 106 >>> 配置文件路径: d:\PythonProjects\TimeTipper\clock.json
+2025-11-12 17:55:37.615 | DEBUG | classes -> __init__ -> 107 >>> 配置文件路径: d:\PythonProjects\TimeTipper\config.json
+2025-11-12 17:55:37.697 | DEBUG | classes -> __init__ -> 126 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:37.709 | DEBUG | classes -> __init__ -> 136 >>> 导入成功
+2025-11-12 17:55:37.710 | DEBUG | classes -> show_config -> 278 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 17:55:37.710 | DEBUG | classes -> show_config -> 281 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 17:55:37.711 | DEBUG | classes -> show_config -> 282 >>> 当前随机时间: [90, 120]
+2025-11-12 17:55:37.711 | DEBUG | classes -> show_config -> 283 >>> 当前持续时间: 0
+2025-11-12 17:55:37.712 | DEBUG | classes -> show_config -> 284 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 17:55:37.754 | DEBUG | classes -> __init__ -> 203 >>> 已加载待杀程序列表
+2025-11-12 17:55:40.754 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 17:55:40.757 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:43.995 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '08:50': '早读下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:48.034 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:40, 序号: 1
+2025-11-12 17:55:48.036 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '08:50': '早读下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:49.737 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:50, 序号: 1
+2025-11-12 17:55:49.739 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '08:50': '早读下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:50.985 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:40, 序号: 0
+2025-11-12 17:55:50.987 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '08:50': '早读下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:51.802 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:50, 序号: 1
+2025-11-12 17:55:51.804 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '08:50': '早读下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:57.611 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:58.691 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:40, 序号: 0
+2025-11-12 17:55:58.692 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:55:59.993 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 17:55:59.995 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 17:56:01.177 | DEBUG | classes -> quit_app -> 335 >>> 当前软件生命状态: False
+2025-11-12 18:00:01.711 | DEBUG | classes -> __init__ -> 106 >>> 配置文件路径: d:\PythonProjects\TimeTipper\clock.json
+2025-11-12 18:00:01.712 | DEBUG | classes -> __init__ -> 107 >>> 配置文件路径: d:\PythonProjects\TimeTipper\config.json
+2025-11-12 18:00:01.806 | DEBUG | classes -> __init__ -> 126 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:01.817 | DEBUG | classes -> __init__ -> 136 >>> 导入成功
+2025-11-12 18:00:01.818 | DEBUG | classes -> show_config -> 278 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 18:00:01.819 | DEBUG | classes -> show_config -> 281 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 18:00:01.820 | DEBUG | classes -> show_config -> 282 >>> 当前随机时间: [90, 120]
+2025-11-12 18:00:01.821 | DEBUG | classes -> show_config -> 283 >>> 当前持续时间: 0
+2025-11-12 18:00:01.821 | DEBUG | classes -> show_config -> 284 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 18:00:01.880 | DEBUG | classes -> __init__ -> 203 >>> 已加载待杀程序列表
+2025-11-12 18:00:07.028 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 18:00:07.032 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:07.786 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:40, 序号: 1
+2025-11-12 18:00:07.789 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:08.338 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 18:00:08.340 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:11.444 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:14.578 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 09:35, 序号: 2
+2025-11-12 18:00:14.580 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:15.250 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 09:35, 序号: 1
+2025-11-12 18:00:15.251 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:17.457 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 08:40, 序号: 0
+2025-11-12 18:00:17.460 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:19.049 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 09:50, 序号: 2
+2025-11-12 18:00:19.051 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:21.529 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 09:35, 序号: 1
+2025-11-12 18:00:21.532 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:22.386 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 09:50, 序号: 2
+2025-11-12 18:00:22.389 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:26.164 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:26.931 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 14:50, 序号: 5
+2025-11-12 18:00:26.934 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:28.017 | DEBUG | classes -> flash_description -> 563 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 18:00:28.020 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:00:29.705 | DEBUG | classes -> quit_app -> 335 >>> 当前软件生命状态: False
+2025-11-12 18:01:19.565 | DEBUG | classes -> __init__ -> 106 >>> 配置文件路径: d:\PythonProjects\TimeTipper\clock.json
+2025-11-12 18:01:19.567 | DEBUG | classes -> __init__ -> 107 >>> 配置文件路径: d:\PythonProjects\TimeTipper\config.json
+2025-11-12 18:01:19.657 | DEBUG | classes -> __init__ -> 126 >>> 下课时间配置: {'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:01:19.670 | DEBUG | classes -> __init__ -> 136 >>> 导入成功
+2025-11-12 18:01:19.671 | DEBUG | classes -> show_config -> 278 >>> 当前托盘图标透明(0显1透2隐): 2
+2025-11-12 18:01:19.672 | DEBUG | classes -> show_config -> 281 >>> 当前待杀程序: ['EasiCamera.exe', 'et.exe', 'EXCEL.EXE', 'POWERPNT.EXE', 'WINWORD.EXE', 'wps.exe', 'wpscloudsvr.exe']
+2025-11-12 18:01:19.673 | DEBUG | classes -> show_config -> 282 >>> 当前随机时间: [90, 120]
+2025-11-12 18:01:19.674 | DEBUG | classes -> show_config -> 283 >>> 当前持续时间: 0
+2025-11-12 18:01:19.675 | DEBUG | classes -> show_config -> 284 >>> 当前待杀应用窗口标题: ['.pdf', '.ppt', '.pptx', '.xlsx', '192.168.', '分享的图片', '聊天记录', '文档文件']
+2025-11-12 18:01:19.724 | DEBUG | classes -> __init__ -> 203 >>> 已加载待杀程序列表
+2025-11-12 18:01:22.749 | DEBUG | classes -> flash_description -> 564 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 18:01:22.753 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:01:26.124 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:01:28.283 | DEBUG | classes -> flash_description -> 564 >>> 当前选中: 09:35, 序号: 1
+2025-11-12 18:01:28.284 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:01:28.890 | DEBUG | classes -> flash_description -> 564 >>> 当前选中: 09:50, 序号: 2
+2025-11-12 18:01:28.892 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'08:40': '第一节下课', '09:35': '第二节课下课', '09:50': '早读下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:01:32.662 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:01:34.123 | DEBUG | classes -> flash_description -> 564 >>> 当前选中: 08:40, 序号: 1
+2025-11-12 18:01:34.125 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:01:34.578 | DEBUG | classes -> flash_description -> 564 >>> 当前选中: 07:50, 序号: 0
+2025-11-12 18:01:34.580 | DEBUG | classes -> flash_time_config -> 590 >>> 已刷新时间表配置, 当前配置:{'07:50': '早读下课', '08:40': '第一节下课', '09:35': '第二节课下课', '10:45': '第三节课下课', '11:40': '第四节下课', '14:50': '下午第一节下课', '15:45': '下午第二节下课', '16:40': '下午第三节下课', '17:35': '下午第四节下课', '21:30': '晚修第三节下课'}
+2025-11-12 18:01:43.513 | DEBUG | classes -> quit_app -> 335 >>> 当前软件生命状态: False

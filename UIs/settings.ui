@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>672</width>
-    <height>408</height>
+    <width>619</width>
+    <height>382</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TimeTiper</string>
+   <string>TimeTipper</string>
   </property>
   <property name="styleSheet">
    <string notr="true">/* 基础设置 */
@@ -29,8 +29,8 @@ QWidget#Form {
 
 /* 标签页容器 */
 QTabWidget::pane {
-    border: 1px solid rgba(50, 80, 50, 0.8);
-    background: rgba(30, 50, 30, 0.85);
+    border: 1px solid rgba(50, 80, 50, 0.0);
+    background: rgba(30, 50, 30, 0.0);
     border-radius: 6px;
     margin: 4px;
 }
@@ -104,7 +104,7 @@ QPushButton#test_button:hover {
 
 /* 列表和文本编辑框 */
 QListWidget, QTextEdit {
-    background-color: rgba(40, 50, 40, 0.8);
+    background-color: rgba(40, 50, 40, 0.0);
     border: 1px solid rgba(70, 90, 70, 0.7);
     border-radius: 4px;
     padding: 4px;
@@ -157,9 +157,19 @@ QSpinBox::up-button:hover, QSpinBox::down-button:hover {
 }
 
 /* 框架样式 */
-QFrame {
+QFrame#frame_2, #frame_4{
+    background-color: rgba(35, 45, 35, 0.1);
+    border: 1px solid rgba(70, 90, 70, 0.6);
+    border-radius: 6px;
+}
+QFrame#frame_3 {
     background-color: rgba(35, 45, 35, 0.8);
     border: 1px solid rgba(70, 90, 70, 0.6);
+    border-radius: 6px;
+}
+QFrame#frame {
+    background-color: rgba(35, 45, 35, 0.0);
+    border: 1px solid rgba(70, 90, 80 ,0.6);
     border-radius: 6px;
 }
 
@@ -176,7 +186,7 @@ QLabel#label {
 
 /* 分隔线 */
 QFrame[frameShape=&quot;4&quot;], QFrame[frameShape=&quot;5&quot;] {
-    background-color: rgba(70, 90, 70, 0.6);
+    background-color: rgba(70, 90, 70, 0.0);
 }
 
 /* 滚动条 */
@@ -228,422 +238,17 @@ QPushButton[text=&quot;退出(Ctrl+Q)&quot;] {
     background-color: rgba(120, 60, 50, 0.85);
 }</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0" colspan="2">
-    <widget class="QTabWidget" name="tabWidget">
-     <property name="currentIndex">
-      <number>0</number>
+  <layout class="QGridLayout" name="gridLayout_10">
+   <item row="1" column="2" alignment="Qt::AlignmentFlag::AlignRight">
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
-     <property name="elideMode">
-      <enum>Qt::TextElideMode::ElideNone</enum>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QWidget" name="times">
-      <property name="accessibleName">
-       <string/>
-      </property>
-      <attribute name="title">
-       <string>时间</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="4" column="2">
-        <widget class="QPushButton" name="delete_button">
-         <property name="text">
-          <string>删除</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" rowspan="5">
-        <widget class="QTextEdit" name="description"/>
-       </item>
-       <item row="3" column="2">
-        <widget class="QPushButton" name="add_button">
-         <property name="text">
-          <string>添加</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" rowspan="5">
-        <widget class="QListWidget" name="time_list">
-         <property name="dragDropMode">
-          <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
-         </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
-         </property>
-         <property name="movement">
-          <enum>QListView::Movement::Static</enum>
-         </property>
-         <property name="flow">
-          <enum>QListView::Flow::TopToBottom</enum>
-         </property>
-         <property name="resizeMode">
-          <enum>QListView::ResizeMode::Fixed</enum>
-         </property>
-         <property name="layoutMode">
-          <enum>QListView::LayoutMode::SinglePass</enum>
-         </property>
-         <property name="viewMode">
-          <enum>QListView::ViewMode::ListMode</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="2">
-        <widget class="QPushButton" name="edit_button">
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>修改</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="time_tip">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>时间</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="desription_tip">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>描述</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="settings">
-      <attribute name="title">
-       <string>设置</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_5">
-       <item row="0" column="2">
-        <widget class="QPushButton" name="is_active">
-         <property name="toolTip">
-          <string>点击切换激活状态</string>
-         </property>
-         <property name="text">
-          <string>工作中</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" rowspan="3">
-        <widget class="QFrame" name="frame">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Shape::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Shadow::Raised</enum>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="toolTip">
-             <string>下课后多长时间内不可以再次打开教学软件</string>
-            </property>
-            <property name="text">
-             <string>持续时间(秒)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0" colspan="4">
-           <widget class="QCheckBox" name="if_tray_hide">
-            <property name="toolTip">
-             <string>将托盘图标设置为透明图片</string>
-            </property>
-            <property name="text">
-             <string>隐藏托盘                                                                                      </string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QSpinBox" name="b">
-            <property name="toolTip">
-             <string>延迟最大值</string>
-            </property>
-            <property name="maximum">
-             <number>999999999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="4">
-           <widget class="QCheckBox" name="if_strong_hide">
-            <property name="text">
-             <string>强力隐藏模式(请使用ctrl+win+alt+shift+f6打开设置, 托盘图标将消失)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="4">
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Orientation::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="3" column="1">
-           <widget class="QSpinBox" name="hold_seconds">
-            <property name="maximum">
-             <number>999999999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="toolTip">
-             <string>当下课后会随机在这个范围内取值作为延迟, 然后等待延迟后再杀程序</string>
-            </property>
-            <property name="text">
-             <string>随机等待时间(秒)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QLabel" name="label_4">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>~</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="a">
-            <property name="toolTip">
-             <string>延迟最小值</string>
-            </property>
-            <property name="maximum">
-             <number>999999999</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="test_button">
-         <property name="toolTip">
-          <string>模拟一次下课</string>
-         </property>
-         <property name="text">
-          <string>测试</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" rowspan="3">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="executables">
-      <attribute name="title">
-       <string>程序</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_6">
-       <item row="2" column="1">
-        <widget class="QTabWidget" name="tabWidget_2">
-         <property name="currentIndex">
-          <number>0</number>
-         </property>
-         <widget class="QWidget" name="exe">
-          <attribute name="title">
-           <string>应用程序exe</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_8">
-           <item row="2" column="1">
-            <widget class="QPushButton" name="edit_exe_button">
-             <property name="text">
-              <string>编辑</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QPushButton" name="remove_exe">
-             <property name="text">
-              <string>-</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QPushButton" name="add_exe">
-             <property name="text">
-              <string>+</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="choose_exe">
-             <property name="text">
-              <string>选择文件</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0" rowspan="5">
-            <widget class="QListWidget" name="for_kill_list"/>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="title">
-          <attribute name="title">
-           <string>窗口标题</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_9">
-           <item row="3" column="1">
-            <widget class="QPushButton" name="remove_title">
-             <property name="text">
-              <string>-</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QPushButton" name="add_title">
-             <property name="text">
-              <string>+</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="edit_title_button">
-             <property name="text">
-              <string>编辑</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0" rowspan="4">
-            <widget class="QListWidget" name="for_close_title"/>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="about">
-      <attribute name="title">
-       <string>关于</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label">
-           <property name="font">
-            <font>
-             <family>Microsoft YaHei</family>
-             <pointsize>69</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>   那刻夏！</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>一位闲着没事的初三生写的小程序</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Orientation::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
-   <item row="2" column="1" alignment="Qt::AlignmentFlag::AlignRight">
-    <widget class="QPushButton" name="apply_button">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="toolTip">
-      <string>一些设置更改后要应用才会保存</string>
-     </property>
-     <property name="text">
-      <string>应用(Alt+A)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" alignment="Qt::AlignmentFlag::AlignLeft">
-    <widget class="QPushButton" name="exit_button">
-     <property name="text">
-      <string>退出(Ctrl+Q)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
-    <widget class="QWidget" name="widget" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_10">
-      <item row="2" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="0">
        <widget class="QPushButton" name="minimize_button">
         <property name="styleSheet">
          <string notr="true">/* 最小化按钮样式 - 暗色主题与绿色调协调 */
@@ -685,7 +290,7 @@ QPushButton#minimize_button:disabled {
         </property>
        </widget>
       </item>
-      <item row="2" column="2" alignment="Qt::AlignmentFlag::AlignRight">
+      <item row="0" column="2">
        <widget class="QPushButton" name="close_button">
         <property name="styleSheet">
          <string notr="true">QPushButton#close_button {
@@ -729,10 +334,532 @@ QPushButton#close_button:disabled {
      </layout>
     </widget>
    </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QFrame" name="frame_3">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="0">
+       <widget class="QPushButton" name="exit_button">
+        <property name="text">
+         <string>退出(Ctrl+Q)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="3">
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <bold>true</bold>
+          <kerning>false</kerning>
+         </font>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="elideMode">
+         <enum>Qt::TextElideMode::ElideNone</enum>
+        </property>
+        <widget class="QWidget" name="times">
+         <property name="accessibleName">
+          <string/>
+         </property>
+         <attribute name="title">
+          <string>时间</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="4" column="3">
+           <widget class="QPushButton" name="delete_button">
+            <property name="text">
+             <string>删除</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="time_tip">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>时间</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3">
+           <widget class="QPushButton" name="edit_button">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>修改</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" rowspan="5">
+           <widget class="QListWidget" name="time_list">
+            <property name="dragDropMode">
+             <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+            </property>
+            <property name="movement">
+             <enum>QListView::Movement::Static</enum>
+            </property>
+            <property name="flow">
+             <enum>QListView::Flow::TopToBottom</enum>
+            </property>
+            <property name="resizeMode">
+             <enum>QListView::ResizeMode::Fixed</enum>
+            </property>
+            <property name="layoutMode">
+             <enum>QListView::LayoutMode::SinglePass</enum>
+            </property>
+            <property name="viewMode">
+             <enum>QListView::ViewMode::ListMode</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="description_tip">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>描述</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QPushButton" name="add_button">
+            <property name="text">
+             <string>添加</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2" rowspan="5">
+           <widget class="QTextEdit" name="description"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="settings">
+         <attribute name="title">
+          <string>设置</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="2">
+           <widget class="QPushButton" name="is_active">
+            <property name="toolTip">
+             <string>点击切换激活状态</string>
+            </property>
+            <property name="text">
+             <string>工作中</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" rowspan="3">
+           <widget class="QFrame" name="frame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_5">
+               <property name="toolTip">
+                <string>下课后多长时间内不可以再次打开教学软件</string>
+               </property>
+               <property name="text">
+                <string>持续时间(秒)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="4">
+              <widget class="QCheckBox" name="if_tray_hide">
+               <property name="toolTip">
+                <string>将托盘图标设置为透明图片</string>
+               </property>
+               <property name="text">
+                <string>隐藏托盘                                                                                      </string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QSpinBox" name="b">
+               <property name="toolTip">
+                <string>延迟最大值</string>
+               </property>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" colspan="4">
+              <widget class="QCheckBox" name="if_strong_hide">
+               <property name="text">
+                <string>强力隐藏模式(请使用ctrl+win+alt+shift+f6打开设置, 托盘图标将消失)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0" colspan="4">
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="hold_seconds">
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="toolTip">
+                <string>当下课后会随机在这个范围内取值作为延迟, 然后等待延迟后再杀程序</string>
+               </property>
+               <property name="text">
+                <string>随机等待时间(秒)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLabel" name="label_4">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>~</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="a">
+               <property name="toolTip">
+                <string>延迟最小值</string>
+               </property>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="test_button">
+            <property name="toolTip">
+             <string>模拟一次下课</string>
+            </property>
+            <property name="text">
+             <string>测试</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="executables">
+         <attribute name="title">
+          <string>程序</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="2" column="1">
+           <widget class="QTabWidget" name="tabWidget_2">
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="exe">
+             <attribute name="title">
+              <string>应用程序exe</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="2" column="1">
+               <widget class="QPushButton" name="edit_exe_button">
+                <property name="text">
+                 <string>编辑</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QPushButton" name="remove_exe">
+                <property name="text">
+                 <string>-</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QPushButton" name="add_exe">
+                <property name="text">
+                 <string>+</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPushButton" name="choose_exe">
+                <property name="text">
+                 <string>选择文件</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" rowspan="5">
+               <widget class="QListWidget" name="for_kill_list"/>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="title">
+             <attribute name="title">
+              <string>窗口标题</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="3" column="1">
+               <widget class="QPushButton" name="remove_title">
+                <property name="text">
+                 <string>-</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QPushButton" name="add_title">
+                <property name="text">
+                 <string>+</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPushButton" name="edit_title_button">
+                <property name="text">
+                 <string>编辑</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" rowspan="4">
+               <widget class="QListWidget" name="for_close_title"/>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>日志</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_12">
+          <item row="0" column="0">
+           <widget class="QTextBrowser" name="logger">
+            <property name="font">
+             <font>
+              <family>Microsoft YaHei</family>
+              <bold>false</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>false</kerning>
+              <hintingpreference>PreferNoHinting</hintingpreference>
+             </font>
+            </property>
+            <property name="mouseTracking">
+             <bool>false</bool>
+            </property>
+            <property name="acceptDrops">
+             <bool>false</bool>
+            </property>
+            <property name="openExternalLinks">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="about">
+         <attribute name="title">
+          <string>关于</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label">
+              <property name="font">
+               <font>
+                <family>Microsoft YaHei</family>
+                <pointsize>69</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>   那刻夏！</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignmentFlag::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>一位闲着没事的初三生写的小程序</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignmentFlag::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QPushButton" name="apply_button">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>一些设置更改后要应用才会保存</string>
+        </property>
+        <property name="text">
+         <string>应用(Alt+A)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+     <zorder>tabWidget</zorder>
+     <zorder>exit_button</zorder>
+     <zorder>apply_button</zorder>
+     <zorder>horizontalSpacer</zorder>
+    </widget>
+   </item>
+   <item row="1" column="1" alignment="Qt::AlignmentFlag::AlignLeft">
+    <widget class="QFrame" name="frame_4">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="show_icon">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../icons/active.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="show_name">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>那刻夏</string>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>tabWidget</tabstop>
   <tabstop>time_list</tabstop>
   <tabstop>add_button</tabstop>
   <tabstop>delete_button</tabstop>
