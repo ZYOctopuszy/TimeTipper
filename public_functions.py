@@ -3,10 +3,11 @@ from os import popen
 from os.path import join
 
 from PySide6.QtCore import QRect
-from PySide6.QtWidgets import QApplication, QListWidget, QWidget, QCheckBox
+from PySide6.QtWidgets import QApplication, QListWidget, QWidget, QCheckBox, QSpinBox
 from loguru import logger
 
 
+@logger.catch
 def resource_path(relative_path: str) -> str:
     """
     获取打包后文件资源路径
@@ -18,6 +19,7 @@ def resource_path(relative_path: str) -> str:
     return join(os.path.dirname(__file__), relative_path)
 
 
+@logger.catch
 def set_window_size(window: QWidget, application: QApplication):
     """
     设置窗口大小位置
@@ -28,21 +30,17 @@ def set_window_size(window: QWidget, application: QApplication):
     # 获取屏幕的尺寸
     available_geometry: QRect = application.screens()[0].availableGeometry()
 
-    # 计算窗口的位置和尺寸，使窗口居中显示
-    window_width: int = available_geometry.width() // 2
-    window_height: int = available_geometry.height() // 2
-    window_x: int = (
-        available_geometry.x() + (available_geometry.width() - window_width) // 2
-    )
-    window_y: int = (
-        available_geometry.y() + (available_geometry.height() - window_height) // 2
-    )
-
     # 应用窗口位置
-    window.setGeometry(window_x, window_y, window_width, window_height)
+    window.setGeometry(
+        available_geometry.width() >> 2,
+        available_geometry.height() >> 2,
+        available_geometry.width() >> 1,
+        available_geometry.height() >> 1,
+    )
 
 
 # noinspection SpellCheckingInspection
+@logger.catch
 def kill_exe(process: str):
     """
     根据映像名杀死指定进程
@@ -56,27 +54,28 @@ def kill_exe(process: str):
         .split("\n")[1]
         .split("  ")[0]
     ):
-        logger.debug(f"正在杀死进程{process}")
+        logger.debug(f"杀死进程{process}")
         popen(f"taskkill /f /im {process}")
-        logger.debug(f"已杀死进程: {process}")
     else:
-        logger.debug(f"{process}未运行")
+        logger.warning(f"{process}未运行")
 
 
+@logger.catch
 def flash_list_widget(list_widget: QListWidget) -> list:
     """
     排序所传入的列表控件, 并返回所有项的列表
     :param list_widget: 传入的QListWidget对象
     :return:
     """
-    if type(list_widget) == QListWidget:
-        list_widget.sortItems()
-        return [list_widget.item(i).text() for i in range(list_widget.count())]
-    return []
+    if type(list_widget) != QListWidget:
+        raise TypeError("list_widget must be QListWidget")
+    list_widget.sortItems()
+    return [list_widget.item(i).text() for i in range(list_widget.count())]
 
 
 # noinspection PyShadowingBuiltins
-def map(func, iterable: list):
+@logger.catch
+def mapx(func, iterable: list):
     """
     对可迭代对象中的每个元素应用指定函数, 并返回结果列表
     :param func: 要应用的函数
@@ -86,12 +85,13 @@ def map(func, iterable: list):
     return [func(item) for item in iterable]
 
 
-def connect_signals(widgets: list, func):
+@logger.catch
+def connect_signals(widgets: list, func) -> list:
     """
     连接QObject对象的信号到指定函数
     :param widgets: QObject对象列表
     :param func: 要连接的函数
-    :return:
+    :return: 连接结果列表
     """
     return [
         (

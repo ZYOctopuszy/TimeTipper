@@ -6,26 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>344</width>
-    <height>39</height>
+    <width>210</width>
+    <height>92</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>190</width>
-    <height>39</height>
+    <width>210</width>
+    <height>92</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>39</height>
+    <height>92</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -35,15 +29,88 @@
    <iconset>
     <normaloff>../icons/active.ico</normaloff>../icons/active.ico</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* 基础设置 */
+* {
+    font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+    color: #e0e0e0;
+}
+
+/* 主窗口 */
+QWidget#get_input {
+    background-color: rgba(20, 30, 20, 0.95);
+    border: 1px solid rgba(60, 90, 60, 0.7);
+    border-radius: 8px;
+}
+
+/* 框架样式 */
+QFrame#frame {
+    background-color: rgba(35, 45, 35, 0.8);
+    border: 1px solid rgba(70, 90, 70, 0.6);
+    border-radius: 6px;
+}
+/* 标签样式 */
+QLabel {
+    background: transparent;
+}</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLineEdit" name="get_exe_name">
-     <property name="autoFillBackground">
-      <bool>false</bool>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
-     <property name="placeholderText">
-      <string>请输入可执行文件名(含后缀)</string>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>新建项</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLineEdit" name="get_exe_name">
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="placeholderText">
+         <string>请输入可执行文件名(含后缀)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

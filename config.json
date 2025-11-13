@@ -9,6 +9,11 @@
         "wps.exe",
         "wpscloudsvr.exe"
     ],
+    "random_time": [
+        90,
+        120
+    ],
+    "hold_time": 300,
     "forKillWindowTitle": [
         ".pdf",
         ".ppt",
@@ -18,10 +23,5 @@
         "\u5206\u4eab\u7684\u56fe\u7247",
         "\u804a\u5929\u8bb0\u5f55",
         "\u6587\u6863\u6587\u4ef6"
-    ],
-    "random_time": [
-        90,
-        120
-    ],
-    "hold_time": 0
+    ]
 }
