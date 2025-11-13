@@ -3,4 +3,6 @@
 /.vscode
 /.idea
 /.git
+/.venv
+TimeTipper.log
 test.py
