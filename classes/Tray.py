@@ -1,12 +1,12 @@
-import pathlib
+from pathlib import Path
 
 import keyboard
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Slot
 from PySide6.QtGui import QAction, QIcon, QPixmap
 from PySide6.QtWidgets import QSystemTrayIcon, QApplication, QMenu
 from loguru import logger
 
-from public_functions import resource_path
+from public_functions import current_path
 
 
 class Tray(QSystemTrayIcon):
@@ -15,7 +15,7 @@ class Tray(QSystemTrayIcon):
     """
 
     @logger.catch
-    def __init__(self, connect_window: "MainWindow"):
+    def __init__(self, connect_window):
         QApplication.processEvents()
         super().__init__()
         self.files = [
@@ -29,9 +29,7 @@ class Tray(QSystemTrayIcon):
         self.setToolTip("那刻夏")
 
         self.connect_window.apply_signal.connect(self.flash_tray)
-        self.connect_window.state_changed_signal.connect(
-            lambda: self.change_tray_state(False)
-        )
+        self.connect_window.state_changed_signal.connect(self.change_tray_state)
         self.connect_window.hide_window_signal.connect(self.show_hide_window)
 
         # 创建系统托盘菜单
@@ -71,9 +69,9 @@ class Tray(QSystemTrayIcon):
         """
         QApplication.processEvents()
         # 设置图片文件路径
-        file_paths = map(resource_path, self.files)
+        file_paths = list(map(current_path, self.files))
 
-        self.files = [pathlib.Path(i).resolve().__str__() for i in file_paths]
+        self.files = [Path(i).resolve().__str__() for i in file_paths]
         self.setIcon(QIcon(self.files[0]))
         self.connect_window.setWindowIcon(QIcon(self.files[0]))
         self.connect_window.ui.show_icon.setPixmap(
@@ -86,6 +84,7 @@ class Tray(QSystemTrayIcon):
         )
 
     @logger.catch
+    @Slot()
     def toggle_window(self, reason):
         """
         实现托盘各种点击操作
@@ -96,7 +95,8 @@ class Tray(QSystemTrayIcon):
         QApplication.processEvents()
         if reason == QSystemTrayIcon.ActivationReason.DoubleClick:
             if not self.connect_window.isVisible() and (
-                    (not self.connect_window.hide_tray) or keyboard.is_pressed("shift+esc")
+                    (not self.connect_window.hide_tray) or
+                    (keyboard.is_pressed("shift+esc"))
             ):
                 # 显示设置窗口
                 logger.debug("显示设置窗口")
@@ -147,7 +147,7 @@ class Tray(QSystemTrayIcon):
         """
         if change_window_state:
             self.connect_window.change_window_state(self.connect_window.isVisible())
-        if self.connect_window.isVisible():
+        if not self.connect_window.isVisible():
             self.show_hide_action.setToolTip("与那刻夏交谈")
             self.show_hide_action.setText("呼叫")
         else:

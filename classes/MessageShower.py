@@ -16,7 +16,7 @@ class MessageShower:
     """
 
     @logger.catch
-    def __init__(self, window: "MainWindow", tray_icon: QSystemTrayIcon):
+    def __init__(self, window, tray_icon: QSystemTrayIcon):
         self.window, self.tray_icon = window, tray_icon
         threading.Thread(target=self.warn).start()
 
@@ -41,6 +41,7 @@ class MessageShower:
                 continue
             else:
                 logger.debug("关闭窗口中")
+                self.window.app.beep()
                 mapx(
                     self.window.window_closer.kill_windows,
                     self.window.forKillWindowTitle,

@@ -10,10 +10,10 @@
         "wpscloudsvr.exe"
     ],
     "random_time": [
-        90,
-        120
+        3,
+        3
     ],
-    "hold_time": 300,
+    "hold_time": 0,
     "forKillWindowTitle": [
         ".pdf",
         ".ppt",

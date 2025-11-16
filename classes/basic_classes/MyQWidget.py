@@ -10,12 +10,15 @@ class MyQWidget(QWidget):
     """
 
     @logger.catch
-    def __init__(self):
+    def __init__(self, auto_hide: bool = True):
+        self.auto_hide = auto_hide
+        self.drag = False
         super().__init__()
 
     @logger.catch
     def changeEvent(self, event, /):
-        if not self.isActiveWindow():
+        if self.auto_hide and not self.isActiveWindow():
+            self.setVisible(False)
             self.hide()
         super().changeEvent(event)
 

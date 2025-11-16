@@ -1,11 +1,12 @@
 from os import popen
+from sys import argv
 from pathlib import Path, PurePath
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QListWidget, QWidget, QCheckBox
 from loguru import logger
 
 __all__ = [
-    "resource_path",
+    "current_path",
     "set_window_size",
     "kill_exe",
     "flash_list_widget",
@@ -14,15 +15,19 @@ __all__ = [
 ]
 
 @logger.catch
-def resource_path(relative_path: str) -> str:
+def current_path(relative_path: str, mode: str = "resource") -> str:
     """
     获取打包后文件资源路径
     :param relative_path: 调试环境路径
+    :param mode: 模式, 可选"resource"或"exe", 默认为"resource"
     :return: 无
     """
     QApplication.processEvents()
-    # noinspection SpellCheckingInspection
-    return PurePath.joinpath(Path(__file__).parent, relative_path).__str__()
+    if mode == "resource":
+        return PurePath.joinpath(Path(__file__).parent, relative_path).__str__()
+    if mode == "exe":
+        return PurePath.joinpath(Path(argv[0]).resolve().parent, relative_path).__str__()
+    raise ValueError(f"mode must be 'resource' or 'exe', not {mode}")
 
 
 @logger.catch

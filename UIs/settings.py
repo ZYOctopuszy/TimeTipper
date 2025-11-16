@@ -16,16 +16,18 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QFrame,
-    QGridLayout, QHBoxLayout, QLabel, QListView,
-    QListWidget, QListWidgetItem, QPushButton, QSizePolicy,
-    QSpacerItem, QSpinBox, QTabWidget, QTextBrowser,
-    QTextEdit, QWidget)
+    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+    QListView, QListWidget, QListWidgetItem, QPushButton,
+    QSizePolicy, QSpacerItem, QSpinBox, QTabWidget,
+    QTableWidget, QTableWidgetItem, QTextBrowser, QTextEdit,
+    QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(619, 382)
+        Form.resize(850, 567)
+        Form.setAutoFillBackground(True)
         Form.setStyleSheet(u"/* \u57fa\u7840\u8bbe\u7f6e */\n"
 "* {\n"
 "    font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;\n"
@@ -196,7 +198,6 @@ class Ui_Form(object):
 "/* \u5173\u4e8e\u9875\u5927\u6807\u9898 */\n"
 "QLabel#label {\n"
 "    color: rgba(100, 220, 120, 0.9);\n"
-"    text-shadow: 1px 1px 2px rgba(0, 10, 0, 0.3);\n"
 "}\n"
 "\n"
 "/* \u5206\u9694\u7ebf */\n"
@@ -224,9 +225,9 @@ class Ui_Form(object):
 "/* \u5de5\u5177\u63d0\u793a */\n"
 "QToolTip {\n"
 "    background-color: rgba(40, 50, 40, 0.95);\n"
-""
-                        "    color: #e0e0e0;\n"
-"    border: 1px solid rgba(70, 100, 70, 0.8);\n"
+"    color: #e0e0e0;\n"
+"    border: 1px solid rgba(7"
+                        "0, 100, 70, 0.8);\n"
 "    border-radius: 3px;\n"
 "    padding: 3px;\n"
 "}\n"
@@ -255,93 +256,20 @@ class Ui_Form(object):
 "}")
         self.gridLayout_10 = QGridLayout(Form)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
-        self.frame_2 = QFrame(Form)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
-        self.gridLayout_11 = QGridLayout(self.frame_2)
-        self.gridLayout_11.setObjectName(u"gridLayout_11")
-        self.minimize_button = QPushButton(self.frame_2)
-        self.minimize_button.setObjectName(u"minimize_button")
-        self.minimize_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
-        self.minimize_button.setStyleSheet(u"/* \u6700\u5c0f\u5316\u6309\u94ae\u6837\u5f0f - \u6697\u8272\u4e3b\u9898\u4e0e\u7eff\u8272\u8c03\u534f\u8c03 */\n"
-"QPushButton#minimize_button {\n"
-"    background-color: rgba(50, 60, 50, 0.85);  /* \u6df1\u7eff\u8272\u8c03\u80cc\u666f */\n"
-"    border: 1px solid rgba(80, 100, 80, 0.7);  /* \u6d45\u7eff\u8272\u8fb9\u6846 */\n"
-"    border-radius: 4px;\n"
-"    color: #f0f0f0;\n"
-"    padding: 4px;\n"
-"    min-width: 20px;\n"
-"    max-width: 20px;\n"
-"    min-height: 20px;\n"
-"    max-height: 20px;\n"
-"    font-weight: bold;\n"
-"    qproperty-text: \"-\";  /* \u4f7f\u7528\u4e0b\u5212\u7ebf\u4f5c\u4e3a\u6700\u5c0f\u5316\u7b26\u53f7 */\n"
-"}\n"
-"\n"
-"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7eff\u8272\u8c03 */\n"
-"QPushButton#minimize_button:hover {\n"
-"    background-color: rgba(70, 90, 70, 0.9);\n"
-"    border-color: rgba(100, 130, 100, 0.8);\n"
-"}\n"
-"\n"
-"/* \u6309\u4e0b\u72b6\u6001 */\n"
-"QPushButton#minimize_button:pressed {\n"
-"    background-color: rgba(90, 110, 90, 0.9);\n"
-"    border-color: rgba(12"
-                        "0, 150, 120, 0.8);\n"
-"}\n"
-"\n"
-"/* \u7981\u7528\u72b6\u6001 */\n"
-"QPushButton#minimize_button:disabled {\n"
-"    background-color: rgba(50, 60, 50, 0.6);\n"
-"    border-color: rgba(70, 80, 70, 0.5);\n"
-"    color: rgba(180, 180, 180, 0.5);\n"
-"}")
+        self.frame_5 = QFrame(Form)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Shadow.Raised)
+        self.gridLayout_14 = QGridLayout(self.frame_5)
+        self.gridLayout_14.setObjectName(u"gridLayout_14")
+        self.resize_label = QLabel(self.frame_5)
+        self.resize_label.setObjectName(u"resize_label")
+        self.resize_label.setAutoFillBackground(False)
 
-        self.gridLayout_11.addWidget(self.minimize_button, 0, 0, 1, 1)
-
-        self.close_button = QPushButton(self.frame_2)
-        self.close_button.setObjectName(u"close_button")
-        self.close_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
-        self.close_button.setStyleSheet(u"QPushButton#close_button {\n"
-"    background-color: rgba(80, 40, 40, 0.85);  /* \u6df1\u7ea2\u8910\u8272\u80cc\u666f */\n"
-"    border: 1px solid rgba(120, 60, 60, 0.7);  /* \u7ea2\u8910\u8272\u8fb9\u6846 */\n"
-"    border-radius: 4px;\n"
-"    color: #f0f0f0;\n"
-"    padding: 4px;\n"
-"    min-width: 20px;\n"
-"    max-width: 20px;\n"
-"    min-height: 20px;\n"
-"    max-height: 20px;\n"
-"    font-weight: bold;\n"
-"    qproperty-text: \"\u00d7\";  /* \u4f7f\u7528\u4e58\u53f7\u4f5c\u4e3a\u5173\u95ed\u7b26\u53f7 */\n"
-"}\n"
-"\n"
-"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7ea2\u8272\u8c03\u4f46\u4ecd\u4fdd\u6301\u534f\u8c03 */\n"
-"QPushButton#close_button:hover {\n"
-"    background-color: rgba(120, 60, 60, 0.9);\n"
-"    border-color: rgba(150, 80, 80, 0.8);\n"
-"}\n"
-"\n"
-"/* \u6309\u4e0b\u72b6\u6001 */\n"
-"QPushButton#close_button:pressed {\n"
-"    background-color: rgba(150, 70, 70, 0.9);\n"
-"    border-color: rgba(180, 90, 90, 0.8);\n"
-"}\n"
-"\n"
-"/* \u7981\u7528\u72b6\u6001 */\n"
-"QPushButton#close_button:disab"
-                        "led {\n"
-"    background-color: rgba(60, 50, 50, 0.6);\n"
-"    border-color: rgba(80, 70, 70, 0.5);\n"
-"    color: rgba(180, 180, 180, 0.5);\n"
-"}")
-
-        self.gridLayout_11.addWidget(self.close_button, 0, 2, 1, 1)
+        self.gridLayout_14.addWidget(self.resize_label, 0, 0, 1, 1)
 
 
-        self.gridLayout_10.addWidget(self.frame_2, 1, 2, 1, 1, Qt.AlignmentFlag.AlignRight)
+        self.gridLayout_10.addWidget(self.frame_5, 4, 2, 1, 1, Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignBottom)
 
         self.frame_3 = QFrame(Form)
         self.frame_3.setObjectName(u"frame_3")
@@ -592,18 +520,309 @@ class Ui_Form(object):
         self.gridLayout_6.addWidget(self.tabWidget_2, 2, 1, 1, 1)
 
         self.tabWidget.addTab(self.executables, "")
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.gridLayout_12 = QGridLayout(self.tab)
+        self.weekdays = QWidget()
+        self.weekdays.setObjectName(u"weekdays")
+        self.gridLayout_13 = QGridLayout(self.weekdays)
+        self.gridLayout_13.setObjectName(u"gridLayout_13")
+        self.add_day = QPushButton(self.weekdays)
+        self.add_day.setObjectName(u"add_day")
+        self.add_day.setStyleSheet(u"/* \u6700\u5c0f\u5316\u6309\u94ae\u6837\u5f0f - \u6697\u8272\u4e3b\u9898\u4e0e\u7eff\u8272\u8c03\u534f\u8c03 */\n"
+"QPushButton#add_day {\n"
+"    background-color: rgba(80, 100, 80, 0.85);  /* \u6df1\u7eff\u8272\u8c03\u80cc\u666f */\n"
+"    border: 1px solid rgba(80, 100, 80, 0.7);  /* \u6d45\u7eff\u8272\u8fb9\u6846 */\n"
+"    border-radius: 4px;\n"
+"    color: #f0f0f0;\n"
+"    padding: 4px;\n"
+"    min-width: 20px;\n"
+"    max-width: 20px;\n"
+"    min-height: 20px;\n"
+"    max-height: 20px;\n"
+"    font-weight: bold;\n"
+"    qproperty-text: \"+\";  /* \u4f7f\u7528\u4e0b\u5212\u7ebf\u4f5c\u4e3a\u6700\u5c0f\u5316\u7b26\u53f7 */\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7eff\u8272\u8c03 */\n"
+"QPushButton#minimize_button:hover {\n"
+"    background-color: rgba(70, 90, 70, 0.9);\n"
+"    border-color: rgba(100, 130, 100, 0.8);\n"
+"}\n"
+"\n"
+"/* \u6309\u4e0b\u72b6\u6001 */\n"
+"QPushButton#minimize_button:pressed {\n"
+"    background-color: rgba(90, 110, 90, 0.9);\n"
+"    border-color: rgba(120, 150,"
+                        " 120, 0.8);\n"
+"}\n"
+"\n"
+"/* \u7981\u7528\u72b6\u6001 */\n"
+"QPushButton#minimize_button:disabled {\n"
+"    background-color: rgba(50, 60, 50, 0.6);\n"
+"    border-color: rgba(70, 80, 70, 0.5);\n"
+"    color: rgba(180, 180, 180, 0.5);\n"
+"}")
+
+        self.gridLayout_13.addWidget(self.add_day, 0, 7, 1, 1)
+
+        self.del_day = QPushButton(self.weekdays)
+        self.del_day.setObjectName(u"del_day")
+        self.del_day.setStyleSheet(u"/* \u6700\u5c0f\u5316\u6309\u94ae\u6837\u5f0f - \u6697\u8272\u4e3b\u9898\u4e0e\u7eff\u8272\u8c03\u534f\u8c03 */\n"
+"QPushButton#del_day {\n"
+"    background-color: rgba(80, 100, 80, 0.85);  /* \u6df1\u7eff\u8272\u8c03\u80cc\u666f */\n"
+"    border: 1px solid rgba(80, 100, 80, 0.7);  /* \u6d45\u7eff\u8272\u8fb9\u6846 */\n"
+"    border-radius: 4px;\n"
+"    color: #f0f0f0;\n"
+"    padding: 4px;\n"
+"    min-width: 20px;\n"
+"    max-width: 20px;\n"
+"    min-height: 20px;\n"
+"    max-height: 20px;\n"
+"    font-weight: bold;\n"
+"    qproperty-text: \"-\";  /* \u4f7f\u7528\u4e0b\u5212\u7ebf\u4f5c\u4e3a\u6700\u5c0f\u5316\u7b26\u53f7 */\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7eff\u8272\u8c03 */\n"
+"QPushButton#minimize_button:hover {\n"
+"    background-color: rgba(70, 90, 70, 0.9);\n"
+"    border-color: rgba(100, 130, 100, 0.8);\n"
+"}\n"
+"\n"
+"/* \u6309\u4e0b\u72b6\u6001 */\n"
+"QPushButton#minimize_button:pressed {\n"
+"    background-color: rgba(90, 110, 90, 0.9);\n"
+"    border-color: rgba(120, 150,"
+                        " 120, 0.8);\n"
+"}\n"
+"\n"
+"/* \u7981\u7528\u72b6\u6001 */\n"
+"QPushButton#minimize_button:disabled {\n"
+"    background-color: rgba(50, 60, 50, 0.6);\n"
+"    border-color: rgba(70, 80, 70, 0.5);\n"
+"    color: rgba(180, 180, 180, 0.5);\n"
+"}")
+
+        self.gridLayout_13.addWidget(self.del_day, 1, 7, 1, 1)
+
+        self.del_lesson = QPushButton(self.weekdays)
+        self.del_lesson.setObjectName(u"del_lesson")
+        self.del_lesson.setStyleSheet(u"/* \u6700\u5c0f\u5316\u6309\u94ae\u6837\u5f0f - \u6697\u8272\u4e3b\u9898\u4e0e\u7eff\u8272\u8c03\u534f\u8c03 */\n"
+"QPushButton#del_lesson {\n"
+"    background-color: rgba(80, 100, 80, 0.85);  /* \u6df1\u7eff\u8272\u8c03\u80cc\u666f */\n"
+"    border: 1px solid rgba(80, 100, 80, 0.7);  /* \u6d45\u7eff\u8272\u8fb9\u6846 */\n"
+"    border-radius: 4px;\n"
+"    color: #f0f0f0;\n"
+"    padding: 4px;\n"
+"    min-width: 20px;\n"
+"    max-width: 20px;\n"
+"    min-height: 20px;\n"
+"    max-height: 20px;\n"
+"    font-weight: bold;\n"
+"    qproperty-text: \"-\";  /* \u4f7f\u7528\u4e0b\u5212\u7ebf\u4f5c\u4e3a\u6700\u5c0f\u5316\u7b26\u53f7 */\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7eff\u8272\u8c03 */\n"
+"QPushButton#minimize_button:hover {\n"
+"    background-color: rgba(70, 90, 70, 0.9);\n"
+"    border-color: rgba(100, 130, 100, 0.8);\n"
+"}\n"
+"\n"
+"/* \u6309\u4e0b\u72b6\u6001 */\n"
+"QPushButton#minimize_button:pressed {\n"
+"    background-color: rgba(90, 110, 90, 0.9);\n"
+"    border-color: rgba(120, 1"
+                        "50, 120, 0.8);\n"
+"}\n"
+"\n"
+"/* \u7981\u7528\u72b6\u6001 */\n"
+"QPushButton#minimize_button:disabled {\n"
+"    background-color: rgba(50, 60, 50, 0.6);\n"
+"    border-color: rgba(70, 80, 70, 0.5);\n"
+"    color: rgba(180, 180, 180, 0.5);\n"
+"}")
+
+        self.gridLayout_13.addWidget(self.del_lesson, 7, 1, 1, 1)
+
+        self.add_lesson = QPushButton(self.weekdays)
+        self.add_lesson.setObjectName(u"add_lesson")
+        self.add_lesson.setStyleSheet(u"/* \u6700\u5c0f\u5316\u6309\u94ae\u6837\u5f0f - \u6697\u8272\u4e3b\u9898\u4e0e\u7eff\u8272\u8c03\u534f\u8c03 */\n"
+"QPushButton#add_lesson {\n"
+"    background-color: rgba(80, 100, 80, 0.85);  /* \u6df1\u7eff\u8272\u8c03\u80cc\u666f */\n"
+"    border: 1px solid rgba(80, 100, 80, 0.7);  /* \u6d45\u7eff\u8272\u8fb9\u6846 */\n"
+"    border-radius: 4px;\n"
+"    color: #f0f0f0;\n"
+"    padding: 4px;\n"
+"    min-width: 20px;\n"
+"    max-width: 20px;\n"
+"    min-height: 20px;\n"
+"    max-height: 20px;\n"
+"    font-weight: bold;\n"
+"    qproperty-text: \"+\";  /* \u4f7f\u7528\u4e0b\u5212\u7ebf\u4f5c\u4e3a\u6700\u5c0f\u5316\u7b26\u53f7 */\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7eff\u8272\u8c03 */\n"
+"QPushButton#minimize_button:hover {\n"
+"    background-color: rgba(70, 90, 70, 0.9);\n"
+"    border-color: rgba(100, 130, 100, 0.8);\n"
+"}\n"
+"\n"
+"/* \u6309\u4e0b\u72b6\u6001 */\n"
+"QPushButton#minimize_button:pressed {\n"
+"    background-color: rgba(90, 110, 90, 0.9);\n"
+"    border-color: rgba(120, 1"
+                        "50, 120, 0.8);\n"
+"}\n"
+"\n"
+"/* \u7981\u7528\u72b6\u6001 */\n"
+"QPushButton#minimize_button:disabled {\n"
+"    background-color: rgba(50, 60, 50, 0.6);\n"
+"    border-color: rgba(70, 80, 70, 0.5);\n"
+"    color: rgba(180, 180, 180, 0.5);\n"
+"}")
+
+        self.gridLayout_13.addWidget(self.add_lesson, 7, 0, 1, 1)
+
+        self.lessons_tab = QTableWidget(self.weekdays)
+        if (self.lessons_tab.columnCount() < 5):
+            self.lessons_tab.setColumnCount(5)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.lessons_tab.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.lessons_tab.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.lessons_tab.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.lessons_tab.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.lessons_tab.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        if (self.lessons_tab.rowCount() < 8):
+            self.lessons_tab.setRowCount(8)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.lessons_tab.setVerticalHeaderItem(0, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.lessons_tab.setVerticalHeaderItem(1, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.lessons_tab.setVerticalHeaderItem(2, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.lessons_tab.setVerticalHeaderItem(3, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.lessons_tab.setVerticalHeaderItem(4, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.lessons_tab.setVerticalHeaderItem(5, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.lessons_tab.setVerticalHeaderItem(6, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.lessons_tab.setVerticalHeaderItem(7, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.lessons_tab.setItem(0, 0, __qtablewidgetitem13)
+        self.lessons_tab.setObjectName(u"lessons_tab")
+        sizePolicy1.setHeightForWidth(self.lessons_tab.sizePolicy().hasHeightForWidth())
+        self.lessons_tab.setSizePolicy(sizePolicy1)
+        self.lessons_tab.setStyleSheet(u"/* QTableWidget \u4e3b\u6837\u5f0f */\n"
+"QTableWidget {\n"
+"    background-color: rgba(40, 50, 40, 0.0);  /* \u5b8c\u5168\u900f\u660e\u80cc\u666f */\n"
+"    border: 1px solid rgba(70, 90, 70, 0.7);\n"
+"    border-radius: 4px;\n"
+"    gridline-color: rgba(70, 90, 70, 0.4);\n"
+"    color: #e0e0e0;\n"
+"    selection-background-color: rgba(60, 120, 70, 0.7);\n"
+"    selection-color: white;\n"
+"    outline: 0;  /* \u79fb\u9664\u9009\u4e2d\u65f6\u7684\u865a\u7ebf\u6846 */\n"
+"}\n"
+"\n"
+"/* \u8868\u5934\u6837\u5f0f */\n"
+"QHeaderView {\n"
+"    background-color: rgba(40, 60, 40, 0.8);\n"
+"    border: none;\n"
+"    border-radius: 0;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: rgba(50, 70, 50, 0.9);\n"
+"    color: #b0d0b0;\n"
+"    padding: 6px;\n"
+"    border: 1px solid rgba(70, 100, 70, 0.6);\n"
+"    border-left: none;\n"
+"    border-top: none;\n"
+"    font-weight: normal;\n"
+"}\n"
+"\n"
+"QHeaderView::section:first {\n"
+"    border-left: 1px solid rgba(70, 100, 70, 0.6);\n"
+"}\n"
+"\n"
+"QHeaderView::"
+                        "section:checked {\n"
+"    background-color: rgba(60, 90, 60, 0.9);\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"/* \u8868\u9879\u6837\u5f0f */\n"
+"QTableWidget::item {\n"
+"    padding: 4px 8px;\n"
+"    border-bottom: 1px solid rgba(70, 90, 70, 0.3);\n"
+"}\n"
+"\n"
+"QTableWidget::item:hover {\n"
+"    background-color: rgba(60, 80, 60, 0.4);\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: rgba(60, 120, 70, 0.7);\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"/* \u4ea4\u66ff\u884c\u989c\u8272 */\n"
+"QTableWidget::item:alternate {\n"
+"    background-color: rgba(45, 55, 45, 0.2);\n"
+"}\n"
+"\n"
+"/* \u89d2\u90e8\u6309\u94ae\u6837\u5f0f */\n"
+"QTableCornerButton::section {\n"
+"    background-color: rgba(50, 70, 50, 0.9);\n"
+"    border: 1px solid rgba(70, 100, 70, 0.6);\n"
+"    border-left: none;\n"
+"    border-top: none;\n"
+"}\n"
+"\n"
+"/* \u6eda\u52a8\u6761\u6837\u5f0f\uff08\u4e0e\u4e3b\u6837\u5f0f\u4e00\u81f4\uff09 */\n"
+"QTableWidget QScrollBar:vertical {\n"
+"    background: rgba(40, 50, 40, 0.5);\n"
+"    width"
+                        ": 10px;\n"
+"}\n"
+"\n"
+"QTableWidget QScrollBar::handle:vertical {\n"
+"    background: rgba(80, 120, 80, 0.6);\n"
+"    min-height: 20px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QTableWidget QScrollBar::add-line:vertical, \n"
+"QTableWidget QScrollBar::sub-line:vertical {\n"
+"    background: none;\n"
+"}\n"
+"\n"
+"/* \u7f16\u8f91\u72b6\u6001\u4e0b\u7684\u6837\u5f0f */\n"
+"QTableWidget::item:editing {\n"
+"    background-color: rgba(60, 80, 60, 0.6);\n"
+"}")
+        self.lessons_tab.setGridStyle(Qt.PenStyle.DashDotLine)
+        self.lessons_tab.setSortingEnabled(False)
+
+        self.gridLayout_13.addWidget(self.lessons_tab, 0, 0, 3, 6)
+
+        self.tabWidget.addTab(self.weekdays, "")
+        self.log = QWidget()
+        self.log.setObjectName(u"log")
+        self.gridLayout_12 = QGridLayout(self.log)
         self.gridLayout_12.setObjectName(u"gridLayout_12")
-        self.logger = QTextBrowser(self.tab)
+        self.logger = QTextBrowser(self.log)
         self.logger.setObjectName(u"logger")
         self.logger.setStyleSheet(u"")
         self.logger.setOpenExternalLinks(True)
 
         self.gridLayout_12.addWidget(self.logger, 0, 0, 1, 1)
 
-        self.tabWidget.addTab(self.tab, "")
+        self.tabWidget.addTab(self.log, "")
         self.about = QWidget()
         self.about.setObjectName(u"about")
         self.gridLayout_4 = QGridLayout(self.about)
@@ -652,7 +871,95 @@ class Ui_Form(object):
         self.exit_button.raise_()
         self.apply_button.raise_()
 
-        self.gridLayout_10.addWidget(self.frame_3, 2, 1, 1, 2)
+        self.gridLayout_10.addWidget(self.frame_3, 3, 1, 1, 2)
+
+        self.frame_2 = QFrame(Form)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.gridLayout_11 = QGridLayout(self.frame_2)
+        self.gridLayout_11.setObjectName(u"gridLayout_11")
+        self.minimize_button = QPushButton(self.frame_2)
+        self.minimize_button.setObjectName(u"minimize_button")
+        self.minimize_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
+        self.minimize_button.setStyleSheet(u"/* \u6700\u5c0f\u5316\u6309\u94ae\u6837\u5f0f - \u6697\u8272\u4e3b\u9898\u4e0e\u7eff\u8272\u8c03\u534f\u8c03 */\n"
+"QPushButton#minimize_button {\n"
+"    background-color: rgba(50, 60, 50, 0.85);  /* \u6df1\u7eff\u8272\u8c03\u80cc\u666f */\n"
+"    border: 1px solid rgba(80, 100, 80, 0.7);  /* \u6d45\u7eff\u8272\u8fb9\u6846 */\n"
+"    border-radius: 4px;\n"
+"    color: #f0f0f0;\n"
+"    padding: 4px;\n"
+"    min-width: 20px;\n"
+"    max-width: 20px;\n"
+"    min-height: 20px;\n"
+"    max-height: 20px;\n"
+"    font-weight: bold;\n"
+"    qproperty-text: \"-\";  /* \u4f7f\u7528\u4e0b\u5212\u7ebf\u4f5c\u4e3a\u6700\u5c0f\u5316\u7b26\u53f7 */\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7eff\u8272\u8c03 */\n"
+"QPushButton#minimize_button:hover {\n"
+"    background-color: rgba(70, 90, 70, 0.9);\n"
+"    border-color: rgba(100, 130, 100, 0.8);\n"
+"}\n"
+"\n"
+"/* \u6309\u4e0b\u72b6\u6001 */\n"
+"QPushButton#minimize_button:pressed {\n"
+"    background-color: rgba(90, 110, 90, 0.9);\n"
+"    border-color: rgba(12"
+                        "0, 150, 120, 0.8);\n"
+"}\n"
+"\n"
+"/* \u7981\u7528\u72b6\u6001 */\n"
+"QPushButton#minimize_button:disabled {\n"
+"    background-color: rgba(50, 60, 50, 0.6);\n"
+"    border-color: rgba(70, 80, 70, 0.5);\n"
+"    color: rgba(180, 180, 180, 0.5);\n"
+"}")
+
+        self.gridLayout_11.addWidget(self.minimize_button, 0, 0, 1, 1)
+
+        self.close_button = QPushButton(self.frame_2)
+        self.close_button.setObjectName(u"close_button")
+        self.close_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
+        self.close_button.setStyleSheet(u"QPushButton#close_button {\n"
+"    background-color: rgba(80, 40, 40, 0.85);  /* \u6df1\u7ea2\u8910\u8272\u80cc\u666f */\n"
+"    border: 1px solid rgba(120, 60, 60, 0.7);  /* \u7ea2\u8910\u8272\u8fb9\u6846 */\n"
+"    border-radius: 4px;\n"
+"    color: #f0f0f0;\n"
+"    padding: 4px;\n"
+"    min-width: 20px;\n"
+"    max-width: 20px;\n"
+"    min-height: 20px;\n"
+"    max-height: 20px;\n"
+"    font-weight: bold;\n"
+"    qproperty-text: \"\u00d7\";  /* \u4f7f\u7528\u4e58\u53f7\u4f5c\u4e3a\u5173\u95ed\u7b26\u53f7 */\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7ea2\u8272\u8c03\u4f46\u4ecd\u4fdd\u6301\u534f\u8c03 */\n"
+"QPushButton#close_button:hover {\n"
+"    background-color: rgba(120, 60, 60, 0.9);\n"
+"    border-color: rgba(150, 80, 80, 0.8);\n"
+"}\n"
+"\n"
+"/* \u6309\u4e0b\u72b6\u6001 */\n"
+"QPushButton#close_button:pressed {\n"
+"    background-color: rgba(150, 70, 70, 0.9);\n"
+"    border-color: rgba(180, 90, 90, 0.8);\n"
+"}\n"
+"\n"
+"/* \u7981\u7528\u72b6\u6001 */\n"
+"QPushButton#close_button:disab"
+                        "led {\n"
+"    background-color: rgba(60, 50, 50, 0.6);\n"
+"    border-color: rgba(80, 70, 70, 0.5);\n"
+"    color: rgba(180, 180, 180, 0.5);\n"
+"}")
+
+        self.gridLayout_11.addWidget(self.close_button, 0, 2, 1, 1)
+
+
+        self.gridLayout_10.addWidget(self.frame_2, 1, 2, 1, 1, Qt.AlignmentFlag.AlignRight)
 
         self.frame_4 = QFrame(Form)
         self.frame_4.setObjectName(u"frame_4")
@@ -713,8 +1020,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"TimeTipper", None))
-        self.minimize_button.setText(QCoreApplication.translate("Form", u"-", None))
-        self.close_button.setText(QCoreApplication.translate("Form", u"\u00d7", None))
+        self.resize_label.setText(QCoreApplication.translate("Form", u"\u21f2\u25e2", None))
         self.exit_button.setText(QCoreApplication.translate("Form", u"\u9000\u51fa(Ctrl+Q)", None))
 #if QT_CONFIG(accessibility)
         self.times.setAccessibleName("")
@@ -764,6 +1070,42 @@ class Ui_Form(object):
         self.edit_title_button.setText(QCoreApplication.translate("Form", u"\u7f16\u8f91", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.title), QCoreApplication.translate("Form", u"\u7a97\u53e3\u6807\u9898", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.executables), QCoreApplication.translate("Form", u"\u7a0b\u5e8f", None))
+        self.add_day.setText(QCoreApplication.translate("Form", u"+", None))
+        self.del_day.setText(QCoreApplication.translate("Form", u"-", None))
+        self.del_lesson.setText(QCoreApplication.translate("Form", u"-", None))
+        self.add_lesson.setText(QCoreApplication.translate("Form", u"+", None))
+        ___qtablewidgetitem = self.lessons_tab.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("Form", u"\u5468\u4e00", None));
+        ___qtablewidgetitem1 = self.lessons_tab.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("Form", u"\u5468\u4e8c", None));
+        ___qtablewidgetitem2 = self.lessons_tab.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("Form", u"\u5468\u4e09", None));
+        ___qtablewidgetitem3 = self.lessons_tab.horizontalHeaderItem(3)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("Form", u"\u5468\u56db", None));
+        ___qtablewidgetitem4 = self.lessons_tab.horizontalHeaderItem(4)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("Form", u"\u5468\u4e94", None));
+        ___qtablewidgetitem5 = self.lessons_tab.verticalHeaderItem(0)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+        ___qtablewidgetitem6 = self.lessons_tab.verticalHeaderItem(1)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+        ___qtablewidgetitem7 = self.lessons_tab.verticalHeaderItem(2)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+        ___qtablewidgetitem8 = self.lessons_tab.verticalHeaderItem(3)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+        ___qtablewidgetitem9 = self.lessons_tab.verticalHeaderItem(4)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+        ___qtablewidgetitem10 = self.lessons_tab.verticalHeaderItem(5)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+        ___qtablewidgetitem11 = self.lessons_tab.verticalHeaderItem(6)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+        ___qtablewidgetitem12 = self.lessons_tab.verticalHeaderItem(7)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+
+        __sortingEnabled = self.lessons_tab.isSortingEnabled()
+        self.lessons_tab.setSortingEnabled(False)
+        self.lessons_tab.setSortingEnabled(__sortingEnabled)
+
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.weekdays), QCoreApplication.translate("Form", u"\u8bfe\u7a0b\u8868", None))
         self.logger.setHtml(QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -772,7 +1114,7 @@ class Ui_Form(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei','Segoe UI','sans-serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Form", u"\u65e5\u5fd7", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.log), QCoreApplication.translate("Form", u"\u65e5\u5fd7", None))
         self.label.setText(QCoreApplication.translate("Form", u"   \u90a3\u523b\u590f\uff01", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"\u4e00\u4f4d\u95f2\u7740\u6ca1\u4e8b\u7684\u521d\u4e09\u751f\u5199\u7684\u5c0f\u7a0b\u5e8f", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.about), QCoreApplication.translate("Form", u"\u5173\u4e8e", None))
@@ -780,6 +1122,8 @@ class Ui_Form(object):
         self.apply_button.setToolTip(QCoreApplication.translate("Form", u"\u4e00\u4e9b\u8bbe\u7f6e\u66f4\u6539\u540e\u8981\u5e94\u7528\u624d\u4f1a\u4fdd\u5b58", None))
 #endif // QT_CONFIG(tooltip)
         self.apply_button.setText(QCoreApplication.translate("Form", u"\u5e94\u7528(Alt+A)", None))
+        self.minimize_button.setText(QCoreApplication.translate("Form", u"-", None))
+        self.close_button.setText(QCoreApplication.translate("Form", u"\u00d7", None))
         self.show_icon.setText("")
         self.show_name.setText(QCoreApplication.translate("Form", u"\u90a3\u523b\u590f", None))
     # retranslateUi

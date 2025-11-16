@@ -1,10 +1,9 @@
-import pathlib
 import sys
 from json import load, dump
 
 import keyboard
-from PySide6.QtCore import Qt
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Qt, QEvent
+from PySide6.QtCore import Signal, Slot
 from PySide6.QtGui import QShortcut, QKeySequence
 from PySide6.QtWidgets import (
     QApplication
@@ -33,7 +32,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
     @logger.catch
     def __init__(self, app: QApplication):
         QApplication.processEvents()
-        super().__init__()
+        super().__init__(False)
         self.app = app
         # 初始化ui
         self.ui = settings.Ui_Form()
@@ -42,7 +41,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         set_window_size(self, app)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setAttribute(Qt.WidgetAttribute.WA_PaintOnScreen)
         # 实例化关闭窗口类
         self.window_closer = WindowCloser()
         # 初始化日志管理类
@@ -92,12 +90,8 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 随机等待时间
         self.random_time: list[int] = self.default_config["random_time"]
         # 配置文件路径
-        self.clock_json_path: str = pathlib.PurePath.joinpath(
-            pathlib.Path(sys.argv[0]).resolve().parent, "clock.json"
-        ).__str__()
-        self.config_json_path: str = pathlib.PurePath.joinpath(
-            pathlib.Path(sys.argv[0]).resolve().parent, "config.json"
-        ).__str__()
+        self.clock_json_path: str = current_path("clock.json", "exe")
+        self.config_json_path: str = current_path("config.json", "exe")
         logger.debug(f"配置文件路径: {self.clock_json_path}")
         logger.debug(f"配置文件路径: {self.config_json_path}")
         QShortcut(QKeySequence("Alt+A"), self).activated.connect(
@@ -163,6 +157,12 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.ui.close_button.clicked.connect(self.close)
         self.ui.minimize_button.clicked.connect(self.showMinimized)
         # endregion
+
+        # region 初始化托盘图标
+        self.tray_icon = classes.Tray(self)
+        self.tray_icon.flash_tray()
+        # endregion
+
         # region 时间点编辑功能实现
         # 检测时间列表选中项改变和描述内容改变
         self.ui.time_list.itemSelectionChanged.connect(
@@ -170,11 +170,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         )
         self.ui.description.textChanged.connect(self.time_manager.edit_description)
         self.ui.time_list.addItems(list(sorted(self.time_config.keys())))
-        # endregion
-
-        # region 初始化托盘图标
-        self.tray_icon = classes.Tray(self)
-        self.tray_icon.flash_tray()
         # endregion
 
         # region 初始化待杀应用窗口类
@@ -198,7 +193,48 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # endregion
 
     # region 主窗口类方法s
+    # region 重写的方法s
     @logger.catch
+    def changeEvent(self, event):
+        """
+        处理窗口最小化行为
+        :param event: 事件对象
+        :return: 无
+        """
+        if self.windowState() == Qt.WindowState.WindowMinimized and event.type() == QEvent.Type.WindowStateChange:
+            logger.debug("设置窗口最小化, 执行隐藏窗口")
+            from PySide6.QtCore import QTimer
+            QTimer.singleShot(0, self.hide)
+        super().changeEvent(event)
+
+    @logger.catch
+    def hideEvent(self, event, /):
+        self.hide_window_signal.emit()
+        event.accept()
+
+    @logger.catch
+    def closeEvent(self, event):
+        """
+        窗口收到关闭事件时隐藏设置窗口
+        :param event: 事件对象
+        :return: 无
+        """
+        self.showMinimized()
+        event.ignore()
+
+    @logger.catch
+    def resizeEvent(self, event, /):
+        """
+        处理窗口大小改变事件
+        :param event: 事件对象
+        :return: 无
+        """
+        super().resizeEvent(event)
+
+    # endregion
+    # region 槽函数s
+    @logger.catch
+    @Slot()
     def strong_hide_action(self, state):
         """
         关联强隐藏托盘图标
@@ -208,11 +244,13 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.ui.if_tray_hide.setChecked(True)
 
     @logger.catch
+    @Slot()
     def testing(self):
         self.test = True
 
     @logger.catch
-    def set_flushable(self, *args, **kwargs):
+    @Slot()
+    def set_flushable(self, *args):
         """
         设置应用按钮为可点击状态
         :return:
@@ -220,30 +258,19 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.ui.apply_button.setEnabled(True)
 
     @logger.catch
-    def changeEvent(self, event):
+    @Slot()
+    def quit_app(self):
         """
-        处理窗口最小化行为
-        :param event: 事件对象
+        退出软件
         :return: 无
         """
-        if self.windowState() == Qt.WindowState.WindowMinimized:
-            logger.debug("设置窗口最小化, 执行隐藏窗口")
-            self.showNormal()
-            self.setVisible(False)
-            self.hide_window_signal.emit()
-        else:
-            super().changeEvent(event)
+        self.life = False
+        keyboard.unhook_all()
+        logger.debug(f"当前软件生命状态: {self.life}")
+        self.app.quit()
+        sys.exit()
 
-    @logger.catch
-    def closeEvent(self, event):
-        """
-        窗口收到关闭事件时隐藏设置窗口
-        :param event: 事件对象
-        :return: 无
-        """
-        self.setVisible(False)
-        event.ignore()
-
+    # endregion
     @logger.catch
     def load_config(self, configure: dict):
         """
@@ -302,6 +329,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         :return:
         """
         self.setVisible(True)
+        self.showNormal()
         self.raise_()
         self.activateWindow()
         self.setFocus()
@@ -314,21 +342,9 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         :return:
         """
         if hide:
-            self.setVisible(False)
+            self.showMinimized()
         else:
             self.show_window()
-
-    @logger.catch
-    def quit_app(self):
-        """
-        退出软件
-        :return: 无
-        """
-        self.life = False
-        keyboard.unhook_all()
-        logger.debug(f"当前软件生命状态: {self.life}")
-        self.app.quit()
-        sys.exit()
 
     @logger.catch
     def flash_state_changed(self):

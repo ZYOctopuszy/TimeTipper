@@ -1,4 +1,4 @@
-import pathlib
+from pathlib import Path
 
 from PySide6.QtWidgets import QApplication, QFileDialog
 from loguru import logger
@@ -30,7 +30,7 @@ class AddEXE(AddItem):
         通过选择文件添加待杀程序
         :return: 无
         """
-        file_name = pathlib.Path(
+        file_name = Path(
             QFileDialog.getOpenFileName(self.connect_window, "选择待杀程序", "", "*.exe")[0]
         ).name
         if file_name.strip() != "":

@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>619</width>
-    <height>382</height>
+    <width>850</width>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>TimeTipper</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
   </property>
   <property name="styleSheet">
    <string notr="true">/* 基础设置 */
@@ -180,7 +183,6 @@ QLabel {
 /* 关于页大标题 */
 QLabel#label {
     color: rgba(100, 220, 120, 0.9);
-    text-shadow: 1px 1px 2px rgba(0, 10, 0, 0.3);
 }
 
 /* 分隔线 */
@@ -238,108 +240,29 @@ QPushButton[text=&quot;退出(Ctrl+Q)&quot;] {
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_10">
-   <item row="1" column="2" alignment="Qt::AlignmentFlag::AlignRight">
-    <widget class="QFrame" name="frame_2">
+   <item row="4" column="2" alignment="Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignBottom">
+    <widget class="QFrame" name="frame_5">
      <property name="frameShape">
       <enum>QFrame::Shape::StyledPanel</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <layout class="QGridLayout" name="gridLayout_11">
+     <layout class="QGridLayout" name="gridLayout_14">
       <item row="0" column="0">
-       <widget class="QPushButton" name="minimize_button">
-        <property name="cursor">
-         <cursorShape>ArrowCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">/* 最小化按钮样式 - 暗色主题与绿色调协调 */
-QPushButton#minimize_button {
-    background-color: rgba(50, 60, 50, 0.85);  /* 深绿色调背景 */
-    border: 1px solid rgba(80, 100, 80, 0.7);  /* 浅绿色边框 */
-    border-radius: 4px;
-    color: #f0f0f0;
-    padding: 4px;
-    min-width: 20px;
-    max-width: 20px;
-    min-height: 20px;
-    max-height: 20px;
-    font-weight: bold;
-    qproperty-text: &quot;-&quot;;  /* 使用下划线作为最小化符号 */
-}
-
-/* 悬停状态 - 增强绿色调 */
-QPushButton#minimize_button:hover {
-    background-color: rgba(70, 90, 70, 0.9);
-    border-color: rgba(100, 130, 100, 0.8);
-}
-
-/* 按下状态 */
-QPushButton#minimize_button:pressed {
-    background-color: rgba(90, 110, 90, 0.9);
-    border-color: rgba(120, 150, 120, 0.8);
-}
-
-/* 禁用状态 */
-QPushButton#minimize_button:disabled {
-    background-color: rgba(50, 60, 50, 0.6);
-    border-color: rgba(70, 80, 70, 0.5);
-    color: rgba(180, 180, 180, 0.5);
-}</string>
+       <widget class="QLabel" name="resize_label">
+        <property name="autoFillBackground">
+         <bool>false</bool>
         </property>
         <property name="text">
-         <string>-</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="close_button">
-        <property name="cursor">
-         <cursorShape>ArrowCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton#close_button {
-    background-color: rgba(80, 40, 40, 0.85);  /* 深红褐色背景 */
-    border: 1px solid rgba(120, 60, 60, 0.7);  /* 红褐色边框 */
-    border-radius: 4px;
-    color: #f0f0f0;
-    padding: 4px;
-    min-width: 20px;
-    max-width: 20px;
-    min-height: 20px;
-    max-height: 20px;
-    font-weight: bold;
-    qproperty-text: &quot;×&quot;;  /* 使用乘号作为关闭符号 */
-}
-
-/* 悬停状态 - 增强红色调但仍保持协调 */
-QPushButton#close_button:hover {
-    background-color: rgba(120, 60, 60, 0.9);
-    border-color: rgba(150, 80, 80, 0.8);
-}
-
-/* 按下状态 */
-QPushButton#close_button:pressed {
-    background-color: rgba(150, 70, 70, 0.9);
-    border-color: rgba(180, 90, 90, 0.8);
-}
-
-/* 禁用状态 */
-QPushButton#close_button:disabled {
-    background-color: rgba(60, 50, 50, 0.6);
-    border-color: rgba(80, 70, 70, 0.5);
-    color: rgba(180, 180, 180, 0.5);
-}</string>
-        </property>
-        <property name="text">
-         <string>×</string>
+         <string>⇲◢</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="2" column="1" colspan="2">
+   <item row="3" column="1" colspan="2">
     <widget class="QFrame" name="frame_3">
      <property name="frameShape">
       <enum>QFrame::Shape::StyledPanel</enum>
@@ -764,7 +687,357 @@ QPushButton#close_button:disabled {
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab">
+        <widget class="QWidget" name="weekdays">
+         <attribute name="title">
+          <string>课程表</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_13">
+          <item row="0" column="7">
+           <widget class="QPushButton" name="add_day">
+            <property name="styleSheet">
+             <string notr="true">/* 最小化按钮样式 - 暗色主题与绿色调协调 */
+QPushButton#add_day {
+    background-color: rgba(80, 100, 80, 0.85);  /* 深绿色调背景 */
+    border: 1px solid rgba(80, 100, 80, 0.7);  /* 浅绿色边框 */
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 4px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    font-weight: bold;
+    qproperty-text: &quot;+&quot;;  /* 使用下划线作为最小化符号 */
+}
+
+/* 悬停状态 - 增强绿色调 */
+QPushButton#minimize_button:hover {
+    background-color: rgba(70, 90, 70, 0.9);
+    border-color: rgba(100, 130, 100, 0.8);
+}
+
+/* 按下状态 */
+QPushButton#minimize_button:pressed {
+    background-color: rgba(90, 110, 90, 0.9);
+    border-color: rgba(120, 150, 120, 0.8);
+}
+
+/* 禁用状态 */
+QPushButton#minimize_button:disabled {
+    background-color: rgba(50, 60, 50, 0.6);
+    border-color: rgba(70, 80, 70, 0.5);
+    color: rgba(180, 180, 180, 0.5);
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="del_day">
+            <property name="styleSheet">
+             <string notr="true">/* 最小化按钮样式 - 暗色主题与绿色调协调 */
+QPushButton#del_day {
+    background-color: rgba(80, 100, 80, 0.85);  /* 深绿色调背景 */
+    border: 1px solid rgba(80, 100, 80, 0.7);  /* 浅绿色边框 */
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 4px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    font-weight: bold;
+    qproperty-text: &quot;-&quot;;  /* 使用下划线作为最小化符号 */
+}
+
+/* 悬停状态 - 增强绿色调 */
+QPushButton#minimize_button:hover {
+    background-color: rgba(70, 90, 70, 0.9);
+    border-color: rgba(100, 130, 100, 0.8);
+}
+
+/* 按下状态 */
+QPushButton#minimize_button:pressed {
+    background-color: rgba(90, 110, 90, 0.9);
+    border-color: rgba(120, 150, 120, 0.8);
+}
+
+/* 禁用状态 */
+QPushButton#minimize_button:disabled {
+    background-color: rgba(50, 60, 50, 0.6);
+    border-color: rgba(70, 80, 70, 0.5);
+    color: rgba(180, 180, 180, 0.5);
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QPushButton" name="del_lesson">
+            <property name="styleSheet">
+             <string notr="true">/* 最小化按钮样式 - 暗色主题与绿色调协调 */
+QPushButton#del_lesson {
+    background-color: rgba(80, 100, 80, 0.85);  /* 深绿色调背景 */
+    border: 1px solid rgba(80, 100, 80, 0.7);  /* 浅绿色边框 */
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 4px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    font-weight: bold;
+    qproperty-text: &quot;-&quot;;  /* 使用下划线作为最小化符号 */
+}
+
+/* 悬停状态 - 增强绿色调 */
+QPushButton#minimize_button:hover {
+    background-color: rgba(70, 90, 70, 0.9);
+    border-color: rgba(100, 130, 100, 0.8);
+}
+
+/* 按下状态 */
+QPushButton#minimize_button:pressed {
+    background-color: rgba(90, 110, 90, 0.9);
+    border-color: rgba(120, 150, 120, 0.8);
+}
+
+/* 禁用状态 */
+QPushButton#minimize_button:disabled {
+    background-color: rgba(50, 60, 50, 0.6);
+    border-color: rgba(70, 80, 70, 0.5);
+    color: rgba(180, 180, 180, 0.5);
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QPushButton" name="add_lesson">
+            <property name="styleSheet">
+             <string notr="true">/* 最小化按钮样式 - 暗色主题与绿色调协调 */
+QPushButton#add_lesson {
+    background-color: rgba(80, 100, 80, 0.85);  /* 深绿色调背景 */
+    border: 1px solid rgba(80, 100, 80, 0.7);  /* 浅绿色边框 */
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 4px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    font-weight: bold;
+    qproperty-text: &quot;+&quot;;  /* 使用下划线作为最小化符号 */
+}
+
+/* 悬停状态 - 增强绿色调 */
+QPushButton#minimize_button:hover {
+    background-color: rgba(70, 90, 70, 0.9);
+    border-color: rgba(100, 130, 100, 0.8);
+}
+
+/* 按下状态 */
+QPushButton#minimize_button:pressed {
+    background-color: rgba(90, 110, 90, 0.9);
+    border-color: rgba(120, 150, 120, 0.8);
+}
+
+/* 禁用状态 */
+QPushButton#minimize_button:disabled {
+    background-color: rgba(50, 60, 50, 0.6);
+    border-color: rgba(70, 80, 70, 0.5);
+    color: rgba(180, 180, 180, 0.5);
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" rowspan="3" colspan="6">
+           <widget class="QTableWidget" name="lessons_tab">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">/* QTableWidget 主样式 */
+QTableWidget {
+    background-color: rgba(40, 50, 40, 0.0);  /* 完全透明背景 */
+    border: 1px solid rgba(70, 90, 70, 0.7);
+    border-radius: 4px;
+    gridline-color: rgba(70, 90, 70, 0.4);
+    color: #e0e0e0;
+    selection-background-color: rgba(60, 120, 70, 0.7);
+    selection-color: white;
+    outline: 0;  /* 移除选中时的虚线框 */
+}
+
+/* 表头样式 */
+QHeaderView {
+    background-color: rgba(40, 60, 40, 0.8);
+    border: none;
+    border-radius: 0;
+}
+
+QHeaderView::section {
+    background-color: rgba(50, 70, 50, 0.9);
+    color: #b0d0b0;
+    padding: 6px;
+    border: 1px solid rgba(70, 100, 70, 0.6);
+    border-left: none;
+    border-top: none;
+    font-weight: normal;
+}
+
+QHeaderView::section:first {
+    border-left: 1px solid rgba(70, 100, 70, 0.6);
+}
+
+QHeaderView::section:checked {
+    background-color: rgba(60, 90, 60, 0.9);
+    color: white;
+}
+
+/* 表项样式 */
+QTableWidget::item {
+    padding: 4px 8px;
+    border-bottom: 1px solid rgba(70, 90, 70, 0.3);
+}
+
+QTableWidget::item:hover {
+    background-color: rgba(60, 80, 60, 0.4);
+}
+
+QTableWidget::item:selected {
+    background-color: rgba(60, 120, 70, 0.7);
+    color: white;
+}
+
+/* 交替行颜色 */
+QTableWidget::item:alternate {
+    background-color: rgba(45, 55, 45, 0.2);
+}
+
+/* 角部按钮样式 */
+QTableCornerButton::section {
+    background-color: rgba(50, 70, 50, 0.9);
+    border: 1px solid rgba(70, 100, 70, 0.6);
+    border-left: none;
+    border-top: none;
+}
+
+/* 滚动条样式（与主样式一致） */
+QTableWidget QScrollBar:vertical {
+    background: rgba(40, 50, 40, 0.5);
+    width: 10px;
+}
+
+QTableWidget QScrollBar::handle:vertical {
+    background: rgba(80, 120, 80, 0.6);
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+QTableWidget QScrollBar::add-line:vertical, 
+QTableWidget QScrollBar::sub-line:vertical {
+    background: none;
+}
+
+/* 编辑状态下的样式 */
+QTableWidget::item:editing {
+    background-color: rgba(60, 80, 60, 0.6);
+}</string>
+            </property>
+            <property name="gridStyle">
+             <enum>Qt::PenStyle::DashDotLine</enum>
+            </property>
+            <property name="sortingEnabled">
+             <bool>false</bool>
+            </property>
+            <row>
+             <property name="text">
+              <string>新建行</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>新建行</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>新建行</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>新建行</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>新建行</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>新建行</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>新建行</string>
+             </property>
+            </row>
+            <row>
+             <property name="text">
+              <string>新建行</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string>周一</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>周二</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>周三</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>周四</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>周五</string>
+             </property>
+            </column>
+            <item row="0" column="0">
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="log">
          <attribute name="title">
           <string>日志</string>
          </attribute>
@@ -877,6 +1150,107 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <zorder>exit_button</zorder>
      <zorder>apply_button</zorder>
      <zorder>horizontalSpacer</zorder>
+    </widget>
+   </item>
+   <item row="1" column="2" alignment="Qt::AlignmentFlag::AlignRight">
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="minimize_button">
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">/* 最小化按钮样式 - 暗色主题与绿色调协调 */
+QPushButton#minimize_button {
+    background-color: rgba(50, 60, 50, 0.85);  /* 深绿色调背景 */
+    border: 1px solid rgba(80, 100, 80, 0.7);  /* 浅绿色边框 */
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 4px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    font-weight: bold;
+    qproperty-text: &quot;-&quot;;  /* 使用下划线作为最小化符号 */
+}
+
+/* 悬停状态 - 增强绿色调 */
+QPushButton#minimize_button:hover {
+    background-color: rgba(70, 90, 70, 0.9);
+    border-color: rgba(100, 130, 100, 0.8);
+}
+
+/* 按下状态 */
+QPushButton#minimize_button:pressed {
+    background-color: rgba(90, 110, 90, 0.9);
+    border-color: rgba(120, 150, 120, 0.8);
+}
+
+/* 禁用状态 */
+QPushButton#minimize_button:disabled {
+    background-color: rgba(50, 60, 50, 0.6);
+    border-color: rgba(70, 80, 70, 0.5);
+    color: rgba(180, 180, 180, 0.5);
+}</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="close_button">
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton#close_button {
+    background-color: rgba(80, 40, 40, 0.85);  /* 深红褐色背景 */
+    border: 1px solid rgba(120, 60, 60, 0.7);  /* 红褐色边框 */
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 4px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    font-weight: bold;
+    qproperty-text: &quot;×&quot;;  /* 使用乘号作为关闭符号 */
+}
+
+/* 悬停状态 - 增强红色调但仍保持协调 */
+QPushButton#close_button:hover {
+    background-color: rgba(120, 60, 60, 0.9);
+    border-color: rgba(150, 80, 80, 0.8);
+}
+
+/* 按下状态 */
+QPushButton#close_button:pressed {
+    background-color: rgba(150, 70, 70, 0.9);
+    border-color: rgba(180, 90, 90, 0.8);
+}
+
+/* 禁用状态 */
+QPushButton#close_button:disabled {
+    background-color: rgba(60, 50, 50, 0.6);
+    border-color: rgba(80, 70, 70, 0.5);
+    color: rgba(180, 180, 180, 0.5);
+}</string>
+        </property>
+        <property name="text">
+         <string>×</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="1" column="1" alignment="Qt::AlignmentFlag::AlignLeft">
