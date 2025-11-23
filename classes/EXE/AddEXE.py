@@ -13,13 +13,13 @@ class AddEXE(AddItem):
     """
 
     @logger.catch
-    def __init__(self, parent: "MainWindow"):
-        super().__init__(parent, parent.ui.for_kill_list)
-        self.connect_window.ui.remove_exe.clicked.connect(self.remove_item)
-        self.connect_window.ui.add_exe.clicked.connect(self.add_item_function)
-        self.connect_window.ui.choose_exe.clicked.connect(self.add_exe_by_choose_file)
+    def __init__(self, p_window):
+        super().__init__(p_window, p_window.ui.for_kill_list)
+        self.p_window.ui.remove_exe.clicked.connect(self.remove_item)
+        self.p_window.ui.add_exe.clicked.connect(self.add_item_function)
+        self.p_window.ui.choose_exe.clicked.connect(self.add_exe_by_choose_file)
         self.ui.get_exe_name.returnPressed.connect(self.add_item_func)
-        self.connect_window.ui.for_kill_list.itemDoubleClicked.connect(
+        self.p_window.ui.for_kill_list.itemDoubleClicked.connect(
             self.item_double_clicked_action
         )
         self.ui.label.setText("添加待杀程序")
@@ -31,12 +31,12 @@ class AddEXE(AddItem):
         :return: 无
         """
         file_name = Path(
-            QFileDialog.getOpenFileName(self.connect_window, "选择待杀程序", "", "*.exe")[0]
+            QFileDialog.getOpenFileName(self.p_window, "选择待杀程序", "", "*.exe")[0]
         ).name
         if file_name.strip() != "":
-            self.connect_window.ui.for_kill_list.addItem(file_name)
+            self.p_window.ui.for_kill_list.addItem(file_name)
             logger.debug(f"已添加待杀程序: {file_name}")
-        self.connect_window.flash_state_changed()
+        self.p_window.flash_state_changed()
 
     @logger.catch
     def item_double_clicked_action(self):
@@ -45,4 +45,4 @@ class AddEXE(AddItem):
         :return:
         """
         QApplication.processEvents()
-        kill_exe(self.connect_window.ui.for_kill_list.currentItem().text())
+        kill_exe(self.p_window.ui.for_kill_list.currentItem().text())

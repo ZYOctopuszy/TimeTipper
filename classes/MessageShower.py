@@ -16,8 +16,8 @@ class MessageShower:
     """
 
     @logger.catch
-    def __init__(self, window, tray_icon: QSystemTrayIcon):
-        self.window, self.tray_icon = window, tray_icon
+    def __init__(self, p_window):
+        self.p_window = p_window
         threading.Thread(target=self.warn).start()
 
     # region 通知提醒功能实现
@@ -29,29 +29,30 @@ class MessageShower:
         """
         now = datetime.now()
         wait_second = (
-            randint(self.window.random_time[0], self.window.random_time[1])
-            if now.strftime("%H:%M") in self.window.time_config.keys()
-               or self.window.test
+            randint(self.p_window.random_time[0], self.p_window.random_time[1])
+            if now.strftime("%H:%M") in self.p_window.time_config.keys()
+               or self.p_window.test
             else 0
         )
         logger.debug(f"将等待时间: {wait_second}秒")
-        while self.window.life and self.window.state:
+        while self.p_window.life and self.p_window.state:
             if datetime.now() - (now + timedelta(seconds=wait_second)) <= timedelta():
                 sleep(1)
                 continue
             else:
                 logger.debug("关闭窗口中")
-                self.window.app.beep()
-                mapx(
-                    self.window.window_closer.kill_windows,
-                    self.window.forKillWindowTitle,
-                )
+                if self.p_window.forKillWindowTitle:
+                    mapx(
+                        self.p_window.window_closer.kill_windows,
+                        self.p_window.forKillWindowTitle,
+                    )
                 logger.debug("杀死进程中")
-                mapx(kill_exe, self.window.forKillExe)
+                if self.p_window.forKillExe and True in mapx(kill_exe, self.p_window.forKillExe):
+                    self.p_window.app.beep()
                 break
-        self.window.test = False
-        self.window.ui.test_button.setEnabled(True)
-        self.window.ui.test_button.setText("测试")
+        self.p_window.test = False
+        self.p_window.ui.test_button.setEnabled(True)
+        self.p_window.ui.test_button.setText("测试")
 
     @logger.catch
     def warn(self):
@@ -59,8 +60,8 @@ class MessageShower:
         警告功能
         :return: 无
         """
-        while self.window.life:
-            if self.window.state or self.window.test:
+        while self.p_window.life:
+            if self.p_window.state or self.p_window.test:
                 QApplication.processEvents()
                 now = datetime.now()
                 now = timedelta(
@@ -68,16 +69,18 @@ class MessageShower:
                     minutes=now.minute,
                     seconds=now.second,
                 )
-                for class_over_time in self.window.time_config.keys():
+                for class_over_time in [
+                    i for i in self.p_window.time_config.keys() if self.p_window.time_config[i][1]
+                ]:
                     hours, minutes = map(int, class_over_time.split(":"))
-                    if self.window.test or (
+                    if self.p_window.test or (
                             timedelta()
                             <= now - timedelta(hours=hours, minutes=minutes)
-                            <= timedelta(seconds=self.window.hold_time)
+                            <= timedelta(seconds=self.p_window.hold_time)
                     ):
                         # 如果差小于持续时间
-                        self.window.ui.test_button.setDisabled(True)
-                        self.window.ui.test_button.setText("执行中, 请稍候...")
+                        self.p_window.ui.test_button.setDisabled(True)
+                        self.p_window.ui.test_button.setText("执行中, 请稍候...")
                         logger.debug("执行清剿函数")
                         self.warning_action()
                         break

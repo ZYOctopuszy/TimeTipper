@@ -24,7 +24,7 @@ def current_path(relative_path: str, mode: str = "resource") -> str:
     """
     QApplication.processEvents()
     if mode == "resource":
-        return PurePath.joinpath(Path(__file__).parent, relative_path).__str__()
+        return PurePath.joinpath(Path(__file__).resolve().parent, relative_path).__str__()
     if mode == "exe":
         return PurePath.joinpath(Path(argv[0]).resolve().parent, relative_path).__str__()
     raise ValueError(f"mode must be 'resource' or 'exe', not {mode}")
@@ -52,11 +52,11 @@ def set_window_size(window: QWidget, application: QApplication):
 
 # noinspection SpellCheckingInspection
 @logger.catch
-def kill_exe(process: str):
+def kill_exe(process: str) -> bool:
     """
     根据映像名杀死指定进程
     :param process: 进程映像名
-    :return:
+    :return: 是否成功杀死进程
     """
     if (
         process
@@ -67,8 +67,10 @@ def kill_exe(process: str):
     ):
         logger.debug(f"杀死进程{process}")
         popen(f"taskkill /f /im {process}")
+        return True
     else:
         logger.warning(f"{process}未运行")
+        return False
 
 
 @logger.catch

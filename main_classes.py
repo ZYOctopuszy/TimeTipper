@@ -1,5 +1,6 @@
 import sys
 from json import load, dump
+from pathlib import Path
 
 import keyboard
 from PySide6.QtCore import Qt, QEvent
@@ -23,7 +24,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
     """
     自定义主窗口类
     """
-
     # 定义应用信号
     apply_signal = Signal()
     state_changed_signal = Signal()
@@ -33,12 +33,12 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
     def __init__(self, app: QApplication):
         QApplication.processEvents()
         super().__init__(False)
-        self.app = app
         # 初始化ui
         self.ui = settings.Ui_Form()
         self.ui.setupUi(self)
         self.setWindowTitle("那刻夏")
         set_window_size(self, app)
+        self.app = app
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         # 实例化关闭窗口类
@@ -94,19 +94,20 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.config_json_path: str = current_path("config.json", "exe")
         logger.debug(f"配置文件路径: {self.clock_json_path}")
         logger.debug(f"配置文件路径: {self.config_json_path}")
+        self.files = [
+            r"icons\active.png",
+            r"icons\inactive.png",
+            r"icons\hide_tray.png",
+            r"icons\active.ico",
+        ]
+        # 设置图片文件路径
+        self.files = [Path(i).resolve().__str__() for i in list(map(current_path, self.files))]
         QShortcut(QKeySequence("Alt+A"), self).activated.connect(
             lambda: (
                 self.flash_state_changed() if self.ui.apply_button.isEnabled() else None
             )
         )
         QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(self.quit_app)
-        # region 初始化时间列表管理器
-        self.time_manager = classes.TimeManager(self)
-        # endregion
-        # region 初始化热键管理器
-        self.hot_key_manager = classes.HotKeyManager(self)
-        self.hot_key_manager.show_window_signal.connect(self.show_window)
-        # endregion
         # region 处理配置文件
         t = 0
         try:
@@ -132,6 +133,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
                 sys.exit(1)
         self.show_config()
         # endregion
+
         # region 刷新控件状态
         self.ui.if_tray_hide.setChecked(bool(self.hide_tray))
         self.ui.if_strong_hide.setChecked(self.hide_tray == 2)
@@ -140,6 +142,15 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.ui.b.setValue(self.random_time[1])
         self.ui.hold_seconds.setValue(self.hold_time)
         # endregion
+
+        # region 初始化热键管理器
+        self.hot_key_manager = classes.HotKeyManager(self)
+        # endregion
+
+        # region 初始化时间列表管理器
+        self.time_manager = classes.TimeManager(self)
+        # endregion
+
         # region 关联控件函数
         normal_widgets: list = [
             self.ui.if_tray_hide,
@@ -163,15 +174,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.tray_icon.flash_tray()
         # endregion
 
-        # region 时间点编辑功能实现
-        # 检测时间列表选中项改变和描述内容改变
-        self.ui.time_list.itemSelectionChanged.connect(
-            self.time_manager.flash_description
-        )
-        self.ui.description.textChanged.connect(self.time_manager.edit_description)
-        self.ui.time_list.addItems(list(sorted(self.time_config.keys())))
-        # endregion
-
         # region 初始化待杀应用窗口类
         self.add_executable = classes.EXE.AddEXE.AddEXE(self)
         self.edit_executable = classes.EXE.EditEXE.EditEXE(self)
@@ -183,7 +185,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # endregion
 
         # region 初始化消息提示类
-        self.warner = classes.MessageShower(self, self.tray_icon)
+        self.warner = classes.MessageShower(self)
         # endregion
 
         # region 初始化待杀程序列表
@@ -375,7 +377,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
             # 如果正确,则将两个输入框的值设置为新的值
             self.random_time[0] = self.ui.a.value()
             self.random_time[1] = self.ui.b.value()
-        with open("config.json", "w") as f:
+        with open(self.config_json_path, "w") as f:
             dump(
                 {
                     "hide_tray": self.hide_tray,

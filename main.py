@@ -1,5 +1,4 @@
-import sys
-from sys import stdout, exit, argv
+from sys import exit, argv, stdout
 
 from PySide6.QtWidgets import QApplication
 from loguru import logger
@@ -12,7 +11,7 @@ logger.remove()
 logger.add(
     sink=current_path("TimeTipper.log", "exe"),
     format="{time:YYYY-MM-DD HH:mm:ss.SSS} | <level>{level}</level> | {name} -> {function} -> {line} >>> {message}",
-    rotation="1024 MB",
+    rotation="512 MB",
     retention="2days",
     encoding="utf-8",
     compression="zip",
@@ -20,8 +19,7 @@ logger.add(
     backtrace=True,
     catch=True,
 )
-logger.debug("创建了日志文件")
-if not hasattr(sys, '_MEIPASS'):
+if hasattr(stdout, "closed") and hasattr(stdout, "isatty"):
     logger.add(
         sink=stdout,
         format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> <red>|</red> <level>{level}</level> <red>|</red> "

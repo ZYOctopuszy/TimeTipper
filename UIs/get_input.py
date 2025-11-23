@@ -72,6 +72,7 @@ class Ui_get_input(object):
         self.get_exe_name = QLineEdit(self.frame)
         self.get_exe_name.setObjectName(u"get_exe_name")
         self.get_exe_name.setAutoFillBackground(False)
+        self.get_exe_name.setStyleSheet(u"color: rgb(0, 0, 0);")
 
         self.gridLayout_2.addWidget(self.get_exe_name, 2, 0, 1, 1)
 

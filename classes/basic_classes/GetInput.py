@@ -14,13 +14,13 @@ class GetInput(MyQWidget):
     """
 
     @logger.catch
-    def __init__(self, parent: "MainWindow", list_widget: QListWidget):
+    def __init__(self, p_window, list_widget: QListWidget):
         super().__init__()
         self.ui = get_input.Ui_get_input()
         self.ui.setupUi(self)
-        self.connect_window = parent
+        self.p_window = p_window
         self.list_widget = list_widget
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setWindowIcon(QIcon(self.connect_window.tray_icon.files[3]))
+        self.setWindowIcon(QIcon(self.p_window.files[3]))
         self.hide()

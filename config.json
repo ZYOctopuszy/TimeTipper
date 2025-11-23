@@ -3,17 +3,17 @@
     "forKillExe": [
         "EasiCamera.exe",
         "et.exe",
-        "EXCEL.EXE",
-        "POWERPNT.EXE",
-        "WINWORD.EXE",
+        "EXCEL.Title",
+        "POWERPNT.Title",
+        "WINWORD.Title",
         "wps.exe",
         "wpscloudsvr.exe"
     ],
     "random_time": [
-        3,
+        0,
         3
     ],
-    "hold_time": 0,
+    "hold_time": 600,
     "forKillWindowTitle": [
         ".pdf",
         ".ppt",

@@ -9,8 +9,8 @@ class EditEXE(EditItem):
     """
 
     @logger.catch
-    def __init__(self, parent: "MainWindow"):
-        super().__init__(parent, parent.ui.for_kill_list)
-        self.connect_window.ui.edit_exe_button.clicked.connect(self.edit_item_function)
+    def __init__(self, p_window):
+        super().__init__(p_window, p_window.ui.for_kill_list)
+        self.p_window.ui.edit_exe_button.clicked.connect(self.edit_item_function)
         self.ui.get_exe_name.returnPressed.connect(self.edit_item_func)
         self.ui.label.setText("重命名待杀程序")

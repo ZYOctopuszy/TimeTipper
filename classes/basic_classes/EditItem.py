@@ -11,8 +11,8 @@ class EditItem(GetInput):
     """
 
     @logger.catch
-    def __init__(self, parent, list_widget):
-        super().__init__(parent, list_widget)
+    def __init__(self, p_window, list_widget):
+        super().__init__(p_window, list_widget)
 
     @logger.catch
     def edit_item_function(self):
@@ -39,4 +39,4 @@ class EditItem(GetInput):
         logger.debug(
             f"已修改项: {current_item.text()} -> {self.ui.get_exe_name.text()}"
         )
-        self.connect_window.flash_state_changed()
+        self.p_window.flash_state_changed()

@@ -6,11 +6,10 @@ class LogManager(QObject):
     update_log = Signal(str)
 
     @logger.catch
-    def __init__(self, window: "MainWindow"):
+    def __init__(self, p_window):
         super().__init__()
-        self.window = window
-        # self.window.ui.logger.setLineWrapMode(QTextBrowser.LineWrapMode.NoWrap)
-        self.update_log.connect(self.window.ui.logger.append)
+        self.p_window = p_window
+        self.update_log.connect(self.p_window.ui.logger.append)
         logger.add(
             sink=self,
             format="{time:YYYY-MM-DD HH:mm:ss.SSS} | {level} | {name} -> {function} -> {line} >>> {message}",

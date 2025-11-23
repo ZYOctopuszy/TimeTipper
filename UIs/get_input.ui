@@ -92,6 +92,9 @@ QLabel {
         <property name="autoFillBackground">
          <bool>false</bool>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);</string>
+        </property>
         <property name="placeholderText">
          <string>请输入可执行文件名(含后缀)</string>
         </property>

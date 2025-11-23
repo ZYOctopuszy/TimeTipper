@@ -1,18 +1,20 @@
 import keyboard
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import Signal, Qt
+from PySide6.QtWidgets import QWidget
 from loguru import logger
 
 
-class HotKeyManager(QObject):
+class HotKeyManager(QWidget):
     """
     热键管理类
     """
     show_window_signal = Signal()
 
     @logger.catch
-    def __init__(self, parent: "MainWindow"):
+    def __init__(self, p_window):
         super().__init__()
-        self.window = parent
+        self.p_window = p_window
+        self.show_window_signal.connect(self.p_window.show_window)
         keyboard.add_hotkey("ctrl+windows+alt+shift+f6", self.show_window)
 
     @logger.catch
@@ -21,5 +23,5 @@ class HotKeyManager(QObject):
         显示设置窗口
         :return:
         """
-        if self.window.hide_tray == 2:
+        if self.p_window.hide_tray == 2:
             self.show_window_signal.emit()

@@ -10,8 +10,8 @@ class AddItem(GetInput):
     """
 
     @logger.catch
-    def __init__(self, parent, list_widget):
-        super().__init__(parent, list_widget)
+    def __init__(self, p_window, list_widget):
+        super().__init__(p_window, list_widget)
 
     @logger.catch
     def remove_item(self):
@@ -24,7 +24,7 @@ class AddItem(GetInput):
             for_remove_item = self.list_widget.currentItem()
             self.list_widget.takeItem(self.list_widget.currentRow())
             logger.debug(f"已删指定项: {for_remove_item.text()}")
-            self.connect_window.flash_state_changed()
+            self.p_window.flash_state_changed()
         except Exception as error:
             logger.warning(f"删除项失败{error}")
 
@@ -38,7 +38,7 @@ class AddItem(GetInput):
         self.hide()
         self.list_widget.addItem(self.ui.get_exe_name.text())
         logger.debug(f"已手动添加项: {self.ui.get_exe_name.text()}")
-        self.connect_window.flash_state_changed()
+        self.p_window.flash_state_changed()
 
     @logger.catch
     def add_item_function(self):

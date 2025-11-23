@@ -27,7 +27,7 @@ class Ui_Form(object):
         if not Form.objectName():
             Form.setObjectName(u"Form")
         Form.resize(850, 567)
-        Form.setAutoFillBackground(True)
+        Form.setAutoFillBackground(False)
         Form.setStyleSheet(u"/* \u57fa\u7840\u8bbe\u7f6e */\n"
 "* {\n"
 "    font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;\n"
@@ -206,19 +206,45 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "/* \u6eda\u52a8\u6761 */\n"
-"QScrollBar:vertical {\n"
+"QScrollBar:vertical, QScrollBar:horizontal {\n"
 "    background: rgba(40, 50, 40, 0.5);\n"
-"    width: 10px;\n"
 "    margin: 0px;\n"
 "}\n"
 "\n"
-"QScrollBar::handle:vertical {\n"
+"QScrollBar:vertical {\n"
+"    width: 10px;\n"
+"}\n"
+"\n"
+"QScrollBar:horizontal {\n"
+"    height: 10px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical, QScrollBar::handle:horizontal {\n"
 "    background: rgba(80, 120, 80, 0.6);\n"
-"    min-height: 20px;\n"
 "    border-radius: 5px;\n"
 "}\n"
 "\n"
-"QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {\n"
+"QScrollBar::handle:vertical {\n"
+"    min-height: 20px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"    min-width: 20px;\n"
+""
+                        "}\n"
+"\n"
+"QScrollBar::add-line:vertical,\n"
+"QScrollBar::sub-line:vertical,\n"
+"QScrollBar::add-line:horizontal,\n"
+"QScrollBar::sub-line:horizontal {\n"
+"    background: none;\n"
+"    border: none;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical,\n"
+"QScrollBar::add-page:horizontal,\n"
+"QScrollBar::sub-page:horizontal {\n"
 "    background: none;\n"
 "}\n"
 "\n"
@@ -226,8 +252,7 @@ class Ui_Form(object):
 "QToolTip {\n"
 "    background-color: rgba(40, 50, 40, 0.95);\n"
 "    color: #e0e0e0;\n"
-"    border: 1px solid rgba(7"
-                        "0, 100, 70, 0.8);\n"
+"    border: 1px solid rgba(70, 100, 70, 0.8);\n"
 "    border-radius: 3px;\n"
 "    padding: 3px;\n"
 "}\n"
@@ -244,7 +269,8 @@ class Ui_Form(object):
 "    background-color: rgba(150, 70, 60, 0.9);\n"
 "}\n"
 "\n"
-"/* \u5e94\u7528\u6309\u94ae\u7279\u6b8a\u6837\u5f0f */\n"
+"/* \u5e94\u7528\u6309\u94ae\u7279\u6b8a\u6837\u5f0f *"
+                        "/\n"
 "QPushButton[text=\"\u5e94\u7528(Alt+A)\"] {\n"
 "    background-color: rgba(80, 140, 90, 0.9);\n"
 "    font-weight: bold;\n"
@@ -271,19 +297,19 @@ class Ui_Form(object):
 
         self.gridLayout_10.addWidget(self.frame_5, 4, 2, 1, 1, Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignBottom)
 
-        self.frame_3 = QFrame(Form)
-        self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
-        self.gridLayout = QGridLayout(self.frame_3)
+        self.main_frame = QFrame(Form)
+        self.main_frame.setObjectName(u"main_frame")
+        self.main_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.main_frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.gridLayout = QGridLayout(self.main_frame)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.exit_button = QPushButton(self.frame_3)
+        self.exit_button = QPushButton(self.main_frame)
         self.exit_button.setObjectName(u"exit_button")
         self.exit_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.gridLayout.addWidget(self.exit_button, 2, 0, 1, 1)
 
-        self.tabWidget = QTabWidget(self.frame_3)
+        self.tabWidget = QTabWidget(self.main_frame)
         self.tabWidget.setObjectName(u"tabWidget")
         font = QFont()
         font.setFamilies([u"Microsoft YaHei"])
@@ -324,7 +350,7 @@ class Ui_Form(object):
         self.time_list.setObjectName(u"time_list")
         self.time_list.viewport().setProperty(u"cursor", QCursor(Qt.CursorShape.ArrowCursor))
         self.time_list.setDragDropMode(QAbstractItemView.DragDropMode.NoDragDrop)
-        self.time_list.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
+        self.time_list.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.time_list.setMovement(QListView.Movement.Static)
         self.time_list.setFlow(QListView.Flow.TopToBottom)
         self.time_list.setResizeMode(QListView.ResizeMode.Fixed)
@@ -817,7 +843,9 @@ class Ui_Form(object):
         self.gridLayout_12.setObjectName(u"gridLayout_12")
         self.logger = QTextBrowser(self.log)
         self.logger.setObjectName(u"logger")
-        self.logger.setStyleSheet(u"")
+        self.logger.viewport().setProperty(u"cursor", QCursor(Qt.CursorShape.IBeamCursor))
+        self.logger.setStyleSheet(u"gridline-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));")
+        self.logger.setLineWrapMode(QTextEdit.LineWrapMode.NoWrap)
         self.logger.setOpenExternalLinks(True)
 
         self.gridLayout_12.addWidget(self.logger, 0, 0, 1, 1)
@@ -856,7 +884,7 @@ class Ui_Form(object):
 
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 3)
 
-        self.apply_button = QPushButton(self.frame_3)
+        self.apply_button = QPushButton(self.main_frame)
         self.apply_button.setObjectName(u"apply_button")
         self.apply_button.setEnabled(False)
         self.apply_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
@@ -871,7 +899,7 @@ class Ui_Form(object):
         self.exit_button.raise_()
         self.apply_button.raise_()
 
-        self.gridLayout_10.addWidget(self.frame_3, 3, 1, 1, 2)
+        self.gridLayout_10.addWidget(self.main_frame, 3, 1, 1, 2)
 
         self.frame_2 = QFrame(Form)
         self.frame_2.setObjectName(u"frame_2")
@@ -1113,7 +1141,48 @@ class Ui_Form(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei','Segoe UI','sans-serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">asfdjkllllllllllllllllllllllllllllllllfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">asdf</p>\n"
+"<p style=\" margin-top:0px; marg"
+                        "in-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">asdf</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">asdf</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">egr</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">h </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">rth</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">tyj</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">trejy<"
+                        "/p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">rty</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">rt</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">y</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">eryu</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">ryu</p>\n"
+"<p style=\" margin-top:0px; marg"
+                        "in-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">wre5y</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">sdefg</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">as</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">fdg</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">as</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">fd</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">as</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">d</p>"
+                        "\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">f</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">asd</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">fa</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">sdf</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">asd</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">f</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">asd</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-in"
+                        "dent:0; text-indent:0px;\">f</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">as</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">df</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">as</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">df</p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.log), QCoreApplication.translate("Form", u"\u65e5\u5fd7", None))
         self.label.setText(QCoreApplication.translate("Form", u"   \u90a3\u523b\u590f\uff01", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"\u4e00\u4f4d\u95f2\u7740\u6ca1\u4e8b\u7684\u521d\u4e09\u751f\u5199\u7684\u5c0f\u7a0b\u5e8f", None))
