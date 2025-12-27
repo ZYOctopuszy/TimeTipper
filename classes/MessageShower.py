@@ -1,3 +1,5 @@
+if __name__ == "__main__":
+    from main_classes import MainWindow
 import sys
 import threading
 from datetime import datetime, timedelta
@@ -16,7 +18,7 @@ class MessageShower:
     """
 
     @logger.catch
-    def __init__(self, p_window):
+    def __init__(self, p_window: "MainWindow"):
         self.p_window = p_window
         threading.Thread(target=self.warn).start()
 
@@ -31,7 +33,7 @@ class MessageShower:
         wait_second = (
             randint(self.p_window.random_time[0], self.p_window.random_time[1])
             if now.strftime("%H:%M") in self.p_window.time_config.keys()
-               or self.p_window.test
+            or self.p_window.test
             else 0
         )
         logger.debug(f"将等待时间: {wait_second}秒")
@@ -47,7 +49,9 @@ class MessageShower:
                         self.p_window.forKillWindowTitle,
                     )
                 logger.debug("杀死进程中")
-                if self.p_window.forKillExe and True in mapx(kill_exe, self.p_window.forKillExe):
+                if self.p_window.forKillExe and True in mapx(
+                    kill_exe, self.p_window.forKillExe
+                ):
                     self.p_window.app.beep()
                 break
         self.p_window.test = False
@@ -69,14 +73,16 @@ class MessageShower:
                     minutes=now.minute,
                     seconds=now.second,
                 )
-                for class_over_time in [
-                    i for i in self.p_window.time_config.keys() if self.p_window.time_config[i][1]
-                ]:
+                for class_over_time in (
+                    i
+                    for i in self.p_window.time_config.keys()
+                    if self.p_window.time_config[i][1]
+                ):
                     hours, minutes = map(int, class_over_time.split(":"))
                     if self.p_window.test or (
-                            timedelta()
-                            <= now - timedelta(hours=hours, minutes=minutes)
-                            <= timedelta(seconds=self.p_window.hold_time)
+                        timedelta()
+                        <= now - timedelta(hours=hours, minutes=minutes)
+                        <= timedelta(seconds=self.p_window.hold_time)
                     ):
                         # 如果差小于持续时间
                         self.p_window.ui.test_button.setDisabled(True)

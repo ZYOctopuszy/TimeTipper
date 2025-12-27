@@ -11,10 +11,10 @@ logger.remove()
 logger.add(
     sink=current_path("TimeTipper.log", "exe"),
     format="{time:YYYY-MM-DD HH:mm:ss.SSS} | <level>{level}</level> | {name} -> {function} -> {line} >>> {message}",
-    rotation="512 MB",
-    retention="2days",
+    rotation="256 KB",
+    retention="2 days",
     encoding="utf-8",
-    compression="zip",
+    compression="tar.gz",
     enqueue=True,
     backtrace=True,
     catch=True,

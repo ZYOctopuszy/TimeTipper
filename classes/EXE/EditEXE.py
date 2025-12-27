@@ -1,3 +1,5 @@
+if __name__ == "__main__":
+    from main_classes import MainWindow
 from loguru import logger
 
 from classes.basic_classes.EditItem import EditItem
@@ -9,7 +11,7 @@ class EditEXE(EditItem):
     """
 
     @logger.catch
-    def __init__(self, p_window):
+    def __init__(self, p_window: "MainWindow"):
         super().__init__(p_window, p_window.ui.for_kill_list)
         self.p_window.ui.edit_exe_button.clicked.connect(self.edit_item_function)
         self.ui.get_exe_name.returnPressed.connect(self.edit_item_func)

@@ -1,4 +1,6 @@
-from PySide6.QtWidgets import QApplication
+if __name__ == "__main__":
+    from main_classes import MainWindow
+from PySide6.QtWidgets import QApplication, QListWidget
 from loguru import logger
 
 from classes.basic_classes.GetInput import GetInput
@@ -10,7 +12,7 @@ class AddItem(GetInput):
     """
 
     @logger.catch
-    def __init__(self, p_window, list_widget):
+    def __init__(self, p_window: "MainWindow", list_widget: "QListWidget"):
         super().__init__(p_window, list_widget)
 
     @logger.catch

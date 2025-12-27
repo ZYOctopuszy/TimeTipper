@@ -1,3 +1,5 @@
+if __name__ == "__main__":
+    from main_classes import MainWindow
 from PySide6.QtWidgets import QApplication
 from loguru import logger
 
@@ -10,7 +12,7 @@ class AddTitle(AddItem):
     """
 
     @logger.catch
-    def __init__(self, p_window):
+    def __init__(self, p_window: "MainWindow"):
         super().__init__(p_window, p_window.ui.for_close_title)
         self.p_window.ui.remove_title.clicked.connect(self.remove_item)
         self.p_window.ui.add_title.clicked.connect(self.add_item_function)

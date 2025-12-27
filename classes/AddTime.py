@@ -2,7 +2,7 @@ from PySide6.QtCore import Qt
 from loguru import logger
 
 from UIs import add_time
-from classes import *
+from classes import basic_classes
 
 class AddTime(basic_classes.MyQWidget.MyQWidget):
     """

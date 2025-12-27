@@ -11,9 +11,9 @@ class MyQWidget(QWidget):
 
     @logger.catch
     def __init__(self, auto_hide: bool = True):
+        super().__init__()
         self.auto_hide = auto_hide
         self.drag = False
-        super().__init__()
 
     @logger.catch
     def changeEvent(self, event, /):

@@ -1,3 +1,5 @@
+if __name__ == "__main__":
+    from main_classes import MainWindow
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon
 from loguru import logger
@@ -14,7 +16,7 @@ class GetInput(MyQWidget):
     """
 
     @logger.catch
-    def __init__(self, p_window, list_widget: QListWidget):
+    def __init__(self, p_window: "MainWindow", list_widget: QListWidget):
         super().__init__()
         self.ui = get_input.Ui_get_input()
         self.ui.setupUi(self)

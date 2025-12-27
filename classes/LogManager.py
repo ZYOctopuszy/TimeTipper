@@ -1,3 +1,5 @@
+if __name__ == "__main__":
+    from main_classes import MainWindow
 from PySide6.QtCore import QObject, Signal
 from loguru import logger
 
@@ -6,7 +8,7 @@ class LogManager(QObject):
     update_log = Signal(str)
 
     @logger.catch
-    def __init__(self, p_window):
+    def __init__(self, p_window: "MainWindow"):
         super().__init__()
         self.p_window = p_window
         self.update_log.connect(self.p_window.ui.logger.append)

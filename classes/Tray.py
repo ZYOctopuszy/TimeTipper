@@ -1,3 +1,5 @@
+if __name__ == "__main__":
+    from main_classes import MainWindow
 from pathlib import Path
 
 import keyboard
@@ -13,7 +15,7 @@ class Tray(QSystemTrayIcon):
     """
 
     @logger.catch
-    def __init__(self, p_window):
+    def __init__(self, p_window: "MainWindow"):
         QApplication.processEvents()
         super().__init__()
         self.p_window = p_window

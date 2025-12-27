@@ -1,14 +1,12 @@
 import sys
+from typing import Self
 from json import load, dump
 from pathlib import Path
 
 import keyboard
-from PySide6.QtCore import Qt, QEvent
-from PySide6.QtCore import Signal, Slot
+from PySide6.QtCore import Signal, Slot, Qt, QEvent, QTimer
 from PySide6.QtGui import QShortcut, QKeySequence
-from PySide6.QtWidgets import (
-    QApplication
-)
+from PySide6.QtWidgets import QApplication, QWidget
 from loguru import logger
 
 import classes
@@ -24,6 +22,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
     """
     自定义主窗口类
     """
+
     # 定义应用信号
     apply_signal = Signal()
     state_changed_signal = Signal()
@@ -94,14 +93,16 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.config_json_path: str = current_path("config.json", "exe")
         logger.debug(f"配置文件路径: {self.clock_json_path}")
         logger.debug(f"配置文件路径: {self.config_json_path}")
-        self.files = [
+        self.files: list[str] = [
             r"icons\active.png",
             r"icons\inactive.png",
             r"icons\hide_tray.png",
             r"icons\active.ico",
         ]
         # 设置图片文件路径
-        self.files = [Path(i).resolve().__str__() for i in list(map(current_path, self.files))]
+        self.files: list[str] = [
+            str(Path(i).resolve()) for i in map(current_path, self.files)
+        ]
         QShortcut(QKeySequence("Alt+A"), self).activated.connect(
             lambda: (
                 self.flash_state_changed() if self.ui.apply_button.isEnabled() else None
@@ -109,28 +110,29 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         )
         QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(self.quit_app)
         # region 处理配置文件
-        t = 0
+        what_is_the_error: str = "t-error"
         try:
             with open(self.clock_json_path, encoding="utf-8") as f:
                 self.time_config = load(f)
                 logger.debug(f"下课时间配置: {self.time_config}")
-            t = 1
+            what_is_the_error = "f-error"
             with open(self.config_json_path, encoding="utf-8") as f:
                 self.load_config(load(f))
                 logger.debug("导入成功")
         except Exception as e:
-            if t == 0:
-                logger.error(f"时间表配置文件不存在或损坏, 创建默认时间表配置文件{e}")
-                with open(self.clock_json_path, "w") as f:
-                    dump({"00:00": "Default Description"}, f, indent=4)
-                logger.critical(f"严重未知错误, 错误代码: {e}")
-            elif t == 1:
-                logger.error(f"功能配置文件不存在或损坏, 创建默认配置文件{e}")
-                with open(self.config_json_path, "w") as f:
-                    dump(self.default_config, f, indent=4)
-            else:
-                logger.critical(f"严重未知错误, 错误代码: {e}")
-                sys.exit(1)
+            match what_is_the_error:
+                case "t-error":
+                    logger.error(f"时间表配置文件不存在或损坏, 创建默认时间表配置文件{e}")
+                    with open(self.clock_json_path, "w") as f:
+                        dump({"00:00": "Default Description"}, f, indent=4)
+                    logger.critical(f"严重未知错误, 错误代码: {e}")
+                case "f-error":
+                    logger.error(f"功能配置文件不存在或损坏, 创建默认配置文件{e}")
+                    with open(self.config_json_path, "w") as f:
+                        dump(self.default_config, f, indent=4)
+                case _:
+                    logger.critical(f"严重未知错误, 错误代码: {e}")
+                    sys.exit(1)
         self.show_config()
         # endregion
 
@@ -152,7 +154,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # endregion
 
         # region 关联控件函数
-        normal_widgets: list = [
+        normal_widgets: list[QWidget] = [
             self.ui.if_tray_hide,
             self.ui.if_strong_hide,
             self.ui.a,
@@ -197,25 +199,27 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
     # region 主窗口类方法s
     # region 重写的方法s
     @logger.catch
-    def changeEvent(self, event):
+    def changeEvent(self, event: QEvent):
         """
         处理窗口最小化行为
         :param event: 事件对象
         :return: 无
         """
-        if self.windowState() == Qt.WindowState.WindowMinimized and event.type() == QEvent.Type.WindowStateChange:
+        if (
+            self.windowState() == Qt.WindowState.WindowMinimized
+            and event.type() == QEvent.Type.WindowStateChange
+        ):
             logger.debug("设置窗口最小化, 执行隐藏窗口")
-            from PySide6.QtCore import QTimer
             QTimer.singleShot(0, self.hide)
         super().changeEvent(event)
 
     @logger.catch
-    def hideEvent(self, event, /):
+    def hideEvent(self, event: QEvent, /):
         self.hide_window_signal.emit()
         event.accept()
 
     @logger.catch
-    def closeEvent(self, event):
+    def closeEvent(self, event: QEvent, /):
         """
         窗口收到关闭事件时隐藏设置窗口
         :param event: 事件对象
@@ -224,22 +228,14 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.showMinimized()
         event.ignore()
 
-    @logger.catch
-    def resizeEvent(self, event, /):
-        """
-        处理窗口大小改变事件
-        :param event: 事件对象
-        :return: 无
-        """
-        super().resizeEvent(event)
-
     # endregion
     # region 槽函数s
     @logger.catch
     @Slot()
-    def strong_hide_action(self, state):
+    def strong_hide_action(self, state: bool):
         """
-        关联强隐藏托盘图标
+        关联强隐藏托盘图标状态
+        :param state: 强隐藏状态
         :return:
         """
         self.ui.if_tray_hide.setDisabled(state)
@@ -284,11 +280,11 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.hide_tray = configure["hide_tray"] or self.default_config["hide_tray"]
         self.forKillExe = configure["forKillExe"] or self.default_config["forKillExe"]
         self.random_time = (
-                configure["random_time"] or self.default_config["random_time"]
+            configure["random_time"] or self.default_config["random_time"]
         )
         self.hold_time = configure["hold_time"] or self.default_config["hold_time"]
         self.forKillWindowTitle = (
-                configure["forKillWindowTitle"] or self.default_config["forKillWindowTitle"]
+            configure["forKillWindowTitle"] or self.default_config["forKillWindowTitle"]
         )
 
     @logger.catch
@@ -309,7 +305,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         )
 
     @logger.catch
-    def flash_config(self, configure: dict) -> dict:
+    def flash_config(self: Self, configure: dict) -> dict:
         """
         更新配置文件
         :param configure: 配置字典
@@ -325,7 +321,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         return configure
 
     @logger.catch
-    def show_window(self):
+    def show_window(self: Self):
         """
         显示窗口(获取焦点+活动+前置)
         :return:

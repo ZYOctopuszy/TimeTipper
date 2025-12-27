@@ -1,5 +1,7 @@
+if __name__ == "__main__":
+    from main_classes import MainWindow
 import keyboard
-from PySide6.QtCore import Signal, Qt
+from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QWidget
 from loguru import logger
 
@@ -8,10 +10,11 @@ class HotKeyManager(QWidget):
     """
     热键管理类
     """
+
     show_window_signal = Signal()
 
     @logger.catch
-    def __init__(self, p_window):
+    def __init__(self, p_window: "MainWindow"):
         super().__init__()
         self.p_window = p_window
         self.show_window_signal.connect(self.p_window.show_window)

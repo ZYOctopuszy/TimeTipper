@@ -1,3 +1,5 @@
+if __name__ == "__main__":
+    from main_classes import MainWindow
 from pathlib import Path
 
 from PySide6.QtWidgets import QApplication, QFileDialog
@@ -13,7 +15,7 @@ class AddEXE(AddItem):
     """
 
     @logger.catch
-    def __init__(self, p_window):
+    def __init__(self, p_window: "MainWindow"):
         super().__init__(p_window, p_window.ui.for_kill_list)
         self.p_window.ui.remove_exe.clicked.connect(self.remove_item)
         self.p_window.ui.add_exe.clicked.connect(self.add_item_function)
