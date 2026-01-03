@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_classes import MainWindow
+    from main_class import MainWindow
 from json import dump
 
 from PySide6.QtCore import QTime, Qt, QEvent, QObject
@@ -18,8 +18,8 @@ class TimeManager(QObject):
     def __init__(self, p_window: "MainWindow"):
         super().__init__()
         self.p_window = p_window
-        self.add_time = classes.AddTime("add_time")
-        self.edit_time = classes.AddTime("edit_time")
+        self.add_time = classes.AddTime(use_to="add_time")
+        self.edit_time = classes.AddTime(use_to="edit_time")
 
         self.p_window.ui.add_button.clicked.connect(
             lambda: self.add_time.show() and self.add_time.ui.timeEdit.clear()
@@ -33,20 +33,14 @@ class TimeManager(QObject):
         self.p_window.ui.time_list.itemSelectionChanged.connect(self.flash_description)
         self.p_window.ui.description.textChanged.connect(self.edit_description)
         self.p_window.ui.time_list.addItems(
-            list(sorted(self.p_window.time_config.keys()))
+            sorted(clock.time for clock in self.p_window.time_config)
         )
-        [
+        for i in range(self.p_window.ui.time_list.count()):
             self.p_window.ui.time_list.item(i).setIcon(
                 QIcon(
-                    self.p_window.files[0]
-                    if self.p_window.time_config[
-                        list(self.p_window.time_config.keys())[i]
-                    ][1]
-                    else self.p_window.files[1]
+                    self.p_window.files[0 if self.p_window.time_config[i].state else 1]
                 )
             )
-            for i in range(self.p_window.ui.time_list.count())
-        ].clear()
 
         self.list_widget = self.p_window.ui.time_list.viewport().installEventFilter(
             self
@@ -60,14 +54,12 @@ class TimeManager(QObject):
             if item := self.p_window.ui.time_list.itemAt(
                 self.p_window.ui.time_list.viewport().mapFromGlobal(QCursor().pos())
             ):
-                self.p_window.time_config[item.text()][1] ^= True
-                item.setIcon(
-                    QIcon(
-                        self.p_window.files[
-                            0 if self.p_window.time_config[item.text()][1] else 1
-                        ]
-                    )
-                )
+                for clock in self.p_window.time_config:
+                    if clock.time == item.text():
+                        clock.state ^= True
+                        item.setIcon(
+                            QIcon(self.p_window.files[0 if clock.state else 1])
+                        )
                 self.p_window.update()
                 logger.debug(f"切换了时间启用状态: {item.text()}")
         return super().eventFilter(source, event)
@@ -82,13 +74,16 @@ class TimeManager(QObject):
         QApplication.processEvents()
         self.add_time.hide()
         # 格式化时间字符串为"小时:分钟"格式
-        if (
-            added_time := self.add_time.ui.timeEdit.time().toString("HH:mm")
-        ) not in self.p_window.time_config.keys():
-            self.p_window.time_config[added_time] = ["Default Description", True]
+        if (added_time := self.add_time.ui.timeEdit.time().toString("HH:mm")) not in [
+            clock.time for clock in self.p_window.time_config
+        ]:
+            self.p_window.time_config.append(
+                classes.basic_classes.Clock.Clock(added_time)
+            )
+            self.p_window.time_config.sort(key=lambda x: x.time)
             self.p_window.ui.time_list.clear()
             self.p_window.ui.time_list.addItems(
-                sorted(self.p_window.time_config.keys())
+                sorted(str(clock) for clock in self.p_window.time_config)
             )
             self.edit_description()
 
@@ -99,9 +94,9 @@ class TimeManager(QObject):
         :return: 无
         """
         QApplication.processEvents()
-        if current_item := self.p_window.ui.time_list.currentItem():
-            self.p_window.ui.time_list.takeItem(self.p_window.ui.time_list.currentRow())
-            del self.p_window.time_config[current_item.text()]
+        if current_row := self.p_window.ui.time_list.currentRow():
+            self.p_window.ui.time_list.takeItem(current_row)
+            del self.p_window.time_config[current_row]
             self.flash_time_config()
 
     @logger.catch
@@ -128,14 +123,13 @@ class TimeManager(QObject):
         """
         self.edit_time.hide()
         before_time: str = self.p_window.ui.time_list.currentItem().text()
-        if (
-            new_time := self.edit_time.ui.timeEdit.time().toString("HH:mm")
-        ) not in self.p_window.time_config.keys():
+        if (new_time := self.edit_time.ui.timeEdit.time().toString("HH:mm")) not in [
+            clock.time for clock in self.p_window.time_config
+        ]:
             self.p_window.ui.time_list.currentItem().setText(new_time)
-            self.p_window.time_config[new_time] = [
-                self.p_window.time_config.pop(before_time, None),
-                self.p_window.time_config[before_time][1],
-            ]
+            for clock in self.p_window.time_config:
+                if clock.time == before_time:
+                    clock.time = new_time
             self.p_window.ui.time_list.sortItems()
             self.flash_time_config()
 
@@ -152,7 +146,11 @@ class TimeManager(QObject):
         if current_item := self.p_window.ui.time_list.currentItem():
             logger.debug(f"当前选中: {current_item.text()}")
             self.p_window.ui.description.setPlainText(
-                self.p_window.time_config[current_item.text()][0]
+                next(
+                    clock.description
+                    for clock in self.p_window.time_config
+                    if clock.time == current_item.text()
+                )
             )
 
     @logger.catch
@@ -164,9 +162,9 @@ class TimeManager(QObject):
         QApplication.processEvents()
 
         if current_item := self.p_window.ui.time_list.currentItem():
-            self.p_window.time_config[current_item.text()][1] = [
-                self.p_window.ui.description.toPlainText()
-            ]
+            for clock in self.p_window.time_config:
+                if clock.time == current_item.text():
+                    clock.description = self.p_window.ui.description.toPlainText()
             self.flash_time_config()
 
     @logger.catch
@@ -175,12 +173,20 @@ class TimeManager(QObject):
         刷新时间表配置
         :return:
         """
-        self.p_window.time_config = {
-            k: [self.p_window.time_config[k][0], self.p_window.time_config[k][1]]
-            for k in sorted(self.p_window.time_config.keys())
-        }
+        self.p_window.time_config.sort(key=lambda x: x.time)
         logger.debug(f"已刷新时间表配置, 当前配置:{self.p_window.time_config}")
         with open("clock.json", "w", encoding="utf-8") as f:
-            dump(self.p_window.time_config, f, ensure_ascii=False, indent=4)
+            dump(
+                obj={
+                    clock.time: [
+                        clock.description,
+                        clock.state,
+                    ]
+                    for clock in self.p_window.time_config
+                },
+                fp=f,
+                ensure_ascii=False,
+                indent=4,
+            )
 
     # endregion

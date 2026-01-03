@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_classes import MainWindow
+    from main_class import MainWindow
 from pathlib import Path
 
 from PySide6.QtWidgets import QApplication, QFileDialog

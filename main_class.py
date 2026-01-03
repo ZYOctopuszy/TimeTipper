@@ -30,13 +30,12 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
 
     @logger.catch
     def __init__(self, app: QApplication):
-        QApplication.processEvents()
-        super().__init__(False)
+        super().__init__(auto_hide=False)
         # 初始化ui
         self.ui = settings.Ui_Form()
-        self.ui.setupUi(self)
+        self.ui.setupUi(Form=self)
         self.setWindowTitle("那刻夏")
-        set_window_size(self, app)
+        set_window_size(window=self, application=app)
         self.app = app
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
@@ -47,7 +46,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 软件激活状态
         self.state: bool = True
         # 默认配置文件
-        # noinspection SpellCheckingInspection
         self.default_config: dict = {
             "hide_tray": 0,
             "forKillExe": [
@@ -65,9 +63,9 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
                 ".pptx",
                 ".xlsx",
                 "192.168.",
-                "\u5206\u4eab\u7684\u56fe\u7247",
-                "\u6587\u6863\u6587\u4ef6",
-                "\u804a\u5929\u8bb0\u5f55",
+                "分享的图片",
+                "聊天记录",
+                "文档文件",
             ],
             "random_time": [0, 30],
             "hold_time": 0,
@@ -75,7 +73,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 持续时间
         self.hold_time: int = 0
         # 下课时间表
-        self.time_config: dict = {}
+        self.time_config: list[classes.basic_classes.Clock.Clock] = []
         # 软件生命状态
         self.life: bool = True
         # 测试模式
@@ -89,8 +87,10 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 随机等待时间
         self.random_time: list[int] = self.default_config["random_time"]
         # 配置文件路径
-        self.clock_json_path: str = current_path("clock.json", "exe")
-        self.config_json_path: str = current_path("config.json", "exe")
+        self.clock_json_path: str = current_path(relative_path="clock.json", mode="exe")
+        self.config_json_path: str = current_path(
+            relative_path="config.json", mode="exe"
+        )
         logger.debug(f"配置文件路径: {self.clock_json_path}")
         logger.debug(f"配置文件路径: {self.config_json_path}")
         self.files: list[str] = [
@@ -101,7 +101,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         ]
         # 设置图片文件路径
         self.files: list[str] = [
-            str(Path(i).resolve()) for i in map(current_path, self.files)
+            str(object=Path(i).resolve()) for i in map(current_path, self.files)
         ]
         QShortcut(QKeySequence("Alt+A"), self).activated.connect(
             lambda: (
@@ -112,27 +112,41 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # region 处理配置文件
         what_is_the_error: str = "t-error"
         try:
-            with open(self.clock_json_path, encoding="utf-8") as f:
-                self.time_config = load(f)
+            with open(file=self.clock_json_path, encoding="utf-8") as f:
+                d = load(f)
+                self.time_config = [
+                    classes.basic_classes.Clock.Clock(
+                        time=time, description=d[time][0], state=d[time][1]
+                    )
+                    for time in d.keys()
+                ]
                 logger.debug(f"下课时间配置: {self.time_config}")
             what_is_the_error = "f-error"
-            with open(self.config_json_path, encoding="utf-8") as f:
-                self.load_config(load(f))
+            with open(file=self.config_json_path, encoding="utf-8") as f:
+                self.load_config(configure=load(fp=f))
                 logger.debug("导入成功")
         except Exception as e:
             match what_is_the_error:
                 case "t-error":
-                    logger.error(f"时间表配置文件不存在或损坏, 创建默认时间表配置文件{e}")
-                    with open(self.clock_json_path, "w") as f:
-                        dump({"00:00": "Default Description"}, f, indent=4)
+                    logger.error(
+                        f"时间表配置文件不存在或损坏, 创建默认时间表配置文件{e}"
+                    )
+                    with open(
+                        file=self.clock_json_path, mode="w", encoding="utf-8"
+                    ) as f:
+                        dump(
+                            obj={"00:00": ["Default Description", True]}, fp=f, indent=4
+                        )
                     logger.critical(f"严重未知错误, 错误代码: {e}")
                 case "f-error":
                     logger.error(f"功能配置文件不存在或损坏, 创建默认配置文件{e}")
-                    with open(self.config_json_path, "w") as f:
-                        dump(self.default_config, f, indent=4)
+                    with open(
+                        file=self.config_json_path, mode="w", encoding="utf-8"
+                    ) as f:
+                        dump(obj=self.default_config, fp=f, indent=4)
                 case _:
                     logger.critical(f"严重未知错误, 错误代码: {e}")
-                    sys.exit(1)
+                    sys.exit(status=1)
         self.show_config()
         # endregion
 
@@ -161,7 +175,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
             self.ui.b,
             self.ui.hold_seconds,
         ]
-        connect_signals(normal_widgets, self.set_flushable)
+        connect_signals(widgets=normal_widgets, func=self.set_flushable)
         self.ui.apply_button.clicked.connect(self.flash_state_changed)
         self.ui.is_active.clicked.connect(self.state_changed_signal.emit)
         self.ui.test_button.clicked.connect(self.testing)
@@ -177,17 +191,17 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # endregion
 
         # region 初始化待杀应用窗口类
-        self.add_executable = classes.EXE.AddEXE.AddEXE(self)
-        self.edit_executable = classes.EXE.EditEXE.EditEXE(self)
+        self.add_executable = classes.EXE.AddEXE.AddEXE(p_window=self)
+        self.edit_executable = classes.EXE.EditEXE.EditEXE(p_window=self)
         # endregion
 
         # region 初始化待杀窗口标题类
-        self.add_title = classes.Title.AddTitle.AddTitle(self)
-        self.edit_title = classes.Title.EditTitle.EditTitle(self)
+        self.add_title = classes.Title.AddTitle.AddTitle(p_window=self)
+        self.edit_title = classes.Title.EditTitle.EditTitle(p_window=self)
         # endregion
 
         # region 初始化消息提示类
-        self.warner = classes.MessageShower(self)
+        self.warner = classes.MessageShower(p_window=self)
         # endregion
 
         # region 初始化待杀程序列表
@@ -353,8 +367,8 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         QApplication.processEvents()
         # 将当前属性设置为GUI控件的值
         # region 设置待杀程序列表 和 待杀应用程序窗口标题列表
-        self.forKillExe = flash_list_widget(self.ui.for_kill_list)
-        self.forKillWindowTitle = flash_list_widget(self.ui.for_close_title)
+        self.forKillExe = flash_list_widget(list_widget=self.ui.for_kill_list)
+        self.forKillWindowTitle = flash_list_widget(list_widget=self.ui.for_close_title)
         # endregion
         self.hide_tray = (
             2
@@ -373,16 +387,16 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
             # 如果正确,则将两个输入框的值设置为新的值
             self.random_time[0] = self.ui.a.value()
             self.random_time[1] = self.ui.b.value()
-        with open(self.config_json_path, "w") as f:
+        with open(file=self.config_json_path, mode="w") as f:
             dump(
-                {
+                obj={
                     "hide_tray": self.hide_tray,
                     "forKillExe": self.forKillExe,
                     "random_time": self.random_time,
                     "hold_time": self.hold_time,
                     "forKillWindowTitle": self.forKillWindowTitle,
                 },
-                f,
+                fp=f,
                 indent=4,
             )
         self.show_config()

@@ -14,6 +14,7 @@ __all__ = [
     "connect_signals",
 ]
 
+
 @logger.catch
 def current_path(relative_path: str, mode: str = "resource") -> str:
     """
@@ -23,17 +24,22 @@ def current_path(relative_path: str, mode: str = "resource") -> str:
     :return: 无
     """
     QApplication.processEvents()
-    if mode == "resource":
-        return PurePath.joinpath(Path(__file__).resolve().parent, relative_path).__str__()
-    if mode == "exe":
-        return PurePath.joinpath(Path(argv[0]).resolve().parent, relative_path).__str__()
+    match mode:
+        case "resource":
+            return PurePath.joinpath(
+                Path(__file__).resolve().parent, relative_path
+            ).__str__()
+        case "exe":
+            return PurePath.joinpath(
+                Path(argv[0]).resolve().parent, relative_path
+            ).__str__()
     raise ValueError(f"mode must be 'resource' or 'exe', not {mode}")
 
 
 @logger.catch
 def set_window_size(window: QWidget, application: QApplication):
     """
-    设置窗口大小位置
+    将窗口居中于屏幕并设置为屏幕尺寸的一半
     :param application: Qt应用对象
     :param window: 要设置的窗口
     :return:

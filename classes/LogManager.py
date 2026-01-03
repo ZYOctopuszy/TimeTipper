@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_classes import MainWindow
+    from main_class import MainWindow
 from PySide6.QtCore import QObject, Signal
 from loguru import logger
 
@@ -11,6 +11,7 @@ class LogManager(QObject):
     def __init__(self, p_window: "MainWindow"):
         super().__init__()
         self.p_window = p_window
+        self.p_window.ui.logger.clear()
         self.update_log.connect(self.p_window.ui.logger.append)
         logger.add(
             sink=self,
@@ -31,9 +32,9 @@ class LogManager(QObject):
         :return:
         """
         message_list = message.splitlines()
-        txt_l = message_list[0].split(" | ")
-        txt_l = txt_l[:-1] + txt_l[-1].split(" -> ")
-        txt_l = txt_l[:-1] + txt_l[-1].split(" >>> ")
+        txt_l = message_list[0].split(sep=" | ")
+        txt_l = txt_l[:-1] + txt_l[-1].split(sep=" -> ")
+        txt_l = txt_l[:-1] + txt_l[-1].split(sep=" >>> ")
 
         context = (
                 self.become_colorful(text=txt_l[0], color="green") + self.gun  # 时间

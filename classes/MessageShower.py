@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_classes import MainWindow
+    from main_class import MainWindow
 import sys
 import threading
 from datetime import datetime, timedelta
@@ -32,7 +32,7 @@ class MessageShower:
         now = datetime.now()
         wait_second = (
             randint(self.p_window.random_time[0], self.p_window.random_time[1])
-            if now.strftime("%H:%M") in self.p_window.time_config.keys()
+            if now.strftime("%H:%M") in [clock.time for clock in self.p_window.time_config]
             or self.p_window.test
             else 0
         )
@@ -73,11 +73,7 @@ class MessageShower:
                     minutes=now.minute,
                     seconds=now.second,
                 )
-                for class_over_time in (
-                    i
-                    for i in self.p_window.time_config.keys()
-                    if self.p_window.time_config[i][1]
-                ):
+                for class_over_time in (c.time for c in list(self.p_window.time_config) if c.state):
                     hours, minutes = map(int, class_over_time.split(":"))
                     if self.p_window.test or (
                         timedelta()

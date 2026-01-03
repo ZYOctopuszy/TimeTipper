@@ -26,14 +26,13 @@ class MyQWidget(QWidget):
     def mousePressEvent(self, event: QMouseEvent):
         if event.button() == Qt.MouseButton.LeftButton:
             self.mouse_start_pt = event.globalPosition().toPoint()
-            self.window_pos = self.frameGeometry().topLeft()
             self.drag = True
 
     @logger.catch
     def mouseMoveEvent(self, event: QMouseEvent):
         if self.drag:
             distance = event.globalPosition().toPoint() - self.mouse_start_pt
-            self.move(self.window_pos + distance)
+            self.move(self.frameGeometry().topLeft() + distance)
 
     @logger.catch
     def mouseReleaseEvent(self, event: QMouseEvent):

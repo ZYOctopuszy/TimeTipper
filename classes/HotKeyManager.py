@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_classes import MainWindow
+    from main_class import MainWindow
 import keyboard
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QWidget
@@ -18,7 +18,7 @@ class HotKeyManager(QWidget):
         super().__init__()
         self.p_window = p_window
         self.show_window_signal.connect(self.p_window.show_window)
-        keyboard.add_hotkey("ctrl+windows+alt+shift+f6", self.show_window)
+        keyboard.add_hotkey(hotkey="ctrl+windows+alt+shift+f6", callback=self.show_window)
 
     @logger.catch
     def show_window(self):

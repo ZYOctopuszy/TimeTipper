@@ -26,4 +26,4 @@ class WindowCloser:
 
 
 if __name__ == "__main__":
-    WindowCloser().kill_windows("for_kill_title")
+    WindowCloser().kill_windows(title="for_kill_title")

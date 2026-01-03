@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_classes import MainWindow
+    from main_class import MainWindow
 from loguru import logger
 
 from classes.basic_classes.EditItem import EditItem
