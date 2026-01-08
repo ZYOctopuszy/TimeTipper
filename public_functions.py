@@ -49,8 +49,8 @@ def set_window_size(window: QWidget, application: QApplication):
 
     # 应用窗口位置
     window.setGeometry(
-        available_geometry.width() >> 2,
-        available_geometry.height() >> 2,
+        available_geometry.x() >> 2,
+        available_geometry.y() >> 2,
         available_geometry.width() >> 1,
         available_geometry.height() >> 1,
     )

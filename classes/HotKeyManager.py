@@ -3,6 +3,7 @@ if __name__ == "__main__":
 import keyboard
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QWidget
+from PySide6.QtGui import QShortcut, QKeySequence
 from loguru import logger
 
 
@@ -17,8 +18,20 @@ class HotKeyManager(QWidget):
     def __init__(self, p_window: "MainWindow"):
         super().__init__()
         self.p_window = p_window
+        QShortcut(QKeySequence("Alt+A"), self).activated.connect(
+            lambda: (
+                self.p_window.flash_state_changed()
+                if self.p_window.ui.apply_button.isEnabled()
+                else None
+            )
+        )
+        QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(
+            self.p_window.quit_app
+        )
         self.show_window_signal.connect(self.p_window.show_window)
-        keyboard.add_hotkey(hotkey="ctrl+windows+alt+shift+f6", callback=self.show_window)
+        keyboard.add_hotkey(
+            hotkey="ctrl+windows+alt+shift+f6", callback=self.show_window
+        )
 
     @logger.catch
     def show_window(self):

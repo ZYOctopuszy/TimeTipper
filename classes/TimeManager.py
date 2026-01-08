@@ -62,6 +62,7 @@ class TimeManager(QObject):
                         )
                 self.p_window.update()
                 logger.debug(f"切换了时间启用状态: {item.text()}")
+                self.flash_time_config()
         return super().eventFilter(source, event)
 
     # region 时间编辑功能函数
@@ -96,7 +97,7 @@ class TimeManager(QObject):
         QApplication.processEvents()
         if current_row := self.p_window.ui.time_list.currentRow():
             self.p_window.ui.time_list.takeItem(current_row)
-            del self.p_window.time_config[current_row]
+            self.p_window.time_config.pop(current_row)
             self.flash_time_config()
 
     @logger.catch

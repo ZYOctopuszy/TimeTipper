@@ -5,7 +5,6 @@ from pathlib import Path
 
 import keyboard
 from PySide6.QtCore import Signal, Slot, Qt, QEvent, QTimer
-from PySide6.QtGui import QShortcut, QKeySequence
 from PySide6.QtWidgets import QApplication, QWidget
 from loguru import logger
 
@@ -34,7 +33,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 初始化ui
         self.ui = settings.Ui_Form()
         self.ui.setupUi(Form=self)
-        self.setWindowTitle("那刻夏")
         set_window_size(window=self, application=app)
         self.app = app
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
@@ -93,22 +91,19 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         )
         logger.debug(f"配置文件路径: {self.clock_json_path}")
         logger.debug(f"配置文件路径: {self.config_json_path}")
-        self.files: list[str] = [
-            r"icons\active.png",
-            r"icons\inactive.png",
-            r"icons\hide_tray.png",
-            r"icons\active.ico",
-        ]
         # 设置图片文件路径
         self.files: list[str] = [
-            str(object=Path(i).resolve()) for i in map(current_path, self.files)
-        ]
-        QShortcut(QKeySequence("Alt+A"), self).activated.connect(
-            lambda: (
-                self.flash_state_changed() if self.ui.apply_button.isEnabled() else None
+            str(object=Path(i).resolve())
+            for i in map(
+                current_path,
+                [
+                    r"icons\active.png",
+                    r"icons\inactive.png",
+                    r"icons\hide_tray.png",
+                    r"icons\active.ico",
+                ],
             )
-        )
-        QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(self.quit_app)
+        ]
         # region 处理配置文件
         what_is_the_error: str = "t-error"
         try:
@@ -120,7 +115,9 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
                     )
                     for time in d.keys()
                 ]
-                logger.debug(f"下课时间配置: {self.time_config}")
+                logger.debug(
+                    f"下课时间配置: {[clock.time for clock in self.time_config]}"
+                )
             what_is_the_error = "f-error"
             with open(file=self.config_json_path, encoding="utf-8") as f:
                 self.load_config(configure=load(fp=f))
@@ -178,7 +175,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         connect_signals(widgets=normal_widgets, func=self.set_flushable)
         self.ui.apply_button.clicked.connect(self.flash_state_changed)
         self.ui.is_active.clicked.connect(self.state_changed_signal.emit)
-        self.ui.test_button.clicked.connect(self.testing)
+        self.ui.test_button.clicked.connect(lambda: setattr(self, "test", True))
         self.ui.exit_button.clicked.connect(self.quit_app)
         self.ui.if_strong_hide.stateChanged.connect(self.strong_hide_action)
         self.ui.close_button.clicked.connect(self.close)
@@ -213,21 +210,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
     # region 主窗口类方法s
     # region 重写的方法s
     @logger.catch
-    def changeEvent(self, event: QEvent):
-        """
-        处理窗口最小化行为
-        :param event: 事件对象
-        :return: 无
-        """
-        if (
-            self.windowState() == Qt.WindowState.WindowMinimized
-            and event.type() == QEvent.Type.WindowStateChange
-        ):
-            logger.debug("设置窗口最小化, 执行隐藏窗口")
-            QTimer.singleShot(0, self.hide)
-        super().changeEvent(event)
-
-    @logger.catch
     def hideEvent(self, event: QEvent, /):
         self.hide_window_signal.emit()
         event.accept()
@@ -254,11 +236,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         """
         self.ui.if_tray_hide.setDisabled(state)
         self.ui.if_tray_hide.setChecked(True)
-
-    @logger.catch
-    @Slot()
-    def testing(self):
-        self.test = True
 
     @logger.catch
     @Slot()
@@ -308,15 +285,11 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         :return: 无
         """
         QApplication.processEvents()
-        logger.debug(
-            "当前托盘图标透明(0显1透2隐): {}", self.hide_tray, feature="f-strings"
-        )
-        logger.debug("当前待杀程序: {}", self.forKillExe, feature="f-strings")
-        logger.debug("当前随机时间: {}", self.random_time, feature="f-strings")
-        logger.debug("当前持续时间: {}", self.hold_time, feature="f-strings")
-        logger.debug(
-            "当前待杀应用窗口标题: {}", self.forKillWindowTitle, feature="f-strings"
-        )
+        logger.debug(f"当前托盘图标透明(0显1透2隐): {self.hide_tray}")
+        logger.debug(f"当前待杀程序: {self.forKillExe}")
+        logger.debug(f"当前随机时间: {self.random_time}")
+        logger.debug(f"当前持续时间: {self.hold_time}")
+        logger.debug(f"当前待杀应用窗口标题: {self.forKillWindowTitle}")
 
     @logger.catch
     def flash_config(self: Self, configure: dict) -> dict:
