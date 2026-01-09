@@ -5,3 +5,5 @@
 /.git
 TimeTipper.log
 test.py
+clock.json
+config.json
