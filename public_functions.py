@@ -10,7 +10,7 @@ __all__ = [
     "set_window_size",
     "kill_exe",
     "flash_list_widget",
-    "mapx",
+    "map_extra",
     "connect_signals",
 ]
 
@@ -94,14 +94,14 @@ def flash_list_widget(list_widget: QListWidget) -> list:
 
 # noinspection PyShadowingBuiltins
 @logger.catch
-def mapx(func, iterable: list):
+def map_extra(func, iterable: list):
     """
     对可迭代对象中的每个元素应用指定函数, 并返回结果列表
     :param func: 要应用的函数
     :param iterable: 可迭代对象
     :return: 结果列表
     """
-    return [func(item) for item in iterable]
+    return (func(item) for item in iterable)
 
 
 @logger.catch

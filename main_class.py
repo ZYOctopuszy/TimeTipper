@@ -10,7 +10,7 @@ from loguru import logger
 
 import classes
 from UIs import settings
-from classes.WindowCloser import WindowCloser
+from classes.WindowCloser import kill_windows
 from public_functions import *
 
 __all__ = ["MainWindow"]
@@ -38,7 +38,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         # 实例化关闭窗口类
-        self.window_closer = WindowCloser()
+        self.kill_windows = kill_windows
         # 初始化日志管理类
         self.logger_manager = classes.LogManager(self)
         # 软件激活状态

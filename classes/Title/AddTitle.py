@@ -27,6 +27,6 @@ class AddTitle(AddItem):
         :return:
         """
         QApplication.processEvents()
-        self.p_window.window_closer.kill_windows(
+        self.p_window.kill_windows.kill_windows(
             self.p_window.ui.for_close_title.currentItem().text()
         )
