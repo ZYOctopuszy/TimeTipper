@@ -47,22 +47,22 @@ class TimeManager(QObject):
         )
 
     def eventFilter(self, source, event):
-        if (
-            event.type() == QEvent.Type.MouseButtonPress
-            and event.button() == Qt.MouseButton.RightButton
-        ):
+        if event.type() == QEvent.Type.MouseButtonPress:
             if item := self.p_window.ui.time_list.itemAt(
                 self.p_window.ui.time_list.viewport().mapFromGlobal(QCursor().pos())
             ):
-                for clock in self.p_window.time_config:
-                    if clock.time == item.text():
-                        clock.state ^= True
-                        item.setIcon(
-                            QIcon(self.p_window.files[0 if clock.state else 1])
-                        )
-                self.p_window.update()
-                logger.debug(f"切换了时间启用状态: {item.text()}")
-                self.flash_time_config()
+                if event.button() == Qt.MouseButton.RightButton:
+                    for clock in self.p_window.time_config:
+                        if clock.time == item.text():
+                            clock.state ^= True
+                            item.setIcon(
+                                QIcon(self.p_window.files[0 if clock.state else 1])
+                            )
+                    self.p_window.update()
+                    logger.debug(f"切换了时间启用状态: {item.text()}")
+                    self.flash_time_config()
+            else:
+                self.p_window.ui.time_list.clearSelection()
         return super().eventFilter(source, event)
 
     # region 时间编辑功能函数
@@ -86,6 +86,14 @@ class TimeManager(QObject):
             self.p_window.ui.time_list.addItems(
                 sorted(str(clock) for clock in self.p_window.time_config)
             )
+            for i in range(self.p_window.ui.time_list.count()):
+                self.p_window.ui.time_list.item(i).setIcon(
+                    QIcon(
+                        self.p_window.files[
+                            0 if self.p_window.time_config[i].state else 1
+                        ]
+                    )
+                )
             self.edit_description()
 
     @logger.catch
@@ -95,7 +103,7 @@ class TimeManager(QObject):
         :return: 无
         """
         QApplication.processEvents()
-        if current_row := self.p_window.ui.time_list.currentRow():
+        if (current_row := self.p_window.ui.time_list.currentRow()) + 1:
             self.p_window.ui.time_list.takeItem(current_row)
             self.p_window.time_config.pop(current_row)
             self.flash_time_config()
@@ -144,15 +152,18 @@ class TimeManager(QObject):
         :return: 无
         """
         QApplication.processEvents()
-        if current_item := self.p_window.ui.time_list.currentItem():
-            logger.debug(f"当前选中: {current_item.text()}")
-            self.p_window.ui.description.setPlainText(
-                next(
-                    clock.description
-                    for clock in self.p_window.time_config
-                    if clock.time == current_item.text()
-                )
+        if (current_row := self.p_window.ui.time_list.currentRow()) + 1:
+            logger.debug(
+                f"当前选中: 第{current_row}个: {self.p_window.ui.time_list.item(current_row).text()}"
             )
+            self.p_window.ui.description.setPlainText(
+                self.p_window.time_config[current_row].description
+            )
+            # next(
+            # clock.description
+            # for clock in self.p_window.time_config
+            # if clock.time == self.p_window.ui.time_list.item(current_row)
+            # )
 
     @logger.catch
     def edit_description(self):
@@ -175,7 +186,9 @@ class TimeManager(QObject):
         :return:
         """
         self.p_window.time_config.sort(key=lambda x: x.time)
-        logger.debug(f"已刷新时间表配置, 当前配置:{self.p_window.time_config}")
+        logger.debug(
+            f"已刷新时间表配置, 当前配置:{[time.time for time in self.p_window.time_config]}"
+        )
         with open("clock.json", "w", encoding="utf-8") as f:
             dump(
                 obj={

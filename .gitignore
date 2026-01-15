@@ -7,3 +7,4 @@ TimeTipper.log
 test.py
 clock.json
 config.json
+/**/__pycache__

@@ -7,6 +7,7 @@ from .MessageShower import MessageShower
 from .Tray import Tray
 from .LogManager import LogManager
 from .TimeManager import TimeManager
+from .TimeTable import TimeTable
 
 __all__ = ['basic_classes',
            'Title',
@@ -16,4 +17,5 @@ __all__ = ['basic_classes',
            'HotKeyManager',
            'Tray',
            'LogManager',
-           'TimeManager']
+           'TimeManager',
+           'TimeTable']

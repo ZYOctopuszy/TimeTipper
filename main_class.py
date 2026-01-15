@@ -158,6 +158,16 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
 
         # region 初始化热键管理器
         self.hot_key_manager = classes.HotKeyManager(self)
+        QShortcut(QKeySequence("Alt+A"), self).activated.connect(
+            lambda: (
+                self.p_window.flash_state_changed()
+                if self.p_window.ui.apply_button.isEnabled()
+                else None
+            )
+        )
+        QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(
+            self.p_window.quit_app
+        )
         # endregion
 
         # region 初始化时间列表管理器
@@ -205,6 +215,10 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.ui.for_kill_list.addItems(self.forKillExe)
         self.ui.for_close_title.addItems(self.forKillWindowTitle)
         logger.debug("已加载待杀程序列表")
+        # endregion
+
+        # region 初始化课程表
+        self.time_table = classes.TimeTable(p_window=self)
         # endregion
 
     # region 主窗口类方法s

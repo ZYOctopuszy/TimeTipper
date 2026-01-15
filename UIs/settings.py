@@ -833,43 +833,89 @@ class Ui_Form(object):
 
         self.gridLayout_13.addWidget(self.add_lesson, 7, 0, 1, 1)
 
-        self.lessons_tab = QTableWidget(self.weekdays)
-        if (self.lessons_tab.columnCount() < 5):
-            self.lessons_tab.setColumnCount(5)
+        self.time_table = QTableWidget(self.weekdays)
+        if (self.time_table.columnCount() < 5):
+            self.time_table.setColumnCount(5)
         __qtablewidgetitem = QTableWidgetItem()
-        self.lessons_tab.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        self.time_table.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        self.lessons_tab.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        self.time_table.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        self.lessons_tab.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        self.time_table.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        self.lessons_tab.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        self.time_table.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
-        self.lessons_tab.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        if (self.lessons_tab.rowCount() < 8):
-            self.lessons_tab.setRowCount(8)
+        self.time_table.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        if (self.time_table.rowCount() < 8):
+            self.time_table.setRowCount(8)
         __qtablewidgetitem5 = QTableWidgetItem()
-        self.lessons_tab.setVerticalHeaderItem(0, __qtablewidgetitem5)
+        self.time_table.setVerticalHeaderItem(0, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
-        self.lessons_tab.setVerticalHeaderItem(1, __qtablewidgetitem6)
+        self.time_table.setVerticalHeaderItem(1, __qtablewidgetitem6)
         __qtablewidgetitem7 = QTableWidgetItem()
-        self.lessons_tab.setVerticalHeaderItem(2, __qtablewidgetitem7)
+        self.time_table.setVerticalHeaderItem(2, __qtablewidgetitem7)
         __qtablewidgetitem8 = QTableWidgetItem()
-        self.lessons_tab.setVerticalHeaderItem(3, __qtablewidgetitem8)
+        self.time_table.setVerticalHeaderItem(3, __qtablewidgetitem8)
         __qtablewidgetitem9 = QTableWidgetItem()
-        self.lessons_tab.setVerticalHeaderItem(4, __qtablewidgetitem9)
+        self.time_table.setVerticalHeaderItem(4, __qtablewidgetitem9)
         __qtablewidgetitem10 = QTableWidgetItem()
-        self.lessons_tab.setVerticalHeaderItem(5, __qtablewidgetitem10)
+        self.time_table.setVerticalHeaderItem(5, __qtablewidgetitem10)
         __qtablewidgetitem11 = QTableWidgetItem()
-        self.lessons_tab.setVerticalHeaderItem(6, __qtablewidgetitem11)
+        self.time_table.setVerticalHeaderItem(6, __qtablewidgetitem11)
         __qtablewidgetitem12 = QTableWidgetItem()
-        self.lessons_tab.setVerticalHeaderItem(7, __qtablewidgetitem12)
+        self.time_table.setVerticalHeaderItem(7, __qtablewidgetitem12)
         __qtablewidgetitem13 = QTableWidgetItem()
-        self.lessons_tab.setItem(0, 0, __qtablewidgetitem13)
-        self.lessons_tab.setObjectName(u"lessons_tab")
-        sizePolicy.setHeightForWidth(self.lessons_tab.sizePolicy().hasHeightForWidth())
-        self.lessons_tab.setSizePolicy(sizePolicy)
-        self.lessons_tab.setStyleSheet(u"/* QTableWidget \u4e3b\u6837\u5f0f */\n"
+        self.time_table.setItem(0, 0, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.time_table.setItem(0, 1, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.time_table.setItem(0, 2, __qtablewidgetitem15)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.time_table.setItem(1, 0, __qtablewidgetitem16)
+        __qtablewidgetitem17 = QTableWidgetItem()
+        self.time_table.setItem(1, 1, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.time_table.setItem(1, 2, __qtablewidgetitem18)
+        __qtablewidgetitem19 = QTableWidgetItem()
+        self.time_table.setItem(2, 0, __qtablewidgetitem19)
+        __qtablewidgetitem20 = QTableWidgetItem()
+        self.time_table.setItem(2, 1, __qtablewidgetitem20)
+        __qtablewidgetitem21 = QTableWidgetItem()
+        self.time_table.setItem(2, 2, __qtablewidgetitem21)
+        __qtablewidgetitem22 = QTableWidgetItem()
+        self.time_table.setItem(3, 0, __qtablewidgetitem22)
+        __qtablewidgetitem23 = QTableWidgetItem()
+        self.time_table.setItem(3, 1, __qtablewidgetitem23)
+        __qtablewidgetitem24 = QTableWidgetItem()
+        self.time_table.setItem(3, 2, __qtablewidgetitem24)
+        __qtablewidgetitem25 = QTableWidgetItem()
+        self.time_table.setItem(4, 0, __qtablewidgetitem25)
+        __qtablewidgetitem26 = QTableWidgetItem()
+        self.time_table.setItem(4, 1, __qtablewidgetitem26)
+        __qtablewidgetitem27 = QTableWidgetItem()
+        self.time_table.setItem(4, 2, __qtablewidgetitem27)
+        __qtablewidgetitem28 = QTableWidgetItem()
+        self.time_table.setItem(5, 0, __qtablewidgetitem28)
+        __qtablewidgetitem29 = QTableWidgetItem()
+        self.time_table.setItem(5, 1, __qtablewidgetitem29)
+        __qtablewidgetitem30 = QTableWidgetItem()
+        self.time_table.setItem(5, 2, __qtablewidgetitem30)
+        __qtablewidgetitem31 = QTableWidgetItem()
+        self.time_table.setItem(6, 0, __qtablewidgetitem31)
+        __qtablewidgetitem32 = QTableWidgetItem()
+        self.time_table.setItem(6, 1, __qtablewidgetitem32)
+        __qtablewidgetitem33 = QTableWidgetItem()
+        self.time_table.setItem(6, 2, __qtablewidgetitem33)
+        __qtablewidgetitem34 = QTableWidgetItem()
+        self.time_table.setItem(7, 0, __qtablewidgetitem34)
+        __qtablewidgetitem35 = QTableWidgetItem()
+        self.time_table.setItem(7, 1, __qtablewidgetitem35)
+        __qtablewidgetitem36 = QTableWidgetItem()
+        self.time_table.setItem(7, 2, __qtablewidgetitem36)
+        self.time_table.setObjectName(u"time_table")
+        sizePolicy.setHeightForWidth(self.time_table.sizePolicy().hasHeightForWidth())
+        self.time_table.setSizePolicy(sizePolicy)
+        self.time_table.setStyleSheet(u"/* QTableWidget \u4e3b\u6837\u5f0f */\n"
 "QTableWidget {\n"
 "    background-color: rgba(40, 50, 40, 0.0);  /* \u5b8c\u5168\u900f\u660e\u80cc\u666f */\n"
 "    border: 1px solid rgba(70, 90, 70, 0.7);\n"
@@ -958,10 +1004,10 @@ class Ui_Form(object):
 "QTableWidget::item:editing {\n"
 "    background-color: rgba(60, 80, 60, 0.6);\n"
 "}")
-        self.lessons_tab.setGridStyle(Qt.PenStyle.DashDotLine)
-        self.lessons_tab.setSortingEnabled(False)
+        self.time_table.setGridStyle(Qt.PenStyle.DashDotLine)
+        self.time_table.setSortingEnabled(False)
 
-        self.gridLayout_13.addWidget(self.lessons_tab, 0, 0, 3, 6)
+        self.gridLayout_13.addWidget(self.time_table, 0, 0, 3, 6)
 
         self.tabWidget.addTab(self.weekdays, "")
         self.log = QWidget()
@@ -1039,7 +1085,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(3)
         self.tabWidget_2.setCurrentIndex(1)
 
 
@@ -1110,36 +1156,84 @@ class Ui_Form(object):
         self.del_day.setText(QCoreApplication.translate("Form", u"-", None))
         self.del_lesson.setText(QCoreApplication.translate("Form", u"-", None))
         self.add_lesson.setText(QCoreApplication.translate("Form", u"+", None))
-        ___qtablewidgetitem = self.lessons_tab.horizontalHeaderItem(0)
+        ___qtablewidgetitem = self.time_table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Form", u"\u5468\u4e00", None));
-        ___qtablewidgetitem1 = self.lessons_tab.horizontalHeaderItem(1)
+        ___qtablewidgetitem1 = self.time_table.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("Form", u"\u5468\u4e8c", None));
-        ___qtablewidgetitem2 = self.lessons_tab.horizontalHeaderItem(2)
+        ___qtablewidgetitem2 = self.time_table.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("Form", u"\u5468\u4e09", None));
-        ___qtablewidgetitem3 = self.lessons_tab.horizontalHeaderItem(3)
+        ___qtablewidgetitem3 = self.time_table.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("Form", u"\u5468\u56db", None));
-        ___qtablewidgetitem4 = self.lessons_tab.horizontalHeaderItem(4)
+        ___qtablewidgetitem4 = self.time_table.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("Form", u"\u5468\u4e94", None));
-        ___qtablewidgetitem5 = self.lessons_tab.verticalHeaderItem(0)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
-        ___qtablewidgetitem6 = self.lessons_tab.verticalHeaderItem(1)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
-        ___qtablewidgetitem7 = self.lessons_tab.verticalHeaderItem(2)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
-        ___qtablewidgetitem8 = self.lessons_tab.verticalHeaderItem(3)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
-        ___qtablewidgetitem9 = self.lessons_tab.verticalHeaderItem(4)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
-        ___qtablewidgetitem10 = self.lessons_tab.verticalHeaderItem(5)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
-        ___qtablewidgetitem11 = self.lessons_tab.verticalHeaderItem(6)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
-        ___qtablewidgetitem12 = self.lessons_tab.verticalHeaderItem(7)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("Form", u"\u65b0\u5efa\u884c", None));
+        ___qtablewidgetitem5 = self.time_table.verticalHeaderItem(0)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"\u7b2c\u4e00\u8282", None));
+        ___qtablewidgetitem6 = self.time_table.verticalHeaderItem(1)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("Form", u"\u7b2c\u4e8c\u8282", None));
+        ___qtablewidgetitem7 = self.time_table.verticalHeaderItem(2)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("Form", u"\u7b2c\u4e09\u8282", None));
+        ___qtablewidgetitem8 = self.time_table.verticalHeaderItem(3)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("Form", u"\u7b2c\u56db\u8282", None));
+        ___qtablewidgetitem9 = self.time_table.verticalHeaderItem(4)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("Form", u"\u7b2c\u4e94\u8282", None));
+        ___qtablewidgetitem10 = self.time_table.verticalHeaderItem(5)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("Form", u"\u7b2c\u516d\u8282", None));
+        ___qtablewidgetitem11 = self.time_table.verticalHeaderItem(6)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("Form", u"\u7b2c\u4e03\u8282", None));
+        ___qtablewidgetitem12 = self.time_table.verticalHeaderItem(7)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("Form", u"\u7b2c\u516b\u8282", None));
 
-        __sortingEnabled = self.lessons_tab.isSortingEnabled()
-        self.lessons_tab.setSortingEnabled(False)
-        self.lessons_tab.setSortingEnabled(__sortingEnabled)
+        __sortingEnabled = self.time_table.isSortingEnabled()
+        self.time_table.setSortingEnabled(False)
+        ___qtablewidgetitem13 = self.time_table.item(0, 0)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("Form", u"\u7269\u7406", None));
+        ___qtablewidgetitem14 = self.time_table.item(0, 1)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("Form", u"\u5316\u5b66", None));
+        ___qtablewidgetitem15 = self.time_table.item(0, 2)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("Form", u"\u8bed\u6587", None));
+        ___qtablewidgetitem16 = self.time_table.item(1, 0)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("Form", u"\u82f1\u8bed", None));
+        ___qtablewidgetitem17 = self.time_table.item(1, 1)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("Form", u"\u7269\u7406", None));
+        ___qtablewidgetitem18 = self.time_table.item(1, 2)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("Form", u"\u8bed\u6587", None));
+        ___qtablewidgetitem19 = self.time_table.item(2, 0)
+        ___qtablewidgetitem19.setText(QCoreApplication.translate("Form", u"\u6570\u5b66", None));
+        ___qtablewidgetitem20 = self.time_table.item(2, 1)
+        ___qtablewidgetitem20.setText(QCoreApplication.translate("Form", u"\u4f53\u80b2", None));
+        ___qtablewidgetitem21 = self.time_table.item(2, 2)
+        ___qtablewidgetitem21.setText(QCoreApplication.translate("Form", u"\u653f\u6cbb", None));
+        ___qtablewidgetitem22 = self.time_table.item(3, 0)
+        ___qtablewidgetitem22.setText(QCoreApplication.translate("Form", u"\u8bed\u6587", None));
+        ___qtablewidgetitem23 = self.time_table.item(3, 1)
+        ___qtablewidgetitem23.setText(QCoreApplication.translate("Form", u"\u653f\u6cbb", None));
+        ___qtablewidgetitem24 = self.time_table.item(3, 2)
+        ___qtablewidgetitem24.setText(QCoreApplication.translate("Form", u"\u82f1\u8bed", None));
+        ___qtablewidgetitem25 = self.time_table.item(4, 0)
+        ___qtablewidgetitem25.setText(QCoreApplication.translate("Form", u"\u5316\u5b66", None));
+        ___qtablewidgetitem26 = self.time_table.item(4, 1)
+        ___qtablewidgetitem26.setText(QCoreApplication.translate("Form", u"\u6570\u5b66", None));
+        ___qtablewidgetitem27 = self.time_table.item(4, 2)
+        ___qtablewidgetitem27.setText(QCoreApplication.translate("Form", u"\u6570\u5b66", None));
+        ___qtablewidgetitem28 = self.time_table.item(5, 0)
+        ___qtablewidgetitem28.setText(QCoreApplication.translate("Form", u"\u82f1\u8bed", None));
+        ___qtablewidgetitem29 = self.time_table.item(5, 1)
+        ___qtablewidgetitem29.setText(QCoreApplication.translate("Form", u"\u82f1\u8bed", None));
+        ___qtablewidgetitem30 = self.time_table.item(5, 2)
+        ___qtablewidgetitem30.setText(QCoreApplication.translate("Form", u"\u5316\u5b66", None));
+        ___qtablewidgetitem31 = self.time_table.item(6, 0)
+        ___qtablewidgetitem31.setText(QCoreApplication.translate("Form", u"\u5386\u53f2", None));
+        ___qtablewidgetitem32 = self.time_table.item(6, 1)
+        ___qtablewidgetitem32.setText(QCoreApplication.translate("Form", u"\u8bed\u6587", None));
+        ___qtablewidgetitem33 = self.time_table.item(6, 2)
+        ___qtablewidgetitem33.setText(QCoreApplication.translate("Form", u"\u4f53\u80b2", None));
+        ___qtablewidgetitem34 = self.time_table.item(7, 0)
+        ___qtablewidgetitem34.setText(QCoreApplication.translate("Form", u"\u6570\u5b66", None));
+        ___qtablewidgetitem35 = self.time_table.item(7, 1)
+        ___qtablewidgetitem35.setText(QCoreApplication.translate("Form", u"\u8bed\u6587", None));
+        ___qtablewidgetitem36 = self.time_table.item(7, 2)
+        ___qtablewidgetitem36.setText(QCoreApplication.translate("Form", u"\u7269\u7406", None));
+        self.time_table.setSortingEnabled(__sortingEnabled)
 
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.weekdays), QCoreApplication.translate("Form", u"\u8bfe\u7a0b\u8868", None))
         self.logger.setHtml(QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

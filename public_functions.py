@@ -46,13 +46,15 @@ def set_window_size(window: QWidget, application: QApplication):
     """
     # 获取屏幕的尺寸
     available_geometry: QRect = application.screens()[0].availableGeometry()
+    width = available_geometry.width()
+    height = available_geometry.height()
 
     # 应用窗口位置
     window.setGeometry(
-        available_geometry.x() >> 2,
-        available_geometry.y() >> 2,
-        available_geometry.width() >> 1,
-        available_geometry.height() >> 1,
+        width >> 2,
+        height >> 2,
+        width >> 1,
+        height >> 1,
     )
 
 

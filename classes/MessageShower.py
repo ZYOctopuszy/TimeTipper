@@ -38,9 +38,9 @@ class MessageShower:
             else 0
         )
         logger.debug(f"将等待时间: {wait_second}秒")
-        end_time = now.replace(second=now.second + wait_second)
         while self.p_window.life and self.p_window.state:
-            if datetime.now() <= end_time:
+            if wait_second > 0:
+                wait_second -= 1
                 sleep(1)
                 continue
             else:
@@ -67,13 +67,18 @@ class MessageShower:
         :return: 无
         """
         while self.p_window.life:
-            if self.p_window.state or self.p_window.test:
+            if self.p_window.test:
+                self.p_window.ui.test_button.setDisabled(True)
+                self.p_window.ui.test_button.setText("执行中, 请稍候...")
+                logger.debug("执行清剿函数")
+                self.killer()
+            elif self.p_window.state:
                 QApplication.processEvents()
                 now = datetime.now()
                 for class_over_time in (
                     c for c in self.p_window.time_config if c.state
                 ):
-                    if self.p_window.test or (
+                    if (
                         0
                         <= (
                             now
