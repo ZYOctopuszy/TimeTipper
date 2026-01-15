@@ -90,8 +90,12 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.config_json_path: str = current_path(
             relative_path="config.json", mode="exe"
         )
+        self.time_table_ini_path: str = current_path(
+            relative_path="timetable.ini", mode="exe"
+        )
         logger.debug(f"配置文件路径: {self.clock_json_path}")
         logger.debug(f"配置文件路径: {self.config_json_path}")
+        logger.debug(f"配置文件路径: {self.time_table_ini_path}")
         # 设置图片文件路径
         self.files: list[str] = [
             str(object=Path(i).resolve())
@@ -122,7 +126,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
             what_is_the_error = "f-error"
             with open(file=self.config_json_path, encoding="utf-8") as f:
                 self.load_config(configure=load(fp=f))
-                logger.debug("导入成功")
+            logger.debug("导入成功")
         except Exception as e:
             match what_is_the_error:
                 case "t-error":

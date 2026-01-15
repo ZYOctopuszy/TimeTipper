@@ -33,3 +33,4 @@ class TimeTable:
                     column = item.column()
                     # 在这里处理右键点击事件
                     print(f"切换了课程启用状态: {self.time_table.horizontalHeaderItem(column).text()} - {self.time_table.verticalHeaderItem(row).text()} - {item.text()}")
+                    
