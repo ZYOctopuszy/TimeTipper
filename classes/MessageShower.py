@@ -32,9 +32,12 @@ class MessageShower:
         now = datetime.now()
         wait_second = (
             randint(self.p_window.random_time[0], self.p_window.random_time[1])
-            if now.strftime("%H:%M")
-            in [clock.time for clock in self.p_window.time_config]
-            or self.p_window.test
+            if self.p_window.test
+            or (
+                now.strftime("%H:%M")
+                in [clock.time for clock in self.p_window.time_config]
+                and now.second < self.p_window.random_time[0]
+            )
             else 0
         )
         logger.debug(f"将等待时间: {wait_second}秒")
@@ -49,12 +52,14 @@ class MessageShower:
                     self.p_window.kill_windows,
                     self.p_window.forKillWindowTitle,
                 ):
-                    self.p_window.app.beep()
+                    # self.p_window.app.beep()
+                    ...
                 logger.debug("杀死进程中")
                 if self.p_window.forKillExe and True in map_extra(
                     kill_exe, self.p_window.forKillExe
                 ):
-                    self.p_window.app.beep()
+                    ...
+                    # self.p_window.app.beep()
                 break
         self.p_window.test = False
         self.p_window.ui.test_button.setEnabled(True)

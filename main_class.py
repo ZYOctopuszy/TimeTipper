@@ -4,8 +4,9 @@ from json import load, dump
 from pathlib import Path
 
 import keyboard
-from PySide6.QtCore import Signal, Slot, Qt, QEvent, QTimer
+from PySide6.QtCore import Signal, Slot, Qt, QEvent
 from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtGui import QShortcut, QKeySequence
 from loguru import logger
 
 import classes
@@ -160,14 +161,10 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.hot_key_manager = classes.HotKeyManager(self)
         QShortcut(QKeySequence("Alt+A"), self).activated.connect(
             lambda: (
-                self.p_window.flash_state_changed()
-                if self.p_window.ui.apply_button.isEnabled()
-                else None
+                self.flash_state_changed() if self.ui.apply_button.isEnabled() else None
             )
         )
-        QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(
-            self.p_window.quit_app
-        )
+        QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(self.quit_app)
         # endregion
 
         # region 初始化时间列表管理器

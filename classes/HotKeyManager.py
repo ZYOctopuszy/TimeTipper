@@ -3,7 +3,6 @@ if __name__ == "__main__":
 import keyboard
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QWidget
-from PySide6.QtGui import QShortcut, QKeySequence
 from loguru import logger
 
 
