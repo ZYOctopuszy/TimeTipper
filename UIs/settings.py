@@ -99,14 +99,17 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "/* \u7279\u6b8a\u6309\u94ae\u6837\u5f0f */\n"
+"QPushButton#all_disable, QPushButton#all_enable {\n"
+"    padding: 6px -15px;;\n"
+"}\n"
 "QPushButton#is_active {\n"
 "    background-color: rgba(80, 160, 90, 0.85);\n"
-"    border-color: rgba(110, 190, 120, 0.7);\n"
+"    borde"
+                        "r-color: rgba(110, 190, 120, 0.7);\n"
 "}\n"
 "\n"
 "QPushButton#is_active:hover {\n"
-"    b"
-                        "ackground-color: rgba(100, 180, 110, 0.9);\n"
+"    background-color: rgba(100, 180, 110, 0.9);\n"
 "}\n"
 "\n"
 "QPushButton#test_button {\n"
@@ -141,12 +144,12 @@ class Ui_Form(object):
 "    height: 16px;\n"
 "    border: 1px solid rgba(90, 120, 90, 0.7);\n"
 "    border-radius: 3px;\n"
-"    background: rgba(50, 60, 50, 0.8);\n"
+""
+                        "    background: rgba(50, 60, 50, 0.8);\n"
 "}\n"
 "\n"
 "QCheckBox::indicator:checked {\n"
-""
-                        "    background: rgba(60, 130, 70, 0.9);\n"
+"    background: rgba(60, 130, 70, 0.9);\n"
 "}\n"
 "\n"
 "QCheckBox:hover {\n"
@@ -178,14 +181,19 @@ class Ui_Form(object):
 "    border: 1px solid rgba(70, 90, 70, 0.6);\n"
 "    border-radius: 6px;\n"
 "}\n"
+"QFrame#frame {\n"
+"    backgroud-color: rgba(35, 45, 35, 0.0);\n"
+"    border: 1px solid rgba(70, 90,"
+                        " 70, 0.6);\n"
+"    border-radius: 6px;\n"
+"}\n"
 "QFrame#frame_3 {\n"
 "    background-color: rgba(35, 45, 35, 0.8);\n"
 "    border: 1px solid rgba(70, 90, 70, 0.6);\n"
 "    border-radius: 6px;\n"
 "}\n"
 "QFrame#main_frame {\n"
-"    backgroun"
-                        "d-color: rgb(35, 45, 35);\n"
+"    background-color: rgb(35, 45, 35);\n"
 "    border: 1px solid rgba(70, 90, 80 ,0.6);\n"
 "    border-radius: 6px;\n"
 "}\n"
@@ -219,7 +227,8 @@ class Ui_Form(object):
 "    height: 10px;\n"
 "}\n"
 "\n"
-"QScrollBar::handle:vertical, QScrollBar::handle:horizontal {\n"
+"QScrollBar::handle:vertical, QScrollBar:"
+                        ":handle:horizontal {\n"
 "    background: rgba(80, 120, 80, 0.6);\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -230,8 +239,7 @@ class Ui_Form(object):
 "\n"
 "QScrollBar::handle:horizontal {\n"
 "    min-width: 20px;\n"
-""
-                        "}\n"
+"}\n"
 "\n"
 "QScrollBar::add-line:vertical,\n"
 "QScrollBar::sub-line:vertical,\n"
@@ -260,7 +268,8 @@ class Ui_Form(object):
 "/* \u6dfb\u52a0\u6309\u94ae(+) */\n"
 "QPushButton[text=\"+\"], \n"
 "QPushButton[text=\"\u6dfb\u52a0\"] {\n"
-"    background-color: rgba(70, 150, 80, 0.9);\n"
+"    background-color: rgba(70, 150, 80, 0.9)"
+                        ";\n"
 "}\n"
 "\n"
 "/* \u5220\u9664\u6309\u94ae(-) */\n"
@@ -269,8 +278,7 @@ class Ui_Form(object):
 "    background-color: rgba(150, 70, 60, 0.9);\n"
 "}\n"
 "\n"
-"/* \u5e94\u7528\u6309\u94ae\u7279\u6b8a\u6837\u5f0f *"
-                        "/\n"
+"/* \u5e94\u7528\u6309\u94ae\u7279\u6b8a\u6837\u5f0f */\n"
 "QPushButton[text=\"\u5e94\u7528(Alt+A)\"] {\n"
 "    background-color: rgba(80, 140, 90, 0.9);\n"
 "    font-weight: bold;\n"
@@ -463,11 +471,23 @@ class Ui_Form(object):
 
         self.gridLayout_2.addWidget(self.description_tip, 0, 2, 1, 1)
 
-        self.add_button = QPushButton(self.times)
-        self.add_button.setObjectName(u"add_button")
-        self.add_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.all_enable = QPushButton(self.times)
+        self.all_enable.setObjectName(u"all_enable")
 
-        self.gridLayout_2.addWidget(self.add_button, 2, 3, 1, 1)
+        self.gridLayout_2.addWidget(self.all_enable, 2, 4, 1, 1, Qt.AlignmentFlag.AlignRight)
+
+        self.time_tip = QLabel(self.times)
+        self.time_tip.setObjectName(u"time_tip")
+        sizePolicy1.setHeightForWidth(self.time_tip.sizePolicy().hasHeightForWidth())
+        self.time_tip.setSizePolicy(sizePolicy1)
+        self.time_tip.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.time_tip, 0, 1, 1, 1)
+
+        self.description = QTextEdit(self.times)
+        self.description.setObjectName(u"description")
+
+        self.gridLayout_2.addWidget(self.description, 1, 2, 5, 1)
 
         self.time_list = QListWidget(self.times)
         self.time_list.setObjectName(u"time_list")
@@ -480,33 +500,31 @@ class Ui_Form(object):
         self.time_list.setLayoutMode(QListView.LayoutMode.SinglePass)
         self.time_list.setViewMode(QListView.ViewMode.ListMode)
 
-        self.gridLayout_2.addWidget(self.time_list, 1, 1, 4, 1)
+        self.gridLayout_2.addWidget(self.time_list, 1, 1, 5, 1)
 
-        self.description = QTextEdit(self.times)
-        self.description.setObjectName(u"description")
+        self.all_disable = QPushButton(self.times)
+        self.all_disable.setObjectName(u"all_disable")
 
-        self.gridLayout_2.addWidget(self.description, 1, 2, 4, 1)
+        self.gridLayout_2.addWidget(self.all_disable, 2, 3, 1, 1)
 
-        self.time_tip = QLabel(self.times)
-        self.time_tip.setObjectName(u"time_tip")
-        sizePolicy1.setHeightForWidth(self.time_tip.sizePolicy().hasHeightForWidth())
-        self.time_tip.setSizePolicy(sizePolicy1)
-        self.time_tip.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.add_button = QPushButton(self.times)
+        self.add_button.setObjectName(u"add_button")
+        self.add_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
-        self.gridLayout_2.addWidget(self.time_tip, 0, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.add_button, 3, 3, 1, 2)
+
+        self.delete_button = QPushButton(self.times)
+        self.delete_button.setObjectName(u"delete_button")
+        self.delete_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+
+        self.gridLayout_2.addWidget(self.delete_button, 4, 3, 1, 2)
 
         self.edit_button = QPushButton(self.times)
         self.edit_button.setObjectName(u"edit_button")
         self.edit_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.edit_button.setStyleSheet(u"")
 
-        self.gridLayout_2.addWidget(self.edit_button, 4, 3, 1, 1)
-
-        self.delete_button = QPushButton(self.times)
-        self.delete_button.setObjectName(u"delete_button")
-        self.delete_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-
-        self.gridLayout_2.addWidget(self.delete_button, 3, 3, 1, 1)
+        self.gridLayout_2.addWidget(self.edit_button, 5, 3, 1, 2)
 
         self.tabWidget.addTab(self.times, "")
         self.settings = QWidget()
@@ -849,20 +867,28 @@ class Ui_Form(object):
         if (self.time_table.rowCount() < 8):
             self.time_table.setRowCount(8)
         __qtablewidgetitem5 = QTableWidgetItem()
+        __qtablewidgetitem5.setTextAlignment(Qt.AlignCenter);
         self.time_table.setVerticalHeaderItem(0, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
+        __qtablewidgetitem6.setTextAlignment(Qt.AlignCenter);
         self.time_table.setVerticalHeaderItem(1, __qtablewidgetitem6)
         __qtablewidgetitem7 = QTableWidgetItem()
+        __qtablewidgetitem7.setTextAlignment(Qt.AlignCenter);
         self.time_table.setVerticalHeaderItem(2, __qtablewidgetitem7)
         __qtablewidgetitem8 = QTableWidgetItem()
+        __qtablewidgetitem8.setTextAlignment(Qt.AlignCenter);
         self.time_table.setVerticalHeaderItem(3, __qtablewidgetitem8)
         __qtablewidgetitem9 = QTableWidgetItem()
+        __qtablewidgetitem9.setTextAlignment(Qt.AlignCenter);
         self.time_table.setVerticalHeaderItem(4, __qtablewidgetitem9)
         __qtablewidgetitem10 = QTableWidgetItem()
+        __qtablewidgetitem10.setTextAlignment(Qt.AlignCenter);
         self.time_table.setVerticalHeaderItem(5, __qtablewidgetitem10)
         __qtablewidgetitem11 = QTableWidgetItem()
+        __qtablewidgetitem11.setTextAlignment(Qt.AlignCenter);
         self.time_table.setVerticalHeaderItem(6, __qtablewidgetitem11)
         __qtablewidgetitem12 = QTableWidgetItem()
+        __qtablewidgetitem12.setTextAlignment(Qt.AlignCenter);
         self.time_table.setVerticalHeaderItem(7, __qtablewidgetitem12)
         __qtablewidgetitem13 = QTableWidgetItem()
         self.time_table.setItem(0, 0, __qtablewidgetitem13)
@@ -1036,8 +1062,11 @@ class Ui_Form(object):
 "QTableWidget::item:editing {\n"
 "    background-color: rgba(60, 80, 60, 0.6);\n"
 "}")
+        self.time_table.setTextElideMode(Qt.TextElideMode.ElideMiddle)
         self.time_table.setGridStyle(Qt.PenStyle.DashDotLine)
         self.time_table.setSortingEnabled(False)
+        self.time_table.horizontalHeader().setVisible(True)
+        self.time_table.horizontalHeader().setCascadingSectionResizes(False)
 
         self.gridLayout_13.addWidget(self.time_table, 0, 0, 3, 6)
 
@@ -1117,7 +1146,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
 
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(1)
 
 
@@ -1140,10 +1169,12 @@ class Ui_Form(object):
         self.times.setAccessibleName("")
 #endif // QT_CONFIG(accessibility)
         self.description_tip.setText(QCoreApplication.translate("Form", u"\u63cf\u8ff0", None))
-        self.add_button.setText(QCoreApplication.translate("Form", u"\u6dfb\u52a0", None))
+        self.all_enable.setText(QCoreApplication.translate("Form", u"\u5168\u90e8\u542f\u7528", None))
         self.time_tip.setText(QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
-        self.edit_button.setText(QCoreApplication.translate("Form", u"\u4fee\u6539", None))
+        self.all_disable.setText(QCoreApplication.translate("Form", u"\u5168\u90e8\u7981\u7528", None))
+        self.add_button.setText(QCoreApplication.translate("Form", u"\u6dfb\u52a0", None))
         self.delete_button.setText(QCoreApplication.translate("Form", u"\u5220\u9664", None))
+        self.edit_button.setText(QCoreApplication.translate("Form", u"\u4fee\u6539", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.times), QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
 #if QT_CONFIG(tooltip)
         self.is_active.setToolTip(QCoreApplication.translate("Form", u"\u70b9\u51fb\u5207\u6362\u6fc0\u6d3b\u72b6\u6001", None))

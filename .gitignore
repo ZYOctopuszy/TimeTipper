@@ -1,5 +1,4 @@
 /dist
-/__pycache__
 /.vscode
 /.idea
 /.git
@@ -8,3 +7,6 @@ test.py
 clock.json
 config.json
 /**/__pycache__
+/classes/__pycache__
+/__pycache__
+/UIs/__pycache__

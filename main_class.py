@@ -90,12 +90,12 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.config_json_path: str = current_path(
             relative_path="config.json", mode="exe"
         )
-        self.time_table_ini_path: str = current_path(
-            relative_path="timetable.ini", mode="exe"
+        self.time_table_json_path: str = current_path(
+            relative_path="timetable.json", mode="exe"
         )
         logger.debug(f"配置文件路径: {self.clock_json_path}")
         logger.debug(f"配置文件路径: {self.config_json_path}")
-        logger.debug(f"配置文件路径: {self.time_table_ini_path}")
+        logger.debug(f"配置文件路径: {self.time_table_json_path}")
         # 设置图片文件路径
         self.files: list[str] = [
             str(object=Path(i).resolve())
@@ -140,6 +140,14 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
                             obj={"00:00": ["Default Description", True]}, fp=f, indent=4
                         )
                     logger.critical(f"严重未知错误, 错误代码: {e}")
+                case "tt-error":
+                    logger.error(
+                        f"课程表配置文件不存在或损坏, 创建默认课程表配置文件{e}"
+                    )
+                    with open(
+                        file=self.time_table_json_path, mode="w", encoding="utf-8"
+                    ) as f:
+                        dump(obj={"config": []}, fp=f, indent=4)
                 case "f-error":
                     logger.error(f"功能配置文件不存在或损坏, 创建默认配置文件{e}")
                     with open(
@@ -216,10 +224,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.ui.for_kill_list.addItems(self.forKillExe)
         self.ui.for_close_title.addItems(self.forKillWindowTitle)
         logger.debug("已加载待杀程序列表")
-        # endregion
-
-        # region 初始化课程表
-        self.time_table = classes.TimeTable(p_window=self)
         # endregion
 
     # region 主窗口类方法s
