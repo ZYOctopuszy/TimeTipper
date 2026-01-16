@@ -22,15 +22,3 @@ class TimeTable:
                 if item:=self.time_table.item(row, column):
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     item.setIcon(QIcon(self.p_window.files[0]))
-
-    def eventFilter(self, source, event):
-        if event.type() == QEvent.Type.MouseButtonPress:
-            if item := self.time_table.itemAt(
-                self.time_table.viewport().mapFromGlobal(QCursor().pos())
-            ):
-                if event.button() == Qt.MouseButton.RightButton:
-                    row = item.row()
-                    column = item.column()
-                    # 在这里处理右键点击事件
-                    print(f"切换了课程启用状态: {self.time_table.horizontalHeaderItem(column).text()} - {self.time_table.verticalHeaderItem(row).text()} - {item.text()}")
-                    
