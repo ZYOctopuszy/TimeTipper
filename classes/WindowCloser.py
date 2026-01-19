@@ -25,7 +25,12 @@ def callback(hwnd, extra):
     """
     global count
     window_title = win32gui.GetWindowText(hwnd)
-    if extra.lower() in window_title.lower() and win32gui.IsWindow(hwnd):
+    if (
+        extra.lower() in window_title.lower()
+        and win32gui.IsWindow(hwnd)
+        and win32gui.IsWindowVisible(hwnd)
+        and win32gui.IsWindowEnabled(hwnd)
+    ):
         logger.debug(f"找到匹配窗口 - 句柄: {hwnd}, 标题: {window_title}")
         win32gui.PostMessage(hwnd, win32con.WM_CLOSE)
         count += 1

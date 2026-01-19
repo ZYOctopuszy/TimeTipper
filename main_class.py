@@ -34,7 +34,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 初始化ui
         self.ui = settings.Ui_Form()
         self.ui.setupUi(Form=self)
-        set_window_size(window=self, application=app)
+        # set_window_size(window=self, application=app)
         self.app = app
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
@@ -73,6 +73,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.hold_time: int = 0
         # 下课时间表
         self.time_config: list[classes.basic_classes.Clock.Clock] = []
+        self.day: int = 0
         # 软件生命状态
         self.life: bool = True
         # 测试模式

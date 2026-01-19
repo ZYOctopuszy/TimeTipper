@@ -52,14 +52,12 @@ class MessageShower:
                     self.p_window.kill_windows,
                     self.p_window.forKillWindowTitle,
                 ):
-                    # self.p_window.app.beep()
-                    ...
+                    self.p_window.app.beep()
                 logger.debug("杀死进程中")
-                if self.p_window.forKillExe and True in map_extra(
-                    kill_exe, self.p_window.forKillExe
+                if self.p_window.forKillExe and (
+                    True in map_extra(kill_exe, self.p_window.forKillExe)
                 ):
-                    ...
-                    # self.p_window.app.beep()
+                    self.p_window.app.beep()
                 break
         self.p_window.test = False
         self.p_window.ui.test_button.setEnabled(True)
