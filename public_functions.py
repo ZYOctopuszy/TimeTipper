@@ -1,9 +1,12 @@
 from os import popen
+from json import load, dump
 from sys import argv
 from pathlib import Path, PurePath
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QListWidget, QWidget, QCheckBox
 from loguru import logger
+
+from classes.basic_classes.Clock import Clock
 
 __all__ = [
     "current_path",
@@ -122,3 +125,39 @@ def connect_signals(widgets: list, func) -> list:
         )
         for widget in widgets
     ]
+
+
+@logger.catch
+def load_from_json(file: str) -> dict:
+    """
+    从JSON文件加载数据
+    :param file: JSON文件路径
+    :return: 加载的数据字典
+    """
+    f = open(file=file, mode="r", encoding="utf-8")
+    try:
+        config: list = load(fp=f)["config"]
+        f.close()
+        if type(config) == dict:
+            return config
+        logger.error("加载JSON文件时出错: 数据格式不正确, 预期为字典")
+        return {}
+    except Exception as e:
+        logger.error(f"加载JSON文件时出错: {e}")
+        return {}
+
+@logger.catch
+def save_to_json(file: str, data: list[list[Clock]]) -> None:
+    """
+    将数据保存到JSON文件
+    :param file: JSON文件路径
+    :param data: 要保存的数据字典
+    :return: None
+    """
+    l: list = []
+    for day in range(7):
+        temp: list = []
+        temp.extend([item.time, item.description, item.state] for item in data[day])
+        l.append(temp)
+    with open(file=file, mode="w", encoding="utf-8") as f:
+        dump(obj={"config": l}, fp=f, ensure_ascii=False, indent=4)

@@ -30,6 +30,49 @@ QWidget#Form {
     border-radius: 8px;
 }
 
+/* 组合框基础样式 */
+QComboBox {
+    background-color: rgba(40, 50, 40, 0.8);
+    border: 1px solid rgba(70, 90, 70, 0.7);
+    border-radius: 4px;
+    padding: 3px 18px 3px 8px;
+    color: #e0e0e0;
+    min-width: 6em;
+    selection-background-color: rgba(60, 120, 70, 0.7);
+}
+
+/* 悬停状态 */
+QComboBox:hover {
+    background-color: rgba(50, 70, 50, 0.9);
+    border-color: rgba(90, 120, 90, 0.8);
+}
+
+/* 展开状态 */
+QComboBox:on {
+    background-color: rgba(50, 70, 50, 0.9);
+}
+
+/* 下拉箭头区域 */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: right center;
+    width: 16px;
+    border-left: 1px solid rgba(70, 90, 70, 0.7);
+    border-radius: 0 4px 4px 0;
+    background: rgba(60, 80, 60, 0.7);
+}
+
+/* 下拉列表样式 */
+QComboBox QAbstractItemView {
+    background-color: rgba(40, 50, 40, 0.95);
+    border: 1px solid rgba(70, 90, 70, 0.7);
+    selection-background-color: rgba(60, 120, 70, 0.7);
+    selection-color: white;
+    color: #e0e0e0;
+    outline: none;
+    border-radius: 4px;
+}
+
 /* 标签页容器 */
 QTabWidget::pane {
     border: 1px solid rgba(50, 80, 50, 0.0);
@@ -168,7 +211,7 @@ QFrame#frame_2, #frame_4{
     border-radius: 6px;
 }
 QFrame#frame {
-    backgroud-color: rgba(35, 45, 35, 0.0);
+    background-color: rgba(35, 45, 35, 0.0);
     border: 1px solid rgba(70, 90, 70, 0.6);
     border-radius: 6px;
 }
@@ -526,29 +569,41 @@ QPushButton#close_button:disabled {
           <string>时间</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="2" column="2" rowspan="5">
+          <item row="3" column="2" rowspan="5">
            <widget class="QTextEdit" name="description"/>
           </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="description_tip">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>描述</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignmentFlag::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="3">
+          <item row="4" column="3">
            <widget class="QPushButton" name="all_disable">
             <property name="text">
              <string>全部禁用</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" rowspan="5">
+           <widget class="QListWidget" name="time_list">
+            <property name="cursor" stdset="0">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="dragDropMode">
+             <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+            </property>
+            <property name="movement">
+             <enum>QListView::Movement::Static</enum>
+            </property>
+            <property name="flow">
+             <enum>QListView::Flow::TopToBottom</enum>
+            </property>
+            <property name="resizeMode">
+             <enum>QListView::ResizeMode::Fixed</enum>
+            </property>
+            <property name="layoutMode">
+             <enum>QListView::LayoutMode::SinglePass</enum>
+            </property>
+            <property name="viewMode">
+             <enum>QListView::ViewMode::ListMode</enum>
             </property>
            </widget>
           </item>
@@ -568,17 +623,7 @@ QPushButton#close_button:disabled {
             </property>
            </widget>
           </item>
-          <item row="5" column="3" colspan="2">
-           <widget class="QPushButton" name="delete_button">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="text">
-             <string>删除</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="3" colspan="2">
+          <item row="7" column="3" colspan="2">
            <widget class="QPushButton" name="edit_button">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
@@ -591,7 +636,24 @@ QPushButton#close_button:disabled {
             </property>
            </widget>
           </item>
-          <item row="4" column="3" colspan="2">
+          <item row="6" column="3" colspan="2">
+           <widget class="QPushButton" name="delete_button">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string>删除</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4" alignment="Qt::AlignmentFlag::AlignRight">
+           <widget class="QPushButton" name="all_enable">
+            <property name="text">
+             <string>全部启用</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3" colspan="2">
            <widget class="QPushButton" name="add_button">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
@@ -601,83 +663,59 @@ QPushButton#close_button:disabled {
             </property>
            </widget>
           </item>
-          <item row="3" column="4" alignment="Qt::AlignmentFlag::AlignRight">
-           <widget class="QPushButton" name="all_enable">
+          <item row="0" column="2">
+           <widget class="QLabel" name="description_tip">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>全部启用</string>
+             <string>描述</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" rowspan="5">
-           <widget class="QTabWidget" name="tabWidget_3">
-            <property name="currentIndex">
-             <number>0</number>
-            </property>
-            <widget class="QWidget" name="tab">
-             <attribute name="title">
+          <item row="1" column="1">
+           <widget class="QComboBox" name="day">
+            <item>
+             <property name="text">
               <string>周一</string>
-             </attribute>
-             <layout class="QGridLayout" name="gridLayout_13">
-              <item row="0" column="0">
-               <widget class="QListWidget" name="time_list">
-                <property name="cursor" stdset="0">
-                 <cursorShape>ArrowCursor</cursorShape>
-                </property>
-                <property name="dragDropMode">
-                 <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
-                </property>
-                <property name="selectionMode">
-                 <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
-                </property>
-                <property name="movement">
-                 <enum>QListView::Movement::Static</enum>
-                </property>
-                <property name="flow">
-                 <enum>QListView::Flow::TopToBottom</enum>
-                </property>
-                <property name="resizeMode">
-                 <enum>QListView::ResizeMode::Fixed</enum>
-                </property>
-                <property name="layoutMode">
-                 <enum>QListView::LayoutMode::SinglePass</enum>
-                </property>
-                <property name="viewMode">
-                 <enum>QListView::ViewMode::ListMode</enum>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="tab_2">
-             <attribute name="title">
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>周二</string>
-             </attribute>
-            </widget>
-            <widget class="QWidget" name="tab_3">
-             <attribute name="title">
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>周三</string>
-             </attribute>
-            </widget>
-            <widget class="QWidget" name="tab_4">
-             <attribute name="title">
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>周四</string>
-             </attribute>
-            </widget>
-            <widget class="QWidget" name="tab_5">
-             <attribute name="title">
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>周五</string>
-             </attribute>
-            </widget>
-            <widget class="QWidget" name="tab_6">
-             <attribute name="title">
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>周六</string>
-             </attribute>
-            </widget>
-            <widget class="QWidget" name="tab_7">
-             <attribute name="title">
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>周日</string>
-             </attribute>
-            </widget>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>

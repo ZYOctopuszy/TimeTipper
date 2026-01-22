@@ -7,6 +7,7 @@ from .MessageShower import MessageShower
 from .Tray import Tray
 from .LogManager import LogManager
 from .TimeManager import TimeManager
+from .DayManager import DayManager
 
 __all__ = [
     "basic_classes",
@@ -18,4 +19,5 @@ __all__ = [
     "Tray",
     "LogManager",
     "TimeManager",
+    "DayManager",
 ]

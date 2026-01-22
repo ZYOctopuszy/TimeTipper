@@ -72,8 +72,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 持续时间
         self.hold_time: int = 0
         # 下课时间表
-        self.time_config: list[classes.basic_classes.Clock.Clock] = []
-        self.day: int = 0
+        self.time_config: list[list[classes.basic_classes.Clock.Clock]] = []
         # 软件生命状态
         self.life: bool = True
         # 测试模式
@@ -91,12 +90,8 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.config_json_path: str = current_path(
             relative_path="config.json", mode="exe"
         )
-        self.time_table_json_path: str = current_path(
-            relative_path="timetable.json", mode="exe"
-        )
         logger.debug(f"配置文件路径: {self.clock_json_path}")
         logger.debug(f"配置文件路径: {self.config_json_path}")
-        logger.debug(f"配置文件路径: {self.time_table_json_path}")
         # 设置图片文件路径
         self.files: list[str] = [
             str(object=Path(i).resolve())
@@ -113,17 +108,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # region 处理配置文件
         what_is_the_error: str = "t-error"
         try:
-            with open(file=self.clock_json_path, encoding="utf-8") as f:
-                d = load(f)
-                self.time_config = [
-                    classes.basic_classes.Clock.Clock(
-                        time=time, description=d[time][0], state=d[time][1]
-                    )
-                    for time in d.keys()
-                ]
-                logger.debug(
-                    f"下课时间配置: {[clock.time for clock in self.time_config]}"
-                )
+            
             what_is_the_error = "f-error"
             with open(file=self.config_json_path, encoding="utf-8") as f:
                 self.load_config(configure=load(fp=f))
@@ -205,6 +190,10 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # region 初始化托盘图标
         self.tray_icon = classes.Tray(self)
         self.tray_icon.flash_tray()
+        # endregion
+
+        # region 初始化weekday管理类
+        self.day_manager = classes.DayManager(self, self.ui.day, self.time_config)
         # endregion
 
         # region 初始化待杀应用窗口类

@@ -8,6 +8,7 @@ from PySide6.QtWidgets import QApplication, QListWidgetItem
 from loguru import logger
 
 import classes
+from public_functions import save_to_json
 
 
 class TimeManager(QObject):
@@ -189,18 +190,9 @@ class TimeManager(QObject):
         logger.debug(
             f"已刷新时间表配置, 当前配置:{[time.time for time in self.p_window.time_config]}"
         )
-        with open("clock.json", "w", encoding="utf-8") as f:
-            dump(
-                obj={
-                    clock.time: [
-                        clock.description,
-                        clock.state,
-                    ]
-                    for clock in self.p_window.time_config
-                },
-                fp=f,
-                ensure_ascii=False,
-                indent=4,
-            )
+        save_to_json(
+            file=self.p_window.clock_json_path, data=self.p_window.time_config
+        )
+        
 
     # endregion
