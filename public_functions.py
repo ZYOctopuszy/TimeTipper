@@ -1,10 +1,12 @@
-from os import popen
+if __name__ == "__main__":
+    from main_class import MainWindow
 from json import load, dump
 from sys import argv
 from pathlib import Path, PurePath
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QListWidget, QWidget, QCheckBox
 from loguru import logger
+import psutil
 
 from classes.basic_classes.Clock import Clock
 
@@ -15,6 +17,8 @@ __all__ = [
     "flash_list_widget",
     "map_extra",
     "connect_signals",
+    "load_time_from_json",
+    "save_time_to_json",
 ]
 
 
@@ -40,7 +44,7 @@ def current_path(relative_path: str, mode: str = "resource") -> str:
 
 
 @logger.catch
-def set_window_size(window: QWidget, application: QApplication):
+def set_window_size(window: "MainWindow", application: QApplication):
     """
     将窗口居中于屏幕并设置为屏幕尺寸的一半
     :param application: Qt应用对象
@@ -53,7 +57,7 @@ def set_window_size(window: QWidget, application: QApplication):
     height = available_geometry.height()
 
     # 应用窗口位置
-    window.setGeometry(
+    window.ui.main_frame.setGeometry(
         width >> 2,
         height >> 2,
         width >> 1,
@@ -69,19 +73,16 @@ def kill_exe(process: str) -> bool:
     :param process: 进程映像名
     :return: 是否成功杀死进程
     """
-    if (
-        process
-        == popen(f'tasklist /nh /fi "IMAGENAME eq {process}"')
-        .read()
-        .split("\n")[1]
-        .split("  ")[0]
-    ):
-        logger.debug(f"杀死进程{process}")
-        popen(f"taskkill /f /im {process}")
-        return True
-    else:
-        logger.warning(f"{process}未运行")
-        return False
+    for proc in psutil.process_iter(["name"]):
+        try:
+            if proc.info["name"] == process:
+                logger.debug(f"杀死进程{process}")
+                proc.kill()
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+    logger.warning(f"{process}未运行")
+    return False
 
 
 @logger.catch
@@ -127,27 +128,34 @@ def connect_signals(widgets: list, func) -> list:
     ]
 
 
+_json_cache = {}
+
+
 @logger.catch
-def load_from_json(file: str) -> dict:
+def load_time_from_json(file: str) -> list:
     """
     从JSON文件加载数据
     :param file: JSON文件路径
-    :return: 加载的数据字典
+    :return: 加载的数据列表
     """
+    if file in _json_cache:
+        return _json_cache[file]
+
     f = open(file=file, mode="r", encoding="utf-8")
     try:
         config: list = load(fp=f)["config"]
         f.close()
-        if type(config) == dict:
+        if type(config) == list:
             return config
-        logger.error("加载JSON文件时出错: 数据格式不正确, 预期为字典")
-        return {}
+        logger.error("加载JSON文件时出错: 数据格式不正确, 预期为列表")
+        return []
     except Exception as e:
         logger.error(f"加载JSON文件时出错: {e}")
-        return {}
+        return []
+
 
 @logger.catch
-def save_to_json(file: str, data: list[list[Clock]]) -> None:
+def save_time_to_json(file: str, data: list[list[Clock]]) -> None:
     """
     将数据保存到JSON文件
     :param file: JSON文件路径
@@ -161,3 +169,4 @@ def save_to_json(file: str, data: list[list[Clock]]) -> None:
         l.append(temp)
     with open(file=file, mode="w", encoding="utf-8") as f:
         dump(obj={"config": l}, fp=f, ensure_ascii=False, indent=4)
+    _json_cache[file] = l

@@ -34,11 +34,11 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 初始化ui
         self.ui = settings.Ui_Form()
         self.ui.setupUi(Form=self)
-        # set_window_size(window=self, application=app)
         self.app = app
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        # 实例化关闭窗口类
+        set_window_size(window=self, application=app)
+        # 实例化关闭窗口方法
         self.kill_windows = kill_windows
         # 初始化日志管理类
         self.logger_manager = classes.LogManager(self)
@@ -72,7 +72,10 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 持续时间
         self.hold_time: int = 0
         # 下课时间表
-        self.time_config: list[list[classes.basic_classes.Clock.Clock]] = []
+        self.clock_json_path: str = current_path(relative_path="clock.json", mode="exe")
+        self.time_config: list[list[classes.basic_classes.Clock.Clock]] = (
+            classes.DayManager.get_config(config_json=self.clock_json_path)
+        )
         # 软件生命状态
         self.life: bool = True
         # 测试模式
@@ -86,7 +89,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 随机等待时间
         self.random_time: list[int] = self.default_config["random_time"]
         # 配置文件路径
-        self.clock_json_path: str = current_path(relative_path="clock.json", mode="exe")
         self.config_json_path: str = current_path(
             relative_path="config.json", mode="exe"
         )
@@ -94,55 +96,23 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         logger.debug(f"配置文件路径: {self.config_json_path}")
         # 设置图片文件路径
         self.files: list[str] = [
-            str(object=Path(i).resolve())
-            for i in map(
-                current_path,
-                [
-                    r"icons\active.png",
-                    r"icons\inactive.png",
-                    r"icons\hide_tray.png",
-                    r"icons\active.ico",
-                ],
-            )
+            str(object=Path(current_path(i)).resolve())
+            for i in [
+                r"icons\active.png",
+                r"icons\inactive.png",
+                r"icons\hide_tray.png",
+                r"icons\active.ico",
+            ]
         ]
         # region 处理配置文件
-        what_is_the_error: str = "t-error"
         try:
-            
-            what_is_the_error = "f-error"
             with open(file=self.config_json_path, encoding="utf-8") as f:
                 self.load_config(configure=load(fp=f))
             logger.debug("导入成功")
         except Exception as e:
-            match what_is_the_error:
-                case "t-error":
-                    logger.error(
-                        f"时间表配置文件不存在或损坏, 创建默认时间表配置文件{e}"
-                    )
-                    with open(
-                        file=self.clock_json_path, mode="w", encoding="utf-8"
-                    ) as f:
-                        dump(
-                            obj={"00:00": ["Default Description", True]}, fp=f, indent=4
-                        )
-                    logger.critical(f"严重未知错误, 错误代码: {e}")
-                case "tt-error":
-                    logger.error(
-                        f"课程表配置文件不存在或损坏, 创建默认课程表配置文件{e}"
-                    )
-                    with open(
-                        file=self.time_table_json_path, mode="w", encoding="utf-8"
-                    ) as f:
-                        dump(obj={"config": []}, fp=f, indent=4)
-                case "f-error":
-                    logger.error(f"功能配置文件不存在或损坏, 创建默认配置文件{e}")
-                    with open(
-                        file=self.config_json_path, mode="w", encoding="utf-8"
-                    ) as f:
-                        dump(obj=self.default_config, fp=f, indent=4)
-                case _:
-                    logger.critical(f"严重未知错误, 错误代码: {e}")
-                    sys.exit(status=1)
+            logger.error(f"功能配置文件不存在或损坏, 创建默认配置文件{e}")
+            with open(file=self.config_json_path, mode="w", encoding="utf-8") as f:
+                dump(obj=self.default_config, fp=f, indent=4)
         self.show_config()
         # endregion
 
@@ -163,10 +133,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
             )
         )
         QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(self.quit_app)
-        # endregion
-
-        # region 初始化时间列表管理器
-        self.time_manager = classes.TimeManager(self)
         # endregion
 
         # region 关联控件函数
@@ -194,6 +160,12 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
 
         # region 初始化weekday管理类
         self.day_manager = classes.DayManager(self, self.ui.day, self.time_config)
+        # endregion
+
+        # region 初始化时间列表管理器
+        self.time_manager = classes.TimeManager(
+            self, self.ui.time_list, self.day_manager.day
+        )
         # endregion
 
         # region 初始化待杀应用窗口类

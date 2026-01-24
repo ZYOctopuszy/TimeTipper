@@ -30,49 +30,6 @@ QWidget#Form {
     border-radius: 8px;
 }
 
-/* 组合框基础样式 */
-QComboBox {
-    background-color: rgba(40, 50, 40, 0.8);
-    border: 1px solid rgba(70, 90, 70, 0.7);
-    border-radius: 4px;
-    padding: 3px 18px 3px 8px;
-    color: #e0e0e0;
-    min-width: 6em;
-    selection-background-color: rgba(60, 120, 70, 0.7);
-}
-
-/* 悬停状态 */
-QComboBox:hover {
-    background-color: rgba(50, 70, 50, 0.9);
-    border-color: rgba(90, 120, 90, 0.8);
-}
-
-/* 展开状态 */
-QComboBox:on {
-    background-color: rgba(50, 70, 50, 0.9);
-}
-
-/* 下拉箭头区域 */
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: right center;
-    width: 16px;
-    border-left: 1px solid rgba(70, 90, 70, 0.7);
-    border-radius: 0 4px 4px 0;
-    background: rgba(60, 80, 60, 0.7);
-}
-
-/* 下拉列表样式 */
-QComboBox QAbstractItemView {
-    background-color: rgba(40, 50, 40, 0.95);
-    border: 1px solid rgba(70, 90, 70, 0.7);
-    selection-background-color: rgba(60, 120, 70, 0.7);
-    selection-color: white;
-    color: #e0e0e0;
-    outline: none;
-    border-radius: 4px;
-}
-
 /* 标签页容器 */
 QTabWidget::pane {
     border: 1px solid rgba(50, 80, 50, 0.0);
@@ -131,8 +88,9 @@ QPushButton:disabled {
 
 /* 特殊按钮样式 */
 QPushButton#all_disable, QPushButton#all_enable {
-    padding: 6px -15px;;
+    padding: 6px -15px;
 }
+
 QPushButton#is_active {
     background-color: rgba(80, 160, 90, 0.85);
     border-color: rgba(110, 190, 120, 0.7);
@@ -151,6 +109,10 @@ QPushButton#test_button:hover {
     background-color: rgba(140, 80, 70, 0.9);
 }
 
+QPushButton#select_now{
+	min-width: 0px;
+}
+
 /* 列表和文本编辑框 */
 QListWidget, QTextEdit {
     background-color: rgba(40, 50, 40, 0.0);
@@ -166,7 +128,6 @@ QListWidget, QTextEdit {
 QCheckBox {
     background: transparent;
     padding: 2px;
-    spacing: 5px;
 }
 
 QCheckBox::indicator {
@@ -205,24 +166,32 @@ QSpinBox::up-button:hover, QSpinBox::down-button:hover {
 }
 
 /* 框架样式 */
-QFrame#frame_2, #frame_4{
+QFrame#frame_2, #frame_4 {
     background-color: rgba(35, 45, 35, 0.1);
     border: 1px solid rgba(70, 90, 70, 0.6);
     border-radius: 6px;
 }
+
 QFrame#frame {
     background-color: rgba(35, 45, 35, 0.0);
     border: 1px solid rgba(70, 90, 70, 0.6);
     border-radius: 6px;
 }
+
+QFrame#frame_5 {
+	border: -2px solid rgba(70, 90, 70, 0.0);
+	border-radius: -2px;
+}
+
 QFrame#frame_3 {
     background-color: rgba(35, 45, 35, 0.8);
     border: 1px solid rgba(70, 90, 70, 0.6);
     border-radius: 6px;
 }
+
 QFrame#main_frame {
     background-color: rgb(35, 45, 35);
-    border: 1px solid rgba(70, 90, 80 ,0.6);
+    border: 1px solid rgba(70, 90, 80, 0.6);
     border-radius: 6px;
 }
 
@@ -313,6 +282,176 @@ QPushButton[text=&quot;应用(Alt+A)&quot;] {
 /* 退出按钮特殊样式 */
 QPushButton[text=&quot;退出(Ctrl+Q)&quot;] {
     background-color: rgba(120, 60, 50, 0.85);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 组合框基础样式 */
+QComboBox {
+    background-color: rgba(40, 50, 40, 0.8);
+    border: 1px solid rgba(70, 90, 70, 0.7);
+    border-radius: 4px;
+    padding: 3px 18px 3px 8px;
+    color: #e0e0e0;
+    min-width: 6em;
+    selection-background-color: rgba(60, 120, 70, 0.7);
+}
+
+/* 悬停状态 */
+QComboBox:hover {
+    background-color: rgba(50, 70, 50, 0.9);
+    border-color: rgba(90, 120, 90, 0.8);
+}
+
+/* 展开状态 */
+QComboBox:on {
+    background-color: rgba(50, 70, 50, 0.9);
+}
+
+/* 下拉箭头区域 */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: right center;
+    width: 16px;
+    border-left: 1px solid rgba(70, 90, 70, 0.7);
+    border-radius: 0 4px 4px 0;
+    background: rgba(60, 80, 60, 0.7);
+}
+
+/* 下拉列表样式 */
+QComboBox QAbstractItemView {
+    background-color: rgba(40, 50, 40, 0.95);
+    border: 1px solid rgba(70, 90, 70, 0.7);
+    selection-background-color: rgba(60, 120, 70, 0.7);
+    selection-color: white;
+    color: #e0e0e0;
+    outline: none;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 最小化按钮样式 - 暗色主题与绿色调协调 */
+QPushButton#minimize_button {
+    background-color: rgba(50, 60, 50, 0.85);  /* 深绿色调背景 */
+    border: 1px solid rgba(80, 100, 80, 0.7);  /* 浅绿色边框 */
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 4px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    font-weight: bold;
+    qproperty-text: &quot;-&quot;;  /* 使用下划线作为最小化符号 */
+}
+
+/* 悬停状态 - 增强绿色调 */
+QPushButton#minimize_button:hover {
+    background-color: rgba(70, 90, 70, 0.9);
+    border-color: rgba(100, 130, 100, 0.8);
+}
+
+/* 按下状态 */
+QPushButton#minimize_button:pressed {
+    background-color: rgba(90, 110, 90, 0.9);
+    border-color: rgba(120, 150, 120, 0.8);
+}
+
+/* 禁用状态 */
+QPushButton#minimize_button:disabled {
+    background-color: rgba(50, 60, 50, 0.6);
+    border-color: rgba(70, 80, 70, 0.5);
+    color: rgba(180, 180, 180, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QPushButton#close_button {
+    background-color: rgba(80, 40, 40, 0.85);  /* 深红褐色背景 */
+    border: 1px solid rgba(120, 60, 60, 0.7);  /* 红褐色边框 */
+    border-radius: 4px;
+    color: #f0f0f0;
+    padding: 4px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    font-weight: bold;
+    qproperty-text: &quot;×&quot;;  /* 使用乘号作为关闭符号 */
+}
+
+/* 悬停状态 - 增强红色调但仍保持协调 */
+QPushButton#close_button:hover {
+    background-color: rgba(120, 60, 60, 0.9);
+    border-color: rgba(150, 80, 80, 0.8);
+}
+
+/* 按下状态 */
+QPushButton#close_button:pressed {
+    background-color: rgba(150, 70, 70, 0.9);
+    border-color: rgba(180, 90, 90, 0.8);
+}
+
+/* 禁用状态 */
+QPushButton#close_button:disabled {
+    background-color: rgba(60, 50, 50, 0.6);
+    border-color: rgba(80, 70, 70, 0.5);
+    color: rgba(180, 180, 180, 0.5);
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_10">
@@ -387,39 +526,7 @@ QPushButton[text=&quot;退出(Ctrl+Q)&quot;] {
          <cursorShape>ArrowCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">/* 最小化按钮样式 - 暗色主题与绿色调协调 */
-QPushButton#minimize_button {
-    background-color: rgba(50, 60, 50, 0.85);  /* 深绿色调背景 */
-    border: 1px solid rgba(80, 100, 80, 0.7);  /* 浅绿色边框 */
-    border-radius: 4px;
-    color: #f0f0f0;
-    padding: 4px;
-    min-width: 20px;
-    max-width: 20px;
-    min-height: 20px;
-    max-height: 20px;
-    font-weight: bold;
-    qproperty-text: &quot;-&quot;;  /* 使用下划线作为最小化符号 */
-}
-
-/* 悬停状态 - 增强绿色调 */
-QPushButton#minimize_button:hover {
-    background-color: rgba(70, 90, 70, 0.9);
-    border-color: rgba(100, 130, 100, 0.8);
-}
-
-/* 按下状态 */
-QPushButton#minimize_button:pressed {
-    background-color: rgba(90, 110, 90, 0.9);
-    border-color: rgba(120, 150, 120, 0.8);
-}
-
-/* 禁用状态 */
-QPushButton#minimize_button:disabled {
-    background-color: rgba(50, 60, 50, 0.6);
-    border-color: rgba(70, 80, 70, 0.5);
-    color: rgba(180, 180, 180, 0.5);
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>-</string>
@@ -432,38 +539,7 @@ QPushButton#minimize_button:disabled {
          <cursorShape>ArrowCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton#close_button {
-    background-color: rgba(80, 40, 40, 0.85);  /* 深红褐色背景 */
-    border: 1px solid rgba(120, 60, 60, 0.7);  /* 红褐色边框 */
-    border-radius: 4px;
-    color: #f0f0f0;
-    padding: 4px;
-    min-width: 20px;
-    max-width: 20px;
-    min-height: 20px;
-    max-height: 20px;
-    font-weight: bold;
-    qproperty-text: &quot;×&quot;;  /* 使用乘号作为关闭符号 */
-}
-
-/* 悬停状态 - 增强红色调但仍保持协调 */
-QPushButton#close_button:hover {
-    background-color: rgba(120, 60, 60, 0.9);
-    border-color: rgba(150, 80, 80, 0.8);
-}
-
-/* 按下状态 */
-QPushButton#close_button:pressed {
-    background-color: rgba(150, 70, 70, 0.9);
-    border-color: rgba(180, 90, 90, 0.8);
-}
-
-/* 禁用状态 */
-QPushButton#close_button:disabled {
-    background-color: rgba(60, 50, 50, 0.6);
-    border-color: rgba(80, 70, 70, 0.5);
-    color: rgba(180, 180, 180, 0.5);
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>×</string>
@@ -475,6 +551,9 @@ QPushButton#close_button:disabled {
    </item>
    <item row="4" column="2" alignment="Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignBottom">
     <widget class="QFrame" name="frame_5">
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
      <property name="frameShape">
       <enum>QFrame::Shape::StyledPanel</enum>
      </property>
@@ -484,11 +563,21 @@ QPushButton#close_button:disabled {
      <layout class="QGridLayout" name="gridLayout_14">
       <item row="0" column="0">
        <widget class="QLabel" name="resize_label">
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>12</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="autoFillBackground">
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>⇲◢</string>
+         <string>◢</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -569,13 +658,127 @@ QPushButton#close_button:disabled {
           <string>时间</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="3" column="2" rowspan="5">
-           <widget class="QTextEdit" name="description"/>
+          <item row="5" column="3" colspan="2">
+           <widget class="QPushButton" name="add_button">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="description_tip">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>描述</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4" alignment="Qt::AlignmentFlag::AlignRight">
+           <widget class="QPushButton" name="all_enable">
+            <property name="text">
+             <string>全部启用</string>
+            </property>
+           </widget>
           </item>
           <item row="4" column="3">
            <widget class="QPushButton" name="all_disable">
             <property name="text">
              <string>全部禁用</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="3" colspan="2">
+           <widget class="QPushButton" name="edit_button">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>修改</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="3" colspan="2">
+           <widget class="QPushButton" name="delete_button">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string>删除</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="day">
+            <property name="cursor">
+             <cursorShape>SizeVerCursor</cursorShape>
+            </property>
+            <item>
+             <property name="text">
+              <string>星期一</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>星期二</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>星期三</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>星期四</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>星期五</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>星期六</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>星期日</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="3" column="2" rowspan="5">
+           <widget class="QTextEdit" name="description"/>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="time_tip">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>时间</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -607,115 +810,33 @@ QPushButton#close_button:disabled {
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="time_tip">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>时间</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignmentFlag::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="3" colspan="2">
-           <widget class="QPushButton" name="edit_button">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>修改</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="3" colspan="2">
-           <widget class="QPushButton" name="delete_button">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="text">
-             <string>删除</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="4" alignment="Qt::AlignmentFlag::AlignRight">
-           <widget class="QPushButton" name="all_enable">
-            <property name="text">
-             <string>全部启用</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="3" colspan="2">
-           <widget class="QPushButton" name="add_button">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="text">
-             <string>添加</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="description_tip">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>描述</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignmentFlag::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="day">
-            <item>
-             <property name="text">
-              <string>周一</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>周二</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>周三</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>周四</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>周五</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>周六</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>周日</string>
-             </property>
-            </item>
+          <item row="1" column="2">
+           <widget class="QWidget" name="widget" native="true">
+            <layout class="QGridLayout" name="gridLayout_13">
+             <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignLeft">
+              <widget class="QPushButton" name="select_now">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="toolTip">
+                <string>切换为当前日期</string>
+               </property>
+               <property name="text">
+                <string>↺</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+              <widget class="QLabel" name="show_time">
+               <property name="cursor">
+                <cursorShape>IBeamCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>

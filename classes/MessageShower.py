@@ -2,7 +2,7 @@ if __name__ == "__main__":
     from main_class import MainWindow
 import sys
 import threading
-from datetime import datetime
+from datetime import datetime, timedelta, time
 from random import randint
 from time import sleep
 
@@ -20,6 +20,7 @@ class MessageShower:
     @logger.catch
     def __init__(self, p_window: "MainWindow"):
         self.p_window = p_window
+        self.day = self.p_window.day_manager.day
         threading.Thread(target=self.clock).start()
 
     # region 通知提醒功能实现
@@ -31,11 +32,11 @@ class MessageShower:
         """
         now = datetime.now()
         wait_second = (
-            randint(self.p_window.random_time[0], self.p_window.random_time[1])
+            randint(a=self.p_window.random_time[0], b=self.p_window.random_time[1])
             if self.p_window.test
             or (
-                now.strftime("%H:%M")
-                in [clock.time for clock in self.p_window.time_config]
+                now.strftime(format="%H:%M")
+                in [clock.time for clock in self.p_window.time_config[self.day]]
                 and now.second < self.p_window.random_time[0]
             )
             else 0
@@ -47,16 +48,19 @@ class MessageShower:
                 sleep(1)
                 continue
             else:
+                success = False
                 logger.debug("关闭窗口中")
-                if self.p_window.forKillWindowTitle and True in map_extra(
-                    self.p_window.kill_windows,
-                    self.p_window.forKillWindowTitle,
+                if self.p_window.forKillWindowTitle and any(
+                    self.p_window.kill_windows(title=title)
+                    for title in self.p_window.forKillWindowTitle
                 ):
-                    self.p_window.app.beep()
+                    success = True
                 logger.debug("杀死进程中")
-                if self.p_window.forKillExe and (
-                    True in map_extra(kill_exe, self.p_window.forKillExe)
+                if self.p_window.forKillExe and any(
+                    kill_exe(process=exe) for exe in self.p_window.forKillExe
                 ):
+                    success = True
+                if success:
                     self.p_window.app.beep()
                 break
         self.p_window.test = False
@@ -70,35 +74,22 @@ class MessageShower:
         :return: 无
         """
         while self.p_window.life:
-            if self.p_window.test:
-                self.p_window.ui.test_button.setDisabled(True)
-                self.p_window.ui.test_button.setText("执行中, 请稍候...")
-                logger.debug("执行清剿函数")
-                self.killer()
-            elif self.p_window.state:
-                QApplication.processEvents()
+            if self.p_window.test or self.p_window.state:
                 now = datetime.now()
-                for class_over_time in (
-                    c for c in self.p_window.time_config if c.state
-                ):
-                    if (
-                        0
-                        <= (
-                            now
-                            - now.replace(
-                                hour=class_over_time.hours,
-                                minute=class_over_time.minutes,
-                                second=0,
-                                microsecond=0,
-                            )
-                        ).total_seconds()
-                        <= self.p_window.hold_time
-                    ):
-                        # 如果差小于持续时间
-                        self.p_window.ui.test_button.setDisabled(True)
-                        self.p_window.ui.test_button.setText("执行中, 请稍候...")
-                        logger.debug("执行清剿函数")
-                        self.killer()
-                        break
+                current_time = now.time()
+                hold_start = now - timedelta(seconds=self.p_window.hold_time)
+
+                if self.p_window.test or [
+                    (c.hours, c.minutes)
+                    for c in self.p_window.time_config[self.day]
+                    if c.state
+                    and hold_start.time()
+                    <= time(hour=c.hours, minute=c.minutes)
+                    <= current_time
+                ]:
+                    self.p_window.ui.test_button.setDisabled(True)
+                    self.p_window.ui.test_button.setText("执行中, 请稍候...")
+                    logger.debug("执行清剿函数")
+                    self.killer()
             sleep(1)
         sys.exit(0)

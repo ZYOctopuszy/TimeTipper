@@ -40,50 +40,6 @@ class Ui_Form(object):
 "    border-radius: 8px;\n"
 "}\n"
 "\n"
-"/* \u7ec4\u5408\u6846\u57fa\u7840\u6837\u5f0f */\n"
-"QComboBox {\n"
-"    background-color: rgba(40, 50, 40, 0.8);\n"
-"    border: 1px solid rgba(70, 90, 70, 0.7);\n"
-"    border-radius: 4px;\n"
-"    padding: 3px 18px 3px 8px;\n"
-"    color: #e0e0e0;\n"
-"    min-width: 6em;\n"
-"    selection-background-color: rgba(60, 120, 70, 0.7);\n"
-"}\n"
-"\n"
-"/* \u60ac\u505c\u72b6\u6001 */\n"
-"QComboBox:hover {\n"
-"    background-color: rgba(50, 70, 50, 0.9);\n"
-"    border-color: rgba(90, 120, 90, 0.8);\n"
-"}\n"
-"\n"
-"/* \u5c55\u5f00\u72b6\u6001 */\n"
-"QComboBox:on {\n"
-"    background-color: rgba(50, 70, 50, 0.9);\n"
-"}\n"
-"\n"
-"/* \u4e0b\u62c9\u7bad\u5934\u533a\u57df */\n"
-"QComboBox::drop-down {\n"
-""
-                        "    subcontrol-origin: padding;\n"
-"    subcontrol-position: right center;\n"
-"    width: 16px;\n"
-"    border-left: 1px solid rgba(70, 90, 70, 0.7);\n"
-"    border-radius: 0 4px 4px 0;\n"
-"    background: rgba(60, 80, 60, 0.7);\n"
-"}\n"
-"\n"
-"/* \u4e0b\u62c9\u5217\u8868\u6837\u5f0f */\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: rgba(40, 50, 40, 0.95);\n"
-"    border: 1px solid rgba(70, 90, 70, 0.7);\n"
-"    selection-background-color: rgba(60, 120, 70, 0.7);\n"
-"    selection-color: white;\n"
-"    color: #e0e0e0;\n"
-"    outline: none;\n"
-"    border-radius: 4px;\n"
-"}\n"
-"\n"
 "/* \u6807\u7b7e\u9875\u5bb9\u5668 */\n"
 "QTabWidget::pane {\n"
 "    border: 1px solid rgba(50, 80, 50, 0.0);\n"
@@ -98,8 +54,7 @@ class Ui_Form(object):
 "    border: 1px solid rgba(70, 100, 70, 0.6);\n"
 "    border-bottom: none;\n"
 "    color: #b0d0b0;\n"
-" "
-                        "   padding: 6px 12px;\n"
+"    padding: 6px 12px;\n"
 "    border-top-left-radius: 4px;\n"
 "    border-top-right-radius: 4px;\n"
 "    margin-right: 2px;\n"
@@ -108,7 +63,8 @@ class Ui_Form(object):
 "QTabBar::tab:selected {\n"
 "    background: rgba(60, 90, 60, 0.9);\n"
 "    color: white;\n"
-"    border-bottom: 1px solid rgba(60, 90, 60, 0.9);\n"
+"    border-bottom: 1px solid rgba(60, 90, "
+                        "60, 0.9);\n"
 "}\n"
 "\n"
 "QTabBar::tab:hover {\n"
@@ -138,17 +94,18 @@ class Ui_Form(object):
 "QPushButton:disabled {\n"
 "    background-color: rgba(46, 125, 50, 0.7);\n"
 "    color: rgba(200, 230, 200, 0.7);\n"
-"    bor"
-                        "der-color: rgba(46, 125, 50, 0.6);\n"
+"    border-color: rgba(46, 125, 50, 0.6);\n"
 "}\n"
 "\n"
 "/* \u7279\u6b8a\u6309\u94ae\u6837\u5f0f */\n"
 "QPushButton#all_disable, QPushButton#all_enable {\n"
-"    padding: 6px -15px;;\n"
+"    padding: 6px -15px;\n"
 "}\n"
+"\n"
 "QPushButton#is_active {\n"
 "    background-color: rgba(80, 160, 90, 0.85);\n"
-"    border-color: rgba(110, 190, 120, 0.7);\n"
+"    b"
+                        "order-color: rgba(110, 190, 120, 0.7);\n"
 "}\n"
 "\n"
 "QPushButton#is_active:hover {\n"
@@ -164,6 +121,10 @@ class Ui_Form(object):
 "    background-color: rgba(140, 80, 70, 0.9);\n"
 "}\n"
 "\n"
+"QPushButton#select_now{\n"
+"	min-width: 0px;\n"
+"}\n"
+"\n"
 "/* \u5217\u8868\u548c\u6587\u672c\u7f16\u8f91\u6846 */\n"
 "QListWidget, QTextEdit {\n"
 "    background-color: rgba(40, 50, 40, 0.0);\n"
@@ -175,18 +136,17 @@ class Ui_Form(object):
 "    selection-color: white;\n"
 "}\n"
 "\n"
-"/* \u590d"
-                        "\u9009\u6846 */\n"
+"/* \u590d\u9009\u6846 */\n"
 "QCheckBox {\n"
 "    background: transparent;\n"
 "    padding: 2px;\n"
-"    spacing: 5px;\n"
 "}\n"
 "\n"
 "QCheckBox::indicator {\n"
 "    width: 16px;\n"
 "    height: 16px;\n"
-"    border: 1px solid rgba(90, 120, 90, 0.7);\n"
+"    border: 1px solid rgba(90, 120,"
+                        " 90, 0.7);\n"
 "    border-radius: 3px;\n"
 "    background: rgba(50, 60, 50, 0.8);\n"
 "}\n"
@@ -218,26 +178,34 @@ class Ui_Form(object):
 "    background: rgba(80, 100, 80, 0.8);\n"
 "}\n"
 "\n"
-"/* \u6846\u67b6\u6837\u5f0f"
-                        " */\n"
-"QFrame#frame_2, #frame_4{\n"
+"/* \u6846\u67b6\u6837\u5f0f */\n"
+"QFrame#frame_2, #frame_4 {\n"
 "    background-color: rgba(35, 45, 35, 0.1);\n"
 "    border: 1px solid rgba(70, 90, 70, 0.6);\n"
 "    border-radius: 6px;\n"
 "}\n"
+"\n"
 "QFrame#frame {\n"
-"    background-color: rgba(35, 45, 35, 0.0);\n"
+"    background-color: rgba(35, 45"
+                        ", 35, 0.0);\n"
 "    border: 1px solid rgba(70, 90, 70, 0.6);\n"
 "    border-radius: 6px;\n"
 "}\n"
+"\n"
+"QFrame#frame_5 {\n"
+"	border: -2px solid rgba(70, 90, 70, 0.0);\n"
+"	border-radius: -2px;\n"
+"}\n"
+"\n"
 "QFrame#frame_3 {\n"
 "    background-color: rgba(35, 45, 35, 0.8);\n"
 "    border: 1px solid rgba(70, 90, 70, 0.6);\n"
 "    border-radius: 6px;\n"
 "}\n"
+"\n"
 "QFrame#main_frame {\n"
 "    background-color: rgb(35, 45, 35);\n"
-"    border: 1px solid rgba(70, 90, 80 ,0.6);\n"
+"    border: 1px solid rgba(70, 90, 80, 0.6);\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
@@ -257,12 +225,12 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "/* \u6eda\u52a8\u6761 */\n"
-"QScrollBar:"
-                        "vertical, QScrollBar:horizontal {\n"
+"QScrollBar:vertical, QScrollBar:horizontal {\n"
 "    background: rgba(40, 50, 40, 0.5);\n"
 "    margin: 0px;\n"
 "}\n"
-"\n"
+""
+                        "\n"
 "QScrollBar:vertical {\n"
 "    width: 10px;\n"
 "}\n"
@@ -302,12 +270,12 @@ class Ui_Form(object):
 "/* \u5de5\u5177\u63d0\u793a */\n"
 "QToolTip {\n"
 "    background-color: rgba(40, 50, 40, 0.95);\n"
-"    color: #e0e0"
-                        "e0;\n"
+"    color: #e0e0e0;\n"
 "    border: 1px solid rgba(70, 100, 70, 0.8);\n"
 "    border-radius: 3px;\n"
 "    padding: 3px;\n"
-"}\n"
+""
+                        "}\n"
 "\n"
 "/* \u6dfb\u52a0\u6309\u94ae(+) */\n"
 "QPushButton[text=\"+\"], \n"
@@ -330,6 +298,180 @@ class Ui_Form(object):
 "/* \u9000\u51fa\u6309\u94ae\u7279\u6b8a\u6837\u5f0f */\n"
 "QPushButton[text=\"\u9000\u51fa(Ctrl+Q)\"] {\n"
 "    background-color: rgba(120, 60, 50, 0.85);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"/* \u7ec4\u5408\u6846\u57fa\u7840\u6837\u5f0f */\n"
+"QComboBox {\n"
+"    background-color: rgba(40, 50, 40, 0.8);\n"
+"    border: 1px solid rgba(70, 90, 70, 0.7);\n"
+"    border-radius: 4px;\n"
+"    padding: 3px 18px 3px 8px;\n"
+"    color"
+                        ": #e0e0e0;\n"
+"    min-width: 6em;\n"
+"    selection-background-color: rgba(60, 120, 70, 0.7);\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 */\n"
+"QComboBox:hover {\n"
+"    background-color: rgba(50, 70, 50, 0.9);\n"
+"    border-color: rgba(90, 120, 90, 0.8);\n"
+"}\n"
+"\n"
+"/* \u5c55\u5f00\u72b6\u6001 */\n"
+"QComboBox:on {\n"
+"    background-color: rgba(50, 70, 50, 0.9);\n"
+"}\n"
+"\n"
+"/* \u4e0b\u62c9\u7bad\u5934\u533a\u57df */\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: right center;\n"
+"    width: 16px;\n"
+"    border-left: 1px solid rgba(70, 90, 70, 0.7);\n"
+"    border-radius: 0 4px 4px 0;\n"
+"    background: rgba(60, 80, 60, 0.7);\n"
+"}\n"
+"\n"
+"/* \u4e0b\u62c9\u5217\u8868\u6837\u5f0f */\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: rgba(40, 50, 40, 0.95);\n"
+"    border: 1px solid rgba(70, 90, 70, 0.7);\n"
+"    selection-background-color: rgba(60, 120, 70, 0.7);\n"
+"    selection-color: white;\n"
+"    color: #e0e0e0;\n"
+"    outline: none;\n"
+" "
+                        "   border-radius: 4px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"/* \u6700\u5c0f\u5316\u6309\u94ae\u6837\u5f0f - \u6697\u8272\u4e3b\u9898\u4e0e\u7eff\u8272\u8c03\u534f\u8c03 */\n"
+"QPushButton#minimize_button {\n"
+"    background-color: rgba(50, 60, 50, 0.85);  /* \u6df1\u7eff\u8272\u8c03\u80cc\u666f */\n"
+"    border: 1px solid rgba(80, 100, 80, 0.7);  /* \u6d45\u7eff\u8272\u8fb9\u6846 */\n"
+"    border-radius: 4px;\n"
+"    color: #f0f0f0;\n"
+"    padding: 4px;\n"
+"    min-width: 20px;\n"
+"    max-width: 20px;\n"
+"    min-height: 20px;\n"
+"    max-height: 20px;\n"
+"    font-weight: bold;\n"
+"    qproperty-text: \"-\";  /* \u4f7f\u7528\u4e0b\u5212\u7ebf\u4f5c\u4e3a\u6700\u5c0f\u5316\u7b26\u53f7 */\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7eff\u8272\u8c03 */\n"
+"QPushButton#minimize_button:hover {\n"
+"    background-color: rgba(70, 90, 70, 0.9);\n"
+"    border-color: rgba(100, 130, 100, 0.8);\n"
+"}\n"
+"\n"
+"/* \u6309"
+                        "\u4e0b\u72b6\u6001 */\n"
+"QPushButton#minimize_button:pressed {\n"
+"    background-color: rgba(90, 110, 90, 0.9);\n"
+"    border-color: rgba(120, 150, 120, 0.8);\n"
+"}\n"
+"\n"
+"/* \u7981\u7528\u72b6\u6001 */\n"
+"QPushButton#minimize_button:disabled {\n"
+"    background-color: rgba(50, 60, 50, 0.6);\n"
+"    border-color: rgba(70, 80, 70, 0.5);\n"
+"    color: rgba(180, 180, 180, 0.5);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"QPushButton#close_button {\n"
+"    background-color: rgba(80, 40, 40, 0.85);  /* \u6df1\u7ea2\u8910\u8272\u80cc\u666f */\n"
+"    border: 1px solid rgba(120, 60, 60, 0.7);  /* \u7ea2\u8910\u8272\u8fb9\u6846 */\n"
+"    border-radius: 4px;\n"
+"    color: #f0f0f0;\n"
+"    padding: 4px;\n"
+"    min-width: 20px;\n"
+"    max-width: 20px;\n"
+"    min-height: 20px;\n"
+"    max-height: 20px;\n"
+"    font-weight: bold;\n"
+"    qproperty-text: \"\u00d7\";  /* \u4f7f\u7528\u4e58\u53f7\u4f5c\u4e3a\u5173\u95ed\u7b26"
+                        "\u53f7 */\n"
+"}\n"
+"\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7ea2\u8272\u8c03\u4f46\u4ecd\u4fdd\u6301\u534f\u8c03 */\n"
+"QPushButton#close_button:hover {\n"
+"    background-color: rgba(120, 60, 60, 0.9);\n"
+"    border-color: rgba(150, 80, 80, 0.8);\n"
+"}\n"
+"\n"
+"/* \u6309\u4e0b\u72b6\u6001 */\n"
+"QPushButton#close_button:pressed {\n"
+"    background-color: rgba(150, 70, 70, 0.9);\n"
+"    border-color: rgba(180, 90, 90, 0.8);\n"
+"}\n"
+"\n"
+"/* \u7981\u7528\u72b6\u6001 */\n"
+"QPushButton#close_button:disabled {\n"
+"    background-color: rgba(60, 50, 50, 0.6);\n"
+"    border-color: rgba(80, 70, 70, 0.5);\n"
+"    color: rgba(180, 180, 180, 0.5);\n"
 "}")
         self.gridLayout_10 = QGridLayout(Form)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
@@ -373,79 +515,14 @@ class Ui_Form(object):
         self.minimize_button = QPushButton(self.frame_2)
         self.minimize_button.setObjectName(u"minimize_button")
         self.minimize_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
-        self.minimize_button.setStyleSheet(u"/* \u6700\u5c0f\u5316\u6309\u94ae\u6837\u5f0f - \u6697\u8272\u4e3b\u9898\u4e0e\u7eff\u8272\u8c03\u534f\u8c03 */\n"
-"QPushButton#minimize_button {\n"
-"    background-color: rgba(50, 60, 50, 0.85);  /* \u6df1\u7eff\u8272\u8c03\u80cc\u666f */\n"
-"    border: 1px solid rgba(80, 100, 80, 0.7);  /* \u6d45\u7eff\u8272\u8fb9\u6846 */\n"
-"    border-radius: 4px;\n"
-"    color: #f0f0f0;\n"
-"    padding: 4px;\n"
-"    min-width: 20px;\n"
-"    max-width: 20px;\n"
-"    min-height: 20px;\n"
-"    max-height: 20px;\n"
-"    font-weight: bold;\n"
-"    qproperty-text: \"-\";  /* \u4f7f\u7528\u4e0b\u5212\u7ebf\u4f5c\u4e3a\u6700\u5c0f\u5316\u7b26\u53f7 */\n"
-"}\n"
-"\n"
-"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7eff\u8272\u8c03 */\n"
-"QPushButton#minimize_button:hover {\n"
-"    background-color: rgba(70, 90, 70, 0.9);\n"
-"    border-color: rgba(100, 130, 100, 0.8);\n"
-"}\n"
-"\n"
-"/* \u6309\u4e0b\u72b6\u6001 */\n"
-"QPushButton#minimize_button:pressed {\n"
-"    background-color: rgba(90, 110, 90, 0.9);\n"
-"    border-color: rgba(12"
-                        "0, 150, 120, 0.8);\n"
-"}\n"
-"\n"
-"/* \u7981\u7528\u72b6\u6001 */\n"
-"QPushButton#minimize_button:disabled {\n"
-"    background-color: rgba(50, 60, 50, 0.6);\n"
-"    border-color: rgba(70, 80, 70, 0.5);\n"
-"    color: rgba(180, 180, 180, 0.5);\n"
-"}")
+        self.minimize_button.setStyleSheet(u"")
 
         self.gridLayout_11.addWidget(self.minimize_button, 0, 0, 1, 1)
 
         self.close_button = QPushButton(self.frame_2)
         self.close_button.setObjectName(u"close_button")
         self.close_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
-        self.close_button.setStyleSheet(u"QPushButton#close_button {\n"
-"    background-color: rgba(80, 40, 40, 0.85);  /* \u6df1\u7ea2\u8910\u8272\u80cc\u666f */\n"
-"    border: 1px solid rgba(120, 60, 60, 0.7);  /* \u7ea2\u8910\u8272\u8fb9\u6846 */\n"
-"    border-radius: 4px;\n"
-"    color: #f0f0f0;\n"
-"    padding: 4px;\n"
-"    min-width: 20px;\n"
-"    max-width: 20px;\n"
-"    min-height: 20px;\n"
-"    max-height: 20px;\n"
-"    font-weight: bold;\n"
-"    qproperty-text: \"\u00d7\";  /* \u4f7f\u7528\u4e58\u53f7\u4f5c\u4e3a\u5173\u95ed\u7b26\u53f7 */\n"
-"}\n"
-"\n"
-"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7ea2\u8272\u8c03\u4f46\u4ecd\u4fdd\u6301\u534f\u8c03 */\n"
-"QPushButton#close_button:hover {\n"
-"    background-color: rgba(120, 60, 60, 0.9);\n"
-"    border-color: rgba(150, 80, 80, 0.8);\n"
-"}\n"
-"\n"
-"/* \u6309\u4e0b\u72b6\u6001 */\n"
-"QPushButton#close_button:pressed {\n"
-"    background-color: rgba(150, 70, 70, 0.9);\n"
-"    border-color: rgba(180, 90, 90, 0.8);\n"
-"}\n"
-"\n"
-"/* \u7981\u7528\u72b6\u6001 */\n"
-"QPushButton#close_button:disab"
-                        "led {\n"
-"    background-color: rgba(60, 50, 50, 0.6);\n"
-"    border-color: rgba(80, 70, 70, 0.5);\n"
-"    color: rgba(180, 180, 180, 0.5);\n"
-"}")
+        self.close_button.setStyleSheet(u"")
 
         self.gridLayout_11.addWidget(self.close_button, 0, 2, 1, 1)
 
@@ -454,13 +531,20 @@ class Ui_Form(object):
 
         self.frame_5 = QFrame(Form)
         self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setAutoFillBackground(False)
         self.frame_5.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_5.setFrameShadow(QFrame.Shadow.Raised)
         self.gridLayout_14 = QGridLayout(self.frame_5)
         self.gridLayout_14.setObjectName(u"gridLayout_14")
         self.resize_label = QLabel(self.frame_5)
         self.resize_label.setObjectName(u"resize_label")
+        font = QFont()
+        font.setFamilies([u"Microsoft YaHei"])
+        font.setPointSize(12)
+        font.setBold(False)
+        self.resize_label.setFont(font)
         self.resize_label.setAutoFillBackground(False)
+        self.resize_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout_14.addWidget(self.resize_label, 0, 0, 1, 1)
 
@@ -492,50 +576,43 @@ class Ui_Form(object):
 
         self.tabWidget = QTabWidget(self.main_frame)
         self.tabWidget.setObjectName(u"tabWidget")
-        font = QFont()
-        font.setFamilies([u"Microsoft YaHei"])
-        font.setBold(True)
-        font.setKerning(False)
-        self.tabWidget.setFont(font)
+        font1 = QFont()
+        font1.setFamilies([u"Microsoft YaHei"])
+        font1.setBold(True)
+        font1.setKerning(False)
+        self.tabWidget.setFont(font1)
         self.tabWidget.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         self.tabWidget.setElideMode(Qt.TextElideMode.ElideNone)
         self.times = QWidget()
         self.times.setObjectName(u"times")
         self.gridLayout_2 = QGridLayout(self.times)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.description = QTextEdit(self.times)
-        self.description.setObjectName(u"description")
+        self.add_button = QPushButton(self.times)
+        self.add_button.setObjectName(u"add_button")
+        self.add_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
-        self.gridLayout_2.addWidget(self.description, 3, 2, 5, 1)
+        self.gridLayout_2.addWidget(self.add_button, 5, 3, 1, 2)
+
+        self.description_tip = QLabel(self.times)
+        self.description_tip.setObjectName(u"description_tip")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.description_tip.sizePolicy().hasHeightForWidth())
+        self.description_tip.setSizePolicy(sizePolicy1)
+        self.description_tip.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.description_tip, 0, 2, 1, 1)
+
+        self.all_enable = QPushButton(self.times)
+        self.all_enable.setObjectName(u"all_enable")
+
+        self.gridLayout_2.addWidget(self.all_enable, 4, 4, 1, 1, Qt.AlignmentFlag.AlignRight)
 
         self.all_disable = QPushButton(self.times)
         self.all_disable.setObjectName(u"all_disable")
 
         self.gridLayout_2.addWidget(self.all_disable, 4, 3, 1, 1)
-
-        self.time_list = QListWidget(self.times)
-        self.time_list.setObjectName(u"time_list")
-        self.time_list.viewport().setProperty(u"cursor", QCursor(Qt.CursorShape.ArrowCursor))
-        self.time_list.setDragDropMode(QAbstractItemView.DragDropMode.NoDragDrop)
-        self.time_list.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
-        self.time_list.setMovement(QListView.Movement.Static)
-        self.time_list.setFlow(QListView.Flow.TopToBottom)
-        self.time_list.setResizeMode(QListView.ResizeMode.Fixed)
-        self.time_list.setLayoutMode(QListView.LayoutMode.SinglePass)
-        self.time_list.setViewMode(QListView.ViewMode.ListMode)
-
-        self.gridLayout_2.addWidget(self.time_list, 3, 1, 5, 1)
-
-        self.time_tip = QLabel(self.times)
-        self.time_tip.setObjectName(u"time_tip")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.time_tip.sizePolicy().hasHeightForWidth())
-        self.time_tip.setSizePolicy(sizePolicy1)
-        self.time_tip.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.time_tip, 0, 1, 1, 1)
 
         self.edit_button = QPushButton(self.times)
         self.edit_button.setObjectName(u"edit_button")
@@ -550,25 +627,6 @@ class Ui_Form(object):
 
         self.gridLayout_2.addWidget(self.delete_button, 6, 3, 1, 2)
 
-        self.all_enable = QPushButton(self.times)
-        self.all_enable.setObjectName(u"all_enable")
-
-        self.gridLayout_2.addWidget(self.all_enable, 4, 4, 1, 1, Qt.AlignmentFlag.AlignRight)
-
-        self.add_button = QPushButton(self.times)
-        self.add_button.setObjectName(u"add_button")
-        self.add_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-
-        self.gridLayout_2.addWidget(self.add_button, 5, 3, 1, 2)
-
-        self.description_tip = QLabel(self.times)
-        self.description_tip.setObjectName(u"description_tip")
-        sizePolicy1.setHeightForWidth(self.description_tip.sizePolicy().hasHeightForWidth())
-        self.description_tip.setSizePolicy(sizePolicy1)
-        self.description_tip.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.description_tip, 0, 2, 1, 1)
-
         self.day = QComboBox(self.times)
         self.day.addItem("")
         self.day.addItem("")
@@ -578,8 +636,54 @@ class Ui_Form(object):
         self.day.addItem("")
         self.day.addItem("")
         self.day.setObjectName(u"day")
+        self.day.setCursor(QCursor(Qt.CursorShape.SizeVerCursor))
 
         self.gridLayout_2.addWidget(self.day, 1, 1, 1, 1)
+
+        self.description = QTextEdit(self.times)
+        self.description.setObjectName(u"description")
+
+        self.gridLayout_2.addWidget(self.description, 3, 2, 5, 1)
+
+        self.time_tip = QLabel(self.times)
+        self.time_tip.setObjectName(u"time_tip")
+        sizePolicy1.setHeightForWidth(self.time_tip.sizePolicy().hasHeightForWidth())
+        self.time_tip.setSizePolicy(sizePolicy1)
+        self.time_tip.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.time_tip, 0, 1, 1, 1)
+
+        self.time_list = QListWidget(self.times)
+        self.time_list.setObjectName(u"time_list")
+        self.time_list.viewport().setProperty(u"cursor", QCursor(Qt.CursorShape.ArrowCursor))
+        self.time_list.setDragDropMode(QAbstractItemView.DragDropMode.NoDragDrop)
+        self.time_list.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.time_list.setMovement(QListView.Movement.Static)
+        self.time_list.setFlow(QListView.Flow.TopToBottom)
+        self.time_list.setResizeMode(QListView.ResizeMode.Fixed)
+        self.time_list.setLayoutMode(QListView.LayoutMode.SinglePass)
+        self.time_list.setViewMode(QListView.ViewMode.ListMode)
+
+        self.gridLayout_2.addWidget(self.time_list, 3, 1, 5, 1)
+
+        self.widget = QWidget(self.times)
+        self.widget.setObjectName(u"widget")
+        self.gridLayout_13 = QGridLayout(self.widget)
+        self.gridLayout_13.setObjectName(u"gridLayout_13")
+        self.select_now = QPushButton(self.widget)
+        self.select_now.setObjectName(u"select_now")
+        self.select_now.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+
+        self.gridLayout_13.addWidget(self.select_now, 0, 0, 1, 1, Qt.AlignmentFlag.AlignLeft)
+
+        self.show_time = QLabel(self.widget)
+        self.show_time.setObjectName(u"show_time")
+        self.show_time.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
+
+        self.gridLayout_13.addWidget(self.show_time, 0, 1, 1, 1, Qt.AlignmentFlag.AlignRight)
+
+
+        self.gridLayout_2.addWidget(self.widget, 1, 2, 1, 1)
 
         self.tabWidget.addTab(self.times, "")
         self.settings = QWidget()
@@ -768,10 +872,10 @@ class Ui_Form(object):
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.label = QLabel(self.about)
         self.label.setObjectName(u"label")
-        font1 = QFont()
-        font1.setFamilies([u"Microsoft YaHei"])
-        font1.setPointSize(69)
-        self.label.setFont(font1)
+        font2 = QFont()
+        font2.setFamilies([u"Microsoft YaHei"])
+        font2.setPointSize(69)
+        self.label.setFont(font2)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout_3.addWidget(self.label, 0, 0, 1, 1)
@@ -833,7 +937,7 @@ class Ui_Form(object):
         self.show_name.setText(QCoreApplication.translate("Form", u"\u90a3\u523b\u590f", None))
         self.minimize_button.setText(QCoreApplication.translate("Form", u"-", None))
         self.close_button.setText(QCoreApplication.translate("Form", u"\u00d7", None))
-        self.resize_label.setText(QCoreApplication.translate("Form", u"\u21f2\u25e2", None))
+        self.resize_label.setText(QCoreApplication.translate("Form", u"\u25e2", None))
         self.exit_button.setText(QCoreApplication.translate("Form", u"\u9000\u51fa(Ctrl+Q)", None))
 #if QT_CONFIG(tooltip)
         self.apply_button.setToolTip(QCoreApplication.translate("Form", u"\u4e00\u4e9b\u8bbe\u7f6e\u66f4\u6539\u540e\u8981\u5e94\u7528\u624d\u4f1a\u4fdd\u5b58", None))
@@ -842,21 +946,26 @@ class Ui_Form(object):
 #if QT_CONFIG(accessibility)
         self.times.setAccessibleName("")
 #endif // QT_CONFIG(accessibility)
-        self.all_disable.setText(QCoreApplication.translate("Form", u"\u5168\u90e8\u7981\u7528", None))
-        self.time_tip.setText(QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
-        self.edit_button.setText(QCoreApplication.translate("Form", u"\u4fee\u6539", None))
-        self.delete_button.setText(QCoreApplication.translate("Form", u"\u5220\u9664", None))
-        self.all_enable.setText(QCoreApplication.translate("Form", u"\u5168\u90e8\u542f\u7528", None))
         self.add_button.setText(QCoreApplication.translate("Form", u"\u6dfb\u52a0", None))
         self.description_tip.setText(QCoreApplication.translate("Form", u"\u63cf\u8ff0", None))
-        self.day.setItemText(0, QCoreApplication.translate("Form", u"\u5468\u4e00", None))
-        self.day.setItemText(1, QCoreApplication.translate("Form", u"\u5468\u4e8c", None))
-        self.day.setItemText(2, QCoreApplication.translate("Form", u"\u5468\u4e09", None))
-        self.day.setItemText(3, QCoreApplication.translate("Form", u"\u5468\u56db", None))
-        self.day.setItemText(4, QCoreApplication.translate("Form", u"\u5468\u4e94", None))
-        self.day.setItemText(5, QCoreApplication.translate("Form", u"\u5468\u516d", None))
-        self.day.setItemText(6, QCoreApplication.translate("Form", u"\u5468\u65e5", None))
+        self.all_enable.setText(QCoreApplication.translate("Form", u"\u5168\u90e8\u542f\u7528", None))
+        self.all_disable.setText(QCoreApplication.translate("Form", u"\u5168\u90e8\u7981\u7528", None))
+        self.edit_button.setText(QCoreApplication.translate("Form", u"\u4fee\u6539", None))
+        self.delete_button.setText(QCoreApplication.translate("Form", u"\u5220\u9664", None))
+        self.day.setItemText(0, QCoreApplication.translate("Form", u"\u661f\u671f\u4e00", None))
+        self.day.setItemText(1, QCoreApplication.translate("Form", u"\u661f\u671f\u4e8c", None))
+        self.day.setItemText(2, QCoreApplication.translate("Form", u"\u661f\u671f\u4e09", None))
+        self.day.setItemText(3, QCoreApplication.translate("Form", u"\u661f\u671f\u56db", None))
+        self.day.setItemText(4, QCoreApplication.translate("Form", u"\u661f\u671f\u4e94", None))
+        self.day.setItemText(5, QCoreApplication.translate("Form", u"\u661f\u671f\u516d", None))
+        self.day.setItemText(6, QCoreApplication.translate("Form", u"\u661f\u671f\u65e5", None))
 
+        self.time_tip.setText(QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
+#if QT_CONFIG(tooltip)
+        self.select_now.setToolTip(QCoreApplication.translate("Form", u"\u5207\u6362\u4e3a\u5f53\u524d\u65e5\u671f", None))
+#endif // QT_CONFIG(tooltip)
+        self.select_now.setText(QCoreApplication.translate("Form", u"\u21ba", None))
+        self.show_time.setText(QCoreApplication.translate("Form", u"TextLabel", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.times), QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
 #if QT_CONFIG(tooltip)
         self.is_active.setToolTip(QCoreApplication.translate("Form", u"\u70b9\u51fb\u5207\u6362\u6fc0\u6d3b\u72b6\u6001", None))
