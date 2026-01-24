@@ -158,7 +158,7 @@ class TimeManager(QObject):
             index: int = bisect.bisect_left(a=[c.time for c in clocks], x=added_time)
             self.time_list.insertItem(index, added_time)
             self.time_list.item(index).setIcon(QIcon(self.p_window.files[0]))
-            self.edit_description()
+            self.flash_time_config()
 
     @logger.catch
     def delete_button_action(self):
