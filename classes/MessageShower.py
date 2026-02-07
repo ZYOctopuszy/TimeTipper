@@ -76,7 +76,7 @@ class MessageShower:
             if self.p_window.test or self.p_window.state:
                 now = datetime.now()
                 current_time = now.time()
-                hold_start = now - timedelta(seconds=self.p_window.hold_time)
+                hold_start = now - timedelta(seconds=self.p_window.config.hold_time)
 
                 if self.p_window.test or [
                     (c.hours, c.minutes)

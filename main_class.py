@@ -79,9 +79,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
             random_time=[0, 30],
             hold_time=0,
         )
-        self.config: Config
-        # # 持续时间
-        # self.hold_time: int = 0
+        self.config: Config = Config(**self.default_config.__dict__)
         # 下课时间表
         self.clock_json_path: str = current_path(relative_path="clock.json", mode="exe")
         self.time_config: list[list[classes.basic_classes.Clock.Clock]] = (
@@ -91,14 +89,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.life: bool = True
         # 测试模式
         self.test: bool = False
-        # # 隐藏托盘图标
-        # self.hide_tray: int = self.default_config.hide_tray  # type: ignore
-        # # 待杀程序列表
-        # self.forKillExe: list[str] = self.default_config.forKillExe  # type: ignore
-        # # 待杀应用窗口标题
-        # self.forKillWindowTitle: list[str] = self.default_config.forKillWindowTitle  # type: ignore
-        # # 随机等待时间
-        # self.random_time: list[int] = self.default_config.random_time  # type: ignore
         # 配置文件路径
         self.config_json_path: str = current_path(
             relative_path="config.json", mode="exe"
@@ -297,22 +287,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         logger.debug(f"当前随机时间: {self.config.random_time}")
         logger.debug(f"当前持续时间: {self.config.hold_time}")
         logger.debug(f"当前待杀应用窗口标题: {self.config.forKillWindowTitle}")
-
-    @logger.catch
-    def flash_config(self: Self, configure: dict) -> dict:  # type: ignore
-        """
-        更新配置文件
-        :param configure: 配置字典
-        :return: 无
-        """
-        QApplication.processEvents()
-        # 将提供的字典对应值设置为当前值
-        configure["hide_tray"] = self.config.hide_tray
-        configure["forKillExe"] = self.config.forKillExe
-        configure["random_time"] = self.config.random_time
-        configure["hold_time"] = self.config.hold_time
-        configure["forKillWindowTitle"] = self.config.forKillWindowTitle
-        return configure  # type: ignore
 
     @logger.catch
     def show_window(self: Self):
