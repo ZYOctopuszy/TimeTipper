@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QApplication, QFileDialog
 from loguru import logger
 
 from classes.basic_classes.AddItem import AddItem
-from public_functions import kill_exe
+from public_functions import kill_exes
 
 
 class AddEXE(AddItem):
@@ -15,8 +15,8 @@ class AddEXE(AddItem):
     """
 
     @logger.catch
-    def __init__(self, p_window: "MainWindow"):
-        super().__init__(p_window, p_window.ui.for_kill_list)
+    def __init__(self, p_window: "MainWindow") -> None:
+        super().__init__(p_window=p_window, list_widget=p_window.ui.for_kill_list)
         self.p_window.ui.remove_exe.clicked.connect(self.remove_item)
         self.p_window.ui.add_exe.clicked.connect(self.add_item_function)
         self.p_window.ui.choose_exe.clicked.connect(self.add_exe_by_choose_file)
@@ -27,13 +27,13 @@ class AddEXE(AddItem):
         self.ui.label.setText("添加待杀程序")
 
     @logger.catch
-    def add_exe_by_choose_file(self):
+    def add_exe_by_choose_file(self) -> None:
         """
         通过选择文件添加待杀程序
         :return: 无
         """
         file_name = Path(
-            QFileDialog.getOpenFileName(self.p_window, "选择待杀程序", "", "*.exe")[0]
+            QFileDialog.getOpenFileName(parent=self.p_window, caption="选择待杀程序", dir="", filter="*.exe")[0]
         ).name
         if file_name.strip() != "":
             self.p_window.ui.for_kill_list.addItem(file_name)
@@ -41,10 +41,10 @@ class AddEXE(AddItem):
         self.p_window.flash_state_changed()
 
     @logger.catch
-    def item_double_clicked_action(self):
+    def item_double_clicked_action(self) -> None:
         """
         双击待杀程序列表项时执行
         :return:
         """
         QApplication.processEvents()
-        kill_exe(self.p_window.ui.for_kill_list.currentItem().text())
+        kill_exes(processes=(self.p_window.ui.for_kill_list.currentItem().text()))

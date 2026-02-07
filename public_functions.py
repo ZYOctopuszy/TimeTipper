@@ -3,8 +3,9 @@ if __name__ == "__main__":
 from json import load, dump
 from sys import argv
 from pathlib import Path, PurePath
+from typing import Iterable
 from PySide6.QtCore import QRect
-from PySide6.QtWidgets import QApplication, QListWidget, QWidget, QCheckBox
+from PySide6.QtWidgets import QApplication, QListWidget
 from loguru import logger
 import psutil
 
@@ -13,12 +14,12 @@ from classes.basic_classes.Clock import Clock
 __all__ = [
     "current_path",
     "set_window_size",
-    "kill_exe",
+    "kill_exes",
     "flash_list_widget",
-    "map_extra",
-    "connect_signals",
     "load_time_from_json",
     "save_time_to_json",
+    "time_config",
+    "time_class_config",
 ]
 
 
@@ -30,21 +31,19 @@ def current_path(relative_path: str, mode: str = "resource") -> str:
     :param mode: 模式, 可选"resource"或"exe", 默认为"resource"
     :return: 无
     """
-    QApplication.processEvents()
     match mode:
         case "resource":
-            return PurePath.joinpath(
-                Path(__file__).resolve().parent, relative_path
-            ).__str__()
+            return str(
+                PurePath.joinpath(Path(__file__).resolve().parent, relative_path)
+            )
         case "exe":
-            return PurePath.joinpath(
-                Path(argv[0]).resolve().parent, relative_path
-            ).__str__()
-    raise ValueError(f"mode must be 'resource' or 'exe', not {mode}")
+            return str(PurePath.joinpath(Path(argv[0]).resolve().parent, relative_path))
+        case _:
+            raise ValueError(f"mode must be 'resource' or 'exe', not {mode}")
 
 
 @logger.catch
-def set_window_size(window: "MainWindow", application: QApplication):
+def set_window_size(window: "MainWindow", application: QApplication) -> None:
     """
     将窗口居中于屏幕并设置为屏幕尺寸的一半
     :param application: Qt应用对象
@@ -65,28 +64,25 @@ def set_window_size(window: "MainWindow", application: QApplication):
     )
 
 
-# noinspection SpellCheckingInspection
 @logger.catch
-def kill_exe(process: str) -> bool:
+def kill_exes(processes: Iterable[str]) -> bool:
     """
     根据映像名杀死指定进程
-    :param process: 进程映像名
+    :param processes: 进程映像名列表（区分大小写）
     :return: 是否成功杀死进程
     """
-    for proc in psutil.process_iter(["name"]):
-        try:
-            if proc.info["name"] == process:
-                logger.debug(f"杀死进程{process}")
-                proc.kill()
-                return True
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
-            continue
-    logger.warning(f"{process}未运行")
-    return False
+    matched_processes: set = (set(psutil.process_iter(attrs=["name"])) & set(processes))
+    if not matched_processes:
+        logger.debug("未找到匹配进程")
+        return False
+    for proc in matched_processes:
+        proc.kill()
+        logger.debug(f"杀死进程 {proc.name()}")
+    return True
 
 
 @logger.catch
-def flash_list_widget(list_widget: QListWidget) -> list:
+def flash_list_widget(list_widget: QListWidget) -> list[str]:
     """
     排序所传入的列表控件, 并返回所有项的列表
     :param list_widget: 传入的QListWidget对象
@@ -98,75 +94,40 @@ def flash_list_widget(list_widget: QListWidget) -> list:
     return [list_widget.item(i).text() for i in range(list_widget.count())]
 
 
-# noinspection PyShadowingBuiltins
-@logger.catch
-def map_extra(func, iterable: list):
-    """
-    对可迭代对象中的每个元素应用指定函数, 并返回结果列表
-    :param func: 要应用的函数
-    :param iterable: 可迭代对象
-    :return: 结果列表
-    """
-    return (func(item) for item in iterable)
+type time_config = list[list[list[str | bool]]]
+type time_class_config = list[list[Clock]]
+
+_json_cache: dict[str, time_config] = {}
 
 
 @logger.catch
-def connect_signals(widgets: list, func) -> list:
-    """
-    连接QObject对象的信号到指定函数
-    :param widgets: QObject对象列表
-    :param func: 要连接的函数
-    :return: 连接结果列表
-    """
-    return [
-        (
-            widget.stateChanged.connect(func)
-            if type(widget) == QCheckBox
-            else widget.valueChanged.connect(func)
-        )
-        for widget in widgets
-    ]
-
-
-_json_cache = {}
-
-
-@logger.catch
-def load_time_from_json(file: str) -> list:
+def load_time_from_json(file: str) -> time_config:
     """
     从JSON文件加载数据
     :param file: JSON文件路径
     :return: 加载的数据列表
     """
     if file in _json_cache:
-        return _json_cache[file]
+        return _json_cache.get(file, [])
 
-    f = open(file=file, mode="r", encoding="utf-8")
-    try:
-        config: list = load(fp=f)["config"]
-        f.close()
-        if type(config) == list:
-            return config
-        logger.error("加载JSON文件时出错: 数据格式不正确, 预期为列表")
-        return []
-    except Exception as e:
-        logger.error(f"加载JSON文件时出错: {e}")
-        return []
+    with open(file=file, mode="r", encoding="utf-8") as f:
+        config: time_config = load(fp=f).get("config", [])
+    return config
 
 
 @logger.catch
-def save_time_to_json(file: str, data: list[list[Clock]]) -> None:
+def save_time_to_json(file: str, data: time_class_config) -> None:
     """
     将数据保存到JSON文件
     :param file: JSON文件路径
     :param data: 要保存的数据字典
     :return: None
     """
-    l: list = []
+    cfg_L: time_config = []
     for day in range(7):
-        temp: list = []
+        temp: list[list[str | bool]] = []
         temp.extend([item.time, item.description, item.state] for item in data[day])
-        l.append(temp)
+        cfg_L.append(temp)
     with open(file=file, mode="w", encoding="utf-8") as f:
-        dump(obj={"config": l}, fp=f, ensure_ascii=False, indent=4)
-    _json_cache[file] = l
+        dump(obj={"config": cfg_L}, fp=f, ensure_ascii=False, indent=4)
+    _json_cache[file] = cfg_L

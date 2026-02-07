@@ -4,7 +4,7 @@ from loguru import logger
 from UIs import add_time
 from classes import basic_classes
 
-class AddTime(basic_classes.MyQWidget.MyQWidget):
+class Time(basic_classes.MyQWidget.MyQWidget):
     """
     自定义添加时间点窗口类
     """

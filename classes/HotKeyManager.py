@@ -29,5 +29,5 @@ class HotKeyManager(QWidget):
         显示设置窗口
         :return:
         """
-        if self.p_window.hide_tray == 2:
+        if self.p_window.config.hide_tray == 2:
             self.show_window_signal.emit()

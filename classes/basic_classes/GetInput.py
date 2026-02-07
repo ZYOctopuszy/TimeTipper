@@ -19,7 +19,7 @@ class GetInput(MyQWidget):
     def __init__(self, p_window: "MainWindow", list_widget: QListWidget):
         super().__init__()
         self.ui = get_input.Ui_get_input()
-        self.ui.setupUi(self)
+        self.ui.setupUi(self)  # type: ignore
         self.p_window = p_window
         self.list_widget = list_widget
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)

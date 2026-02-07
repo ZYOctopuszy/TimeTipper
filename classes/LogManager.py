@@ -7,7 +7,7 @@ import re
 _COLOR_TEMPLATE: str = (
     "<font color='{}' face='Cascadia Mono', 'Cascadia Code', 'Microsoft YaHei'>{}</font>"
 )
-_trans_table = str.maketrans({"<": "&lt;", ">": "&gt;", " ": "&nbsp;"})
+_trans_table: dict[int, str] = str.maketrans({"<": "&lt;", ">": "&gt;", " ": "&nbsp;"})
 
 
 class LogManager(QObject):

@@ -6,10 +6,9 @@ from datetime import datetime, timedelta, time
 from random import randint
 from time import sleep
 
-from PySide6.QtWidgets import QApplication
 from loguru import logger
 
-from public_functions import map_extra, kill_exe
+from public_functions import kill_exes
 
 
 class MessageShower:
@@ -32,12 +31,12 @@ class MessageShower:
         """
         now = datetime.now()
         wait_second = (
-            randint(a=self.p_window.random_time[0], b=self.p_window.random_time[1])
+            randint(a=self.p_window.config.random_time[0], b=self.p_window.config.random_time[1])
             if self.p_window.test
             or (
                 now.strftime(format="%H:%M")
                 in [clock.time for clock in self.p_window.time_config[self.day]]
-                and now.second < self.p_window.random_time[0]
+                and now.second < self.p_window.config.random_time[0]
             )
             else 0
         )
@@ -50,14 +49,14 @@ class MessageShower:
             else:
                 success = False
                 logger.debug("关闭窗口中")
-                if self.p_window.forKillWindowTitle and any(
-                    self.p_window.kill_windows(title=title)
-                    for title in self.p_window.forKillWindowTitle
+                if self.p_window.config.forKillWindowTitle and any(
+                    self.p_window.kill_windows(titles=title)
+                    for title in self.p_window.config.forKillWindowTitle
                 ):
                     success = True
                 logger.debug("杀死进程中")
-                if self.p_window.forKillExe and any(
-                    kill_exe(process=exe) for exe in self.p_window.forKillExe
+                if self.p_window.config.forKillExe and kill_exes(
+                    processes=self.p_window.config.forKillExe
                 ):
                     success = True
                 if success:

@@ -17,9 +17,14 @@ class MyQWidget(QWidget):
         self.drag = False
 
     @logger.catch
-    def changeEvent(self, event, /):
+    def changeEvent(self, event: QEvent):
         if self.auto_hide and not self.isActiveWindow():
             self.hide()
+        if (
+            self.windowState() == Qt.WindowState.WindowMinimized
+            and event.type() == QEvent.Type.WindowStateChange
+        ):
+            QTimer.singleShot(0, self.hide)
         super().changeEvent(event)
 
     @logger.catch
@@ -39,17 +44,3 @@ class MyQWidget(QWidget):
     def mouseReleaseEvent(self, event: QMouseEvent):
         if event.button() == Qt.MouseButton.LeftButton:
             self.drag = False
-
-    @logger.catch
-    def changeEvent(self, event: QEvent):
-        """
-        处理窗口最小化行为
-        :param event: 事件对象
-        :return: 无
-        """
-        if (
-            self.windowState() == Qt.WindowState.WindowMinimized
-            and event.type() == QEvent.Type.WindowStateChange
-        ):
-            QTimer.singleShot(0, self.hide)
-        super().changeEvent(event)

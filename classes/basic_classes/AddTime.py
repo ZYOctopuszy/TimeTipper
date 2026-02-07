@@ -17,7 +17,7 @@ class AddTime(basic_classes.MyQWidget.MyQWidget):
         """
         super().__init__()
         self.ui = add_time.Ui_Form()
-        self.ui.setupUi(self)
+        self.ui.setupUi(self)  # type: ignore
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         match use_to:

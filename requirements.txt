@@ -2,6 +2,6 @@ loguru==0.7.3
 PySide6==6.10.1
 pywin32==311
 keyboard==0.13.5
-Nuitka==2.8.9
+Nuitka==2.8.10
 pip==25.3
 psutil==7.2.1

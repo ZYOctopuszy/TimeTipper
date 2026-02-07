@@ -6,5 +6,5 @@ class Clock:
         self.description: str = description
         self.state: bool = state
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         return self.time

@@ -5,13 +5,13 @@ from PySide6.QtWidgets import QComboBox
 from PySide6.QtCore import QTimer
 
 from datetime import datetime
-from public_functions import load_time_from_json
+from public_functions import load_time_from_json, time_class_config, time_config
 from classes.basic_classes.Clock import Clock
 from loguru import logger
 
 
 class DayManager:
-    _config_cache = {}
+    _config_cache: dict[str, list[list[Clock]]] = {}
 
     def __init__(
         self,
@@ -31,7 +31,7 @@ class DayManager:
 
     @logger.catch
     @staticmethod
-    def get_config(config_json: str) -> list:
+    def get_config(config_json: str) -> time_class_config:
         """
         获取时间配置
         :param config_json: 时间配置JSON文件路径
@@ -39,8 +39,8 @@ class DayManager:
         """
         if config_json in DayManager._config_cache:
             return DayManager._config_cache[config_json]
-        config_list: list = load_time_from_json(file=config_json)
-        result: list = [[], [], [], [], [], [], []]
+        config_list: time_config = load_time_from_json(file=config_json)
+        result: time_class_config = [[], [], [], [], [], [], []]
         if len(config_list) != 7:
             return result
         for day in range(7):

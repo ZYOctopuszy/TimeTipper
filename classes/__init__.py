@@ -1,7 +1,7 @@
 from . import EXE
 from . import Title
 from . import basic_classes
-from .AddTime import AddTime
+from .Time import Time
 from .HotKeyManager import HotKeyManager
 from .MessageShower import MessageShower
 from .Tray import Tray
@@ -14,7 +14,7 @@ __all__ = [
     "Title",
     "EXE",
     "MessageShower",
-    "AddTime",
+    "Time",
     "HotKeyManager",
     "Tray",
     "LogManager",

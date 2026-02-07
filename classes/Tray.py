@@ -1,6 +1,5 @@
 if __name__ == "__main__":
     from main_class import MainWindow
-from pathlib import Path
 
 import keyboard
 from PySide6.QtCore import Qt, Slot
@@ -75,7 +74,7 @@ class Tray(QSystemTrayIcon):
 
     @logger.catch
     @Slot()
-    def toggle_window(self, reason):
+    def toggle_window(self, reason: QSystemTrayIcon.ActivationReason):
         """
         实现托盘各种点击操作
         :param reason: 点击类型
@@ -85,8 +84,8 @@ class Tray(QSystemTrayIcon):
         QApplication.processEvents()
         if reason == QSystemTrayIcon.ActivationReason.DoubleClick:
             if not self.p_window.isVisible() and (
-                    (not self.p_window.hide_tray) or
-                    (keyboard.is_pressed("shift+esc"))
+                    (not self.p_window.config.hide_tray) or
+                    (keyboard.is_pressed(hotkey="shift+esc"))
             ):
                 # 显示设置窗口
                 logger.debug("显示设置窗口")
@@ -119,7 +118,7 @@ class Tray(QSystemTrayIcon):
         self.enable_disable_action.setText(
             "催眠" if self.p_window.state else "唤醒"
         )
-        if not self.p_window.hide_tray:
+        if not self.p_window.config.hide_tray:
             logger.debug("托盘图标未设置隐藏, 切换托盘图标图片")
             if self.p_window.state:
                 self.setIcon(QIcon(self.p_window.files[0]))
@@ -150,8 +149,8 @@ class Tray(QSystemTrayIcon):
         刷新托盘图标状态
         :return:
         """
-        self.setVisible(self.p_window.hide_tray != 2)
-        if self.p_window.hide_tray == 1:
+        self.setVisible(self.p_window.config.hide_tray != 2)
+        if self.p_window.config.hide_tray == 1:
             self.setToolTip("")
             self.setIcon(QIcon(self.p_window.files[2]))
         else:

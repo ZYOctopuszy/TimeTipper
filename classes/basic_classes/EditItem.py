@@ -22,9 +22,8 @@ class EditItem(GetInput):
         :return:
         """
         QApplication.processEvents()
-        if self.list_widget.currentItem() is not None:
-            self.show()
-            self.ui.get_exe_name.setText(self.list_widget.currentItem().text())
+        self.show()
+        self.ui.get_exe_name.setText(self.list_widget.currentItem().text())
 
     @logger.catch
     def edit_item_func(self):

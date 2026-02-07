@@ -3,7 +3,7 @@ if __name__ == "__main__":
 
 import bisect
 from PySide6.QtCore import QTime, Qt, QEvent, QObject
-from PySide6.QtGui import QIcon, QCursor
+from PySide6.QtGui import QIcon, QCursor, QMouseEvent
 from PySide6.QtWidgets import QApplication, QListWidgetItem, QListWidget
 from loguru import logger
 
@@ -22,8 +22,8 @@ class TimeManager(QObject):
         self.day = day
         self.time_list = time_list
         self.day_widget = self.p_window.ui.day
-        self.add_time = classes.AddTime(use_to="add_time")
-        self.edit_time = classes.AddTime(use_to="edit_time")
+        self.add_time = classes.Time(use_to="add_time")
+        self.edit_time = classes.Time(use_to="edit_time")
 
         self.connect_signals()
 
@@ -72,10 +72,7 @@ class TimeManager(QObject):
             for index in range(len(time_list)):
                 time_list[index].state = False
                 if item := self.time_list.item(index):
-                    item.setIcon(
-                    QIcon(self.p_window.files[1])
-                )
-            
+                    item.setIcon(QIcon(self.p_window.files[1]))
 
     @logger.catch
     def all_enable(self):
@@ -86,9 +83,7 @@ class TimeManager(QObject):
             for index in range(len(time_list)):
                 time_list[index].state = True
                 if item := self.time_list.item(index):
-                    item.setIcon(
-                    QIcon(self.p_window.files[0])
-                )
+                    item.setIcon(QIcon(self.p_window.files[0]))
 
     @logger.catch
     def reload_time_list(self, index: int):
@@ -111,12 +106,12 @@ class TimeManager(QObject):
                 )
 
     @logger.catch
-    def eventFilter(self, source, event):
+    def eventFilter(self, watched: QObject, event: QEvent | QMouseEvent):
         if event.type() == QEvent.Type.MouseButtonPress:
             if item := self.time_list.itemAt(
                 self.time_list.viewport().mapFromGlobal(QCursor().pos())
             ):
-                if event.button() == Qt.MouseButton.RightButton:
+                if getattr(event, "button") == Qt.MouseButton.RightButton:
                     for clock in self.p_window.time_config[
                         self.day_widget.currentIndex()
                     ]:
@@ -130,7 +125,7 @@ class TimeManager(QObject):
                     self.flash_time_config()
             else:
                 self.time_list.clearSelection()
-        return super().eventFilter(source, event)
+        return super().eventFilter(watched, event)
 
     # region 时间编辑功能函数
     @logger.catch
@@ -253,6 +248,8 @@ class TimeManager(QObject):
         # logger.debug(
         #     f"已刷新时间表配置, 当前配置:{[time.time for time in self.p_window.time_config[self.day_widget.currentIndex()]]}"
         # )
-        save_time_to_json(file=self.p_window.clock_json_path, data=self.p_window.time_config)
+        save_time_to_json(
+            file=self.p_window.clock_json_path, data=self.p_window.time_config
+        )
 
     # endregion
