@@ -1,12 +1,16 @@
+"""
+公共函数模块, 包含一些通用的函数
+"""
 if __name__ == "__main__":
-    from main_class import MainWindow
+    from MainWindow import MainWindow
 from json import load, dump
 from sys import argv
 from pathlib import Path, PurePath
-from typing import Iterable
+from collections.abc import Iterable
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QListWidget
 from loguru import logger
+from itertools import repeat
 import psutil
 
 from classes.basic_classes.Clock import Clock
@@ -109,7 +113,9 @@ def load_time_from_json(file: str) -> time_config:
     """
     if file in _json_cache:
         return _json_cache.get(file, [])
-
+    if not Path(file).is_file():
+        logger.error(f"文件 {file} 不存在")
+        return [[] for _ in repeat(None, 7)]
     with open(file=file, mode="r", encoding="utf-8") as f:
         config: time_config = load(fp=f).get("config", [])
     return config

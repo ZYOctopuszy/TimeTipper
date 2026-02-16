@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_class import MainWindow
+    from MainWindow import MainWindow
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon
 from loguru import logger
@@ -14,7 +14,6 @@ class GetInput(MyQWidget):
     """
     自定义获取输入窗口类
     """
-
     @logger.catch
     def __init__(self, p_window: "MainWindow", list_widget: QListWidget):
         super().__init__()
@@ -22,7 +21,6 @@ class GetInput(MyQWidget):
         self.ui.setupUi(self)  # type: ignore
         self.p_window = p_window
         self.list_widget = list_widget
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.setWindowIcon(QIcon(self.p_window.files[3]))
         self.hide()

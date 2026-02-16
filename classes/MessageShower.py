@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_class import MainWindow
+    from MainWindow import MainWindow
 import sys
 import threading
 from datetime import datetime, timedelta, time

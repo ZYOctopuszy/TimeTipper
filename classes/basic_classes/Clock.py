@@ -1,5 +1,9 @@
 class Clock:
-    def __init__(self, time: str, description: str = "Default Description", state: bool = True):
+    __slots__ = ["time", "hours", "minutes", "description", "state"]
+
+    def __init__(
+        self, time: str, description: str = "Default Description", state: bool = True
+    ):
         self.time: str = time
         self.hours: int = int(time.split(":")[0])
         self.minutes: int = int(time.split(":")[1])

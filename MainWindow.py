@@ -1,3 +1,7 @@
+"""
+主窗口类
+"""
+
 from dataclasses import dataclass
 import sys
 from typing import Self
@@ -40,12 +44,11 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
 
     @logger.catch
     def __init__(self, app: QApplication):
-        super().__init__(auto_hide=False)
+        super().__init__(False)
         # 初始化ui
         self.ui = settings.Ui_Form()
         self.ui.setupUi(self)  # type: ignore
         self.app = app
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         set_window_size(window=self, application=app)
         # 实例化关闭窗口方法
@@ -170,6 +173,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
 
     # endregion
 
+    @logger.catch
     def son_classes_init(self):
         """
         初始化子类
@@ -256,15 +260,6 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         :param configure: 配置字典
         :return: 无
         """
-        # self.hide_tray = configure.get("hide_tray", self.default_config.hide_tray)  # type: ignore
-        # self.forKillExe = configure.get("forKillExe", self.default_config.forKillExe)  # type: ignore
-        # self.random_time = configure.get(  # type: ignore
-        #     "random_time", self.default_config.random_time  # type: ignore
-        # )
-        # self.hold_time = configure.get("hold_time", self.default_config.hold_time)  # type: ignore
-        # self.forKillWindowTitle = configure.get(  # type: ignore
-        #     "forKillWindowTitle", self.default_config.forKillWindowTitle  # type: ignore
-        # )
         self.config.hide_tray = configure.get("hide_tray", self.default_config.hide_tray)  # type: ignore
         self.config.forKillExe = configure.get("forKillExe", self.default_config.forKillExe)  # type: ignore
         self.config.random_time = configure.get(  # type: ignore
@@ -322,7 +317,9 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 将当前属性设置为GUI控件的值
         # region 设置待杀程序列表 和 待杀应用程序窗口标题列表
         self.config.forKillExe = flash_list_widget(list_widget=self.ui.for_kill_list)
-        self.config.forKillWindowTitle = flash_list_widget(list_widget=self.ui.for_close_title)
+        self.config.forKillWindowTitle = flash_list_widget(
+            list_widget=self.ui.for_close_title
+        )
         # endregion
         self.config.hide_tray = (
             2

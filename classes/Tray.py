@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_class import MainWindow
+    from MainWindow import MainWindow
 
 import keyboard
 from PySide6.QtCore import Qt, Slot

@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_class import MainWindow
+    from MainWindow import MainWindow
 from PySide6.QtCore import QObject, Signal
 from loguru import logger
 import re

@@ -1,9 +1,12 @@
+"""
+TimeTipper - 一个时间管理小工具
+"""
 from sys import exit, argv, stdout
 
 from PySide6.QtWidgets import QApplication
 from loguru import logger
 
-from main_class import *
+from MainWindow import *
 from public_functions import current_path
 
 logger.remove()

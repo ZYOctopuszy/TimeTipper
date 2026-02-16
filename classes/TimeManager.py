@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    from main_class import MainWindow
+    from MainWindow import MainWindow
 
 import bisect
 from PySide6.QtCore import QTime, Qt, QEvent, QObject
@@ -16,6 +16,7 @@ class TimeManager(QObject):
     管理时间列表
     """
 
+    @logger.catch
     def __init__(self, p_window: "MainWindow", time_list: QListWidget, day: int):
         super().__init__()
         self.p_window = p_window

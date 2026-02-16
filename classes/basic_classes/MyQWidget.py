@@ -13,18 +13,25 @@ class MyQWidget(QWidget):
     @logger.catch
     def __init__(self, auto_hide: bool = True):
         super().__init__()
-        self.auto_hide = auto_hide
-        self.drag = False
+        self.auto_hide: bool = auto_hide
+        self.drag: bool = False
+        self.setWindowFlags(
+            Qt.WindowType.FramelessWindowHint
+            | Qt.WindowType.WindowStaysOnTopHint
+            | Qt.WindowType.Tool
+        )
 
     @logger.catch
     def changeEvent(self, event: QEvent):
-        if self.auto_hide and not self.isActiveWindow():
+        if getattr(self, "auto_hide", True) and not self.isActiveWindow():
             self.hide()
         if (
             self.windowState() == Qt.WindowState.WindowMinimized
             and event.type() == QEvent.Type.WindowStateChange
         ):
-            QTimer.singleShot(0, self.hide)
+            # QTimer.singleShot(0, self.hide)
+            self.hide()
+            return
         super().changeEvent(event)
 
     @logger.catch
