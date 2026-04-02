@@ -29,8 +29,7 @@ class MyQWidget(QWidget):
             self.windowState() == Qt.WindowState.WindowMinimized
             and event.type() == QEvent.Type.WindowStateChange
         ):
-            # QTimer.singleShot(0, self.hide)
-            self.hide()
+            QTimer.singleShot(0, self.hide)
             return
         super().changeEvent(event)
 

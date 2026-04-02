@@ -79,4 +79,5 @@
     "*.rh": "c",
     "locale.h": "c"
   },
+  "python-envs.defaultEnvManager": "ms-python.python:venv",
 }

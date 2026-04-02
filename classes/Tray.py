@@ -22,7 +22,7 @@ class Tray(QSystemTrayIcon):
         self.setToolTip("那刻夏")
 
         self.p_window.apply_signal.connect(self.flash_tray)
-        self.p_window.state_changed_signal.connect(self.change_tray_state)
+        self.p_window.status_changed_signal.connect(self.change_tray_state)
         self.p_window.hide_window_signal.connect(self.show_hide_window)
 
         # 创建系统托盘菜单
@@ -37,7 +37,7 @@ class Tray(QSystemTrayIcon):
         # "启用与禁用"菜单项
         self.enable_disable_action: QAction = QAction("催眠")
         self.enable_disable_action.setToolTip("催眠那刻夏")
-        self.enable_disable_action.triggered.connect(self.change_tray_state)
+        self.enable_disable_action.triggered.connect(self.p_window.status_changed_signal.emit)
         self.menu.addAction(self.enable_disable_action)
 
         # "退出"菜单项
@@ -103,24 +103,18 @@ class Tray(QSystemTrayIcon):
             self.p_window.quit_app()
 
     @logger.catch
-    def change_tray_state(self, change_state: bool = True):
+    def change_tray_state(self):
         """
         改变托盘图标状态
         :return:
         """
-        if change_state:
-            self.p_window.state ^= True
-            self.p_window.ui.is_active.setText(
-                "工作中" if self.p_window.state else "睡觉中"
-            )
-            logger.debug(f"当前启用状态: {self.p_window.state}")
         QApplication.processEvents()
         self.enable_disable_action.setText(
-            "催眠" if self.p_window.state else "唤醒"
+            "催眠" if self.p_window.status else "唤醒"
         )
         if not self.p_window.config.hide_tray:
             logger.debug("托盘图标未设置隐藏, 切换托盘图标图片")
-            if self.p_window.state:
+            if self.p_window.status:
                 self.setIcon(QIcon(self.p_window.files[0]))
                 self.setToolTip("那刻夏")
             else:
@@ -154,4 +148,4 @@ class Tray(QSystemTrayIcon):
             self.setToolTip("")
             self.setIcon(QIcon(self.p_window.files[2]))
         else:
-            self.change_tray_state(False)
+            self.change_tray_state()

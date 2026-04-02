@@ -20,7 +20,8 @@ class MessageShower:
     def __init__(self, p_window: "MainWindow"):
         self.p_window = p_window
         self.day = self.p_window.day_manager.day
-        threading.Thread(target=self.clock).start()
+        self.thread = threading.Thread(target=self.clock)
+        self.thread.start()
 
     # region 通知提醒功能实现
     @logger.catch
@@ -31,7 +32,10 @@ class MessageShower:
         """
         now = datetime.now()
         wait_second = (
-            randint(a=self.p_window.config.random_time[0], b=self.p_window.config.random_time[1])
+            randint(
+                a=self.p_window.config.random_time[0],
+                b=self.p_window.config.random_time[1],
+            )
             if self.p_window.test
             or (
                 now.strftime(format="%H:%M")
@@ -41,24 +45,26 @@ class MessageShower:
             else 0
         )
         logger.debug(f"将等待时间: {wait_second}秒")
-        while self.p_window.life and self.p_window.state:
+        while self.p_window.life and self.p_window.status:
             if wait_second > 0:
                 wait_second -= 1
                 sleep(1)
                 continue
             else:
-                success = False
                 logger.debug("关闭窗口中")
-                if self.p_window.config.forKillWindowTitle and any(
-                    self.p_window.kill_windows(titles=title)
-                    for title in self.p_window.config.forKillWindowTitle
+                success: bool = True
+                if (
+                    not self.p_window.config.forKillWindowTitle
+                    or not self.p_window.kill_windows(
+                        titles=self.p_window.config.forKillWindowTitle
+                    )
                 ):
-                    success = True
+                    success = False
                 logger.debug("杀死进程中")
-                if self.p_window.config.forKillExe and kill_exes(
+                if not self.p_window.config.forKillExe or not kill_exes(
                     processes=self.p_window.config.forKillExe
                 ):
-                    success = True
+                    success = False
                 if success:
                     self.p_window.app.beep()
                 break
@@ -73,7 +79,7 @@ class MessageShower:
         :return: 无
         """
         while self.p_window.life:
-            if self.p_window.test or self.p_window.state:
+            if self.p_window.test or self.p_window.status:
                 now = datetime.now()
                 current_time = now.time()
                 hold_start = now - timedelta(seconds=self.p_window.config.hold_time)

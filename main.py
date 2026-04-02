@@ -38,4 +38,5 @@ if hasattr(stdout, "closed") and hasattr(stdout, "isatty"):
 if __name__ == "__main__":
     app = QApplication(argv)
     window = MainWindow(app=app)
+    window.status_manager.show_status_signal.connect(window.status_manager.show)
     exit(app.exec())

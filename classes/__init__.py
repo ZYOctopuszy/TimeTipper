@@ -9,6 +9,7 @@ from .LogManager import LogManager
 from .TimeManager import TimeManager
 from .DayManager import DayManager
 
+
 __all__ = [
     "basic_classes",
     "Title",

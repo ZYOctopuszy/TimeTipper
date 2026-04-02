@@ -39,4 +39,4 @@ def callback(hwnd: int, *args, **kwargs):
 
 
 if __name__ == "__main__":
-    logger.debug(kill_windows(titles=["for_kill_title"]))
+    logger.debug(kill_windows(titles=["for_kill_title", ".xlsx"]))

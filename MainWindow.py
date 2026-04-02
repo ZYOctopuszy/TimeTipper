@@ -10,7 +10,7 @@ from pathlib import Path
 
 import keyboard
 from PySide6.QtCore import Signal, Slot, Qt, QEvent
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QMessageBox
 from PySide6.QtGui import QShortcut, QKeySequence
 from loguru import logger
 
@@ -39,8 +39,9 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
 
     # 定义应用信号
     apply_signal = Signal()
-    state_changed_signal = Signal()
+    status_changed_signal = Signal()
     hide_window_signal = Signal()
+    ensure_quit_signal = Signal()
 
     @logger.catch
     def __init__(self, app: QApplication):
@@ -56,7 +57,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         # 初始化日志管理类
         self.logger_manager = classes.LogManager(self)
         # 软件激活状态
-        self.state: bool = True
+        self.status: bool = True
         # 默认配置文件
         self.default_config = Config(
             hide_tray=0,
@@ -115,6 +116,8 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.show_config()
         # endregion
 
+        self.ensure_quit_signal.connect(self.ensure_quit)
+
         self.set_widgets()
 
         self.son_classes_init()
@@ -138,6 +141,19 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
 
     # endregion
     # region 槽函数s
+    @Slot()
+    @logger.catch
+    def change_status(self):
+        """
+        切换启用状态
+        :return:
+        """
+        self.status ^= True
+        self.ui.is_active.setText("工作中" if self.status else "睡觉中")
+        self.tray_icon.change_tray_state()
+        self.status_manager.ui.status.setText(str(self.status))
+    
+    
     @Slot()
     @logger.catch
     def strong_hide_action(self, state: bool):
@@ -168,10 +184,27 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.life = False
         keyboard.unhook_all()
         logger.debug(f"当前软件生命状态: {self.life}")
+        self.status_manager.destroy()
         self.app.quit()
         sys.exit()
 
     # endregion
+
+    @logger.catch
+    def ensure_quit(self):
+        """
+        确认退出应用
+        :return:
+        """
+        reply = QMessageBox.question(
+            self,
+            "确认退出",
+            "真的要退出吗？",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if reply == QMessageBox.StandardButton.Yes:
+            self.quit_app()
 
     @logger.catch
     def son_classes_init(self):
@@ -179,6 +212,11 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         初始化子类
         :return: 无
         """
+        # region 初始化状态管理器
+        self.status_manager = classes.basic_classes.StatusManager.StatusManager(self)
+        self.status_changed_signal.connect(self.change_status)
+        # endregion
+
         # region 初始化热键管理器
         self.hot_key_manager = classes.HotKeyManager(self)
         QShortcut(QKeySequence("Alt+A"), self).activated.connect(
@@ -246,7 +284,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         ]:
             widget.valueChanged.connect(self.set_flushable)
         self.ui.apply_button.clicked.connect(self.flash_state_changed)
-        self.ui.is_active.clicked.connect(self.state_changed_signal.emit)
+        self.ui.is_active.clicked.connect(self.status_changed_signal.emit)
         self.ui.test_button.clicked.connect(lambda: setattr(self, "test", True))
         self.ui.exit_button.clicked.connect(self.quit_app)
         self.ui.if_strong_hide.stateChanged.connect(self.strong_hide_action)
