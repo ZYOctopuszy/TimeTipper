@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
-    QFrame, QGridLayout, QHBoxLayout, QLabel,
-    QListView, QListWidget, QListWidgetItem, QPushButton,
-    QSizePolicy, QSpacerItem, QSpinBox, QTabWidget,
-    QTextBrowser, QTextEdit, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QCheckBox,
+    QComboBox, QFrame, QGridLayout, QHBoxLayout,
+    QLabel, QListView, QListWidget, QListWidgetItem,
+    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
+    QTabWidget, QTextBrowser, QTextEdit, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -742,7 +742,9 @@ class Ui_Form(object):
         self.hold_seconds = QSpinBox(self.frame)
         self.hold_seconds.setObjectName(u"hold_seconds")
         self.hold_seconds.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
-        self.hold_seconds.setMaximum(999999999)
+        self.hold_seconds.setMinimum(1)
+        self.hold_seconds.setMaximum(2147483647)
+        self.hold_seconds.setStepType(QAbstractSpinBox.StepType.DefaultStepType)
 
         self.gridLayout_7.addWidget(self.hold_seconds, 3, 1, 1, 1)
 

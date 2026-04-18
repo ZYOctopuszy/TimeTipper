@@ -58,6 +58,8 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.logger_manager = classes.LogManager(self)
         # 软件激活状态
         self.status: bool = True
+        # 退出确认
+        self.exit_asking: bool = False
         # 默认配置文件
         self.default_config = Config(
             hide_tray=0,
@@ -196,15 +198,18 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         确认退出应用
         :return:
         """
-        reply = QMessageBox.question(
-            self,
-            "确认退出",
-            "真的要退出吗？",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            QMessageBox.StandardButton.No,
-        )
-        if reply == QMessageBox.StandardButton.Yes:
-            self.quit_app()
+        if not self.exit_asking:
+            self.exit_asking = True
+            reply = QMessageBox.question(
+                self,
+                "确认退出",
+                "真的要退出吗？",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                QMessageBox.StandardButton.No,
+            )
+            if reply == QMessageBox.StandardButton.Yes:
+                self.quit_app()
+            self.exit_asking = False
 
     @logger.catch
     def son_classes_init(self):
@@ -364,7 +369,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
             if self.ui.if_strong_hide.isChecked()
             else 1 if self.ui.if_tray_hide.isChecked() else 0
         )
-        self.hold_time = self.ui.hold_seconds.value()
+        self.config.hold_time = self.ui.hold_seconds.value()
         # 判断随机时间范围是否正确(whether a<=b or not)
         if self.ui.a.value() > self.ui.b.value():
             # 不正确,则将两个输入框的值调转

@@ -80,16 +80,33 @@ class MessageShower:
         """
         while self.p_window.life:
             if self.p_window.test or self.p_window.status:
-                now = datetime.now()
-                current_time = now.time()
+                now = datetime.now().replace(microsecond=0)
+                current_time = now
                 hold_start = now - timedelta(seconds=self.p_window.config.hold_time)
+
+                # logger.debug(
+                #     f"{
+                #         hold_start=}, {
+                #         current_time=}, {
+                #         self.p_window.time_config[self.day]=}, {[
+                #     (c.hours, c.minutes)
+                #     for c in self.p_window.time_config[self.day]
+                #     if c.state
+                #     and hold_start
+                #     <= (target_time := now.replace(hour=c.hours(), minute=c.minutes(), second=0))
+                #     <= current_time
+                # ]}"
+                # )
 
                 if self.p_window.test or [
                     (c.hours, c.minutes)
                     for c in self.p_window.time_config[self.day]
                     if c.state
-                    and hold_start.time()
-                    <= time(hour=c.hours, minute=c.minutes)
+                    and hold_start
+                    <= datetime.strptime(
+                        f"{now.year}-{now.month}-{now.day} {c.hours()}:{c.minutes()}",
+                        "%Y-%m-%d %H:%M",
+                    )
                     <= current_time
                 ]:
                     self.p_window.ui.test_button.setDisabled(True)

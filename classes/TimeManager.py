@@ -107,12 +107,12 @@ class TimeManager(QObject):
                 )
 
     @logger.catch
-    def eventFilter(self, watched: QObject, event: QEvent | QMouseEvent):
+    def eventFilter(self, watched: QObject, event: QMouseEvent):
         if event.type() == QEvent.Type.MouseButtonPress:
             if item := self.time_list.itemAt(
                 self.time_list.viewport().mapFromGlobal(QCursor().pos())
             ):
-                if getattr(event, "button") == Qt.MouseButton.RightButton:
+                if event.button() == Qt.MouseButton.RightButton:
                     for clock in self.p_window.time_config[
                         self.day_widget.currentIndex()
                     ]:

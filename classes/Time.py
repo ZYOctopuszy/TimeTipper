@@ -4,6 +4,7 @@ from loguru import logger
 from UIs import add_time
 from classes import basic_classes
 
+
 class Time(basic_classes.MyQWidget.MyQWidget):
     """
     自定义添加时间点窗口类
@@ -18,7 +19,12 @@ class Time(basic_classes.MyQWidget.MyQWidget):
         super().__init__()
         self.ui = add_time.Ui_Form()
         self.ui.setupUi(self)
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        # 设置窗口标志，确保窗口显示在主窗口之上
+        self.setWindowFlags(
+            # Qt.WindowType.Dialog  # 使用Dialog标志，使其成为模态对话框
+             Qt.WindowType.WindowStaysOnTopHint  # 确保保持在顶层
+            | Qt.WindowType.FramelessWindowHint  # 无边框
+        )
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         (
             self.setWindowTitle("添加时间点")
@@ -32,3 +38,11 @@ class Time(basic_classes.MyQWidget.MyQWidget):
             )
         )
         self.hide()
+
+    def show(self):
+        """
+        重写show方法，确保窗口显示在最顶层
+        """
+        super().show()
+        self.raise_()
+        self.activateWindow()

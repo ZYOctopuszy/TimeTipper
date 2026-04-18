@@ -963,8 +963,14 @@ QPushButton#close_button:disabled {
                <property name="cursor">
                 <cursorShape>IBeamCursor</cursorShape>
                </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
                <property name="maximum">
-                <number>999999999</number>
+                <number>2147483647</number>
+               </property>
+               <property name="stepType">
+                <enum>QAbstractSpinBox::StepType::DefaultStepType</enum>
                </property>
               </widget>
              </item>

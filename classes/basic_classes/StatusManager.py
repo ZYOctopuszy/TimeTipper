@@ -50,7 +50,7 @@ class StatusManager(QWidget):
             self.switch_times -= 1
             self.show_status()
         if self.mouse_tracking:
-            with contextlib.suppress(Exception):
+            with contextlib.suppress(Exception, KeyboardInterrupt):
                 self.raise_()
                 self.activateWindow()
                 self.move(QCursor.pos())
