@@ -8,7 +8,7 @@ from sys import argv
 from pathlib import Path, PurePath
 from collections.abc import Iterable
 from PySide6.QtCore import QRect
-from PySide6.QtWidgets import QApplication, QListWidget
+from PySide6.QtWidgets import QApplication, QListWidget, QWidget
 from loguru import logger
 from itertools import repeat
 import psutil

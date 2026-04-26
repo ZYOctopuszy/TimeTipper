@@ -37,13 +37,15 @@ class Tray(QSystemTrayIcon):
         # "启用与禁用"菜单项
         self.enable_disable_action: QAction = QAction("催眠")
         self.enable_disable_action.setToolTip("催眠那刻夏")
-        self.enable_disable_action.triggered.connect(self.p_window.status_changed_signal.emit)
+        self.enable_disable_action.triggered.connect(
+            self.p_window.status_changed_signal.emit
+        )
         self.menu.addAction(self.enable_disable_action)
 
         # "退出"菜单项
         self.exit_action: QAction = QAction("送别")
         self.exit_action.setToolTip("送别那刻夏")
-        self.exit_action.triggered.connect(p_window.quit_app)
+        self.exit_action.triggered.connect(p_window.exit_app)
         self.menu.addAction(self.exit_action)
 
         # 应用系统托盘菜单
@@ -84,8 +86,8 @@ class Tray(QSystemTrayIcon):
         QApplication.processEvents()
         if reason == QSystemTrayIcon.ActivationReason.DoubleClick:
             if not self.p_window.isVisible() and (
-                    (not self.p_window.config.hide_tray) or
-                    (keyboard.is_pressed(hotkey="shift+esc"))
+                (not self.p_window.config.hide_tray)
+                or (keyboard.is_pressed(hotkey="shift+esc"))
             ):
                 # 显示设置窗口
                 logger.debug("显示设置窗口")
@@ -100,7 +102,7 @@ class Tray(QSystemTrayIcon):
 
         # 托盘中建操作-关闭软件
         elif reason == QSystemTrayIcon.ActivationReason.MiddleClick:
-            self.p_window.quit_app()
+            self.p_window.exit_app()
 
     @logger.catch
     def change_tray_state(self):
@@ -109,9 +111,7 @@ class Tray(QSystemTrayIcon):
         :return:
         """
         QApplication.processEvents()
-        self.enable_disable_action.setText(
-            "催眠" if self.p_window.status else "唤醒"
-        )
+        self.enable_disable_action.setText("催眠" if self.p_window.status else "唤醒")
         if not self.p_window.config.hide_tray:
             logger.debug("托盘图标未设置隐藏, 切换托盘图标图片")
             if self.p_window.status:

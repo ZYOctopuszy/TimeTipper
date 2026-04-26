@@ -1,9 +1,9 @@
-from . import AddItem
-from . import EditItem
-from . import GetInput
-from . import MyQWidget
-from . import Clock
-from . import StatusManager
+from .AddItem import AddItem
+from .EditItem import EditItem
+from .GetInput import GetInput
+from .MyQWidget import MyQWidget
+from .Clock import Clock
+from .StatusManager import StatusManager
 
 
 __all__ = ["MyQWidget", "GetInput", "AddItem", "EditItem", "Clock", "StatusManager"]

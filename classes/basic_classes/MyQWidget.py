@@ -16,8 +16,7 @@ class MyQWidget(QWidget):
         self.auto_hide: bool = auto_hide
         self.drag: bool = False
         self.setWindowFlags(
-            Qt.WindowType.FramelessWindowHint
-            | Qt.WindowType.WindowStaysOnTopHint
+            Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.BypassWindowManagerHint
         )
 
     @logger.catch

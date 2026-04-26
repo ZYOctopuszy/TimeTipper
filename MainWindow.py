@@ -1,69 +1,76 @@
 """
-主窗口类
+主设置窗口
 """
 
-from dataclasses import dataclass
-import sys
-from typing import Self
-from json import load, dump
-from pathlib import Path
+from typing import Any
 
-import keyboard
-from PySide6.QtCore import Signal, Slot, Qt, QEvent
 from PySide6.QtWidgets import QApplication, QMessageBox
+from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QShortcut, QKeySequence
+from dataclasses import dataclass
 from loguru import logger
+from pathlib import Path
+from json import load
+import keyboard, sys
 
-import classes
+from classes import *
+from classes.basic_classes import *
 from UIs import settings
+from public_functions import current_path, set_window_size
 from classes.WindowCloser import kill_windows
-from public_functions import *
+from classes.LogManager import LogManager
 
 __all__ = ["MainWindow"]
 
 
 @dataclass
 class Config:
-    hide_tray: int
-    forKillExe: list[str]
-    forKillWindowTitle: list[str]
-    random_time: list[int]
-    hold_time: int
-
-
-# noinspection PyAttributeOutsideInit
-class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
     """
-    自定义主窗口类
+    配置类
     """
 
-    # 定义应用信号
-    apply_signal = Signal()
-    status_changed_signal = Signal()
-    hide_window_signal = Signal()
-    ensure_quit_signal = Signal()
+    tray_hide_mode: int
+    for_kill_exes: list[str]
+    for_kill_window_titles: list[str]
+    random_delay: list[int]
+    duration: int
 
-    @logger.catch
-    def __init__(self, app: QApplication):
-        super().__init__(False)
-        # 初始化ui
+
+class MainWindow(MyQWidget):
+    """
+    主设置窗口类
+    """
+
+    status_changed_signal = Signal(bool)
+
+    def __init__(self, app: QApplication) -> None:
+        super().__init__(auto_hide=False)
+        # region 初始化UI
         self.ui = settings.Ui_Form()
-        self.ui.setupUi(self)  # type: ignore
-        self.app = app
+        self.ui.setupUi(Form=self)
+        # endregion
+        # region 设置窗口属性
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_X11BypassTransientForHint)
         set_window_size(window=self, application=app)
-        # 实例化关闭窗口方法
-        self.kill_windows = kill_windows
-        # 初始化日志管理类
-        self.logger_manager = classes.LogManager(self)
-        # 软件激活状态
+        # endregion
+        # region 初始化属性
+        self.app = app
         self.status: bool = True
-        # 退出确认
         self.exit_asking: bool = False
-        # 默认配置文件
+        self.life: bool = True
+        self.test: bool = False
+        # endregion
+        # region 实例化关闭窗口方法
+        self.kill_windows = kill_windows
+        # endregion
+        # region 实例化日志管理类
+        self.log_manager = LogManager(self)
+        # endregion
+        # region 初始化配置
         self.default_config = Config(
-            hide_tray=0,
-            forKillExe=[
+            tray_hide_mode=0,
+            for_kill_exes=[
                 "EXCEL.Title",
                 "EasiCamera.exe",
                 "POWERPNT.Title",
@@ -72,7 +79,7 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
                 "wps.exe",
                 "wpscloudsvr.exe",
             ],
-            forKillWindowTitle=[
+            for_kill_window_titles=[
                 ".pdf",
                 ".ppt",
                 ".pptx",
@@ -82,190 +89,71 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
                 "聊天记录",
                 "文档文件",
             ],
-            random_time=[0, 30],
-            hold_time=0,
+            random_delay=[0, 30],
+            duration=0,
         )
         self.config: Config = Config(**self.default_config.__dict__)
-        # 下课时间表
-        self.clock_json_path: str = current_path(relative_path="clock.json", mode="exe")
-        self.time_config: list[list[classes.basic_classes.Clock.Clock]] = (
-            classes.DayManager.get_config(config_json=self.clock_json_path)
+        self.config_path: str = current_path(relative_path="config.json", mode="exe")
+        # endregion
+        # region 初始化时间表配置
+        self.time_config_path: str = current_path(
+            relative_path="time_config.json", mode="exe"
         )
-        # 软件生命状态
-        self.life: bool = True
-        # 测试模式
-        self.test: bool = False
-        # 配置文件路径
-        self.config_json_path: str = current_path(
-            relative_path="config.json", mode="exe"
+        self.time_config: list[list[basic_classes.Clock]] = DayManager.get_config(
+            config_json=self.time_config_path
         )
-        logger.debug(f"配置文件路径: {self.clock_json_path}")
-        logger.debug(f"配置文件路径: {self.config_json_path}")
-        # 设置图片文件路径
-        self.files: list[str] = [
+        # endregion
+        # region 输出配置文件路径
+        logger.info(f"时间表配置文件路径: {self.time_config_path}")
+        logger.info(f"软件设置配置文件路径: {self.config_path}")
+        # endregion
+        # region 设置图片路径
+        self.img_files: list[str] = [
             str(object=Path(current_path(relative_path=i)).resolve())
             for i in [
+                r"icons\active.ico",
                 r"icons\active.png",
                 r"icons\inactive.png",
                 r"icons\hide_tray.png",
-                r"icons\active.ico",
             ]
         ]
-        # region 处理配置文件
-        if Path(self.config_json_path).exists():
-            with open(file=self.config_json_path, encoding="utf-8") as f:
-                self.load_config(configure=load(fp=f))  # type: ignore
-        self.show_config()
         # endregion
-
-        self.ensure_quit_signal.connect(self.ensure_quit)
-
+        # region 写入配置文件
+        if Path(self.config_path).is_file():
+            with open(file=self.config_path, encoding="utf-8") as f:
+                self.load_config(configure=Config(**load(fp=f)))
+        # endregion
         self.set_widgets()
-
         self.son_classes_init()
 
-    # region 主窗口类方法s
-    # region 重写的方法s
     @logger.catch
-    def hideEvent(self, event: QEvent, /):
-        self.hide_window_signal.emit()
-        event.accept()
-
-    @logger.catch
-    def closeEvent(self, event: QEvent, /):
+    def load_config(self, configure: Config):
         """
-        窗口收到关闭事件时隐藏设置窗口
-        :param event: 事件对象
+        从配置类导入配置
+        :param configure: 配置类
         :return: 无
         """
-        self.showMinimized()
-        event.ignore()
 
-    # endregion
-    # region 槽函数s
-    @Slot()
-    @logger.catch
-    def change_status(self):
-        """
-        切换启用状态
-        :return:
-        """
-        self.status ^= True
-        self.ui.is_active.setText("工作中" if self.status else "睡觉中")
-        self.tray_icon.change_tray_state()
-        self.status_manager.ui.status.setText(str(self.status))
-    
-    
-    @Slot()
-    @logger.catch
-    def strong_hide_action(self, state: bool):
-        """
-        关联强隐藏托盘图标状态
-        :param state: 强隐藏状态
-        :return:
-        """
-        self.ui.if_tray_hide.setDisabled(state)
-        self.ui.if_tray_hide.setChecked(True)
+        def get_config_value(config: Config, key: str) -> Any:
+            """
+            从配置字典中获取值
+            :param config: 配置字典
+            :param key: 键名
+            :return: 键对应的值
+            """
+            return config.__dict__.get(key, self.default_config.__dict__[key])
 
-    @Slot()
-    @logger.catch
-    def set_flushable(self, *args, **kwargs):  # type: ignore
-        """
-        设置应用按钮为可点击状态
-        :return:
-        """
-        self.ui.apply_button.setEnabled(True)
-
-    @Slot()
-    @logger.catch
-    def quit_app(self):
-        """
-        退出软件
-        :return: 无
-        """
-        self.life = False
-        keyboard.unhook_all()
-        logger.debug(f"当前软件生命状态: {self.life}")
-        self.status_manager.destroy()
-        self.app.quit()
-        sys.exit()
-
-    # endregion
-
-    @logger.catch
-    def ensure_quit(self):
-        """
-        确认退出应用
-        :return:
-        """
-        if not self.exit_asking:
-            self.exit_asking = True
-            reply = QMessageBox.question(
-                self,
-                "确认退出",
-                "真的要退出吗？",
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                QMessageBox.StandardButton.No,
-            )
-            if reply == QMessageBox.StandardButton.Yes:
-                self.quit_app()
-            self.exit_asking = False
-
-    @logger.catch
-    def son_classes_init(self):
-        """
-        初始化子类
-        :return: 无
-        """
-        # region 初始化状态管理器
-        self.status_manager = classes.basic_classes.StatusManager.StatusManager(self)
-        self.status_changed_signal.connect(self.change_status)
-        # endregion
-
-        # region 初始化热键管理器
-        self.hot_key_manager = classes.HotKeyManager(self)
-        QShortcut(QKeySequence("Alt+A"), self).activated.connect(
-            lambda: (
-                self.flash_state_changed() if self.ui.apply_button.isEnabled() else None
-            )
+        self.config = Config(
+            tray_hide_mode=get_config_value(config=configure, key="tray_hide_mode"),
+            for_kill_exes=get_config_value(config=configure, key="for_kill_exes"),
+            for_kill_window_titles=get_config_value(
+                config=configure, key="for_kill_window_titles"
+            ),
+            random_delay=get_config_value(config=configure, key="random_delay"),
+            duration=get_config_value(config=configure, key="duration"),
         )
-        QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(self.quit_app)
-        # endregion
 
-        # region 初始化托盘图标
-        self.tray_icon = classes.Tray(self)
-        self.tray_icon.flash_tray()
-        # endregion
-
-        # region 初始化weekday管理类
-        self.day_manager = classes.DayManager(self, self.ui.day, self.time_config)
-        # endregion
-
-        # region 初始化时间列表管理器
-        self.time_manager = classes.TimeManager(
-            self, self.ui.time_list, self.day_manager.day
-        )
-        # endregion
-
-        # region 初始化待杀应用窗口类
-        self.add_executable = classes.EXE.AddEXE.AddEXE(p_window=self)
-        self.edit_executable = classes.EXE.EditEXE.EditEXE(p_window=self)
-        # endregion
-
-        # region 初始化待杀窗口标题类
-        self.add_title = classes.Title.AddTitle.AddTitle(p_window=self)
-        self.edit_title = classes.Title.EditTitle.EditTitle(p_window=self)
-        # endregion
-
-        # region 初始化消息提示类
-        self.warner = classes.MessageShower(p_window=self)
-        # endregion
-
-        # region 初始化待杀程序列表
-        self.ui.for_kill_list.addItems(self.config.forKillExe)
-        self.ui.for_close_title.addItems(self.config.forKillWindowTitle)
-        logger.debug("已加载待杀程序列表")
-        # endregion
+        logger.info(f"配置加载完成: {self.config}")
 
     @logger.catch
     def set_widgets(self):
@@ -273,12 +161,12 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         设置窗口控件
         :return: 无
         """
-        self.ui.if_tray_hide.setChecked(bool(self.config.hide_tray))
-        self.ui.if_strong_hide.setChecked(self.config.hide_tray == 2)
+        self.ui.if_tray_hide.setChecked(bool(self.config.tray_hide_mode))
+        self.ui.if_strong_hide.setChecked(self.config.tray_hide_mode == 2)
         self.ui.if_tray_hide.setDisabled(self.ui.if_strong_hide.isChecked())
-        self.ui.a.setValue(self.config.random_time[0])
-        self.ui.b.setValue(self.config.random_time[1])
-        self.ui.hold_seconds.setValue(self.config.hold_time)
+        self.ui.a.setValue(self.config.random_delay[0])
+        self.ui.b.setValue(self.config.random_delay[1])
+        self.ui.hold_seconds.setValue(self.config.duration)
 
         for widget in [self.ui.if_tray_hide, self.ui.if_strong_hide]:
             widget.stateChanged.connect(self.set_flushable)
@@ -291,112 +179,112 @@ class MainWindow(classes.basic_classes.MyQWidget.MyQWidget):
         self.ui.apply_button.clicked.connect(self.flash_state_changed)
         self.ui.is_active.clicked.connect(self.status_changed_signal.emit)
         self.ui.test_button.clicked.connect(lambda: setattr(self, "test", True))
-        self.ui.exit_button.clicked.connect(self.quit_app)
+        self.ui.exit_button.clicked.connect(self.exit_app)
         self.ui.if_strong_hide.stateChanged.connect(self.strong_hide_action)
         self.ui.close_button.clicked.connect(self.close)
         self.ui.minimize_button.clicked.connect(self.showMinimized)
 
     @logger.catch
-    def load_config(self, configure: dict):  # type: ignore
+    def son_classes_init(self):
         """
-        加载配置
-        :param configure: 配置字典
+        初始化子类
         :return: 无
         """
-        self.config.hide_tray = configure.get("hide_tray", self.default_config.hide_tray)  # type: ignore
-        self.config.forKillExe = configure.get("forKillExe", self.default_config.forKillExe)  # type: ignore
-        self.config.random_time = configure.get(  # type: ignore
-            "random_time", self.default_config.random_time  # type: ignore
-        )
-        self.config.hold_time = configure.get("hold_time", self.default_config.hold_time)  # type: ignore
-        self.config.forKillWindowTitle = configure.get(  # type: ignore
-            "forKillWindowTitle", self.default_config.forKillWindowTitle  # type: ignore
-        )
-
-    @logger.catch
-    def show_config(self):
-        """
-        显示配置
-        :return: 无
-        """
-        QApplication.processEvents()
-        logger.debug(f"当前托盘图标透明(0显1透2隐): {self.config.hide_tray}")
-        logger.debug(f"当前待杀程序: {self.config.forKillExe}")
-        logger.debug(f"当前随机时间: {self.config.random_time}")
-        logger.debug(f"当前持续时间: {self.config.hold_time}")
-        logger.debug(f"当前待杀应用窗口标题: {self.config.forKillWindowTitle}")
-
-    @logger.catch
-    def show_window(self: Self):
-        """
-        显示窗口(获取焦点+活动+前置)
-        :return:
-        """
-        self.setVisible(True)
-        self.showNormal()
-        self.raise_()
-        self.activateWindow()
-        self.setFocus()
-
-    @logger.catch
-    def change_window_state(self, hide: bool = False):
-        """
-        显示或隐藏设置窗口
-        :param hide:
-        :return:
-        """
-        if hide:
-            self.showMinimized()
-        else:
-            self.show_window()
-
-    @logger.catch
-    def flash_state_changed(self):
-        """
-        刷新配置
-        :return: 无
-        """
-        QApplication.processEvents()
-        # 将当前属性设置为GUI控件的值
-        # region 设置待杀程序列表 和 待杀应用程序窗口标题列表
-        self.config.forKillExe = flash_list_widget(list_widget=self.ui.for_kill_list)
-        self.config.forKillWindowTitle = flash_list_widget(
-            list_widget=self.ui.for_close_title
-        )
+        # region 初始化状态管理器
+        self.status_manager = StatusManager(self)
+        self.status_changed_signal.connect(self.change_state)
         # endregion
-        self.config.hide_tray = (
-            2
-            if self.ui.if_strong_hide.isChecked()
-            else 1 if self.ui.if_tray_hide.isChecked() else 0
-        )
-        self.config.hold_time = self.ui.hold_seconds.value()
-        # 判断随机时间范围是否正确(whether a<=b or not)
-        if self.ui.a.value() > self.ui.b.value():
-            # 不正确,则将两个输入框的值调转
-            self.config.random_time[0] = self.ui.b.value()
-            self.config.random_time[1] = self.ui.a.value()
-            self.ui.a.setValue(self.config.random_time[0])
-            self.ui.b.setValue(self.config.random_time[1])
-        else:
-            # 如果正确,则将两个输入框的值设置为新的值
-            self.config.random_time[0] = self.ui.a.value()
-            self.config.random_time[1] = self.ui.b.value()
-        with open(file=self.config_json_path, mode="w") as f:
-            dump(
-                obj={
-                    "hide_tray": self.config.hide_tray,
-                    "forKillExe": self.config.forKillExe,
-                    "random_time": self.config.random_time,
-                    "hold_time": self.config.hold_time,
-                    "forKillWindowTitle": self.config.forKillWindowTitle,
-                },
-                fp=f,
-                indent=4,
+
+        # region 初始化热键管理器
+        self.hot_key_manager = HotKeyManager(self)
+        QShortcut(QKeySequence("Alt+A"), self).activated.connect(
+            lambda: (
+                self.flash_state_changed() if self.ui.apply_button.isEnabled() else None
             )
-        self.show_config()
-        # 将应用按钮设置为禁用状态
-        self.ui.apply_button.setDisabled(True)
-        # 发送应用信号
-        self.apply_signal.emit()
+        )
+        QShortcut(QKeySequence("Ctrl+Q"), self).activated.connect(self.exit_app)
+        # endregion
+
+        # region 初始化托盘图标
+        self.tray_icon = Tray(self)
+        self.tray_icon.flash_tray()
+        # endregion
+
+        # region 初始化weekday管理类
+        self.day_manager = DayManager(self, self.ui.day, self.time_config)
+        # endregion
+
+        # region 初始化时间列表管理器
+        self.time_manager = TimeManager(self, self.ui.time_list, self.day_manager.day)
+        # endregion
+
+        # region 初始化待杀应用窗口类
+        self.add_executable = EXE.AddEXE.AddEXE(p_window=self)
+        self.edit_executable = EXE.EditEXE.EditEXE(p_window=self)
+        # endregion
+
+        # region 初始化待杀窗口标题类
+        self.add_title = Title.AddTitle.AddTitle(p_window=self)
+        self.edit_title = Title.EditTitle.EditTitle(p_window=self)
+        # endregion
+
+        # region 初始化消息提示类
+        self.warner = MessageShower(p_window=self)
+        # endregion
+
+        # region 初始化待杀程序列表
+        self.ui.for_kill_list.addItems(self.config.for_kill_exes)
+        self.ui.for_close_title.addItems(self.config.for_kill_window_titles)
+        logger.info("已加载待杀程序列表")
+        # endregion
+
+    # region 槽函数
+
+    @Slot(bool)
+    @logger.catch
+    def change_state(self, active: bool):
+        """
+        切换工作状态
+        :param active: 是否工作中
+        :return: 无
+        """
+        self.status = active
+        self.ui.is_active.setText("工作中" if self.status else "睡觉中")
+        self.tray_icon.change_tray_state()
+        self.status_manager.ui.status.setText(str(self.status))
+
+    @Slot()
+    @logger.catch
+    def exit_app(self):
+        """
+        退出应用
+        :return: 无
+        """
+        self.life = False
+        keyboard.unhook_all()
+        logger.warning("正在退出应用...")
+        self.status_manager.destroy()
+        self.app.quit()
+        sys.exit()
 
     # endregion
+
+    @logger.catch
+    def confirm_exit(self):
+        """
+        确认退出应用
+        :return: 无
+        """
+        if not self.exit_asking:
+            self.exit_asking = True
+            if (
+                QMessageBox.question(
+                    self,
+                    "真的要退出吗?",
+                    "真的要退出吗?",
+                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                )
+                == QMessageBox.StandardButton.Yes
+            ):
+                self.exit_app()
+        self.exit_asking = False
