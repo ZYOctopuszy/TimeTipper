@@ -15,6 +15,7 @@ import keyboard, sys
 
 from classes import *
 from classes.basic_classes import *
+
 from UIs import settings
 from public_functions import current_path, set_window_size
 from classes.WindowCloser import kill_windows
@@ -219,13 +220,13 @@ class MainWindow(MyQWidget):
         # endregion
 
         # region 初始化待杀应用窗口类
-        self.add_executable = EXE.AddEXE.AddEXE(p_window=self)
-        self.edit_executable = EXE.EditEXE.EditEXE(p_window=self)
+        self.add_executable = EXE.AddEXE(p_window=self)
+        self.edit_executable = EXE.EditEXE(p_window=self)
         # endregion
 
         # region 初始化待杀窗口标题类
-        self.add_title = Title.AddTitle.AddTitle(p_window=self)
-        self.edit_title = Title.EditTitle.EditTitle(p_window=self)
+        self.add_title = Title.AddTitle(p_window=self)
+        self.edit_title = Title.EditTitle(p_window=self)
         # endregion
 
         # region 初始化消息提示类

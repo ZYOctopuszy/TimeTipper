@@ -1,4 +1,4 @@
-from . import AddEXE
-from . import EditEXE
+from .AddEXE import AddEXE
+from .EditEXE import EditEXE
 
 __all__ = ["AddEXE", "EditEXE"]
