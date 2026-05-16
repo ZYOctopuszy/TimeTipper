@@ -1,6 +1,5 @@
 if __name__ == "__main__":
     from MainWindow import MainWindow
-from PySide6.QtCore import QObject, Signal
 from loguru import logger
 import re
 
@@ -10,15 +9,13 @@ _COLOR_TEMPLATE: str = (
 _trans_table: dict[int, str] = str.maketrans({"<": "&lt;", ">": "&gt;", " ": "&nbsp;"})
 
 
-class LogManager(QObject):
-    update_log = Signal(str)
-
+class LogManager:
+    __slots__ = ("p_window","gun","curser","three_cursers","log_pattern")
     @logger.catch
     def __init__(self, p_window: "MainWindow"):
         super().__init__()
         self.p_window = p_window
         self.p_window.ui.logger.clear()
-        self.update_log.connect(self.p_window.ui.logger.append)
         logger.add(
             sink=self,
             format="{time:YYYY-MM-DD HH:mm:ss.SSS} | {level} | {name} -> {function} -> {line} >>> {message}",
@@ -70,7 +67,7 @@ class LogManager(QObject):
                         text=line.translate(_trans_table)
                     )
 
-            self.update_log.emit(context)
+            self.p_window.ui.logger.append(context)
 
     @logger.catch
     def become_colorful(self, text: str, color: str = "red") -> str:

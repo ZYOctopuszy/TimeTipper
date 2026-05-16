@@ -35,16 +35,17 @@ class AddEXE(AddItem):
         file_name = Path(
             QFileDialog.getOpenFileName(parent=self.p_window, caption="选择待杀程序", dir="", filter="*.exe")[0]
         ).name
-        if file_name.strip() != "":
+        if file_name.strip() != "" and (file_name not in self.p_window.config.for_kill_exes):
             self.p_window.ui.for_kill_list.addItem(file_name)
             logger.debug(f"已添加待杀程序: {file_name}")
-        self.p_window.flash_state_changed()
+        self.p_window.update_config()
 
     @logger.catch
-    def item_double_clicked_action(self) -> None:
+    def item_double_clicked_action(self, *args) -> None:
         """
         双击待杀程序列表项时执行
         :return:
         """
         QApplication.processEvents()
+        logger.debug(f"双击待杀程序: {args}")
         kill_exes(processes=(self.p_window.ui.for_kill_list.currentItem().text()))

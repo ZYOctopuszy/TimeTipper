@@ -1,17 +1,20 @@
 """
 公共函数模块, 包含一些通用的函数
 """
+
 if __name__ == "__main__":
     from MainWindow import MainWindow
 from json import load, dump
+import json
 from sys import argv
 from pathlib import Path, PurePath
 from collections.abc import Iterable
 from PySide6.QtCore import QRect
-from PySide6.QtWidgets import QApplication, QListWidget, QWidget
+from PySide6.QtWidgets import QApplication
 from loguru import logger
 from itertools import repeat
 import psutil
+import os
 
 from classes.basic_classes.Clock import Clock
 
@@ -19,7 +22,6 @@ __all__ = [
     "current_path",
     "set_window_size",
     "kill_exes",
-    "flash_list_widget",
     "load_time_from_json",
     "save_time_to_json",
     "time_config",
@@ -41,6 +43,8 @@ def current_path(relative_path: str, mode: str = "resource") -> str:
                 PurePath.joinpath(Path(__file__).resolve().parent, relative_path)
             )
         case "exe":
+            if argv[0].endswith(".exe"):
+                return str(Path(os.environ["APPDATA"]) / "TimeTipper" / relative_path)
             return str(PurePath.joinpath(Path(argv[0]).resolve().parent, relative_path))
         case _:
             raise ValueError(f"mode must be 'resource' or 'exe', not {mode}")
@@ -75,7 +79,9 @@ def kill_exes(processes: Iterable[str]) -> bool:
     :param processes: 进程映像名列表（区分大小写）
     :return: 是否成功杀死进程
     """
-    matched_processes: set = (set(psutil.process_iter(attrs=["name"])) & set(processes))
+    if not processes:
+        return False
+    matched_processes: set = set(psutil.process_iter(attrs=["name"])) & set(processes)
     if not matched_processes:
         logger.debug("未找到匹配进程")
         return False
@@ -83,19 +89,6 @@ def kill_exes(processes: Iterable[str]) -> bool:
         proc.kill()
         logger.debug(f"杀死进程 {proc.name()}")
     return True
-
-
-@logger.catch
-def flash_list_widget(list_widget: QListWidget) -> list[str]:
-    """
-    排序所传入的列表控件, 并返回所有项的列表
-    :param list_widget: 传入的QListWidget对象
-    :return:
-    """
-    if type(list_widget) != QListWidget:
-        raise TypeError("list_widget must be QListWidget")
-    list_widget.sortItems()
-    return [list_widget.item(i).text() for i in range(list_widget.count())]
 
 
 type time_config = list[list[list[str | bool]]]
@@ -137,3 +130,15 @@ def save_time_to_json(file: str, data: time_class_config) -> None:
     with open(file=file, mode="w", encoding="utf-8") as f:
         dump(obj={"config": cfg_L}, fp=f, ensure_ascii=False, indent=4)
     _json_cache[file] = cfg_L
+
+
+@logger.catch
+def save_config(file_name: str, data: dict):
+    """
+    保存字典数据到json文件
+    :param file_name: 文件名
+    :param data: 要保存的数据字典
+    :return: None
+    """
+    with open(file=file_name, mode="w", encoding="utf-8") as f:
+        json.dump(obj=data, fp=f, indent=4)

@@ -12,6 +12,8 @@ def kill_windows(titles: Iterable[str]) -> bool:
     关闭所有匹配标题的窗口
     :param titles: 窗口标题
     """
+    if not titles:
+        return False
     global success, _titles
     _titles = titles
     success = False

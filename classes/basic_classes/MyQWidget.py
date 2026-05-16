@@ -16,12 +16,17 @@ class MyQWidget(QWidget):
         self.auto_hide: bool = auto_hide
         self.drag: bool = False
         self.setWindowFlags(
-            Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.BypassWindowManagerHint
+            Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint
         )
 
     @logger.catch
     def changeEvent(self, event: QEvent):
-        if getattr(self, "auto_hide", True) and not self.isActiveWindow():
+        """
+        当自动隐藏启用时, 窗口失去焦点时隐藏窗口
+        :param event: 事件对象
+        :return: None
+        """
+        if self.auto_hide and not self.isActiveWindow():
             self.hide()
         if (
             self.windowState() == Qt.WindowState.WindowMinimized
@@ -31,6 +36,7 @@ class MyQWidget(QWidget):
             return
         super().changeEvent(event)
 
+# region 实现窗口拖动
     @logger.catch
     def mousePressEvent(self, event: QMouseEvent):
         if event.button() == Qt.MouseButton.LeftButton:
@@ -48,3 +54,4 @@ class MyQWidget(QWidget):
     def mouseReleaseEvent(self, event: QMouseEvent):
         if event.button() == Qt.MouseButton.LeftButton:
             self.drag = False
+# endregion

@@ -1,151 +1,134 @@
 if __name__ == "__main__":
     from MainWindow import MainWindow
 
+from PySide6.QtWidgets import QSystemTrayIcon, QMenu
+from PySide6.QtGui import QAction, QIcon
 import keyboard
-from PySide6.QtCore import Qt, Slot
-from PySide6.QtGui import QAction, QIcon, QPixmap
-from PySide6.QtWidgets import QSystemTrayIcon, QApplication, QMenu
 from loguru import logger
 
 
 class Tray(QSystemTrayIcon):
     """
-    自定义系统托盘图标类
+    系统托盘图标类
     """
 
     @logger.catch
     def __init__(self, p_window: "MainWindow"):
-        QApplication.processEvents()
         super().__init__()
         self.p_window = p_window
 
         self.setToolTip("那刻夏")
 
-        self.p_window.apply_signal.connect(self.flash_tray)
-        self.p_window.status_changed_signal.connect(self.change_tray_state)
-        self.p_window.hide_window_signal.connect(self.show_hide_window)
+        self.menu = QMenu()
 
-        # 创建系统托盘菜单
-        self.menu: QMenu = QMenu()
+        # 显示与隐藏设置窗口
+        self.show_or_hide_action = QAction("呼叫")
+        self.show_or_hide_action.setToolTip("与那刻夏交谈")
+        self.show_or_hide_action.triggered.connect(self.show_or_hide_func)
 
-        # "显示"和"隐藏"菜单项
-        self.show_hide_action: QAction = QAction("呼叫")
-        self.show_hide_action.setToolTip("与那刻夏交谈")
-        self.show_hide_action.triggered.connect(lambda: self.show_hide_window(True))
-        self.menu.addAction(self.show_hide_action)
-
-        # "启用与禁用"菜单项
-        self.enable_disable_action: QAction = QAction("催眠")
-        self.enable_disable_action.setToolTip("催眠那刻夏")
-        self.enable_disable_action.triggered.connect(
+        # 启用与禁用提醒
+        self.enable_or_disable_action = QAction("催眠")
+        self.enable_or_disable_action.setToolTip("催眠那刻夏")
+        self.enable_or_disable_action.triggered.connect(
             self.p_window.status_changed_signal.emit
         )
-        self.menu.addAction(self.enable_disable_action)
 
-        # "退出"菜单项
-        self.exit_action: QAction = QAction("送别")
-        self.exit_action.setToolTip("送别那刻夏")
-        self.exit_action.triggered.connect(p_window.exit_app)
-        self.menu.addAction(self.exit_action)
+        # 退出应用
+        self.exit_action = QAction("道别")
+        self.exit_action.setToolTip("离开那刻夏")
+        self.exit_action.triggered.connect(self.p_window.exit_app)
 
-        # 应用系统托盘菜单
-        self.setContextMenu(self.menu)
-        self.set_picture_path()
-        self.show()
-
-        # 连接系统托盘图标点击信号与槽函数
-        self.activated.connect(self.toggle_window)
-
-    @logger.catch
-    def set_picture_path(self):
-        """
-        设置系统托盘图标图片路径
-        :return:
-        """
-        QApplication.processEvents()
-        self.setIcon(QIcon(self.p_window.files[0]))
-        self.p_window.setWindowIcon(QIcon(self.p_window.files[0]))
-        self.p_window.ui.show_icon.setPixmap(
-            QPixmap(self.p_window.files[0]).scaled(
-                30,
-                30,
-                Qt.AspectRatioMode.KeepAspectRatio,
-                Qt.TransformationMode.SmoothTransformation,
-            )
+        # 将菜单项添加到系统托盘菜单
+        self.menu.addActions(
+            (self.show_or_hide_action, self.enable_or_disable_action, self.exit_action)
         )
 
+        # 应用系统托盘菜单
+        self.activated.connect(self.toggle_tray)
+        self.setContextMenu(self.menu)
+        self.set_icon()
+        self.refresh_tray()
+
+        self.p_window.window_hide_signal.connect(lambda: self.refresh_tray())
+
     @logger.catch
-    @Slot()
-    def toggle_window(self, reason: QSystemTrayIcon.ActivationReason):
+    def show_or_hide_func(self):
         """
-        实现托盘各种点击操作
-        :param reason: 点击类型
+        显示或隐藏设置窗口
+        :return:
+        """
+        if self.p_window.isVisible():
+            self.p_window.hide()
+        else:
+            self.p_window.show()
+
+    @logger.catch
+    def refresh_tray(self):
+        """
+        刷新系统托盘图标状态
+        :return:
+        """
+        if self.p_window.isVisible():
+            self.show_or_hide_action.setText("隐藏")
+            self.show_or_hide_action.setToolTip("隐藏那刻夏")
+        else:
+            self.show_or_hide_action.setText("呼叫")
+            self.show_or_hide_action.setToolTip("与那刻夏交谈")
+        self.enable_or_disable_action.setText(
+            "催眠" if self.p_window.status else "唤醒"
+        )
+        self.enable_or_disable_action.setToolTip(
+            "催眠那刻夏" if self.p_window.status else "唤醒那刻夏"
+        )
+
+        self.set_icon()
+
+        match self.p_window.config.tray_hide_mode:
+            case 0:
+                self.setContextMenu(self.menu)
+                self.show()
+            case 1:
+                self.setContextMenu(QMenu())
+                self.show()
+            case 2:
+                self.hide()
+
+    @logger.catch
+    def set_icon(self):
+        """
+        设置系统托盘图标
+        :return:
+        """
+        if self.p_window.config.tray_hide_mode == 1:
+            self.setIcon(QIcon(self.p_window.img_files[3]))
+        else:
+            self.setIcon(QIcon(self.p_window.img_files[0 if self.p_window.status else 1]))
+
+    @logger.catch
+    def toggle_tray(self, reason: QSystemTrayIcon.ActivationReason):
+        """
+        处理点击事件
+        :param reason: 激活原因
         :return: 无
         """
-        # 托盘双击操作-打开设置
-        QApplication.processEvents()
-        if reason == QSystemTrayIcon.ActivationReason.DoubleClick:
-            if not self.p_window.isVisible() and (
-                (not self.p_window.config.hide_tray)
-                or (keyboard.is_pressed(hotkey="shift+esc"))
-            ):
-                # 显示设置窗口
-                logger.debug("显示设置窗口")
-                self.show_hide_action.setText("设完了")
-                self.show_hide_action.setToolTip("交流完毕")
-                self.p_window.change_window_state()
-            elif self.p_window.isVisible():
-                # 隐藏设置窗口
-                self.show_hide_action.setText("呼叫")
-                self.show_hide_action.setToolTip("与那刻夏交谈")
-                self.p_window.change_window_state(True)
+        # 托盘双击操作-打开设置窗口
+        match reason:
+            case QSystemTrayIcon.ActivationReason.Trigger:
+                self.p_window.status_changed_signal.emit()
+            case QSystemTrayIcon.ActivationReason.DoubleClick:
+                self.p_window.status_changed_signal.emit()
+                if (
+                    not self.p_window.config.tray_hide_mode
+                    or keyboard.is_pressed("shift+Esc")
+                    and not self.p_window.isVisible()
+                ):
+                    self.show_or_hide_action.setText("完成")
+                    self.show_or_hide_action.setToolTip("结束谈话")
+                    self.p_window.show()
+                elif self.p_window.isVisible():
+                    self.show_or_hide_action.setText("呼叫")
+                    self.show_or_hide_action.setToolTip("与那刻夏交谈")
+                    self.p_window.hide()
 
-        # 托盘中建操作-关闭软件
-        elif reason == QSystemTrayIcon.ActivationReason.MiddleClick:
-            self.p_window.exit_app()
-
-    @logger.catch
-    def change_tray_state(self):
-        """
-        改变托盘图标状态
-        :return:
-        """
-        QApplication.processEvents()
-        self.enable_disable_action.setText("催眠" if self.p_window.status else "唤醒")
-        if not self.p_window.config.hide_tray:
-            logger.debug("托盘图标未设置隐藏, 切换托盘图标图片")
-            if self.p_window.status:
-                self.setIcon(QIcon(self.p_window.files[0]))
-                self.setToolTip("那刻夏")
-            else:
-                self.setIcon(QIcon(self.p_window.files[1]))
-                self.setToolTip("那刻夏\n(睡觉中)")
-
-    @logger.catch
-    def show_hide_window(self, change_window_state: bool = False):
-        """
-        改变托盘上下文菜单
-        :param change_window_state: 是否改变窗口状态
-        :return:
-        """
-        if change_window_state:
-            self.p_window.change_window_state(self.p_window.isVisible())
-        if not self.p_window.isVisible():
-            self.show_hide_action.setToolTip("与那刻夏交谈")
-            self.show_hide_action.setText("呼叫")
-        else:
-            self.show_hide_action.setToolTip("交谈完毕")
-            self.show_hide_action.setText("设完了")
-
-    @logger.catch
-    def flash_tray(self):
-        """
-        刷新托盘图标状态
-        :return:
-        """
-        self.setVisible(self.p_window.config.hide_tray != 2)
-        if self.p_window.config.hide_tray == 1:
-            self.setToolTip("")
-            self.setIcon(QIcon(self.p_window.files[2]))
-        else:
-            self.change_tray_state()
+            case QSystemTrayIcon.ActivationReason.MiddleClick:
+                self.p_window.exit_app()

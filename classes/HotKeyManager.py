@@ -11,23 +11,24 @@ class HotKeyManager(QWidget):
     热键管理类
     """
 
-    show_window_signal = Signal()
+    show_state_signal = Signal()
 
     @logger.catch
     def __init__(self, p_window: "MainWindow"):
         super().__init__()
         self.p_window = p_window
 
-        self.show_window_signal.connect(self.p_window.show_window)
+        self.p_window.confirm_exit_signal.connect(self.p_window.confirm_exit)
 
-        keyboard.add_hotkey(
-            hotkey="ctrl+windows+shift+s", callback=self.show_window
-        )
+        keyboard.add_hotkey(hotkey="ctrl+windows+shift+s", callback=self.show_window)
         keyboard.add_hotkey(
             hotkey="ctrl+windows+shift+c", callback=lambda: self.show_status_tip()
         )
         keyboard.add_hotkey(
-            "ctrl+windows+shift+q", self.p_window.ensure_quit_signal.emit
+            "ctrl+windows+shift+q", self.p_window.confirm_exit_signal.emit
+        )
+        keyboard.add_hotkey(
+            "ctrl+windows+shift+k", lambda: self.p_window.warner.killer()
         )
 
     @logger.catch
@@ -36,9 +37,9 @@ class HotKeyManager(QWidget):
         显示设置窗口
         :return:
         """
-        if self.p_window.config.hide_tray == 2:
-            self.show_window_signal.emit()
-        
+        if self.p_window.config.tray_hide_mode == 2:
+            self.p_window.show()
+
     @logger.catch
     def show_status_tip(self):
         """
@@ -46,5 +47,4 @@ class HotKeyManager(QWidget):
         :return:
         """
         self.p_window.status_changed_signal.emit()
-        self.p_window.status_manager.switch_times += 1
-
+        self.p_window.status_manager.show_status()

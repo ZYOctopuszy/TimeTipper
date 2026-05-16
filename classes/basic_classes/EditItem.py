@@ -39,4 +39,4 @@ class EditItem(GetInput):
         logger.debug(
             f"已修改项: {current_item.text()} -> {self.ui.get_exe_name.text()}"
         )
-        self.p_window.flash_state_changed()
+        self.p_window.update_config()

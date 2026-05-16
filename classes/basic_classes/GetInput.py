@@ -22,5 +22,5 @@ class GetInput(MyQWidget):
         self.p_window = p_window
         self.list_widget = list_widget
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setWindowIcon(QIcon(self.p_window.files[3]))
+        self.setWindowIcon(QIcon(self.p_window.img_files[0]))
         self.hide()

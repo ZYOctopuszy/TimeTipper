@@ -6,7 +6,7 @@ from .HotKeyManager import HotKeyManager
 from .MessageShower import MessageShower
 from .Tray import Tray
 from .LogManager import LogManager
-from .TimeManager import TimeManager
+from .ClockManager import ClockManager
 from .DayManager import DayManager
 
 
@@ -19,6 +19,6 @@ __all__ = [
     "HotKeyManager",
     "Tray",
     "LogManager",
-    "TimeManager",
+    "ClockManager",
     "DayManager",
 ]

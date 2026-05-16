@@ -1,5 +1,10 @@
 @echo off
-echo This file is not used anymore.
-echo Please use packed_by_nuitka.bat instead.
-@REM pyinstaller TimeTipper.spec
-@REM rmdir /s /q build
+
+echo "Please run this .bat script in the project's root directory."
+echo "First run enter_venv.bat to activate the virtual environment."
+echo "Ctrl-C to exit or press any key to continue."
+pause
+nuitka main.py
+echo "Compilation completed."
+pause
+echo on

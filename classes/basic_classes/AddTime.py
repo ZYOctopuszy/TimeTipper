@@ -2,9 +2,9 @@ from PySide6.QtCore import Qt
 from loguru import logger
 
 from UIs import add_time
-from classes import *
+from .MyQWidget import MyQWidget
 
-class AddTime(basic_classes.MyQWidget.MyQWidget):
+class AddTime(MyQWidget):
     """
     自定义添加时间点窗口类
     """

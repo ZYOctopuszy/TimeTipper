@@ -33,14 +33,14 @@ class MessageShower:
         now = datetime.now()
         wait_second = (
             randint(
-                a=self.p_window.config.random_time[0],
-                b=self.p_window.config.random_time[1],
+                a=self.p_window.config.random_delay[0],
+                b=self.p_window.config.random_delay[1],
             )
             if self.p_window.test
             or (
                 now.strftime(format="%H:%M")
                 in [clock.time for clock in self.p_window.time_config[self.day]]
-                and now.second < self.p_window.config.random_time[0]
+                and now.second < self.p_window.config.random_delay[0]
             )
             else 0
         )
@@ -53,17 +53,12 @@ class MessageShower:
             else:
                 logger.debug("关闭窗口中")
                 success: bool = True
-                if (
-                    not self.p_window.config.forKillWindowTitle
-                    or not self.p_window.kill_windows(
-                        titles=self.p_window.config.forKillWindowTitle
-                    )
+                if not self.p_window.kill_windows(
+                    titles=self.p_window.config.for_kill_window_titles
                 ):
                     success = False
                 logger.debug("杀死进程中")
-                if not self.p_window.config.forKillExe or not kill_exes(
-                    processes=self.p_window.config.forKillExe
-                ):
+                if not kill_exes(processes=self.p_window.config.for_kill_exes):
                     success = False
                 if success:
                     self.p_window.app.beep()
@@ -82,17 +77,19 @@ class MessageShower:
             if self.p_window.test or self.p_window.status:
                 now = datetime.now().replace(microsecond=0)
                 current_time = now
-                hold_start = now - timedelta(seconds=self.p_window.config.hold_time)
+                duration_seconds_before = now - timedelta(
+                    seconds=self.p_window.config.duration
+                )
 
                 # logger.debug(
                 #     f"{
-                #         hold_start=}, {
+                #         duration_seconds_before=}, {
                 #         current_time=}, {
                 #         self.p_window.time_config[self.day]=}, {[
                 #     (c.hours, c.minutes)
                 #     for c in self.p_window.time_config[self.day]
                 #     if c.state
-                #     and hold_start
+                #     and duration_seconds_before
                 #     <= (target_time := now.replace(hour=c.hours(), minute=c.minutes(), second=0))
                 #     <= current_time
                 # ]}"
@@ -102,7 +99,7 @@ class MessageShower:
                     (c.hours, c.minutes)
                     for c in self.p_window.time_config[self.day]
                     if c.state
-                    and hold_start
+                    and duration_seconds_before
                     <= datetime.strptime(
                         f"{now.year}-{now.month}-{now.day} {c.hours()}:{c.minutes()}",
                         "%Y-%m-%d %H:%M",

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'settings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.1
+## Created by: Qt User Interface Compiler version 6.11.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,16 +16,22 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QCheckBox,
-    QComboBox, QFrame, QGridLayout, QHBoxLayout,
-    QLabel, QListView, QListWidget, QListWidgetItem,
-    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
-    QTabWidget, QTextBrowser, QTextEdit, QWidget)
+    QComboBox, QCommandLinkButton, QFrame, QGridLayout,
+    QHBoxLayout, QLabel, QListView, QListWidget,
+    QListWidgetItem, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QTabWidget, QTextBrowser, QTextEdit,
+    QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
+        Form.setEnabled(True)
         Form.resize(937, 642)
+        font = QFont()
+        font.setFamilies([u"Microsoft YaHei"])
+        font.setHintingPreference(QFont.PreferNoHinting)
+        Form.setFont(font)
         Form.setAutoFillBackground(False)
         Form.setStyleSheet(u"/* \u57fa\u7840\u8bbe\u7f6e */\n"
 "* {\n"
@@ -36,8 +42,6 @@ class Ui_Form(object):
 "/* \u4e3b\u7a97\u53e3 */\n"
 "QWidget#Form {\n"
 "    background-color: rgba(20, 30, 20, 0.95);\n"
-"    border: 1px solid rgba(60, 90, 60, 0.7);\n"
-"    border-radius: 8px;\n"
 "}\n"
 "\n"
 "/* \u6807\u7b7e\u9875\u5bb9\u5668 */\n"
@@ -63,12 +67,12 @@ class Ui_Form(object):
 "QTabBar::tab:selected {\n"
 "    background: rgba(60, 90, 60, 0.9);\n"
 "    color: white;\n"
-"    border-bottom: 1px solid rgba(60, 90, "
-                        "60, 0.9);\n"
+"    border-bottom: 1px solid rgba(60, 90, 60, 0.9);\n"
 "}\n"
 "\n"
 "QTabBar::tab:hover {\n"
-"    background: rgba(80, 110, 80, 0.8);\n"
+"    background: rgba(80, 11"
+                        "0, 80, 0.8);\n"
 "    color: white;\n"
 "}\n"
 "\n"
@@ -104,11 +108,11 @@ class Ui_Form(object):
 "\n"
 "QPushButton#is_active {\n"
 "    background-color: rgba(80, 160, 90, 0.85);\n"
-"    b"
-                        "order-color: rgba(110, 190, 120, 0.7);\n"
+"    border-color: rgba(110, 190, 120, 0.7);\n"
 "}\n"
 "\n"
-"QPushButton#is_active:hover {\n"
+"QPushButton#is_active:h"
+                        "over {\n"
 "    background-color: rgba(100, 180, 110, 0.9);\n"
 "}\n"
 "\n"
@@ -145,10 +149,10 @@ class Ui_Form(object):
 "QCheckBox::indicator {\n"
 "    width: 16px;\n"
 "    height: 16px;\n"
-"    border: 1px solid rgba(90, 120,"
-                        " 90, 0.7);\n"
+"    border: 1px solid rgba(90, 120, 90, 0.7);\n"
 "    border-radius: 3px;\n"
-"    background: rgba(50, 60, 50, 0.8);\n"
+"    background: rgba(50, 60, 50, 0"
+                        ".8);\n"
 "}\n"
 "\n"
 "QCheckBox::indicator:checked {\n"
@@ -186,10 +190,10 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QFrame#frame {\n"
-"    background-color: rgba(35, 45"
-                        ", 35, 0.0);\n"
+"    background-color: rgba(35, 45, 35, 0.0);\n"
 "    border: 1px solid rgba(70, 90, 70, 0.6);\n"
-"    border-radius: 6px;\n"
+"    border-r"
+                        "adius: 6px;\n"
 "}\n"
 "\n"
 "QFrame#frame_5 {\n"
@@ -229,13 +233,13 @@ class Ui_Form(object):
 "    background: rgba(40, 50, 40, 0.5);\n"
 "    margin: 0px;\n"
 "}\n"
-""
-                        "\n"
+"\n"
 "QScrollBar:vertical {\n"
 "    width: 10px;\n"
 "}\n"
 "\n"
-"QScrollBar:horizontal {\n"
+"QScrollBar:ho"
+                        "rizontal {\n"
 "    height: 10px;\n"
 "}\n"
 "\n"
@@ -274,12 +278,12 @@ class Ui_Form(object):
 "    border: 1px solid rgba(70, 100, 70, 0.8);\n"
 "    border-radius: 3px;\n"
 "    padding: 3px;\n"
-""
-                        "}\n"
+"}\n"
 "\n"
 "/* \u6dfb\u52a0\u6309\u94ae(+) */\n"
 "QPushButton[text=\"+\"], \n"
-"QPushButton[text=\"\u6dfb\u52a0\"] {\n"
+""
+                        "QPushButton[text=\"\u6dfb\u52a0\"] {\n"
 "    background-color: rgba(70, 150, 80, 0.9);\n"
 "}\n"
 "\n"
@@ -320,10 +324,10 @@ class Ui_Form(object):
 "    border: 1px solid rgba(70, 90, 70, 0.7);\n"
 "    border-radius: 4px;\n"
 "    padding: 3px 18px 3px 8px;\n"
-"    color"
-                        ": #e0e0e0;\n"
+"    color: #e0e0e0;\n"
 "    min-width: 6em;\n"
-"    selection-background-color: rgba(60, 120, 70, 0.7);\n"
+"    selection-background-color: rgba(60,"
+                        " 120, 70, 0.7);\n"
 "}\n"
 "\n"
 "/* \u60ac\u505c\u72b6\u6001 */\n"
@@ -355,8 +359,7 @@ class Ui_Form(object):
 "    selection-color: white;\n"
 "    color: #e0e0e0;\n"
 "    outline: none;\n"
-" "
-                        "   border-radius: 4px;\n"
+"    border-radius: 4px;\n"
 "}\n"
 "\n"
 "\n"
@@ -368,7 +371,8 @@ class Ui_Form(object):
 "\n"
 "\n"
 "\n"
-"\n"
+""
+                        "\n"
 "\n"
 "\n"
 "\n"
@@ -402,10 +406,10 @@ class Ui_Form(object):
 "    border-color: rgba(100, 130, 100, 0.8);\n"
 "}\n"
 "\n"
-"/* \u6309"
-                        "\u4e0b\u72b6\u6001 */\n"
+"/* \u6309\u4e0b\u72b6\u6001 */\n"
 "QPushButton#minimize_button:pressed {\n"
-"    background-color: rgba(90, 110, 90, 0.9);\n"
+"    backgr"
+                        "ound-color: rgba(90, 110, 90, 0.9);\n"
 "    border-color: rgba(120, 150, 120, 0.8);\n"
 "}\n"
 "\n"
@@ -451,11 +455,11 @@ class Ui_Form(object):
 "    min-height: 20px;\n"
 "    max-height: 20px;\n"
 "    font-weight: bold;\n"
-"    qproperty-text: \"\u00d7\";  /* \u4f7f\u7528\u4e58\u53f7\u4f5c\u4e3a\u5173\u95ed\u7b26"
-                        "\u53f7 */\n"
+"    qproperty-text: \"\u00d7\";  /* \u4f7f\u7528\u4e58\u53f7\u4f5c\u4e3a\u5173\u95ed\u7b26\u53f7 */\n"
 "}\n"
 "\n"
-"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7ea2\u8272\u8c03\u4f46\u4ecd\u4fdd\u6301\u534f\u8c03 */\n"
+"/* \u60ac\u505c\u72b6\u6001 - \u589e\u5f3a\u7ea2\u8272"
+                        "\u8c03\u4f46\u4ecd\u4fdd\u6301\u534f\u8c03 */\n"
 "QPushButton#close_button:hover {\n"
 "    background-color: rgba(120, 60, 60, 0.9);\n"
 "    border-color: rgba(150, 80, 80, 0.8);\n"
@@ -508,23 +512,17 @@ class Ui_Form(object):
 
         self.frame_2 = QFrame(Form)
         self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setEnabled(True)
         self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
         self.gridLayout_11 = QGridLayout(self.frame_2)
         self.gridLayout_11.setObjectName(u"gridLayout_11")
-        self.minimize_button = QPushButton(self.frame_2)
-        self.minimize_button.setObjectName(u"minimize_button")
-        self.minimize_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
-        self.minimize_button.setStyleSheet(u"")
-
-        self.gridLayout_11.addWidget(self.minimize_button, 0, 0, 1, 1)
-
         self.close_button = QPushButton(self.frame_2)
         self.close_button.setObjectName(u"close_button")
         self.close_button.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         self.close_button.setStyleSheet(u"")
 
-        self.gridLayout_11.addWidget(self.close_button, 0, 2, 1, 1)
+        self.gridLayout_11.addWidget(self.close_button, 0, 1, 1, 1)
 
 
         self.gridLayout_10.addWidget(self.frame_2, 1, 2, 1, 1, Qt.AlignmentFlag.AlignRight)
@@ -538,11 +536,11 @@ class Ui_Form(object):
         self.gridLayout_14.setObjectName(u"gridLayout_14")
         self.resize_label = QLabel(self.frame_5)
         self.resize_label.setObjectName(u"resize_label")
-        font = QFont()
-        font.setFamilies([u"Microsoft YaHei"])
-        font.setPointSize(12)
-        font.setBold(False)
-        self.resize_label.setFont(font)
+        font1 = QFont()
+        font1.setFamilies([u"Microsoft YaHei"])
+        font1.setPointSize(12)
+        font1.setBold(False)
+        self.resize_label.setFont(font1)
         self.resize_label.setAutoFillBackground(False)
         self.resize_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -553,6 +551,7 @@ class Ui_Form(object):
 
         self.main_frame = QFrame(Form)
         self.main_frame.setObjectName(u"main_frame")
+        self.main_frame.setEnabled(True)
         self.main_frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.main_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.gridLayout = QGridLayout(self.main_frame)
@@ -576,11 +575,11 @@ class Ui_Form(object):
 
         self.tabWidget = QTabWidget(self.main_frame)
         self.tabWidget.setObjectName(u"tabWidget")
-        font1 = QFont()
-        font1.setFamilies([u"Microsoft YaHei"])
-        font1.setBold(True)
-        font1.setKerning(False)
-        self.tabWidget.setFont(font1)
+        font2 = QFont()
+        font2.setFamilies([u"Microsoft YaHei"])
+        font2.setBold(True)
+        font2.setKerning(False)
+        self.tabWidget.setFont(font2)
         self.tabWidget.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         self.tabWidget.setElideMode(Qt.TextElideMode.ElideNone)
         self.times = QWidget()
@@ -690,15 +689,22 @@ class Ui_Form(object):
         self.settings.setObjectName(u"settings")
         self.gridLayout_5 = QGridLayout(self.settings)
         self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.label_6 = QLabel(self.settings)
+        self.label_6.setObjectName(u"label_6")
+        font3 = QFont()
+        font3.setFamilies([u"Microsoft YaHei"])
+        font3.setHintingPreference(QFont.PreferDefaultHinting)
+        self.label_6.setFont(font3)
+        self.label_6.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.label_6.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout_5.addItem(self.horizontalSpacer_2, 0, 1, 3, 1)
+        self.gridLayout_5.addWidget(self.label_6, 0, 3, 1, 1)
 
-        self.test_button = QPushButton(self.settings)
-        self.test_button.setObjectName(u"test_button")
-        self.test_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.label_7 = QLabel(self.settings)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout_5.addWidget(self.test_button, 2, 3, 1, 1)
+        self.gridLayout_5.addWidget(self.label_7, 2, 3, 1, 1)
 
         self.frame = QFrame(self.settings)
         self.frame.setObjectName(u"frame")
@@ -777,12 +783,17 @@ class Ui_Form(object):
         self.is_active.setObjectName(u"is_active")
         self.is_active.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
-        self.gridLayout_5.addWidget(self.is_active, 0, 3, 1, 1)
+        self.gridLayout_5.addWidget(self.is_active, 0, 4, 1, 1)
 
-        self.label_6 = QLabel(self.settings)
-        self.label_6.setObjectName(u"label_6")
+        self.test_button = QPushButton(self.settings)
+        self.test_button.setObjectName(u"test_button")
+        self.test_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
-        self.gridLayout_5.addWidget(self.label_6, 0, 2, 1, 1)
+        self.gridLayout_5.addWidget(self.test_button, 2, 4, 1, 1)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_5.addItem(self.horizontalSpacer_3, 0, 2, 3, 1)
 
         self.tabWidget.addTab(self.settings, "")
         self.executables = QWidget()
@@ -877,16 +888,6 @@ class Ui_Form(object):
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_3 = QGridLayout()
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.label = QLabel(self.about)
-        self.label.setObjectName(u"label")
-        font2 = QFont()
-        font2.setFamilies([u"Microsoft YaHei"])
-        font2.setPointSize(69)
-        self.label.setFont(font2)
-        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.gridLayout_3.addWidget(self.label, 0, 0, 1, 1)
-
         self.label_2 = QLabel(self.about)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -895,7 +896,22 @@ class Ui_Form(object):
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_3.addItem(self.verticalSpacer, 2, 0, 1, 1)
+        self.gridLayout_3.addItem(self.verticalSpacer, 3, 0, 1, 1)
+
+        self.commandLinkButton = QCommandLinkButton(self.about)
+        self.commandLinkButton.setObjectName(u"commandLinkButton")
+
+        self.gridLayout_3.addWidget(self.commandLinkButton, 2, 0, 1, 1)
+
+        self.label = QLabel(self.about)
+        self.label.setObjectName(u"label")
+        font4 = QFont()
+        font4.setFamilies([u"Microsoft YaHei"])
+        font4.setPointSize(69)
+        self.label.setFont(font4)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.label, 0, 0, 1, 1)
 
 
         self.gridLayout_4.addLayout(self.gridLayout_3, 0, 0, 1, 1)
@@ -932,7 +948,7 @@ class Ui_Form(object):
         self.retranslateUi(Form)
 
         self.tabWidget.setCurrentIndex(0)
-        self.tabWidget_2.setCurrentIndex(1)
+        self.tabWidget_2.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -942,7 +958,6 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"\u90a3\u523b\u590f", None))
         self.show_icon.setText("")
         self.show_name.setText(QCoreApplication.translate("Form", u"\u90a3\u523b\u590f", None))
-        self.minimize_button.setText(QCoreApplication.translate("Form", u"-", None))
         self.close_button.setText(QCoreApplication.translate("Form", u"\u00d7", None))
         self.resize_label.setText(QCoreApplication.translate("Form", u"\u25e2", None))
 #if QT_CONFIG(tooltip)
@@ -975,12 +990,10 @@ class Ui_Form(object):
         self.select_now.setToolTip(QCoreApplication.translate("Form", u"\u5207\u6362\u4e3a\u5f53\u524d\u65e5\u671f", None))
 #endif // QT_CONFIG(tooltip)
         self.select_now.setText(QCoreApplication.translate("Form", u"\u21ba", None))
-        self.show_time.setText(QCoreApplication.translate("Form", u"%time%", None))
+        self.show_time.setText(QCoreApplication.translate("Form", u"$time", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.times), QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
-#if QT_CONFIG(tooltip)
-        self.test_button.setToolTip(QCoreApplication.translate("Form", u"\u6a21\u62df\u4e00\u6b21\u4e0b\u8bfe", None))
-#endif // QT_CONFIG(tooltip)
-        self.test_button.setText(QCoreApplication.translate("Form", u"\u6d4b\u8bd5", None))
+        self.label_6.setText(QCoreApplication.translate("Form", u"\u53ef\u4ee5\u901a\u8fc7\u6309Ctrl+Win+Shift+C\u5207\u6362", None))
+        self.label_7.setText(QCoreApplication.translate("Form", u"\u53ef\u4ee5\u901a\u8fc7\u6309Ctrl+Win+Shift+K\u5168\u5c40\u6d4b\u8bd5", None))
 #if QT_CONFIG(tooltip)
         self.label_5.setToolTip(QCoreApplication.translate("Form", u"\u4e0b\u8bfe\u540e\u591a\u957f\u65f6\u95f4\u5185\u4e0d\u53ef\u4ee5\u518d\u6b21\u6253\u5f00\u6559\u5b66\u8f6f\u4ef6", None))
 #endif // QT_CONFIG(tooltip)
@@ -1005,7 +1018,10 @@ class Ui_Form(object):
         self.is_active.setToolTip(QCoreApplication.translate("Form", u"\u70b9\u51fb\u5207\u6362\u6fc0\u6d3b\u72b6\u6001", None))
 #endif // QT_CONFIG(tooltip)
         self.is_active.setText(QCoreApplication.translate("Form", u"\u5de5\u4f5c\u4e2d", None))
-        self.label_6.setText(QCoreApplication.translate("Form", u"\u53ef\u4ee5\u901a\u8fc7\u6309Ctrl+Win+Shift+C\u5207\u6362", None))
+#if QT_CONFIG(tooltip)
+        self.test_button.setToolTip(QCoreApplication.translate("Form", u"\u6a21\u62df\u4e00\u6b21\u4e0b\u8bfe", None))
+#endif // QT_CONFIG(tooltip)
+        self.test_button.setText(QCoreApplication.translate("Form", u"\u6d4b\u8bd5", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.settings), QCoreApplication.translate("Form", u"\u8bbe\u7f6e", None))
         self.edit_exe_button.setText(QCoreApplication.translate("Form", u"\u7f16\u8f91", None))
         self.remove_exe.setText(QCoreApplication.translate("Form", u"-", None))
@@ -1026,8 +1042,9 @@ class Ui_Form(object):
 "</style></head><body style=\" font-family:'Microsoft YaHei','Segoe UI','sans-serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.log), QCoreApplication.translate("Form", u"\u65e5\u5fd7", None))
-        self.label.setText(QCoreApplication.translate("Form", u"   \u90a3\u523b\u590f\uff01", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"\u4e00\u4f4d\u95f2\u7740\u6ca1\u4e8b\u7684\u521d\u4e09\u751f\u5199\u7684\u5c0f\u7a0b\u5e8f", None))
+        self.commandLinkButton.setText(QCoreApplication.translate("Form", u"\u9879\u76ee\u5730\u5740", None))
+        self.label.setText(QCoreApplication.translate("Form", u"   \u90a3\u523b\u590f\uff01", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.about), QCoreApplication.translate("Form", u"\u5173\u4e8e", None))
     # retranslateUi
 
