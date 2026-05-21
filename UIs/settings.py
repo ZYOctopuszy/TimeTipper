@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'settings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.11.1
+## Created by: Qt User Interface Compiler version 6.11.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -961,7 +961,7 @@ class Ui_Form(object):
         self.close_button.setText(QCoreApplication.translate("Form", u"\u00d7", None))
         self.resize_label.setText(QCoreApplication.translate("Form", u"\u25e2", None))
 #if QT_CONFIG(tooltip)
-        self.exit_button.setToolTip(QCoreApplication.translate("Form", u"\u53ef\u6309\u4e0b\u5168\u5c40\u5feb\u6377\u952eCtrl+Win+Shift+Q\u786e\u8ba4\u9000\u51fa", None))
+        self.exit_button.setToolTip(QCoreApplication.translate("Form", u"\u53ef\u6309\u4e0b\u5168\u5c40\u5feb\u6377\u952eCtrl+Shift+Alt+Q\u786e\u8ba4\u9000\u51fa", None))
 #endif // QT_CONFIG(tooltip)
         self.exit_button.setText(QCoreApplication.translate("Form", u"\u9000\u51fa(Ctrl+Q)", None))
 #if QT_CONFIG(tooltip)
@@ -992,8 +992,8 @@ class Ui_Form(object):
         self.select_now.setText(QCoreApplication.translate("Form", u"\u21ba", None))
         self.show_time.setText(QCoreApplication.translate("Form", u"$time", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.times), QCoreApplication.translate("Form", u"\u65f6\u95f4", None))
-        self.label_6.setText(QCoreApplication.translate("Form", u"\u53ef\u4ee5\u901a\u8fc7\u6309Ctrl+Win+Shift+C\u5207\u6362", None))
-        self.label_7.setText(QCoreApplication.translate("Form", u"\u53ef\u4ee5\u901a\u8fc7\u6309Ctrl+Win+Shift+K\u5168\u5c40\u6d4b\u8bd5", None))
+        self.label_6.setText(QCoreApplication.translate("Form", u"\u53ef\u4ee5\u901a\u8fc7\u6309Ctrl+Shift+Alt+C\u5207\u6362", None))
+        self.label_7.setText(QCoreApplication.translate("Form", u"\u53ef\u4ee5\u901a\u8fc7\u6309Ctrl+Shift+Alt+K\u5168\u5c40\u6d4b\u8bd5", None))
 #if QT_CONFIG(tooltip)
         self.label_5.setToolTip(QCoreApplication.translate("Form", u"\u4e0b\u8bfe\u540e\u591a\u957f\u65f6\u95f4\u5185\u4e0d\u53ef\u4ee5\u518d\u6b21\u6253\u5f00\u6559\u5b66\u8f6f\u4ef6", None))
 #endif // QT_CONFIG(tooltip)
@@ -1005,7 +1005,7 @@ class Ui_Form(object):
 #if QT_CONFIG(tooltip)
         self.b.setToolTip(QCoreApplication.translate("Form", u"\u5ef6\u8fdf\u6700\u5927\u503c", None))
 #endif // QT_CONFIG(tooltip)
-        self.if_strong_hide.setText(QCoreApplication.translate("Form", u"\u5f3a\u529b\u9690\u85cf\u6a21\u5f0f(\u8bf7\u4f7f\u7528Ctrl+Win+Shift+s\u6253\u5f00\u8bbe\u7f6e, \u6258\u76d8\u56fe\u6807\u5c06\u6d88\u5931)", None))
+        self.if_strong_hide.setText(QCoreApplication.translate("Form", u"\u5f3a\u529b\u9690\u85cf\u6a21\u5f0f(\u8bf7\u4f7f\u7528Ctrl+Shift+Alt+S\u6253\u5f00\u8bbe\u7f6e, \u6258\u76d8\u56fe\u6807\u5c06\u6d88\u5931)", None))
 #if QT_CONFIG(tooltip)
         self.label_3.setToolTip(QCoreApplication.translate("Form", u"\u5f53\u4e0b\u8bfe\u540e\u4f1a\u968f\u673a\u5728\u8fd9\u4e2a\u8303\u56f4\u5185\u53d6\u503c\u4f5c\u4e3a\u5ef6\u8fdf, \u7136\u540e\u7b49\u5f85\u5ef6\u8fdf\u540e\u518d\u6740\u7a0b\u5e8f", None))
 #endif // QT_CONFIG(tooltip)

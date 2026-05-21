@@ -100,7 +100,7 @@ class Tray(QSystemTrayIcon):
         :return:
         """
         if self.p_window.config.tray_hide_mode == 1:
-            self.setIcon(QIcon(self.p_window.img_files[3]))
+            self.setIcon(QIcon(self.p_window.img_files[2]))
         else:
             self.setIcon(QIcon(self.p_window.img_files[0 if self.p_window.status else 1]))
 

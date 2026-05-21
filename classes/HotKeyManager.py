@@ -1,7 +1,7 @@
 if __name__ == "__main__":
     from MainWindow import MainWindow
 import keyboard
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, QMetaObject, Qt
 from PySide6.QtWidgets import QWidget
 from loguru import logger
 
@@ -20,15 +20,15 @@ class HotKeyManager(QWidget):
 
         self.p_window.confirm_exit_signal.connect(self.p_window.confirm_exit)
 
-        keyboard.add_hotkey(hotkey="ctrl+windows+shift+s", callback=self.show_window)
+        keyboard.add_hotkey(hotkey="ctrl+shift+alt+s", callback=self.show_window)
         keyboard.add_hotkey(
-            hotkey="ctrl+windows+shift+c", callback=lambda: self.show_status_tip()
+            hotkey="ctrl+shift+alt+c", callback=lambda: self.show_status_tip()
         )
         keyboard.add_hotkey(
-            "ctrl+windows+shift+q", self.p_window.confirm_exit_signal.emit
+            "ctrl+shift+alt+q", self.p_window.confirm_exit_signal.emit
         )
         keyboard.add_hotkey(
-            "ctrl+windows+shift+k", lambda: self.p_window.warner.killer()
+            "ctrl+shift+alt+k", lambda: self.p_window.warner.killer()
         )
 
     @logger.catch
@@ -38,7 +38,7 @@ class HotKeyManager(QWidget):
         :return:
         """
         if self.p_window.config.tray_hide_mode == 2:
-            self.p_window.show()
+            QMetaObject.invokeMethod(self.p_window, "show", Qt.ConnectionType.QueuedConnection)
 
     @logger.catch
     def show_status_tip(self):

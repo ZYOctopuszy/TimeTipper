@@ -31,8 +31,6 @@ class StatusManager(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_NoSystemBackground)
 
         # 线程控制标志
-        self._is_running = False
-        self._is_visible = False
         self._time = 0
         self._update_position()
 
@@ -44,19 +42,15 @@ class StatusManager(QWidget):
         """
         显示状态提示（固定在屏幕顶部）
         """
-        # 立即显示窗口（固定在屏幕顶部居中）
-        QMetaObject.invokeMethod(self, "show", Qt.ConnectionType.QueuedConnection)
 
         # 3秒后自动隐藏
         self._time = 3
-        if not self._is_visible:
-            # 标记为可见
-            self._is_visible = True
-            threading.Thread(
-                target=lambda: threading.Thread(
-                    target=self._auto_hide_task, daemon=True
-                ).start,
-                daemon=True,
+        if not self.isVisible():
+            # 立即显示窗口（固定在屏幕顶部居中）
+            QMetaObject.invokeMethod(self, "show", Qt.ConnectionType.QueuedConnection)
+            # 自动隐藏
+            target=threading.Thread(
+                target=self._auto_hide_task, daemon=True
             ).start()
 
     def _update_position(self) -> None:
@@ -84,6 +78,5 @@ class StatusManager(QWidget):
         while self._time > 0:
             time.sleep(1)
             self._time -= 1
-        if self._is_visible:
-            self._is_visible = False
+        if self.isVisible():
             QMetaObject.invokeMethod(self, "hide", Qt.ConnectionType.QueuedConnection)

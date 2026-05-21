@@ -44,6 +44,7 @@ class MainWindow(MyQWidget):
     status_changed_signal = Signal()
     confirm_exit_signal = Signal()
     window_hide_signal = Signal()
+    window_show_signal = Signal()
 
     def __init__(self, app: QApplication) -> None:
         super().__init__(auto_hide=False)

@@ -599,7 +599,7 @@ QPushButton#close_button:disabled {
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="toolTip">
-         <string>可按下全局快捷键Ctrl+Win+Shift+Q确认退出</string>
+         <string>可按下全局快捷键Ctrl+Shift+Alt+Q确认退出</string>
         </property>
         <property name="text">
          <string>退出(Ctrl+Q)</string>
@@ -861,7 +861,7 @@ QPushButton#close_button:disabled {
              <enum>Qt::LayoutDirection::LeftToRight</enum>
             </property>
             <property name="text">
-             <string>可以通过按Ctrl+Win+Shift+C切换</string>
+             <string>可以通过按Ctrl+Shift+Alt+C切换</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -871,7 +871,7 @@ QPushButton#close_button:disabled {
           <item row="2" column="3">
            <widget class="QLabel" name="label_7">
             <property name="text">
-             <string>可以通过按Ctrl+Win+Shift+K全局测试</string>
+             <string>可以通过按Ctrl+Shift+Alt+K全局测试</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -944,7 +944,7 @@ QPushButton#close_button:disabled {
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="text">
-                <string>强力隐藏模式(请使用Ctrl+Win+Shift+s打开设置, 托盘图标将消失)</string>
+                <string>强力隐藏模式(请使用Ctrl+Shift+Alt+S打开设置, 托盘图标将消失)</string>
                </property>
               </widget>
              </item>
