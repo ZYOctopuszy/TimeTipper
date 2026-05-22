@@ -81,11 +81,14 @@ def kill_exes(processes: Iterable[str]) -> bool:
     """
     if not processes:
         return False
-    matched_processes: set = set(psutil.process_iter(attrs=["name"])) & set(processes)
-    if not matched_processes:
+    get_processes = psutil.process_iter(['name'])
+    for_kill_processes = [
+        proc for proc in get_processes if proc.info['name'] in processes
+    ]
+    if not for_kill_processes:
         logger.debug("未找到匹配进程")
         return False
-    for proc in matched_processes:
+    for proc in for_kill_processes:
         proc.kill()
         logger.debug(f"杀死进程 {proc.name()}")
     return True
