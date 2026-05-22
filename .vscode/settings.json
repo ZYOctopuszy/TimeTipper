@@ -10,7 +10,6 @@
     "tasklist"
   ],
   "markdown-pdf.displayHeaderFooter": false,
-  "markdown-preview-enhanced.enableTypography": true,
   "files.associations": {
     "windows.h": "c",
     "algorithm": "c",
