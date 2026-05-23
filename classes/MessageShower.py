@@ -36,7 +36,7 @@ class MessageShower:
                 a=self.p_window.config.random_delay[0],
                 b=self.p_window.config.random_delay[1],
             )
-            if self.p_window.test
+            if self.p_window.testing
             or (
                 now.strftime(format="%H:%M")
                 in [clock.time for clock in self.p_window.time_config[self.day]]
@@ -44,26 +44,26 @@ class MessageShower:
             )
             else 0
         )
-        logger.debug(f"将等待时间: {wait_second}秒")
-        while self.p_window.life and self.p_window.status:
+        # logger.debug(f"将等待时间: {wait_second}秒")
+        while self.p_window.life and (self.p_window.testing or self.p_window.status):
             if wait_second > 0:
                 wait_second -= 1
                 sleep(1)
                 continue
             else:
-                logger.debug("关闭窗口中")
+                # logger.debug("关闭窗口中")
                 success: bool = True
                 if not self.p_window.kill_windows(
                     titles=self.p_window.config.for_kill_window_titles
                 ):
                     success = False
-                logger.debug("杀死进程中")
+                # logger.debug("杀死进程中")
                 if not kill_exes(processes=self.p_window.config.for_kill_exes):
                     success = False
                 if success:
                     self.p_window.app.beep()
                 break
-        self.p_window.test = False
+        self.p_window.testing = False
         self.p_window.ui.test_button.setEnabled(True)
         self.p_window.ui.test_button.setText("测试")
 
@@ -74,7 +74,7 @@ class MessageShower:
         :return: 无
         """
         while self.p_window.life:
-            if self.p_window.test or self.p_window.status:
+            if self.p_window.testing or self.p_window.status:
                 now = datetime.now().replace(microsecond=0)
                 current_time = now
                 duration_seconds_before = now - timedelta(
@@ -95,7 +95,7 @@ class MessageShower:
                 # ]}"
                 # )
 
-                if self.p_window.test or [
+                if self.p_window.testing or [
                     (c.hours, c.minutes)
                     for c in self.p_window.time_config[self.day]
                     if c.state
@@ -108,7 +108,7 @@ class MessageShower:
                 ]:
                     self.p_window.ui.test_button.setDisabled(True)
                     self.p_window.ui.test_button.setText("执行中, 请稍候...")
-                    logger.debug("执行清剿函数")
+                    # logger.debug("执行清剿函数")
                     self.killer()
             sleep(1)
         sys.exit(0)

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'settings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.11.0
+## Created by: Qt User Interface Compiler version 6.11.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -840,28 +840,33 @@ class Ui_Form(object):
         self.title.setObjectName(u"title")
         self.gridLayout_9 = QGridLayout(self.title)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
-        self.remove_title = QPushButton(self.title)
-        self.remove_title.setObjectName(u"remove_title")
-        self.remove_title.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-
-        self.gridLayout_9.addWidget(self.remove_title, 3, 1, 1, 1)
-
         self.add_title = QPushButton(self.title)
         self.add_title.setObjectName(u"add_title")
         self.add_title.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
-        self.gridLayout_9.addWidget(self.add_title, 2, 1, 1, 1)
+        self.gridLayout_9.addWidget(self.add_title, 3, 1, 1, 1)
 
         self.edit_title_button = QPushButton(self.title)
         self.edit_title_button.setObjectName(u"edit_title_button")
         self.edit_title_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
-        self.gridLayout_9.addWidget(self.edit_title_button, 1, 1, 1, 1)
+        self.gridLayout_9.addWidget(self.edit_title_button, 2, 1, 1, 1)
 
         self.for_close_title = QListWidget(self.title)
         self.for_close_title.setObjectName(u"for_close_title")
 
-        self.gridLayout_9.addWidget(self.for_close_title, 0, 0, 4, 1)
+        self.gridLayout_9.addWidget(self.for_close_title, 0, 0, 5, 1)
+
+        self.remove_title = QPushButton(self.title)
+        self.remove_title.setObjectName(u"remove_title")
+        self.remove_title.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+
+        self.gridLayout_9.addWidget(self.remove_title, 4, 1, 1, 1)
+
+        self.choose_on_screen = QPushButton(self.title)
+        self.choose_on_screen.setObjectName(u"choose_on_screen")
+
+        self.gridLayout_9.addWidget(self.choose_on_screen, 1, 1, 1, 1)
 
         self.tabWidget_2.addTab(self.title, "")
 
@@ -1028,9 +1033,10 @@ class Ui_Form(object):
         self.add_exe.setText(QCoreApplication.translate("Form", u"+", None))
         self.choose_exe.setText(QCoreApplication.translate("Form", u"\u9009\u62e9\u6587\u4ef6", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.exe), QCoreApplication.translate("Form", u"\u5e94\u7528\u7a0b\u5e8fexe", None))
-        self.remove_title.setText(QCoreApplication.translate("Form", u"-", None))
         self.add_title.setText(QCoreApplication.translate("Form", u"+", None))
         self.edit_title_button.setText(QCoreApplication.translate("Form", u"\u7f16\u8f91", None))
+        self.remove_title.setText(QCoreApplication.translate("Form", u"-", None))
+        self.choose_on_screen.setText(QCoreApplication.translate("Form", u"\u5c4f\u5e55\u9009\u62e9", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.title), QCoreApplication.translate("Form", u"\u7a97\u53e3\u6807\u9898", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.executables), QCoreApplication.translate("Form", u"\u7a0b\u5e8f", None))
         self.logger.setHtml(QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

@@ -17,6 +17,7 @@ class HotKeyManager(QWidget):
     def __init__(self, p_window: "MainWindow"):
         super().__init__()
         self.p_window = p_window
+        self.try_exit_times: int = 0
 
         self.p_window.confirm_exit_signal.connect(self.p_window.confirm_exit)
 
@@ -28,7 +29,7 @@ class HotKeyManager(QWidget):
             "ctrl+shift+alt+q", self.p_window.confirm_exit_signal.emit
         )
         keyboard.add_hotkey(
-            "ctrl+shift+alt+k", lambda: self.p_window.warner.killer()
+            "ctrl+shift+alt+k", lambda: setattr(self.p_window, "testing", True)
         )
 
     @logger.catch

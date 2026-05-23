@@ -180,7 +180,7 @@ class ClockManager(QObject):
         if type(current_item := self.time_list.currentItem()) is QListWidgetItem:
             current_row = self.time_list.row(current_item)
             self.time_list.takeItem(current_row)
-            self.p_window.time_config[self.day_widget.currentIndex()].pop(current_row)
+            del self.p_window.time_config[self.day_widget.currentIndex()][current_row]
             self.change_description()
 
     @logger.catch
@@ -208,7 +208,7 @@ class ClockManager(QObject):
             self.p_window.time_config[self.day_widget.currentIndex()][
                 self.time_list.row(current_item)
             ].description = self.p_window.ui.description.toPlainText()
-            self.update_time_config()
+        self.update_time_config()
 
     @logger.catch
     def update_time_config(self):

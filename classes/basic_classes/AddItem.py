@@ -25,7 +25,6 @@ class AddItem(GetInput):
         try:
             for_remove_item = self.list_widget.currentItem()
             self.list_widget.takeItem(self.list_widget.currentRow())
-            logger.debug(f"已删指定项: {for_remove_item.text()}")
             self.p_window.update_config()
         except Exception as error:
             logger.warning(f"删除项失败{error}")
@@ -39,7 +38,6 @@ class AddItem(GetInput):
         QApplication.processEvents()
         self.hide()
         self.list_widget.addItem(self.ui.get_exe_name.text())
-        logger.debug(f"已手动添加项: {self.ui.get_exe_name.text()}")
         self.p_window.update_config()
 
     @logger.catch

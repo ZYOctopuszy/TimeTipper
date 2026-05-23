@@ -76,21 +76,20 @@ def set_window_size(window: "MainWindow", application: QApplication) -> None:
 def kill_exes(processes: Iterable[str]) -> bool:
     """
     根据映像名杀死指定进程
-    :param processes: 进程映像名列表（区分大小写）
+    :param processes: 进程映像名列表（不区分大小写）
     :return: 是否成功杀死进程
     """
     if not processes:
-        return False
-    get_processes = psutil.process_iter(['name'])
+        return False 
     for_kill_processes = [
-        proc for proc in get_processes if proc.info['name'] in processes
+        proc for proc in psutil.process_iter(['name']) if (proc.info['name'].lower() in [i.lower() for i in processes])
     ]
     if not for_kill_processes:
-        logger.debug("未找到匹配进程")
+        # logger.debug("未找到匹配进程")
         return False
     for proc in for_kill_processes:
         proc.kill()
-        logger.debug(f"杀死进程 {proc.name()}")
+        # logger.debug(f"杀死进程 {proc.name()}")
     return True
 
 

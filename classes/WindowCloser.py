@@ -35,10 +35,10 @@ def callback(hwnd: int, *args, **kwargs):
         and win32gui.IsWindowVisible(hwnd)
         and win32gui.IsWindowEnabled(hwnd)
     ):
-        logger.debug(f"找到匹配窗口 - 句柄: {hwnd}, 标题: {window_title}")
+        # logger.debug(f"找到匹配窗口 - 句柄: {hwnd}, 标题: {window_title}")
         win32gui.PostMessage(hwnd, win32con.WM_CLOSE)
         success = True
 
 
-if __name__ == "__main__":
-    logger.debug(kill_windows(titles=["for_kill_title", ".xlsx"]))
+# if __name__ == "__main__":
+#     logger.debug(kill_windows(titles=["for_kill_title", ".xlsx"]))

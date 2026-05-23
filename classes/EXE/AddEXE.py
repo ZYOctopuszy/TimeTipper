@@ -37,7 +37,7 @@ class AddEXE(AddItem):
         ).name
         if file_name.strip() != "" and (file_name not in self.p_window.config.for_kill_exes):
             self.p_window.ui.for_kill_list.addItem(file_name)
-            logger.debug(f"已添加待杀程序: {file_name}")
+            # logger.debug(f"已添加待杀程序: {file_name}")
         self.p_window.update_config()
 
     @logger.catch
@@ -47,5 +47,5 @@ class AddEXE(AddItem):
         :return:
         """
         QApplication.processEvents()
-        logger.debug(f"双击待杀程序: {args}")
-        kill_exes(processes=(self.p_window.ui.for_kill_list.currentItem().text()))
+        # logger.debug(f"双击待杀程序: {args}")
+        kill_exes(processes=(self.p_window.ui.for_kill_list.currentItem().text(), ))

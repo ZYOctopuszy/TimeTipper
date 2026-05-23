@@ -2,16 +2,16 @@
 主设置窗口
 """
 
-from time import sleep
 from typing import Any
 from PySide6.QtWidgets import QApplication, QMessageBox
-from PySide6.QtCore import Qt, Signal, Slot, QTimer
+from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QShortcut, QKeySequence
 from dataclasses import dataclass
 from loguru import logger
 from pathlib import Path
 from json import load
 import keyboard, sys
+import webbrowser
 
 from classes import *
 from classes.basic_classes import *
@@ -64,7 +64,7 @@ class MainWindow(MyQWidget):
         self.status: bool = True
         self.exit_asking: bool = False
         self.life: bool = True
-        self.test: bool = False
+        self.testing: bool = False
         # endregion
         # region 实例化关闭窗口方法
         self.kill_windows = kill_windows
@@ -76,10 +76,10 @@ class MainWindow(MyQWidget):
         self.default_config = Config(
             tray_hide_mode=0,
             for_kill_exes=[
-                "EXCEL.Title",
-                "EasiCamera.exe",
-                "POWERPNT.Title",
-                "WINWORD.Title",
+                "excel.exe",
+                "easicamera.exe",
+                "powerpnt.exe",
+                "winword.exe",
                 "et.exe",
                 "wps.exe",
                 "wpscloudsvr.exe",
@@ -94,7 +94,7 @@ class MainWindow(MyQWidget):
                 "聊天记录",
                 "文档文件",
             ],
-            random_delay=[0, 30],
+            random_delay=[0, 0],
             duration=1,
         )
         self.config: Config = Config(**self.default_config.__dict__)
@@ -134,7 +134,10 @@ class MainWindow(MyQWidget):
         # region 写入配置文件
         if Path(self.config_path).is_file():
             with open(file=self.config_path, encoding="utf-8") as f:
-                self.load_config(configure=Config(**load(fp=f)))
+                try:
+                    self.load_config(configure=Config(**load(fp=f)))
+                except Exception:
+                    self.load_config(configure=self.default_config)
         # endregion
         self.widgets_init()
         self.son_classes_init()
@@ -154,7 +157,22 @@ class MainWindow(MyQWidget):
             :param key: 键名
             :return: 键对应的值
             """
-            return config.__dict__.get(key, self.default_config.__dict__[key])
+            result = config.__dict__.get(key, self.default_config.__dict__[key])
+            match key:
+                case "tray_hide_mode":
+                    if (type(result) is not int) or (result not in [0, 1, 2]):
+                        result = self.default_config.tray_hide_mode
+                case "random_delay":
+                    if type(result) is list and len(result) == 2:
+                        for i in range(2):
+                            if type(result[i]) is int and result[i] < 0:
+                                result[i] = 0
+                        if result[0] > result[1]:
+                            result[0], result[1] = result[1], result[0]
+                case "duration":
+                    if type(result) is not int or result < 1:
+                        result = self.default_config.duration
+            return result
 
         self.config = Config(
             tray_hide_mode=get_config_value(config=configure, key="tray_hide_mode"),
@@ -165,8 +183,6 @@ class MainWindow(MyQWidget):
             random_delay=get_config_value(config=configure, key="random_delay"),
             duration=get_config_value(config=configure, key="duration"),
         )
-
-        logger.info(f"配置加载完成: {self.config}")
 
     @logger.catch
     def set_widgets_value(self):
@@ -195,9 +211,12 @@ class MainWindow(MyQWidget):
             self.ui.hold_seconds,
         ]:
             widget.valueChanged.connect(self.set_as_applicable)
+        self.ui.commandLinkButton.clicked.connect(
+            lambda: webbrowser.open("https://github.com/ZYOctopuszy/TimeTipper")
+        )
         self.ui.apply_button.clicked.connect(lambda: self.update_config())
         self.ui.is_active.clicked.connect(self.status_changed_signal.emit)
-        self.ui.test_button.clicked.connect(lambda: setattr(self, "test", True))
+        self.ui.test_button.clicked.connect(lambda: setattr(self, "testing", True))
         self.ui.exit_button.clicked.connect(self.exit_app)
         self.ui.if_strong_hide.stateChanged.connect(self.set_as_applicable)
         self.ui.if_strong_hide.checkStateChanged.connect(
@@ -302,6 +321,10 @@ class MainWindow(MyQWidget):
         确认退出应用
         :return: 无
         """
+        self.hot_key_manager.try_exit_times += 1
+        if self.hot_key_manager.try_exit_times == 3:
+            self.exit_app()
+
         if not self.exit_asking:
             self.exit_asking = True
             if (
@@ -315,6 +338,7 @@ class MainWindow(MyQWidget):
             ):
                 self.exit_app()
             self.exit_asking = False
+            self.hot_key_manager.try_exit_times = 0
 
     @Slot()
     @logger.catch
@@ -336,6 +360,14 @@ class MainWindow(MyQWidget):
         else:
             self.config.random_delay[0] = self.ui.b.value()
             self.config.random_delay[1] = self.ui.a.value()
+        self.config.for_kill_exes = [
+            self.ui.for_kill_list.item(row).text()
+            for row in range(self.ui.for_kill_list.count())
+        ]
+        self.config.for_kill_window_titles = [
+            self.ui.for_close_title.item(row).text()
+            for row in range(self.ui.for_close_title.count())
+        ]
         self.set_widgets_value()
         save_config(self.config_path, self.config.__dict__)
         self.ui.apply_button.setDisabled(True)

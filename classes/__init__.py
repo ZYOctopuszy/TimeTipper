@@ -8,6 +8,7 @@ from .Tray import Tray
 from .LogManager import LogManager
 from .ClockManager import ClockManager
 from .DayManager import DayManager
+from .StatusManager import StatusManager
 
 
 __all__ = [
@@ -21,4 +22,5 @@ __all__ = [
     "LogManager",
     "ClockManager",
     "DayManager",
+    "StatusManager",
 ]
