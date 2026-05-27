@@ -1,6 +1,7 @@
 if __name__ == "__main__":
     from MainWindow import MainWindow
 from PySide6.QtWidgets import QApplication, QListWidget
+from PySide6.QtCore import Qt
 from loguru import logger
 
 from classes.basic_classes.GetInput import GetInput
@@ -23,7 +24,6 @@ class AddItem(GetInput):
         """
         QApplication.processEvents()
         try:
-            for_remove_item = self.list_widget.currentItem()
             self.list_widget.takeItem(self.list_widget.currentRow())
             self.p_window.update_config()
         except Exception as error:
@@ -37,8 +37,11 @@ class AddItem(GetInput):
         """
         QApplication.processEvents()
         self.hide()
-        self.list_widget.addItem(self.ui.get_exe_name.text())
-        self.p_window.update_config()
+        new_item = self.ui.get_exe_name.text().strip()
+        if new_item  != "" and new_item not in self.list_widget.findItems(new_item, Qt.MatchFlag.MatchExactly):
+            self.list_widget.addItem(self.ui.get_exe_name.text())
+            self.list_widget.sortItems()
+            self.p_window.update_config()
 
     @logger.catch
     def add_item_function(self):

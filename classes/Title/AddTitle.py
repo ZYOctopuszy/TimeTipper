@@ -3,6 +3,7 @@ import contextlib
 if __name__ == "__main__":
     from MainWindow import MainWindow
 from PySide6.QtWidgets import QApplication, QListWidgetItem
+from PySide6.QtCore import Qt
 from loguru import logger
 
 from ..basic_classes.AddItem import AddItem
@@ -26,13 +27,13 @@ class AddTitle(AddItem):
         self.ui.label.setText("添加待关闭窗口标题")
         self.ui.get_exe_name.setPlaceholderText("请输入窗口标题")
 
-        self.collecters = []
-        self.collecters.extend(
+        self.collectors = []
+        self.collectors.extend(
             GetWindowUnderMouse(self.p_window, _) for _ in QApplication.screens()
         )
         self.p_window.ui.choose_on_screen.clicked.connect(self.add_item_easily)
-        for collecter in self.collecters:
-            collecter.get_window_signal.connect(self.add_item)
+        for collector in self.collectors:
+            collector.get_window_signal.connect(self.add_item)
 
     @logger.catch
     def item_double_clicked_action(self, item: QListWidgetItem):
@@ -47,13 +48,14 @@ class AddTitle(AddItem):
         """
         通过点击屏幕选取窗口
         """
-        for collecter in self.collecters:
-            collecter.show()
+        for collector in self.collectors:
+            collector.show()
 
     def add_item(self, item):
-        for collecter in self.collecters:
-            collecter.setVisible(False)
-        if item not in self.p_window.config.for_kill_window_titles:
+        for collector in self.collectors:
+            collector.setVisible(False)
+        if item and item not in self.p_window.config.for_kill_window_titles:
             self.list_widget.addItem(item)
             self.list_widget.sortItems()
+            self.list_widget.setCurrentItem(self.list_widget.findItems(item, Qt.MatchFlag.MatchExactly)[0])
             self.p_window.update_config()

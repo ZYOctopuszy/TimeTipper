@@ -1,6 +1,7 @@
 if __name__ == "__main__":
     from MainWindow import MainWindow
 from PySide6.QtWidgets import QApplication, QListWidget
+from PySide6.QtCore import Qt
 from loguru import logger
 
 from classes.basic_classes.GetInput import GetInput
@@ -34,9 +35,11 @@ class EditItem(GetInput):
         QApplication.processEvents()
         self.hide()
         current_item = self.list_widget.currentItem()
-        self.list_widget.takeItem(self.list_widget.currentRow())
-        self.list_widget.addItem(self.ui.get_exe_name.text())
-        logger.debug(
-            f"已修改项: {current_item.text()} -> {self.ui.get_exe_name.text()}"
-        )
-        self.p_window.update_config()
+        if (new_item:=self.ui.get_exe_name.text().strip()) not in self.list_widget.findItems(new_item.strip(), Qt.MatchFlag.MatchExactly):
+            self.list_widget.takeItem(self.list_widget.currentRow())
+            self.list_widget.addItem(new_item)
+            self.list_widget.sortItems()
+            logger.debug(
+                f"已修改项: {current_item.text()} -> {self.ui.get_exe_name.text()}"
+            )
+            self.p_window.update_config()
