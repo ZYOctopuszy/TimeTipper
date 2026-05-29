@@ -21,6 +21,7 @@ class GetWindowUnderMouse(QWidget):
             | Qt.WindowType.FramelessWindowHint
             | Qt.WindowType.WindowStaysOnTopHint
             | Qt.WindowType.BypassWindowManagerHint
+            | Qt.WindowType.WindowDoesNotAcceptFocus
         )
         self.setWindowOpacity(0.01)
         self.setCursor(Qt.CursorShape.CrossCursor)
