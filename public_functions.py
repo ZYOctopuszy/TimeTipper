@@ -30,6 +30,81 @@ __all__ = [
 
 
 @logger.catch
+def run_as_UIaccess():
+    import ctypes, sys
+    from ctypes import wintypes
+    uiaccess = ctypes.WinDLL('./libs/uiaccess.dll', use_last_error=True)
+
+    # 判断是否已经是uiaccess权限
+    if uiaccess.IsUIAccess():
+        return
+
+    IsProcessElevated = uiaccess.IsProcessElevated
+    IsProcessElevated.argtypes = [wintypes.HANDLE]
+    IsProcessElevated.restype = wintypes.BOOL
+
+    StartUIAccessProcess = uiaccess.StartUIAccessProcess
+    StartUIAccessProcess.argtypes = [
+        wintypes.LPCWSTR,  # lpApplicationName
+        wintypes.LPCWSTR,  # lpCommandLine
+        wintypes.DWORD,  # flag
+        ctypes.POINTER(wintypes.DWORD),  # pPid
+        wintypes.DWORD,  # dwSession
+    ]
+    StartUIAccessProcess.restype = wintypes.BOOL
+
+    GetLastError = ctypes.windll.kernel32.GetLastError
+    GetLastError.restype = wintypes.DWORD
+
+    def get_current_session_id():
+        kernel32 = ctypes.WinDLL('kernel32', use_last_error=True)
+
+        # 定义函数原型
+        GetCurrentProcessId = kernel32.GetCurrentProcessId
+        GetCurrentProcessId.argtypes = []
+        GetCurrentProcessId.restype = wintypes.DWORD
+
+        ProcessIdToSessionId = kernel32.ProcessIdToSessionId
+        ProcessIdToSessionId.argtypes = [wintypes.DWORD, ctypes.POINTER(wintypes.DWORD)]
+        ProcessIdToSessionId.restype = wintypes.BOOL
+
+        # 获取当前进程ID
+        pid = GetCurrentProcessId()
+
+        # 获取会话ID
+        session_id = wintypes.DWORD(0)
+        if not ProcessIdToSessionId(pid, ctypes.byref(session_id)):
+            raise ctypes.WinError(ctypes.get_last_error())
+
+        return session_id.value
+
+    # 检查管理员权限 (INVALID_HANDLE_VALUE = -1 表示当前进程)
+    if not IsProcessElevated(wintypes.HANDLE(-1)):
+        print("错误：程序必须以管理员权限运行!")
+
+    # 准备参数
+    app_name = None  # 设为NULL
+    flag = 0  # 默认标志
+    pid = wintypes.DWORD(0)
+    session_id = get_current_session_id()  # 当前会话
+
+    # 调用StartUIAccessProcess
+    cmd_line = argv[0]
+    print(cmd_line)
+    print(Path(cmd_line).resolve())
+    if cmd_line.endswith(".exe"):
+        cmd_line = f'"{cmd_line}"'
+    else:
+        print("不是可执行文件, 无法提升权限")
+        return False
+    success = StartUIAccessProcess(
+        app_name, cmd_line, flag, ctypes.byref(pid), session_id
+    )
+    if not success:
+        print(f"失败: {ctypes.WinError(ctypes.get_last_error())}")
+    sys.exit(0 if success else 1)
+
+@logger.catch
 def current_path(relative_path: str, mode: str = "resource") -> str:
     """
     获取打包后文件资源路径
