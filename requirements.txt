@@ -1,7 +1,7 @@
 keyboard>=0.13.5
 loguru>=0.7.3
-Nuitka>=4.1
-pip>=26.1.1
+Nuitka>=4.1.2
+pip>=26.1.2
 psutil>=7.2.2
 PySide6>=6.11.1
-pywin32>=311
+pywin32>=312
