@@ -4,4 +4,4 @@ Nuitka>=4.1.2
 pip>=26.1.2
 psutil>=7.2.2
 PySide6>=6.11.1
-pywin32>=311
+pywin32>=312

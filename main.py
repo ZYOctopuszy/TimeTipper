@@ -40,7 +40,9 @@ from PySide6.QtWidgets import QApplication
 from loguru import logger
 
 from MainWindow import *
-from public_functions import current_path
+from public_functions import current_path, run_as_UIaccess
+
+run_as_UIaccess()
 
 logger.remove()
 # 创建日志文件
