@@ -20,22 +20,6 @@ TimeTipper - 一个时间管理小工具
 # endregion
 
 from sys import exit as sys_exit, argv
-
-# if argv[0].endswith(".exe"):
-#     """
-#     检查当前进程是否为conhost.exe, 如果不是则复制并启动conhost.exe
-#     """
-#     import psutil, os, subprocess
-#     current_process = psutil.Process(os.getpid())
-#     if current_process.name() != "conhost.exe":
-#         import shutil, pathlib
-
-#         shutil.copy2(
-#             pathlib.Path(argv[0]),
-#             pathlib.Path(os.environ["APPDATA"]) / "TimeTipper" / "conhost.exe",
-#         )
-#         subprocess.Popen(pathlib.Path(os.environ["APPDATA"]) / "TimeTipper" / "conhost.exe")
-#         sys_exit(0)
 from PySide6.QtWidgets import QApplication
 
 from MainWindow import *

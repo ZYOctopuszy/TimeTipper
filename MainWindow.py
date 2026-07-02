@@ -56,8 +56,6 @@ class MainWindow(MyQWidget):
         # region 设置窗口属性
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowType_Mask)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        # self.show()
-        # QApplication.processEvents()
         set_window_size(window=self, application=app)
         set_window_recordable(window=self, recordable=False)
         # endregion
