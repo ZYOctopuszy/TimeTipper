@@ -1,16 +1,14 @@
 """
 公共函数模块, 包含一些通用的函数
 """
-
-if __name__ == "__main__":
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
     from MainWindow import MainWindow
-from json import load, dump
-import json
+    from PySide6.QtWidgets import QApplication
+from json import dump
 from sys import argv
 from pathlib import Path, PurePath
 from collections.abc import Iterable
-from PySide6.QtCore import QRect
-from PySide6.QtWidgets import QApplication
 from loguru import logger
 from itertools import repeat
 import psutil
@@ -26,7 +24,69 @@ __all__ = [
     "save_time_to_json",
     "time_config",
     "time_class_config",
+    "set_window_recordable",
 ]
+
+@logger.catch
+def set_window_recordable(window: MainWindow, recordable: bool = True):
+    """
+    设置窗口是否可被录屏
+    """
+    import ctypes
+    user32 = ctypes.windll.user32
+    hwnd = window.winId()
+    match recordable:
+        case True:
+            user32.SetWindowDisplayAffinity(hwnd, 0x00000000)
+        case False:
+            user32.SetWindowDisplayAffinity(hwnd, 0x00000011)
+    
+@logger.catch
+def logger_init():
+    from sys import stdout
+    logger.remove()
+    # 创建日志文件
+    logger.add(
+        sink=current_path(relative_path="TimeTipper.log", mode="exe"),
+        format="{time:YYYY-MM-DD HH:mm:ss.SSS} | <level>{level}</level> | {name} -> {function} -> {line} >>> {message}",
+        rotation="256 KB",
+        retention="2 days",
+        encoding="utf-8",
+        compression="tar.gz",
+        enqueue=True,
+        backtrace=True,
+        catch=True,
+    )
+    if hasattr(stdout, "closed") and hasattr(stdout, "isatty"):
+        # 创建控制台输出
+        logger.add(
+            sink=stdout,
+            format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> <red>|</red> <level>{level}</level> <red>|</red> "
+            "<yellow>{name}</yellow> <red>-></red> <yellow>{function}</yellow> <red>-></red> "
+            "<yellow>{line}</yellow><red> >>> </red><cyan>{message}</cyan>",
+            enqueue=True,
+            backtrace=True,
+            catch=True,
+            colorize=True,
+        )
+
+
+@logger.catch
+def get_elevationated_token():
+    logger.info("获取管理员权限")
+    import winreg, sys
+    key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\Classes\ms-settings\shell\open\command")
+    command: str = ""
+    if argv[0].endswith(".exe"):
+        # command = f"{Path(argv[0]).absolute()}"
+        command = "C:\\Windows\\System32\\cmd.exe"
+    else:
+        command = f"{sys.executable} {Path(argv[0]).absolute()}"
+    winreg.SetValueEx(key, None, 0, winreg.REG_SZ, command)
+    winreg.SetValueEx(key, "DelegateExecute", 0, winreg.REG_SZ, "")
+    key.Close()
+    import subprocess
+    subprocess.run(["fodhelper"])
 
 
 @logger.catch
@@ -53,8 +113,8 @@ def run_as_UIaccess():
     ]
     StartUIAccessProcess.restype = wintypes.BOOL
 
-    GetLastError = ctypes.windll.kernel32.GetLastError
-    GetLastError.restype = wintypes.DWORD
+    # GetLastError = ctypes.windll.kernel32.GetLastError
+    # GetLastError.restype = wintypes.DWORD
 
     def get_current_session_id():
         kernel32 = ctypes.WinDLL('kernel32', use_last_error=True)
@@ -80,7 +140,8 @@ def run_as_UIaccess():
 
     # 检查管理员权限 (INVALID_HANDLE_VALUE = -1 表示当前进程)
     if not IsProcessElevated(wintypes.HANDLE(-1)):
-        print("错误：程序必须以管理员权限运行!")
+        get_elevationated_token()
+        return False
 
     # 准备参数
     app_name = None  # 设为NULL
@@ -90,18 +151,18 @@ def run_as_UIaccess():
 
     # 调用StartUIAccessProcess
     cmd_line = argv[0]
-    print(cmd_line)
-    print(Path(cmd_line).resolve())
+    # logger.debug(cmd_line)
+    # logger.debug(Path(cmd_line).resolve())
     if cmd_line.endswith(".exe"):
         cmd_line = f'"{cmd_line}"'
     else:
-        print("不是可执行文件, 无法提升权限")
+        logger.debug("不是可执行文件, 无法提升权限")
         return False
     success = StartUIAccessProcess(
         app_name, cmd_line, flag, ctypes.byref(pid), session_id
     )
     if not success:
-        print(f"失败: {ctypes.WinError(ctypes.get_last_error())}")
+        logger.error(f"失败: {ctypes.WinError(ctypes.get_last_error())}")
     sys.exit(0 if success else 1)
 
 @logger.catch
@@ -126,13 +187,14 @@ def current_path(relative_path: str, mode: str = "resource") -> str:
 
 
 @logger.catch
-def set_window_size(window: "MainWindow", application: QApplication) -> None:
+def set_window_size(window: "MainWindow", application: "QApplication") -> None:
     """
     将窗口居中于屏幕并设置为屏幕尺寸的一半
     :param application: Qt应用对象
     :param window: 要设置的窗口
     :return:
     """
+    from PySide6.QtCore import QRect
     # 获取屏幕的尺寸
     available_geometry: QRect = application.screens()[0].availableGeometry()
     width = available_geometry.width()
@@ -187,6 +249,7 @@ def load_time_from_json(file: str) -> time_config:
         logger.error(f"文件 {file} 不存在")
         return [[] for _ in repeat(None, 7)]
     with open(file=file, mode="r", encoding="utf-8") as f:
+        from json import load
         config: time_config = load(fp=f).get("config", [])
     return config
 
@@ -218,4 +281,4 @@ def save_config(file_name: str, data: dict):
     :return: None
     """
     with open(file=file_name, mode="w", encoding="utf-8") as f:
-        json.dump(obj=data, fp=f, indent=4)
+        dump(obj=data, fp=f, indent=4)

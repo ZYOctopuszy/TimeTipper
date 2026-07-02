@@ -11,12 +11,12 @@ from loguru import logger
 from pathlib import Path
 from json import load
 import keyboard, sys
-import webbrowser
+import webbrowser, signal
 
 from classes import *
 from classes.basic_classes import *
 from UIs import settings
-from public_functions import current_path, set_window_size, save_config
+from public_functions import current_path, set_window_size, save_config, set_window_recordable
 from classes.WindowCloser import kill_windows
 from classes.LogManager import LogManager
 
@@ -47,6 +47,7 @@ class MainWindow(MyQWidget):
     window_show_signal = Signal()
 
     def __init__(self, app: QApplication) -> None:
+        signal.signal(signal.SIGINT, lambda *args: self.exit_app())
         super().__init__(auto_hide=False)
         # region 初始化UI
         self.ui = settings.Ui_Form()
@@ -58,6 +59,7 @@ class MainWindow(MyQWidget):
         # self.show()
         # QApplication.processEvents()
         set_window_size(window=self, application=app)
+        set_window_recordable(window=self, recordable=False)
         # endregion
         # region 初始化属性
         self.app = app

@@ -19,7 +19,7 @@ TimeTipper - 一个时间管理小工具
 # nuitka-project: --show-progress
 # endregion
 
-from sys import exit as sys_exit, argv, stdout
+from sys import exit as sys_exit, argv
 
 # if argv[0].endswith(".exe"):
 #     """
@@ -37,38 +37,14 @@ from sys import exit as sys_exit, argv, stdout
 #         subprocess.Popen(pathlib.Path(os.environ["APPDATA"]) / "TimeTipper" / "conhost.exe")
 #         sys_exit(0)
 from PySide6.QtWidgets import QApplication
-from loguru import logger
 
 from MainWindow import *
-from public_functions import current_path, run_as_UIaccess
+from public_functions import logger_init, run_as_UIaccess
+
+
+logger_init()
 
 run_as_UIaccess()
-
-logger.remove()
-# 创建日志文件
-logger.add(
-    sink=current_path(relative_path="TimeTipper.log", mode="exe"),
-    format="{time:YYYY-MM-DD HH:mm:ss.SSS} | <level>{level}</level> | {name} -> {function} -> {line} >>> {message}",
-    rotation="256 KB",
-    retention="2 days",
-    encoding="utf-8",
-    compression="tar.gz",
-    enqueue=True,
-    backtrace=True,
-    catch=True,
-)
-if hasattr(stdout, "closed") and hasattr(stdout, "isatty"):
-    # 创建控制台输出
-    logger.add(
-        sink=stdout,
-        format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> <red>|</red> <level>{level}</level> <red>|</red> "
-        "<yellow>{name}</yellow> <red>-></red> <yellow>{function}</yellow> <red>-></red> "
-        "<yellow>{line}</yellow><red> >>> </red><cyan>{message}</cyan>",
-        enqueue=True,
-        backtrace=True,
-        catch=True,
-        colorize=True,
-    )
 
 if __name__ == "__main__":
     app = QApplication(argv)

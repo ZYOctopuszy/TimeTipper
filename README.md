@@ -114,9 +114,9 @@
           ".pptx",
           ".xlsx",
           "192.168.",
-          "\u5206\u4eab\u7684\u56fe\u7247",
-          "\u804a\u5929\u8bb0\u5f55",
-          "\u6587\u6863\u6587\u4ef6"
+          "分享的图片",
+          "聊天记录",
+          "文档文件"
       ]
     }
     ```
@@ -137,14 +137,14 @@
     pip install -r requirements.txt
     ```
 - 📚依赖库:
-  - `loguru`
-  - `PySide6`
-  - `pywin32`
   - `keyboard`
+  - `loguru`
   - `Nuitka`
   - `psutil`
+  - `PySide6`
+  - `pywin32`
 - ⚙️构建:
-  `enter_venv.bat && packed_by_nuitka.bat`
+  `enter_venv.bat && packed.bat`
 
 
 
