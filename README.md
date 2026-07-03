@@ -94,7 +94,7 @@
 
     {
       "hide_tray": 2,
-      "forKillExe": [
+      "for_kill_exes": [
           "EasiCamera.exe",
           "et.exe",
           "EXCEL.Title",
@@ -108,7 +108,7 @@
           30
       ],
       "hold_time": 300,
-      "forKillWindowTitle": [
+      "for_kill_window_titles": [
           ".pdf",
           ".ppt",
           ".pptx",
@@ -123,9 +123,9 @@
 
 ## 👨‍💻 开发
 - 本项目使用`Python`编程语言开发
-- 要求环境:
-  - `Python 3.13`及以上
-  - `Windows 10`及以上
+- 作者开发环境:
+  - `Python 3.15`
+  - `Windows 11`
   - 使用`Git`进行版本管理
 
 1. 📥克隆项目:
@@ -145,17 +145,3 @@
   - `pywin32`
 - ⚙️构建:
   `enter_venv.bat && packed.bat`
-
-
-
-## ⭐ 支持
-- 如果您觉得本项目还不错, 不妨点个免费的⭐Star~
-
-Star趋势图
-[![Stargazers over time](https://starchart.cc/ZYOctopuszy/TimeTipper.svg)](https://starchart.cc/ZYOctopuszy/TimeTipper)
-
-## ❤️ 感谢贡献
-
-<a href="https://github.com/ZYOctopuszy/TimeTipper/graphs/contributors">
-   <img src="https://contrib.rocks/image?repo=ZYOctopuszy/TimeTipper" />
-</a>
