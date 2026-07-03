@@ -2,7 +2,7 @@
 主设置窗口
 """
 
-from typing import Any
+from typing import Any, Callable
 from PySide6.QtWidgets import QApplication, QMessageBox
 from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QShortcut, QKeySequence
@@ -40,6 +40,7 @@ class Config:
     random_delay: list[int]
     duration: int
 
+# region 默认配置
 DEFAULT_CONFIG = Config(
     tray_hide_mode=0,
     for_kill_exes=[
@@ -64,6 +65,8 @@ DEFAULT_CONFIG = Config(
     random_delay=[0, 0],
     duration=1,
 )
+# endregion
+
 
 class MainWindow(MyQWidget):
     """
@@ -76,11 +79,11 @@ class MainWindow(MyQWidget):
     window_show_signal = Signal()
 
     def __init__(self, app: QApplication) -> None:
-        signal.signal(signal.SIGINT, lambda *args: self.exit_app()) # type: ignore
+        signal.signal(signal.SIGINT, lambda *args: self.exit_app())  # type: ignore
         super().__init__(auto_hide=False)
         # region 初始化UI
         self.ui = settings.Ui_Form()
-        self.ui.setupUi(Form=self) # type: ignore
+        self.ui.setupUi(Form=self)  # type: ignore
         # endregion
         # region 设置窗口属性
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowType_Mask)
@@ -89,14 +92,14 @@ class MainWindow(MyQWidget):
         set_window_recordable(window=self, recordable=False)
         # endregion
         # region 初始化属性
-        self.app = app
+        self.app: QApplication = app
         self.status: bool = True
         self.is_exit_asking: bool = False
         self.is_alive: bool = True
         self.is_testing: bool = False
         # endregion
-        # region 实例化关闭窗口方法
-        self.kill_windows = kill_windows
+        # region 关闭窗口方法
+        self.kill_windows: Callable[..., bool] = kill_windows
         # endregion
         # region 实例化日志管理类
         self.log_manager = LogManager(self)
@@ -338,7 +341,7 @@ class MainWindow(MyQWidget):
                     f"真的要退出吗?({self.hot_key_manager.try_exit_times}/3)",
                     f"真的要退出吗?(再按{3-self.hot_key_manager.try_exit_times}次强制退出)",
                     QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                    QMessageBox.StandardButton.No
+                    QMessageBox.StandardButton.No,
                 )
                 == QMessageBox.StandardButton.Yes
             ):
@@ -392,11 +395,11 @@ class MainWindow(MyQWidget):
     # endregion
 
     # region 重写的函数
-    def hideEvent(self, event, /): #type: ignore
+    def hideEvent(self, event, /):  # type: ignore
         self.window_hide_signal.emit()
         event.accept()
 
-    def closeEvent(self, event, /): #type: ignore
+    def closeEvent(self, event, /):  # type: ignore
         self.hide()
         event.ignore()
 
