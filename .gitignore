@@ -1,12 +1,8 @@
 /dist
 /.vscode
 /.idea
-/.git
 TimeTipper.log
 test.py
 time_config.json
 config.json
 /**/__pycache__
-/classes/__pycache__
-/__pycache__
-/UIs/__pycache__

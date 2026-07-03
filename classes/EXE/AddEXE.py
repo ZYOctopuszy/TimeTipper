@@ -1,6 +1,7 @@
 if __name__ == "__main__":
     from MainWindow import MainWindow
 from pathlib import Path
+from typing import Any
 
 from PySide6.QtWidgets import QApplication, QFileDialog
 from loguru import logger
@@ -41,7 +42,7 @@ class AddEXE(AddItem):
         self.p_window.update_config()
 
     @logger.catch
-    def item_double_clicked_action(self, *args) -> None:
+    def item_double_clicked_action(self, *args: Any) -> None:
         """
         双击待杀程序列表项时执行
         :return:

@@ -3,12 +3,11 @@ if __name__ == "__main__":
 
 
 import bisect
-from multiprocessing.spawn import prepare
-from PySide6.QtCore import QObject, QTime, Qt
+from typing import override
+from PySide6.QtCore import QObject, QTime, Qt, QEvent
 from PySide6.QtWidgets import QListWidget, QListWidgetItem
-from PySide6.QtGui import QCursor, QIcon, QMouseEvent
+from PySide6.QtGui import QCursor, QIcon
 from loguru import logger
-import contextlib
 
 from classes.basic_classes.Clock import Clock
 from public_functions import save_time_to_json
@@ -56,15 +55,16 @@ class ClockManager(QObject):
         self.time_list.viewport().installEventFilter(self)
 
     @logger.catch
-    def eventFilter(self, watched: QObject, event: QMouseEvent) -> bool:
+    @override
+    def eventFilter(self, watched: QObject, event: QEvent) -> bool:
         """
         处理鼠标事件, 右键单击时间点启用/禁用
         """
-        if event.type() == QMouseEvent.Type.MouseButtonPress:
+        if event.type() == QEvent.Type.MouseButtonPress:
             if item := self.time_list.itemAt(
                 self.time_list.viewport().mapFromGlobal(QCursor.pos())
             ):
-                if event.button() == Qt.MouseButton.RightButton:
+                if event.button() == Qt.MouseButton.RightButton:  # type: ignore
                     row = self.time_list.row(item)
                     self.p_window.time_config[self.day_widget.currentIndex()][
                         row
@@ -189,7 +189,7 @@ class ClockManager(QObject):
         显示描述
         :return: 无
         """
-        if type(current_item := self.time_list.item(row)) is QListWidgetItem:
+        if type(self.time_list.item(row)) is QListWidgetItem:
             self.p_window.ui.description.setPlainText(
                 self.p_window.time_config[self.day_widget.currentIndex()][
                     row

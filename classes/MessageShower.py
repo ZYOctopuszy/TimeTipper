@@ -2,7 +2,7 @@ if __name__ == "__main__":
     from MainWindow import MainWindow
 import sys
 import threading
-from datetime import datetime, timedelta, time
+from datetime import datetime, timedelta
 from random import randint
 from time import sleep
 
@@ -36,7 +36,7 @@ class MessageShower:
                 a=self.p_window.config.random_delay[0],
                 b=self.p_window.config.random_delay[1],
             )
-            if self.p_window.testing
+            if self.p_window.is_testing
             or (
                 now.strftime(format="%H:%M")
                 in [clock.time for clock in self.p_window.time_config[self.day]]
@@ -45,7 +45,9 @@ class MessageShower:
             else 0
         )
         # logger.debug(f"将等待时间: {wait_second}秒")
-        while self.p_window.life and (self.p_window.testing or self.p_window.status):
+        while self.p_window.is_alive and (
+            self.p_window.is_testing or self.p_window.status
+        ):
             if wait_second > 0:
                 wait_second -= 1
                 sleep(1)
@@ -63,7 +65,7 @@ class MessageShower:
                 if success:
                     self.p_window.app.beep()
                 break
-        self.p_window.testing = False
+        self.p_window.is_testing = False
         self.p_window.ui.test_button.setEnabled(True)
         self.p_window.ui.test_button.setText("测试")
 
@@ -73,8 +75,8 @@ class MessageShower:
         警告功能
         :return: 无
         """
-        while self.p_window.life:
-            if self.p_window.testing or self.p_window.status:
+        while self.p_window.is_alive:
+            if self.p_window.is_testing or self.p_window.status:
                 now = datetime.now().replace(microsecond=0)
                 current_time = now
                 duration_seconds_before = now - timedelta(
@@ -95,7 +97,7 @@ class MessageShower:
                 # ]}"
                 # )
 
-                if self.p_window.testing or [
+                if self.p_window.is_testing or [
                     (c.hours, c.minutes)
                     for c in self.p_window.time_config[self.day]
                     if c.state

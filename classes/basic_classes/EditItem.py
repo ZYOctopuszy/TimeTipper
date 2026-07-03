@@ -35,7 +35,7 @@ class EditItem(GetInput):
         QApplication.processEvents()
         self.hide()
         current_item = self.list_widget.currentItem()
-        if (new_item:=self.ui.get_exe_name.text().strip()) not in self.list_widget.findItems(new_item.strip(), Qt.MatchFlag.MatchExactly):
+        if (new_item:=self.ui.get_exe_name.text().strip()) not in (item.text() for item in self.list_widget.findItems(new_item.strip(), Qt.MatchFlag.MatchExactly)):
             self.list_widget.takeItem(self.list_widget.currentRow())
             self.list_widget.addItem(new_item)
             self.list_widget.sortItems()

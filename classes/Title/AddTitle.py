@@ -1,5 +1,3 @@
-import contextlib
-
 if __name__ == "__main__":
     from MainWindow import MainWindow
 from PySide6.QtWidgets import QApplication, QListWidgetItem
@@ -7,7 +5,7 @@ from PySide6.QtCore import Qt
 from loguru import logger
 
 from ..basic_classes.AddItem import AddItem
-from .GetWindowUnderMouse import GetWindowUnderMouse
+from .GetWindowUnderMouse import WindowGetter
 
 
 class AddTitle(AddItem):
@@ -27,13 +25,13 @@ class AddTitle(AddItem):
         self.ui.label.setText("添加待关闭窗口标题")
         self.ui.get_exe_name.setPlaceholderText("请输入窗口标题")
 
-        self.collectors = []
-        self.collectors.extend(
-            GetWindowUnderMouse(self.p_window, _) for _ in QApplication.screens()
+        self.getters: list[WindowGetter] = []
+        self.getters.extend(
+            WindowGetter(self.p_window, _) for _ in QApplication.screens()
         )
         self.p_window.ui.choose_on_screen.clicked.connect(self.add_item_easily)
-        for collector in self.collectors:
-            collector.get_window_signal.connect(self.add_item)
+        for getter in self.getters:
+            getter.get_window_signal.connect(self.add_item)
 
     @logger.catch
     def item_double_clicked_action(self, item: QListWidgetItem):
@@ -48,14 +46,16 @@ class AddTitle(AddItem):
         """
         通过点击屏幕选取窗口
         """
-        for collector in self.collectors:
+        for collector in self.getters:
             collector.show()
 
-    def add_item(self, item):
-        for collector in self.collectors:
+    def add_item(self, item: str):
+        for collector in self.getters:
             collector.setVisible(False)
         if item and item not in self.p_window.config.for_kill_window_titles:
             self.list_widget.addItem(item)
             self.list_widget.sortItems()
-            self.list_widget.setCurrentItem(self.list_widget.findItems(item, Qt.MatchFlag.MatchExactly)[0])
+            self.list_widget.setCurrentItem(
+                self.list_widget.findItems(item, Qt.MatchFlag.MatchExactly)[0]
+            )
             self.p_window.update_config()

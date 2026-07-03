@@ -19,7 +19,7 @@ class StatusManager(QWidget):
         self.p_window = p_window
 
         self.ui = status_shower.Ui_Form()
-        self.ui.setupUi(self)
+        self.ui.setupUi(self) #type: ignore
         self.setWindowFlags(
             Qt.WindowType.WindowStaysOnTopHint
             | Qt.WindowType.FramelessWindowHint
@@ -49,7 +49,7 @@ class StatusManager(QWidget):
             # 立即显示窗口（固定在屏幕顶部居中）
             QMetaObject.invokeMethod(self, "show", Qt.ConnectionType.QueuedConnection)
             # 自动隐藏
-            target=threading.Thread(
+            threading.Thread(
                 target=self._auto_hide_task, daemon=True
             ).start()
 

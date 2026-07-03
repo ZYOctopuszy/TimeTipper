@@ -18,7 +18,7 @@ class Time(MyQWidget):
         """
         super().__init__()
         self.ui = add_time.Ui_Form()
-        self.ui.setupUi(self)
+        self.ui.setupUi(self) #type: ignore
         # 设置窗口标志，确保窗口显示在主窗口之上
         self.setWindowFlags(
             # Qt.WindowType.Dialog  # 使用Dialog标志，使其成为模态对话框

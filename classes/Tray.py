@@ -92,6 +92,8 @@ class Tray(QSystemTrayIcon):
                 self.show()
             case 2:
                 self.hide()
+            case _:
+                pass
 
     @logger.catch
     def set_icon(self):
@@ -132,3 +134,6 @@ class Tray(QSystemTrayIcon):
 
             case QSystemTrayIcon.ActivationReason.MiddleClick:
                 self.p_window.exit_app()
+
+            case _:
+                pass

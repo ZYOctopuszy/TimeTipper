@@ -1,6 +1,6 @@
 """
 TimeTipper - 一个阻止拖堂的小工具
-本项目是一个初中生练手写的, 有很多不足
+本项目是一个初中生练手写的, 有很多不足, 欢迎指正
 """
 
 # region 编译配置
@@ -24,12 +24,11 @@ from sys import exit as sys_exit, argv
 from PySide6.QtWidgets import QApplication
 
 from MainWindow import *
-from public_functions import logger_init, run_as_UIaccess
-
+from public_functions import logger_init, run_as_uiaccess
 
 logger_init()
 
-run_as_UIaccess()
+run_as_uiaccess()
 
 if __name__ == "__main__":
     app = QApplication(argv)

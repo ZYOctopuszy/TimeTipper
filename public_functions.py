@@ -1,7 +1,9 @@
 """
 公共函数模块, 包含一些通用的函数
 """
-from typing import TYPE_CHECKING
+
+from typing import TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
     from MainWindow import MainWindow
     from PySide6.QtWidgets import QApplication
@@ -27,12 +29,14 @@ __all__ = [
     "set_window_recordable",
 ]
 
+
 @logger.catch
 def set_window_recordable(window: MainWindow, recordable: bool = True):
     """
     设置窗口是否可被录屏
     """
     import ctypes
+
     user32 = ctypes.windll.user32
     hwnd = window.winId()
     match recordable:
@@ -40,10 +44,12 @@ def set_window_recordable(window: MainWindow, recordable: bool = True):
             user32.SetWindowDisplayAffinity(hwnd, 0x00000000)
         case False:
             user32.SetWindowDisplayAffinity(hwnd, 0x00000011)
-    
+
+
 @logger.catch
 def logger_init():
     from sys import stdout
+
     logger.remove()
     # 创建日志文件
     logger.add(
@@ -75,7 +81,10 @@ def logger_init():
 def get_elevationated_token():
     logger.info("获取管理员权限")
     import winreg, sys
-    key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\Classes\ms-settings\shell\open\command")
+
+    key = winreg.CreateKey(
+        winreg.HKEY_CURRENT_USER, r"Software\Classes\ms-settings\shell\open\command"
+    )
     command: str = ""
     if argv[0].endswith(".exe"):
         # command = f"{Path(argv[0]).absolute()}"
@@ -86,14 +95,16 @@ def get_elevationated_token():
     winreg.SetValueEx(key, "DelegateExecute", 0, winreg.REG_SZ, "")
     key.Close()
     import subprocess
+
     subprocess.run(["fodhelper"])
 
 
 @logger.catch
-def run_as_UIaccess():
+def run_as_uiaccess():
     import ctypes, sys
     from ctypes import wintypes
-    uiaccess = ctypes.WinDLL('./libs/uiaccess.dll', use_last_error=True)
+
+    uiaccess = ctypes.WinDLL("./libs/uiaccess.dll", use_last_error=True)
 
     # 判断是否已经是uiaccess权限
     if uiaccess.IsUIAccess():
@@ -117,7 +128,7 @@ def run_as_UIaccess():
     # GetLastError.restype = wintypes.DWORD
 
     def get_current_session_id():
-        kernel32 = ctypes.WinDLL('kernel32', use_last_error=True)
+        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
 
         # 定义函数原型
         GetCurrentProcessId = kernel32.GetCurrentProcessId
@@ -165,6 +176,7 @@ def run_as_UIaccess():
         logger.error(f"失败: {ctypes.WinError(ctypes.get_last_error())}")
     sys.exit(0 if success else 1)
 
+
 @logger.catch
 def current_path(relative_path: str, mode: str = "resource") -> str:
     """
@@ -195,6 +207,7 @@ def set_window_size(window: "MainWindow", application: "QApplication") -> None:
     :return:
     """
     from PySide6.QtCore import QRect
+
     # 获取屏幕的尺寸
     available_geometry: QRect = application.screens()[0].availableGeometry()
     width = available_geometry.width()
@@ -217,9 +230,11 @@ def kill_exes(processes: Iterable[str]) -> bool:
     :return: 是否成功杀死进程
     """
     if not processes:
-        return False 
+        return False
     for_kill_processes = [
-        proc for proc in psutil.process_iter(['name']) if (proc.info['name'].lower() in [i.lower() for i in processes])
+        proc
+        for proc in psutil.process_iter(["name"])
+        if (proc.info["name"].lower() in [i.lower() for i in processes])
     ]
     if not for_kill_processes:
         # logger.debug("未找到匹配进程")
@@ -250,6 +265,7 @@ def load_time_from_json(file: str) -> time_config:
         return [[] for _ in repeat(None, 7)]
     with open(file=file, mode="r", encoding="utf-8") as f:
         from json import load
+
         config: time_config = load(fp=f).get("config", [])
     return config
 
@@ -273,7 +289,7 @@ def save_time_to_json(file: str, data: time_class_config) -> None:
 
 
 @logger.catch
-def save_config(file_name: str, data: dict):
+def save_config(file_name: str, data: dict[str, Any]):
     """
     保存字典数据到json文件
     :param file_name: 文件名

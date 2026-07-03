@@ -1,5 +1,7 @@
 if __name__ == "__main__":
     from MainWindow import MainWindow
+from typing import Any
+
 from PySide6.QtWidgets import QWidget
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QScreen
@@ -7,7 +9,7 @@ import win32gui
 from loguru import logger
 
 
-class GetWindowUnderMouse(QWidget):
+class WindowGetter(QWidget):
 
     get_window_signal = Signal(str)
 
@@ -29,11 +31,10 @@ class GetWindowUnderMouse(QWidget):
 
     def show(self):
         super().show()
-        self.raise_()
         self.move(self.should_show_screen.geometry().topLeft())
         self.showFullScreen()
 
-    def mousePressEvent(self, *args, **kwargs):
+    def mousePressEvent(self, *args: Any, **kwargs: Any):
         self.setVisible(False)
         self.get_window()
 

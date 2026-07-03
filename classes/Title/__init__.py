@@ -1,10 +1,9 @@
 from .AddTitle import AddTitle
 from .EditTitle import EditTitle
-from .GetWindowUnderMouse import GetWindowUnderMouse
-
+from .GetWindowUnderMouse import WindowGetter
 
 __all__ = [
     "AddTitle",
     "EditTitle",
-    "GetWindowUnderMouse",
+    "WindowGetter",
 ]

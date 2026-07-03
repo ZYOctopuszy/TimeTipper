@@ -38,7 +38,7 @@ class AddItem(GetInput):
         QApplication.processEvents()
         self.hide()
         new_item = self.ui.get_exe_name.text().strip()
-        if new_item  != "" and new_item not in self.list_widget.findItems(new_item, Qt.MatchFlag.MatchExactly):
+        if new_item  != "" and new_item not in (item.text() for item in self.list_widget.findItems(new_item, Qt.MatchFlag.MatchExactly)):
             self.list_widget.addItem(self.ui.get_exe_name.text())
             self.list_widget.sortItems()
             self.p_window.update_config()

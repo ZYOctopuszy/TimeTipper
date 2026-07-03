@@ -1,4 +1,5 @@
 from collections.abc import Iterable
+from typing import Any
 import win32con, win32gui
 from loguru import logger
 
@@ -21,7 +22,7 @@ def kill_windows(titles: Iterable[str]) -> bool:
     return success
 
 @logger.catch
-def callback(hwnd: int, *args, **kwargs):
+def callback(hwnd: int, *args: Any, **kwargs: Any):
     """
     枚举窗口回调函数，用于查找匹配标题的窗口
     :param hwnd: 窗口句柄

@@ -16,7 +16,12 @@ import webbrowser, signal
 from classes import *
 from classes.basic_classes import *
 from UIs import settings
-from public_functions import current_path, set_window_size, save_config, set_window_recordable
+from public_functions import (
+    current_path,
+    set_window_size,
+    save_config,
+    set_window_recordable,
+)
 from classes.WindowCloser import kill_windows
 from classes.LogManager import LogManager
 
@@ -35,10 +40,34 @@ class Config:
     random_delay: list[int]
     duration: int
 
+DEFAULT_CONFIG = Config(
+    tray_hide_mode=0,
+    for_kill_exes=[
+        "excel.exe",
+        "easicamera.exe",
+        "powerpnt.exe",
+        "winword.exe",
+        "et.exe",
+        "wps.exe",
+        "wpscloudsvr.exe",
+    ],
+    for_kill_window_titles=[
+        ".pdf",
+        ".ppt",
+        ".pptx",
+        ".xlsx",
+        "192.168.",
+        "分享的图片",
+        "聊天记录",
+        "文档文件",
+    ],
+    random_delay=[0, 0],
+    duration=1,
+)
 
 class MainWindow(MyQWidget):
     """
-    主设置窗口类
+    Settings Window
     """
 
     status_changed_signal = Signal()
@@ -47,11 +76,11 @@ class MainWindow(MyQWidget):
     window_show_signal = Signal()
 
     def __init__(self, app: QApplication) -> None:
-        signal.signal(signal.SIGINT, lambda *args: self.exit_app())
+        signal.signal(signal.SIGINT, lambda *args: self.exit_app()) # type: ignore
         super().__init__(auto_hide=False)
         # region 初始化UI
         self.ui = settings.Ui_Form()
-        self.ui.setupUi(Form=self)
+        self.ui.setupUi(Form=self) # type: ignore
         # endregion
         # region 设置窗口属性
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowType_Mask)
@@ -62,9 +91,9 @@ class MainWindow(MyQWidget):
         # region 初始化属性
         self.app = app
         self.status: bool = True
-        self.exit_asking: bool = False
-        self.life: bool = True
-        self.testing: bool = False
+        self.is_exit_asking: bool = False
+        self.is_alive: bool = True
+        self.is_testing: bool = False
         # endregion
         # region 实例化关闭窗口方法
         self.kill_windows = kill_windows
@@ -73,31 +102,7 @@ class MainWindow(MyQWidget):
         self.log_manager = LogManager(self)
         # endregion
         # region 初始化配置
-        self.default_config = Config(
-            tray_hide_mode=0,
-            for_kill_exes=[
-                "excel.exe",
-                "easicamera.exe",
-                "powerpnt.exe",
-                "winword.exe",
-                "et.exe",
-                "wps.exe",
-                "wpscloudsvr.exe",
-            ],
-            for_kill_window_titles=[
-                ".pdf",
-                ".ppt",
-                ".pptx",
-                ".xlsx",
-                "192.168.",
-                "分享的图片",
-                "聊天记录",
-                "文档文件",
-            ],
-            random_delay=[0, 0],
-            duration=1,
-        )
-        self.config: Config = Config(**self.default_config.__dict__)
+        self.config: Config = Config(**DEFAULT_CONFIG.__dict__)
         self.config_path: str = current_path(relative_path="config.json", mode="exe")
         # endregion
         # region 初始化时间表配置
@@ -137,7 +142,7 @@ class MainWindow(MyQWidget):
                 try:
                     self.load_config(configure=Config(**load(fp=f)))
                 except Exception:
-                    self.load_config(configure=self.default_config)
+                    self.load_config(configure=DEFAULT_CONFIG)
         # endregion
         self.widgets_init()
         self.son_classes_init()
@@ -157,13 +162,13 @@ class MainWindow(MyQWidget):
             :param key: 键名
             :return: 键对应的值
             """
-            result = config.__dict__.get(key, self.default_config.__dict__[key])
+            result: Any = config.__dict__.get(key, DEFAULT_CONFIG.__dict__[key])
             match key:
                 case "tray_hide_mode":
-                    if (type(result) is not int) or (result not in [0, 1, 2]):
-                        result = self.default_config.tray_hide_mode
+                    if result not in (0, 1, 2):
+                        result = DEFAULT_CONFIG.tray_hide_mode
                 case "random_delay":
-                    if type(result) is list and len(result) == 2:
+                    if type(result) is list[int] and len(result) == 2:
                         for i in range(2):
                             if type(result[i]) is int and result[i] < 0:
                                 result[i] = 0
@@ -171,7 +176,9 @@ class MainWindow(MyQWidget):
                             result[0], result[1] = result[1], result[0]
                 case "duration":
                     if type(result) is not int or result < 1:
-                        result = self.default_config.duration
+                        result = DEFAULT_CONFIG.duration
+                case _:
+                    pass
             return result
 
         self.config = Config(
@@ -288,35 +295,33 @@ class MainWindow(MyQWidget):
 
     @Slot()
     @logger.catch
-    def change_state(self, *args):
+    def change_state(self, *args: Any):
         """
         切换工作状态
         :return: 无
         """
         self.status ^= True
-        self.ui.is_active.setText("工作中" if self.status else "睡觉中")
-        self.status_manager.ui.status.setText(
-            f"TimeTipper - {'工作中' if self.status else '睡觉中'}"
-        )
+        status_text: str = "工作中" if self.status else "睡觉中"
+        self.ui.is_active.setText(status_text)
+        self.status_manager.ui.status.setText(f"TimeTipper - {status_text}")
         self.tray_icon.refresh_tray()
 
     @Slot()
     @logger.catch
-    def exit_app(self, *args):
+    def exit_app(self, *args: Any):
         """
         退出应用
         :return: 无
         """
-        self.life = False
+        self.is_alive = False
         keyboard.unhook_all()
         logger.warning("正在退出应用...")
-        # self.status_manager.destroy()
         self.app.quit()
         sys.exit()
 
     @Slot()
     @logger.catch
-    def confirm_exit(self, *args):
+    def confirm_exit(self, *args: Any):
         """
         确认退出应用
         :return: 无
@@ -325,24 +330,25 @@ class MainWindow(MyQWidget):
         if self.hot_key_manager.try_exit_times == 3:
             self.exit_app()
 
-        if not self.exit_asking:
-            self.exit_asking = True
+        if not self.is_exit_asking:
+            self.is_exit_asking = True
             if (
                 QMessageBox.question(
                     self,
-                    "真的要退出吗?",
-                    "真的要退出吗?",
+                    f"真的要退出吗?({self.hot_key_manager.try_exit_times}/3)",
+                    f"真的要退出吗?(再按{3-self.hot_key_manager.try_exit_times}次强制退出)",
                     QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                    QMessageBox.StandardButton.No
                 )
                 == QMessageBox.StandardButton.Yes
             ):
                 self.exit_app()
-            self.exit_asking = False
+            self.is_exit_asking = False
             self.hot_key_manager.try_exit_times = 0
 
     @Slot()
     @logger.catch
-    def update_config(self, *args):
+    def update_config(self, *args: Any):
         """
         更新配置
         :return: 无
@@ -354,12 +360,14 @@ class MainWindow(MyQWidget):
         )
         self.tray_icon.refresh_tray()
         self.config.duration = self.ui.hold_seconds.value()
-        if self.ui.a.value() < self.ui.b.value():
-            self.config.random_delay[0] = self.ui.a.value()
-            self.config.random_delay[1] = self.ui.b.value()
-        else:
-            self.config.random_delay[0] = self.ui.b.value()
-            self.config.random_delay[1] = self.ui.a.value()
+        self.config.random_delay = sorted((self.ui.a.value(), self.ui.b.value()))
+        # 下面是旧代码
+        # if self.ui.a.value() < self.ui.b.value():
+        #     self.config.random_delay[0] = self.ui.a.value()
+        #     self.config.random_delay[1] = self.ui.b.value()
+        # else:
+        #     self.config.random_delay[0] = self.ui.b.value()
+        #     self.config.random_delay[1] = self.ui.a.value()
         self.config.for_kill_exes = [
             self.ui.for_kill_list.item(row).text()
             for row in range(self.ui.for_kill_list.count())
@@ -374,7 +382,7 @@ class MainWindow(MyQWidget):
 
     @Slot()
     @logger.catch
-    def set_as_applicable(self, *args):
+    def set_as_applicable(self, *args: Any):
         """
         设置为可应用状态
         :return: 无
@@ -384,14 +392,11 @@ class MainWindow(MyQWidget):
     # endregion
 
     # region 重写的函数
-    def hideEvent(self, event, /):
+    def hideEvent(self, event, /): #type: ignore
         self.window_hide_signal.emit()
         event.accept()
 
-    def minimizeEvent(self, event, /):
-        event.ignore()
-
-    def closeEvent(self, event, /):
+    def closeEvent(self, event, /): #type: ignore
         self.hide()
         event.ignore()
 
