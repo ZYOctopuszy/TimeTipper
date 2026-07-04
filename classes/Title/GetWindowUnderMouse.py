@@ -28,11 +28,12 @@ class WindowGetter(QWidget):
         self.setWindowOpacity(0.01)
         self.setCursor(Qt.CursorShape.CrossCursor)
         self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents, True)
+        self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True)
 
     def show(self):
         super().show()
+        self.setWindowState(Qt.WindowState.WindowFullScreen)
         self.move(self.should_show_screen.geometry().topLeft())
-        self.showFullScreen()
 
     def mousePressEvent(self, *args: Any, **kwargs: Any):
         self.setVisible(False)

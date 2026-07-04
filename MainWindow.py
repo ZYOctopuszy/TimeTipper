@@ -10,8 +10,10 @@ from dataclasses import dataclass
 from loguru import logger
 from pathlib import Path
 from json import load
-import keyboard, sys
-import webbrowser, signal
+import keyboard
+import sys
+import webbrowser
+import signal
 
 from classes import *
 from classes.basic_classes import *
@@ -39,6 +41,7 @@ class Config:
     for_kill_window_titles: list[str]
     random_delay: list[int]
     duration: int
+
 
 # region 默认配置
 DEFAULT_CONFIG = Config(

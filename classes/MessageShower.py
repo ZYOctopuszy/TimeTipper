@@ -53,18 +53,21 @@ class MessageShower:
                 sleep(1)
                 continue
             else:
-                # logger.debug("关闭窗口中")
-                success: bool = True
-                if not self.p_window.kill_windows(
-                    titles=self.p_window.config.for_kill_window_titles
-                ):
-                    success = False
-                # logger.debug("杀死进程中")
-                if not kill_exes(processes=self.p_window.config.for_kill_exes):
-                    success = False
-                if success:
-                    self.p_window.app.beep()
-                break
+                try:
+                    # logger.debug("关闭窗口中")
+                    success: bool = True
+                    if not self.p_window.kill_windows(
+                        titles=self.p_window.config.for_kill_window_titles
+                    ):
+                        success = False
+                    # logger.debug("杀死进程中")
+                    if not kill_exes(processes=self.p_window.config.for_kill_exes):
+                        success = False
+                    if success:
+                        self.p_window.app.beep()
+                    break
+                except Exception as e:
+                    logger.error(e)
         self.p_window.is_testing = False
         self.p_window.ui.test_button.setEnabled(True)
         self.p_window.ui.test_button.setText("测试")

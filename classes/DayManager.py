@@ -2,6 +2,8 @@ if __name__ == "__main__":
     from MainWindow import MainWindow
     from .basic_classes.Clock import Clock
 
+from itertools import repeat
+
 from PySide6.QtWidgets import QComboBox
 from PySide6.QtCore import QTimer
 from datetime import datetime
@@ -63,7 +65,7 @@ class DayManager:
         if config_json_path in DayManager._config_cache:
             return DayManager._config_cache[config_json_path]
         config_list: time_config = load_time_from_json(file=config_json_path)
-        result: time_class_config = [[], [], [], [], [], [], []]
+        result: time_class_config = list(repeat([], 7))
         if len(config_list) != 7:
             logger.error(
                 f"加载JSON文件时出错: 数据格式不正确, 预期为7天的列表, 但得到了{len(config_list)}天"
@@ -73,9 +75,9 @@ class DayManager:
             for item in config_list[day]:
                 if (
                     len(item) == 3
-                    and type(item[0]) == str
-                    and type(item[1]) == str
-                    and type(item[2]) == bool
+                    and isinstance(item[0], str)
+                    and isinstance(item[1], str)
+                    and isinstance(item[2], bool)
                 ):
                     result[day].append(
                         Clock(time=item[0], description=item[1], state=item[2])

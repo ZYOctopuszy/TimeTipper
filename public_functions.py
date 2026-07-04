@@ -9,14 +9,16 @@ if TYPE_CHECKING:
     from PySide6.QtWidgets import QApplication
 from json import dump
 from sys import argv
-from pathlib import Path, PurePath
+from pathlib import Path
 from collections.abc import Iterable
 from loguru import logger
-from itertools import repeat
 import psutil
 import os
 
 from classes.basic_classes.Clock import Clock
+
+type time_config = list[list[list[str | bool]]]
+type time_class_config = list[list[Clock]]
 
 __all__ = [
     "current_path",
@@ -37,13 +39,9 @@ def set_window_recordable(window: MainWindow, recordable: bool = True):
     """
     import ctypes
 
-    user32 = ctypes.windll.user32
-    hwnd = window.winId()
-    match recordable:
-        case True:
-            user32.SetWindowDisplayAffinity(hwnd, 0x00000000)
-        case False:
-            user32.SetWindowDisplayAffinity(hwnd, 0x00000011)
+    ctypes.windll.user32.SetWindowDisplayAffinity(
+        window.winId(), 0x00000000 if recordable else 0x00000011
+    )
 
 
 @logger.catch
@@ -77,26 +75,27 @@ def logger_init():
         )
 
 
-@logger.catch
-def get_elevationated_token():
-    logger.info("获取管理员权限")
-    import winreg, sys
+# region 偷取管理员权限
+# @logger.catch
+# def get_elevationated_token():
+#     logger.info("获取管理员权限")
+#     import winreg, sys
 
-    key = winreg.CreateKey(
-        winreg.HKEY_CURRENT_USER, r"Software\Classes\ms-settings\shell\open\command"
-    )
-    command: str = ""
-    if argv[0].endswith(".exe"):
-        # command = f"{Path(argv[0]).absolute()}"
-        command = "C:\\Windows\\System32\\cmd.exe"
-    else:
-        command = f"{sys.executable} {Path(argv[0]).absolute()}"
-    winreg.SetValueEx(key, None, 0, winreg.REG_SZ, command)
-    winreg.SetValueEx(key, "DelegateExecute", 0, winreg.REG_SZ, "")
-    key.Close()
-    import subprocess
-
-    subprocess.run(["fodhelper"])
+#     key = winreg.CreateKey(
+#         winreg.HKEY_CURRENT_USER, r"Software\Classes\ms-settings\shell\open\command"
+#     )
+#     command: str = ""
+#     if argv[0].endswith(".exe"):
+#         # command = f"{Path(argv[0]).absolute()}"
+#         command = "C:\\Windows\\System32\\cmd.exe"
+#     else:
+#         command = f"{sys.executable} {Path(argv[0]).absolute()}"
+#     winreg.SetValueEx(key, None, 0, winreg.REG_SZ, command)
+#     winreg.SetValueEx(key, "DelegateExecute", 0, winreg.REG_SZ, "")
+#     key.Close()
+#     import subprocess
+#     subprocess.run(["fodhelper"])
+# endregion
 
 
 @logger.catch
@@ -150,9 +149,9 @@ def run_as_uiaccess():
         return session_id.value
 
     # 检查管理员权限 (INVALID_HANDLE_VALUE = -1 表示当前进程)
-    if not IsProcessElevated(wintypes.HANDLE(-1)):
-        get_elevationated_token()
-        return False
+    # if not IsProcessElevated(wintypes.HANDLE(-1)):
+    #     get_elevationated_token()
+    #     return False
 
     # 准备参数
     app_name = None  # 设为NULL
@@ -187,13 +186,11 @@ def current_path(relative_path: str, mode: str = "resource") -> str:
     """
     match mode:
         case "resource":
-            return str(
-                PurePath.joinpath(Path(__file__).resolve().parent, relative_path)
-            )
+            return str(Path(__file__).resolve().parent / relative_path)
         case "exe":
             if argv[0].endswith(".exe"):
                 return str(Path(os.environ["APPDATA"]) / "TimeTipper" / relative_path)
-            return str(PurePath.joinpath(Path(argv[0]).resolve().parent, relative_path))
+            return str(Path(argv[0]).resolve().parent / relative_path)
         case _:
             raise ValueError(f"mode must be 'resource' or 'exe', not {mode}")
 
@@ -202,8 +199,8 @@ def current_path(relative_path: str, mode: str = "resource") -> str:
 def set_window_size(window: "MainWindow", application: "QApplication") -> None:
     """
     将窗口居中于屏幕并设置为屏幕尺寸的一半
-    :param application: Qt应用对象
     :param window: 要设置的窗口
+    :param application: Qt应用对象
     :return:
     """
     from PySide6.QtCore import QRect
@@ -231,10 +228,11 @@ def kill_exes(processes: Iterable[str]) -> bool:
     """
     if not processes:
         return False
+    processes = {process.lower() for process in processes}
     for_kill_processes = [
         proc
         for proc in psutil.process_iter(["name"])
-        if (proc.info["name"].lower() in [i.lower() for i in processes])
+        if proc.info["name"].lower() in processes
     ]
     if not for_kill_processes:
         # logger.debug("未找到匹配进程")
@@ -244,9 +242,6 @@ def kill_exes(processes: Iterable[str]) -> bool:
         # logger.debug(f"杀死进程 {proc.name()}")
     return True
 
-
-type time_config = list[list[list[str | bool]]]
-type time_class_config = list[list[Clock]]
 
 _json_cache: dict[str, time_config] = {}
 
@@ -259,14 +254,15 @@ def load_time_from_json(file: str) -> time_config:
     :return: 加载的数据列表
     """
     if file in _json_cache:
-        return _json_cache.get(file, [])
+        return _json_cache[file]
     if not Path(file).is_file():
         logger.error(f"文件 {file} 不存在")
-        return [[] for _ in repeat(None, 7)]
+        return [[] for _ in range(7)]
     with open(file=file, mode="r", encoding="utf-8") as f:
         from json import load
 
         config: time_config = load(fp=f).get("config", [])
+    _json_cache[file] = config
     return config
 
 
