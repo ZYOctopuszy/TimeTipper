@@ -1,6 +1,6 @@
-from . import EXE
-from . import Title
-from . import basic_classes
+from .EXE import *
+from .Title import *
+from .basic_classes import *
 from .Time import Time
 from .HotKeyManager import HotKeyManager
 from .MessageShower import MessageShower
@@ -10,9 +10,8 @@ from .ClockManager import ClockManager
 from .DayManager import DayManager
 from .StatusManager import StatusManager
 
-
 __all__ = [
-    "basic_classes",
+    *basic_classes.__all__,
     "Title",
     "EXE",
     "MessageShower",

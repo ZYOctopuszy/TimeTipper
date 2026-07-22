@@ -26,22 +26,18 @@ class Time(MyQWidget):
             | Qt.WindowType.FramelessWindowHint  # 无边框
         )
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        (
-            self.setWindowTitle("添加时间点")
-            if use_to == "add_time"
-            else (
+        match use_to:
+            case "add_time":
+                self.setWindowTitle("添加时间点")
+            case "edit_time":
                 self.setWindowTitle("编辑时间点")
-                if use_to == "edit_time"
-                else exec(
-                    "raise ValueError('use_to must be 'add_time' or 'edit_time'')"
-                )
-            )
-        )
+            case _:
+                raise ValueError('use_to must be "add_time" or "edit_time"')
         self.hide()
 
     def show(self):
         """
-        重写show方法，确保窗口显示在最顶层
+        重写show方法, 确保窗口显示在最顶层
         """
         super().show()
         self.raise_()

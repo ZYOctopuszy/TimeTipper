@@ -16,7 +16,6 @@ import webbrowser
 import signal
 
 from classes import *
-from classes.basic_classes import *
 from UIs import settings
 from public_functions import (
     current_path,
@@ -25,7 +24,6 @@ from public_functions import (
     set_window_recordable,
 )
 from classes.WindowCloser import kill_windows
-from classes.LogManager import LogManager
 
 __all__ = ["MainWindow"]
 
@@ -229,7 +227,7 @@ class MainWindow(MyQWidget):
         )
         self.ui.apply_button.clicked.connect(lambda: self.update_config())
         self.ui.is_active.clicked.connect(self.status_changed_signal.emit)
-        self.ui.test_button.clicked.connect(lambda: setattr(self, "testing", True))
+        self.ui.test_button.clicked.connect(self.testing)
         self.ui.exit_button.clicked.connect(self.exit_app)
         self.ui.if_strong_hide.stateChanged.connect(self.set_as_applicable)
         self.ui.if_strong_hide.checkStateChanged.connect(
@@ -395,6 +393,14 @@ class MainWindow(MyQWidget):
         """
         self.ui.apply_button.setEnabled(True)
 
+    @Slot()
+    @logger.catch
+    def testing(self, *args: Any):
+        """
+        测试
+        :return: 无
+        """
+        self.is_testing = True
     # endregion
 
     # region 重写的函数

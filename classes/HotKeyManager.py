@@ -5,7 +5,6 @@ from PySide6.QtCore import Signal, QMetaObject, Qt
 from PySide6.QtWidgets import QWidget
 from loguru import logger
 
-
 class HotKeyManager(QWidget):
     """
     热键管理类
@@ -16,7 +15,7 @@ class HotKeyManager(QWidget):
     @logger.catch
     def __init__(self, p_window: "MainWindow"):
         super().__init__()
-        self.p_window = p_window
+        self.p_window: "MainWindow" = p_window
         self.try_exit_times: int = 0
 
         self.p_window.confirm_exit_signal.connect(self.p_window.confirm_exit)

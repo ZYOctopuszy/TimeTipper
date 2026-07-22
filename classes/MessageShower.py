@@ -51,7 +51,6 @@ class MessageShower:
             if wait_second > 0:
                 wait_second -= 1
                 sleep(1)
-                continue
             else:
                 try:
                     # logger.debug("关闭窗口中")
